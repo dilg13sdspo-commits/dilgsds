@@ -349,6 +349,25 @@
       else if (e.key === '1') setOrgImageZoom(1);
     });
   </script>
+  <script>
+    (function () {
+      var image = document.getElementById('org-image-full');
+      if (!image) return;
+      fetch('auth/organizational_structure_api.php', { cache: 'no-store' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Unable to load the latest organizational structure image.');
+          return response.json();
+        })
+        .then(function (data) {
+          if (!data.image_url) throw new Error('The organizational structure image is not configured.');
+          var imageUrl = data.image_url;
+          image.src = imageUrl + (imageUrl.indexOf('?') === -1 ? '?' : '&') + 'v=' + Date.now();
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }());
+  </script>
   <script src="public/js/sidebar-cards.js"></script>
 </body>
 </html>

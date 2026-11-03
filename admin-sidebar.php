@@ -1,7 +1,7 @@
 <?php
 // Shared admin sidebar include. Computes current page and outputs the navigation with active state.
 $current = basename($_SERVER['PHP_SELF']);
-$website_pages = ['admin-home.php', 'admin-page-content.php', 'admin-lgrc-gad.php', 'admin-news.php', 'admin-issuances.php', 'admin-programs.php', 'admin-officials.php', 'admin-documents.php', 'admin-contact-us.php'];
+$website_pages = ['admin-home.php', 'admin-page-content.php', 'admin-lgrc-gad.php', 'admin-news.php', 'admin-issuances.php', 'admin-programs.php', 'admin-officials.php', 'admin-organizational-structure.php', 'admin-documents.php', 'admin-contact-us.php'];
 $website_is_active = in_array($current, $website_pages, true);
 ?>
 <aside class="admin-sidebar" aria-label="Sidebar navigation">
@@ -34,6 +34,7 @@ $website_is_active = in_array($current, $website_pages, true);
         <a href="admin-home.php" class="<?php echo $current==='admin-home.php' ? 'is-active' : ''; ?>" aria-label="Home Management: manage homepage slides and featured content" title="Manage homepage content"><span class="submenu-item-icon"><svg viewBox="0 0 24 24"><path d="M4 11.5L12 4l8 7.5V20H4z"/></svg></span><span>Home Management</span></a>
         <a href="admin-documents.php" class="<?php echo $current==='admin-documents.php' ? 'is-active' : ''; ?>"><span class="submenu-item-icon"><svg viewBox="0 0 24 24"><path d="M4 6h6l2 2h8v11H4z"/></svg></span><span>Documents</span></a>
         <a href="admin-officials.php" class="<?php echo $current==='admin-officials.php' ? 'is-active' : ''; ?>"><span class="submenu-item-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5M16 6a3 3 0 0 1 0 5M16 14c3 0 5 2 5 5"/></svg></span><span>Elected Officials</span></a>
+        <a href="admin-organizational-structure.php" class="<?php echo $current==='admin-organizational-structure.php' ? 'is-active' : ''; ?>" aria-label="Organizational Structure: upload the organization chart image" title="Upload the organizational structure image"><span class="submenu-item-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m21 15-5-5L5 20"/></svg></span><span>Organizational Structure</span></a>
         <a href="admin-page-content.php?section=charter" class="<?php echo $current==='admin-page-content.php' && ($_GET['section'] ?? '')==='charter' ? 'is-active' : ''; ?>"><span class="submenu-item-icon"><svg viewBox="0 0 24 24"><path d="M6 4h9a3 3 0 0 1 3 3v13H9a3 3 0 0 0-3 3V4z"/><path d="M6 20h12M10 8h5M10 12h5"/></svg></span><span>Citizen's Charter</span></a>
         <details class="sidebar-submenu sidebar-submenu--nested" <?php echo $current === 'admin-lgrc-gad.php' ? 'open' : ''; ?>>
           <summary class="sidebar-submenu__summary">
