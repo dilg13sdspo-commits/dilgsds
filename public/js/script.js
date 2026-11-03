@@ -165,24 +165,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const updateClock = () => {
     try {
       const now = new Date();
-      const philippineTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
-      const weekday = philippineTime.toLocaleDateString(locale, {
+      const dateString = now.toLocaleDateString(locale, {
         weekday: 'long',
-        timeZone: 'Asia/Manila'
-      });
-      const month = philippineTime.toLocaleDateString(locale, {
         month: 'long',
-        timeZone: 'Asia/Manila'
-      });
-      const day = philippineTime.toLocaleDateString(locale, {
         day: 'numeric',
-        timeZone: 'Asia/Manila'
-      });
-      const year = philippineTime.toLocaleDateString(locale, {
         year: 'numeric',
         timeZone: 'Asia/Manila'
       });
-      const timeString = philippineTime.toLocaleTimeString(locale, {
+      const timeString = now.toLocaleTimeString(locale, {
         hour: 'numeric',
         minute: '2-digit',
         second: '2-digit',
@@ -190,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
         timeZone: 'Asia/Manila'
       });
 
-      const dateString = `${weekday}, ${month} ${day}, ${year}`;
       const timeDisplay = `${timeString} Tandag City`;
 
       if (dateEl) {

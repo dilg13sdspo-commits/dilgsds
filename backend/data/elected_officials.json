@@ -1,1 +1,47 @@
-[]
+﻿[
+    {
+        "office_title":  "Provincial Government of Surigao del Sur",
+        "official_name":  "Governor Johnny T. Pimentel",
+        "contact_details":  "governor@surigaodelsur.gov.ph\r\nCapitol Complex, Tandag City, Surigao del Sur",
+        "logo_path":  "Logos/surigao-del-sur (1).png",
+        "photo_path":  "Logos/Elected Officials/Gov Johnny Pimentel.jpg",
+        "facebook_url":  "https://www.facebook.com/DILGsds",
+        "website_url":  "https://surigaodelsur.gov.ph/",
+        "profile_url":  "#",
+        "sort_order":  1,
+        "is_active":  true,
+        "photo_position_x":  50,
+        "photo_position_y":  50,
+        "id":  1
+    },
+    {
+        "office_title":  "Bislig City",
+        "official_name":  "Mayor Florencio C. Garay",
+        "contact_details":  "Contact details to be updated\r\nMunicipal Hall, Barobo, Surigao del Sur",
+        "logo_path":  "Logos/Bislig City.png",
+        "photo_path":  "Logos/Elected Officials/Mayor Florencio Garay.jpg",
+        "facebook_url":  "https://www.facebook.com/",
+        "website_url":  "#",
+        "profile_url":  "#",
+        "sort_order":  2,
+        "is_active":  true,
+        "photo_position_x":  50,
+        "photo_position_y":  50,
+        "id":  2
+    },
+    {
+        "office_title":  "Tandag City",
+        "official_name":  "Mayor Roxanne C. Pimentel",
+        "contact_details":  "governor@surigaodelsur.gov.ph\r\nCapitol Complex, Tandag City, Surigao del Sur",
+        "logo_path":  "Logos/Tandag City Logo.png",
+        "photo_path":  "Logos/Elected Officials/Mayor Roxanne Pimentel.jpg",
+        "facebook_url":  "https://www.facebook.com/DILGsds",
+        "website_url":  "https://surigaodelsur.gov.ph/",
+        "profile_url":  "#",
+        "sort_order":  3,
+        "is_active":  true,
+        "photo_position_x":  50,
+        "photo_position_y":  50,
+        "id":  3
+    }
+]
