@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A short video guide to navigating the DILG Surigao del Sur website." />
+  <title>Website Navigation Guide | DILG Surigao del Sur</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #17264a;
+      background: #edf3f8;
+      font-synthesis: none;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 12% 0%, #fff 0, #edf3f8 46rem);
+    }
+
+    a { color: inherit; }
+
+    .page-shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 48px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      color: #174eaa;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .intro { margin: 34px 0 22px; }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #1f5fcf;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: #0f2a6b;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+    }
+
+    .intro p:last-child {
+      max-width: 720px;
+      margin: 12px 0 0;
+      color: #596781;
+      font-size: 1.05rem;
+    }
+
+    .player {
+      overflow: hidden;
+      border: 1px solid rgba(15, 42, 107, 0.1);
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 22px 60px rgba(15, 42, 107, 0.12);
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #0b1c47;
+    }
+
+    .player-controls { padding: 18px 22px 20px; }
+
+    .timeline-row {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      color: #64728a;
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timeline-row input {
+      flex: 1;
+      min-width: 0;
+      accent-color: #1f5fcf;
+      cursor: pointer;
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    button {
+      min-height: 42px;
+      padding: 9px 16px;
+      border: 1px solid #d6dfed;
+      border-radius: 999px;
+      background: #fff;
+      color: #0f2a6b;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover:not(:disabled) { background: #f0f5ff; }
+    button:focus-visible, input:focus-visible, a:focus-visible {
+      outline: 3px solid #73a4ff;
+      outline-offset: 3px;
+    }
+
+    button:disabled { cursor: not-allowed; opacity: 0.58; }
+
+    #play-button, #download-button {
+      border-color: #1f5fcf;
+      background: #1f5fcf;
+      color: #fff;
+    }
+
+    #play-button:hover:not(:disabled), #download-button:hover:not(:disabled) {
+      background: #174eaa;
+    }
+
+    .status {
+      min-height: 1.5em;
+      margin: 13px 0 0;
+      color: #596781;
+      font-size: 0.9rem;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
+      gap: 22px;
+      margin-top: 24px;
+    }
+
+    .detail-card {
+      padding: 22px;
+      border: 1px solid rgba(15, 42, 107, 0.1);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: #0f2a6b;
+      font-size: 1.15rem;
+    }
+
+    .detail-card p, .detail-card li { color: #596781; line-height: 1.65; }
+    .detail-card p { margin: 0; }
+    .detail-card ul { margin: 0; padding-left: 20px; }
+
+    @media (max-width: 700px) {
+      .page-shell { width: min(100% - 20px, 1120px); padding-top: 18px; }
+      .intro { margin-top: 26px; }
+      .details { grid-template-columns: 1fr; gap: 14px; }
+      .player-controls { padding: 14px; }
+      .control-row button { flex: 1 1 auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to the DILG Surigao del Sur website</a>
+
+    <header class="intro">
+      <p class="eyebrow">Quick video guide</p>
+      <h1>Find your way around the website</h1>
+      <p>Learn where to find DILG Surigao del Sur news, public information, issuances, services, and contact details using the main navigation menu.</p>
+    </header>
+
+    <section class="player" aria-label="Website navigation video guide">
+      <canvas id="guide-canvas" width="1280" height="720" role="img" aria-label="Video guide opening slide. Use the controls and captions below to explore the website navigation.">
+        This video guide explains the website navigation. Use the transcript below if the video is unavailable.
+      </canvas>
+      <div class="player-controls">
+        <div class="timeline-row">
+          <span id="current-time">0:00</span>
+          <input id="timeline" type="range" min="0" max="51999" value="0" step="100" aria-label="Video position" />
+          <span id="total-time">0:52</span>
+        </div>
+        <div class="control-row">
+          <button id="restart-button" type="button">Restart</button>
+          <button id="previous-button" type="button" aria-label="Previous chapter">Previous</button>
+          <button id="play-button" type="button">Play video</button>
+          <button id="next-button" type="button" aria-label="Next chapter">Next</button>
+          <button id="narration-button" type="button" aria-pressed="false">Turn narration on</button>
+          <button id="download-button" type="button">Download video</button>
+        </div>
+        <p id="player-status" class="status" role="status" aria-live="polite">Captions are shown on the video. Narration is optional.</p>
+      </div>
+    </section>
+
+    <section class="details" aria-label="Video guide details">
+      <article class="detail-card">
+        <h2>Chapters and captions</h2>
+        <p id="chapter-caption" aria-live="polite">Welcome. This short guide shows how to use the main navigation on the DILG Surigao del Sur website.</p>
+      </article>
+      <article class="detail-card">
+        <h2>Quick tips</h2>
+        <ul>
+          <li>Hover over a menu with an arrow, or focus it with your keyboard, to view its links.</li>
+          <li>On smaller screens, the navigation links stack vertically.</li>
+          <li>The downloaded WebM video includes the captions shown on screen and has no audio.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const canvas = document.getElementById('guide-canvas');
+    const context = canvas.getContext('2d');
+    const timeline = document.getElementById('timeline');
+    const playButton = document.getElementById('play-button');
+    const previousButton = document.getElementById('previous-button');
+    const nextButton = document.getElementById('next-button');
+    const narrationButton = document.getElementById('narration-button');
+    const downloadButton = document.getElementById('download-button');
+    const status = document.getElementById('player-status');
+    const caption = document.getElementById('chapter-caption');
+    const currentTimeLabel = document.getElementById('current-time');
+    const durationPerScene = 6500;
+
+    const scenes = [
+      {
+        eyebrow: 'DILG SURIGAO DEL SUR · WEBSITE GUIDE',
+        title: 'Find your way around',
+        caption: 'Welcome. This short guide shows how to use the main navigation on the DILG Surigao del Sur website.',
+        menu: ['Home', 'About Us', "Citizen's Charter", 'News'],
+        note: 'Start at the top of any page',
+        active: 'Home'
+      },
+      {
+        eyebrow: 'CHAPTER 1 · START HERE',
+        title: 'Go straight to the essentials',
+        caption: "Choose Home to return to the homepage. Citizen's Charter and News open directly from the main menu.",
+        menu: ['Home', "Citizen's Charter", 'News'],
+        note: 'Direct links open their page',
+        active: 'News'
+      },
+      {
+        eyebrow: 'CHAPTER 2 · ABOUT US',
+        title: 'Explore the department',
+        caption: 'Open About Us to find the organizational structure, elected officials, mission and values, and quality policy.',
+        menu: ['Organizational Structure', 'Elected Officials', 'Mission, Vision & Shared Values', 'Quality Policy'],
+        note: 'Hover, click, or keyboard-focus About Us',
+        active: 'About Us'
+      },
+      {
+        eyebrow: 'CHAPTER 3 · ISSUANCES',
+        title: 'Look up official issuances',
+        caption: 'Open Issuances for Joint Circulars, Memo Circulars, Presidential Directives, and Republic Acts.',
+        menu: ['Joint Circulars', 'Memo Circulars', 'Presidential Directives', 'Republic Acts'],
+        note: 'Choose a category to browse',
+        active: 'Issuances'
+      },
+      {
+        eyebrow: 'CHAPTER 4 · LEGAL OPINION',
+        title: 'Choose a legal opinion source',
+        caption: 'Open Legal Opinion, then choose DILG Philippines or Caraga Region to view the relevant opinions.',
+        menu: ['DILG Philippines', 'Caraga Region'],
+        note: 'Select a source from the dropdown',
+        active: 'Legal Opinion'
+      },
+      {
+        eyebrow: 'CHAPTER 5 · SERVICES AND CONTACT',
+        title: 'Find services or get in touch',
+        caption: 'Use Programs and Services to explore programs, or Contact Us to find the department’s contact information.',
+        menu: ['Programs and Services', 'Contact Us'],
+        note: 'These links open their pages',
+        active: 'Programs and Services'
+      },
+      {
+        eyebrow: 'CHAPTER 6 · LGRC AND GAD',
+        title: 'Browse LGRC and GAD resources',
+        caption: 'Open LGRC and GAD for About LGRC, About GAD, GAD Corner, and MSAC.',
+        menu: ['About LGRC', 'About GAD', 'GAD Corner', 'MSAC'],
+        note: 'Open the menu to see all resources',
+        active: 'LGRC and GAD'
+      },
+      {
+        eyebrow: 'CHAPTER 7 · YOU’RE READY',
+        title: 'Navigate with confidence',
+        caption: 'Use a mouse or keyboard to open dropdowns. On smaller screens, links stack vertically. The highlighted item shows your current section.',
+        menu: ['Mouse or keyboard', 'Dropdown links', 'Current section highlighted'],
+        note: 'Thanks for visiting DILG Surigao del Sur',
+        active: 'Home'
+      }
+    ];
+
+    const totalDuration = scenes.length * durationPerScene;
+    let elapsed = 0;
+    let isPlaying = false;
+    let narrationOn = false;
+    let lastTimestamp = 0;
+    let currentScene = -1;
+    let recording = null;
+    let recordChunks = [];
+
+    timeline.max = String(totalDuration - 1);
+    document.getElementById('total-time').textContent = formatTime(totalDuration);
+
+    function formatTime(milliseconds) {
+      const seconds = Math.floor(milliseconds / 1000);
+      return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+    }
+
+    function roundedRect(x, y, width, height, radius, fill) {
+      context.beginPath();
+      context.roundRect(x, y, width, height, radius);
+      context.fillStyle = fill;
+      context.fill();
+    }
+
+    function drawText(text, x, y, maxWidth, font, color, lineHeight) {
+      context.font = font;
+      context.fillStyle = color;
+      const words = text.split(' ');
+      let line = '';
+      let lineY = y;
+      for (const word of words) {
+        const testLine = line ? `${line} ${word}` : word;
+        if (context.measureText(testLine).width > maxWidth && line) {
+          context.fillText(line, x, lineY);
+          line = word;
+          lineY += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      if (line) context.fillText(line, x, lineY);
+      return lineY;
+    }
+
+    function render() {
+      const sceneIndex = Math.min(scenes.length - 1, Math.floor(elapsed / durationPerScene));
+      const scene = scenes[sceneIndex];
+      const sceneProgress = (elapsed % durationPerScene) / durationPerScene;
+      const navy = '#0f2a6b';
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      const background = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+      background.addColorStop(0, '#0b1c47');
+      background.addColorStop(1, '#173e83');
+      context.fillStyle = background;
+      context.fillRect(0, 0, canvas.width, canvas.height);
+
+      context.fillStyle = '#ffffff';
+      context.font = '700 19px Segoe UI, sans-serif';
+      context.fillText('DILG SURIGAO DEL SUR', 62, 55);
+      context.fillStyle = '#adc8ff';
+      context.font = '500 16px Segoe UI, sans-serif';
+      context.textAlign = 'right';
+      context.fillText(`CHAPTER ${sceneIndex + 1} / ${scenes.length}`, 1218, 55);
+      context.textAlign = 'left';
+
+      roundedRect(48, 86, 1184, 76, 20, '#ffffff');
+      const navItems = ['Home', 'About Us', "Citizen's Charter", 'News', 'Issuances', 'Legal Opinion', 'Programs and Services', 'Contact Us', 'LGRC and GAD'];
+      const fontSize = 14;
+      context.font = `600 ${fontSize}px Segoe UI, sans-serif`;
+      const itemWidths = navItems.map((item) => context.measureText(item).width + 26);
+      const totalWidth = itemWidths.reduce((sum, width) => sum + width, 0) + (navItems.length - 1) * 4;
+      let x = Math.max(62, (canvas.width - totalWidth) / 2);
+      for (let i = 0; i < navItems.length; i += 1) {
+        const item = navItems[i];
+        const width = itemWidths[i];
+        if (item === scene.active) roundedRect(x, 101, width, 46, 23, '#1f5fcf');
+        context.fillStyle = item === scene.active ? '#ffffff' : navy;
+        context.textAlign = 'center';
+        context.font = `600 ${fontSize}px Segoe UI, sans-serif`;
+        context.fillText(item, x + width / 2, 130);
+        x += width + 4;
+      }
+      context.textAlign = 'left';
+
+      roundedRect(48, 190, 1184, 464, 28, '#ffffff');
+      context.fillStyle = '#1f5fcf';
+      context.fillRect(48, 190, 9, 464);
+
+      context.fillStyle = '#1f5fcf';
+      context.font = '800 15px Segoe UI, sans-serif';
+      context.fillText(scene.eyebrow, 96, 238);
+      drawText(scene.title, 96, 304, 690, '800 48px Segoe UI, sans-serif', navy, 57);
+      drawText(scene.caption, 96, 414, 670, '400 24px Segoe UI, sans-serif', '#52617b', 35);
+
+      roundedRect(830, 226, 350, 348, 22, '#f1f5fb');
+      context.fillStyle = navy;
+      context.font = '800 17px Segoe UI, sans-serif';
+      context.fillText('IN THIS MENU', 858, 264);
+      let itemY = 310;
+      for (const item of scene.menu) {
+        roundedRect(852, itemY - 28, 306, 47, 12, '#ffffff');
+        context.fillStyle = '#1f5fcf';
+        context.beginPath();
+        context.arc(876, itemY - 5, 5, 0, Math.PI * 2);
+        context.fill();
+        drawText(item, 895, itemY, 245, '600 16px Segoe UI, sans-serif', navy, 20);
+        itemY += 58;
+      }
+
+      roundedRect(96, 558, 670, 54, 14, '#eaf2ff');
+      context.fillStyle = '#174eaa';
+      context.font = '700 17px Segoe UI, sans-serif';
+      context.fillText(scene.note, 118, 592);
+
+      context.fillStyle = 'rgba(255,255,255,0.22)';
+      context.fillRect(0, 704, canvas.width, 16);
+      context.fillStyle = '#f6b93b';
+      context.fillRect(0, 704, canvas.width * Math.min(1, elapsed / totalDuration), 16);
+      context.fillStyle = 'rgba(255,255,255,0.8)';
+      context.beginPath();
+      context.arc(98 + sceneProgress * 635, 585, 11, 0, Math.PI * 2);
+      context.fill();
+
+      canvas.setAttribute('aria-label', `Chapter ${sceneIndex + 1}: ${scene.title}. ${scene.caption}`);
+      if (sceneIndex !== currentScene) {
+        currentScene = sceneIndex;
+        caption.textContent = scene.caption;
+        if (narrationOn) speak(scene.caption);
+      }
+    }
+
+    function speak(text) {
+      if (!('speechSynthesis' in window)) {
+        narrationOn = false;
+        narrationButton.setAttribute('aria-pressed', 'false');
+        narrationButton.textContent = 'Narration unavailable';
+        status.textContent = 'Spoken narration is not supported in this browser. Captions are still available.';
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function setPlaying(playing) {
+      isPlaying = playing;
+      playButton.textContent = playing ? 'Pause video' : 'Play video';
+      if (playing && narrationOn && currentScene >= 0) speak(scenes[currentScene].caption);
+      if (!playing && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+      lastTimestamp = 0;
+      if (playing) requestAnimationFrame(tick);
+      render();
+    }
+
+    function tick(timestamp) {
+      if (!isPlaying) return;
+      if (!lastTimestamp) lastTimestamp = timestamp;
+      elapsed = Math.min(totalDuration, elapsed + timestamp - lastTimestamp);
+      lastTimestamp = timestamp;
+      timeline.value = String(Math.min(totalDuration - 1, elapsed));
+      currentTimeLabel.textContent = formatTime(elapsed);
+      render();
+      if (elapsed >= totalDuration) {
+        setPlaying(false);
+        if (recording) recording.stop();
+        return;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function jumpToScene(direction) {
+      const sceneIndex = Math.min(scenes.length - 1, Math.max(0, Math.floor(elapsed / durationPerScene) + direction));
+      elapsed = sceneIndex * durationPerScene;
+      timeline.value = String(elapsed);
+      currentTimeLabel.textContent = formatTime(elapsed);
+      currentScene = -1;
+      render();
+      if (isPlaying) lastTimestamp = 0;
+    }
+
+    playButton.addEventListener('click', () => {
+      if (elapsed >= totalDuration) {
+        elapsed = 0;
+        currentScene = -1;
+      }
+      setPlaying(!isPlaying);
+    });
+
+    previousButton.addEventListener('click', () => jumpToScene(-1));
+    nextButton.addEventListener('click', () => jumpToScene(1));
+    document.getElementById('restart-button').addEventListener('click', () => {
+      elapsed = 0;
+      timeline.value = '0';
+      currentTimeLabel.textContent = '0:00';
+      currentScene = -1;
+      render();
+      if (isPlaying) {
+        lastTimestamp = 0;
+        if (narrationOn) speak(scenes[0].caption);
+      }
+    });
+
+    timeline.addEventListener('input', () => {
+      elapsed = Number(timeline.value);
+      currentTimeLabel.textContent = formatTime(elapsed);
+      currentScene = -1;
+      render();
+      if (isPlaying) {
+        lastTimestamp = 0;
+        if (narrationOn) speak(scenes[Math.floor(elapsed / durationPerScene)].caption);
+      }
+    });
+
+    narrationButton.addEventListener('click', () => {
+      narrationOn = !narrationOn;
+      narrationButton.setAttribute('aria-pressed', String(narrationOn));
+      narrationButton.textContent = narrationOn ? 'Turn narration off' : 'Turn narration on';
+      status.textContent = narrationOn ? 'Spoken narration is on. The downloaded video contains captions but no audio.' : 'Spoken narration is off. Captions remain visible on the video.';
+      if (narrationOn) speak(scenes[Math.floor(elapsed / durationPerScene)].caption);
+      else if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    });
+
+    downloadButton.addEventListener('click', () => {
+      if (!canvas.captureStream || !window.MediaRecorder) {
+        status.textContent = 'Video download is not supported in this browser. You can still play the guide and read its captions.';
+        return;
+      }
+      if (recording) return;
+      const stream = canvas.captureStream(30);
+      const mimeType = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'].find((type) => MediaRecorder.isTypeSupported(type));
+      if (!mimeType) {
+        stream.getTracks().forEach((track) => track.stop());
+        status.textContent = 'This browser cannot create a WebM video. You can still play the guide and read its captions.';
+        return;
+      }
+      try {
+        recording = new MediaRecorder(stream, { mimeType });
+        recordChunks = [];
+        recording.addEventListener('dataavailable', (event) => {
+          if (event.data.size) recordChunks.push(event.data);
+        });
+        recording.addEventListener('stop', () => {
+          const video = new Blob(recordChunks, { type: mimeType });
+          const downloadUrl = URL.createObjectURL(video);
+          const link = document.createElement('a');
+          link.href = downloadUrl;
+          link.download = 'dilg-surigao-del-sur-navigation-guide.webm';
+          link.click();
+          URL.revokeObjectURL(downloadUrl);
+          stream.getTracks().forEach((track) => track.stop());
+          recording = null;
+          downloadButton.disabled = false;
+          downloadButton.textContent = 'Download video';
+          status.textContent = 'The captioned WebM video has been downloaded. It does not include audio.';
+        }, { once: true });
+        recording.start();
+        elapsed = 0;
+        currentScene = -1;
+        timeline.value = '0';
+        currentTimeLabel.textContent = '0:00';
+        downloadButton.disabled = true;
+        downloadButton.textContent = 'Recording video…';
+        status.textContent = 'Recording the complete captioned guide. Keep this page open until the download starts.';
+        setPlaying(true);
+      } catch (error) {
+        stream.getTracks().forEach((track) => track.stop());
+        recording = null;
+        downloadButton.disabled = false;
+        downloadButton.textContent = 'Download video';
+        status.textContent = `Could not create the video: ${error.message}`;
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>

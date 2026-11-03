@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Process Flow - Public Bidding | DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0f2a6b;
+      --navy-2: #133a89;
+      --blue: #1f5fcf;
+      --blue-soft: #ebf3ff;
+      --green: #e7f7eb;
+      --green-strong: #2f7d4f;
+      --text: #243447;
+      --muted: #627487;
+      --border: #d9e3ee;
+      --shadow: 0 10px 24px rgba(8, 24, 55, 0.08);
+      --zoom: 1;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      background: #f4f7fb;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page-shell {
+      max-width: 1420px;
+      margin: 0 auto;
+      padding: 22px 18px 40px;
+    }
+
+    .topbar-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .breadcrumbs {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .breadcrumbs strong { color: var(--navy); }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      min-width: min(320px, 100%);
+    }
+
+    .search-box input {
+      border: 0;
+      outline: none;
+      font: inherit;
+      width: 100%;
+      background: transparent;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.94rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+    .button-primary { background: var(--navy); color: #fff; }
+    .button-secondary { background: #fff; color: var(--navy); border-color: var(--border); }
+    .zoom-group button { min-width: 42px; padding: 9px 12px; }
+
+    .flow-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      overflow: hidden;
+    }
+
+    .flow-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .flow-title h1 {
+      margin: 0;
+      font-size: clamp(1.2rem, 1.7vw, 1.65rem);
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .flow-title p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 760px;
+    }
+
+    .flowchart-shell {
+      transform: scale(var(--zoom));
+      transform-origin: top center;
+      width: calc(100% / var(--zoom));
+      min-width: 100%;
+    }
+
+    .swimlane-header {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(140px, 1fr));
+      gap: 12px;
+      margin: 18px 0 8px;
+      font-weight: 800;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .swimlane-header > div {
+      padding: 8px 8px;
+      border-radius: 10px;
+      background: var(--blue-soft);
+      border: 1px solid #d7e8ff;
+    }
+
+    .phase-section {
+      border: 1px solid #e4eaf2;
+      border-radius: 14px;
+      padding: 14px;
+      background: linear-gradient(180deg, #fff 0%, #fcfdff 100%);
+      margin-bottom: 14px;
+      transition: all 0.25s ease;
+    }
+
+    .phase-section.is-collapsed .phase-body { display: none; }
+
+    .phase-toggle {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 2px 2px 12px;
+      cursor: pointer;
+      color: var(--navy);
+    }
+
+    .phase-toggle h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .phase-toggle span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .phase-body { margin-top: 4px; }
+
+    .phase-row {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(140px, 1fr));
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .lane-cell {
+      position: relative;
+      min-height: 118px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lane-connector {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 80px;
+      color: var(--navy);
+      font-size: 1.2rem;
+      font-weight: 800;
+      opacity: 0.9;
+    }
+
+    .lane-connector::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, rgba(31,95,207,0.18), rgba(31,95,207,0.75));
+      transform: translate(-50%, -50%);
+      animation: flowArrow 1.8s ease-in-out infinite;
+    }
+
+    .lane-connector span {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      padding: 0 6px;
+    }
+
+    .process-card {
+      width: 100%;
+      border: 1px solid #dfe7ef;
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 10px;
+      box-shadow: 0 8px 18px rgba(15, 42, 107, 0.07);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+      min-height: 112px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .process-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: var(--blue);
+      box-shadow: 0 14px 24px rgba(31,95,207,0.16);
+    }
+
+    .process-card .process-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      line-height: 1.32;
+    }
+
+    .process-card .process-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .process-card .process-badge {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #f5f8fc;
+      color: var(--navy-2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .lane-doc .process-card {
+      background: var(--green);
+      border-color: #d4ebdc;
+    }
+
+    .lane-doc .process-card .process-badge {
+      background: rgba(47,125,79,0.12);
+      color: var(--green-strong);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 21, 61, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 200;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal-panel {
+      width: min(720px, 100%);
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      max-height: 90vh;
+      overflow: auto;
+    }
+
+    .modal-panel h3 {
+      margin-top: 0;
+      color: var(--navy);
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .modal-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .modal-grid .detail-box {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #fbfdff;
+    }
+
+    .modal-grid .detail-box strong { color: var(--navy); }
+
+    .modal-close {
+      border: 0;
+      background: transparent;
+      font-size: 1.15rem;
+      cursor: pointer;
+      color: var(--muted);
+      float: right;
+      margin-left: 12px;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    @keyframes flowArrow {
+      0%, 100% { opacity: 0.5; transform: translateX(-6px); }
+      50% { opacity: 1; transform: translateX(6px); }
+    }
+
+    @media (max-width: 1080px) {
+      .swimlane-header {
+        display: none;
+      }
+      .phase-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .lane-cell {
+        min-height: auto;
+      }
+      .lane-connector {
+        min-height: 24px;
+        transform: rotate(90deg);
+        margin: 2px 0;
+      }
+      .lane-connector::before {
+        width: 36px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page-shell { padding: 14px 12px 30px; }
+      .flow-card { padding: 16px; }
+      .topbar-row { flex-direction: column; align-items: stretch; }
+      .controls { justify-content: flex-start; }
+      .search-box { min-width: 100%; }
+      .phase-toggle h2 { font-size: 0.94rem; }
+      .process-card { min-height: auto; }
+    }
+
+    @media print {
+      @page { size: A4 landscape; margin: 10mm; }
+      body { background: #fff; }
+      .topbar-row, .controls, .modal-backdrop { display: none !important; }
+      .page-shell { max-width: none; padding: 0; }
+      .flow-card { box-shadow: none; border: none; padding: 0; }
+      .flowchart-shell { transform: none; width: 100%; }
+      .phase-section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="topbar-row">
+      <div class="breadcrumbs">Home <span aria-hidden="true">›</span> Procurement <span aria-hidden="true">›</span> Process Flow <span aria-hidden="true">›</span> <strong>Public Bidding</strong></div>
+      <div class="controls">
+        <label class="search-box" for="process-search">
+          <span aria-hidden="true">🔎</span>
+          <input id="process-search" type="search" placeholder="Search process or requirement" />
+        </label>
+        <div class="zoom-group" role="group" aria-label="Zoom controls">
+          <button class="button button-secondary" type="button" data-action="zoom-out">−</button>
+          <button class="button button-secondary" type="button" data-action="zoom-reset">Reset</button>
+          <button class="button button-secondary" type="button" data-action="zoom-in">+</button>
+        </div>
+        <a class="button button-secondary" href="index.html#resources-root">Back</a>
+      </div>
+    </div>
+
+    <section class="flow-card" aria-labelledby="flow-title">
+      <div class="flow-title">
+        <div>
+          <h1 id="flow-title">Process Flow – Bids and Awards Committee (Public Bidding)</h1>
+          <p>Interactive flowchart of the procurement lifecycle for public bidding, structured according to the DILG Region XIII process and responsibility matrix.</p>
+        </div>
+      </div>
+
+      <div class="flowchart-shell">
+        <div class="swimlane-header" aria-hidden="true">
+          <div>End-User</div>
+          <div>BAC Secretariat</div>
+          <div>BAC Member</div>
+          <div>BAC TWG</div>
+          <div>HOPE</div>
+          <div>Documentary Requirements / Requisites</div>
+        </div>
+
+        <section class="phase-section" data-phase="I">
+          <button class="phase-toggle" type="button" aria-expanded="true">
+            <h2>I. Preparation of Bidding Documents</h2>
+            <span>Collapse</span>
+          </button>
+          <div class="phase-body">
+            <div class="phase-row">
+              <div class="lane-cell">
+                <article class="process-card" data-title="Approval of Purchase Request" data-description="The end-user prepares and secures approval of the purchase request before the procurement process begins." data-office="End-User" data-requirements="Approved Purchase Request, Funding Source, Item Description" data-forms="Purchase Request Form">
+                  <div class="process-title">Approval of Purchase Request</div>
+                  <div class="process-meta">Initial request and funding confirmation</div>
+                  <span class="process-badge">End-User</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Treatment of Approved PR" data-description="The BAC Secretariat records the approved PR and prepares it for procurement action." data-office="BAC Secretariat" data-requirements="BAC Minutes, Approved PR" data-forms="PR Transmittal Sheet">
+                  <div class="process-title">Treatment of Approved PR</div>
+                  <div class="process-meta">PR is logged and routed for BAC action</div>
+                  <span class="process-badge">BAC Secretariat</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Determine Mode of Procurement" data-description="The BAC reviews the purchase request and determines the appropriate public bidding mode." data-office="BAC Member" data-requirements="BAC Resolution, Procurement Mode Recommendation" data-forms="Procurement Mode Assessment">
+                  <div class="process-title">Determine Mode of Procurement</div>
+                  <div class="process-meta">Mode selection and BAC review</div>
+                  <span class="process-badge">BAC Member</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell lane-doc">
+                <article class="process-card" data-title="Documentary Requirements" data-description="Required documents for the preparation phase include the approved PR, BAC minutes, and procurement mode recommendation." data-office="Documentary Requirements" data-requirements="BAC Minutes, Approved PR, Procurement Mode Recommendation" data-forms="None">
+                  <div class="process-title">BAC Minutes</div>
+                  <div class="process-meta">Approved PR and procurement mode support</div>
+                  <span class="process-badge">Requirements</span>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="phase-section" data-phase="II">
+          <button class="phase-toggle" type="button" aria-expanded="true">
+            <h2>II. Invitation to Bid</h2>
+            <span>Collapse</span>
+          </button>
+          <div class="phase-body">
+            <div class="phase-row">
+              <div class="lane-cell">
+                <article class="process-card" data-title="Pre-Procurement Conference" data-description="The end-user and BAC align on procurement needs and the preparation schedule before the bidding starts." data-office="End-User / BAC" data-requirements="Minutes of Conference" data-forms="Pre-Procurement Conference Checklist">
+                  <div class="process-title">Pre-Procurement Conference</div>
+                  <div class="process-meta">Planning and coordination meeting</div>
+                  <span class="process-badge">End-User</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Prepare Bidding Documents" data-description="The BAC Secretariat prepares the bid documents, forms, and the invitation package." data-office="BAC Secretariat" data-requirements="Bidding Documents, Invitation to Bid" data-forms="Bid Documents Checklist">
+                  <div class="process-title">Prepare Bidding Documents</div>
+                  <div class="process-meta">Document preparation and assembly</div>
+                  <span class="process-badge">BAC Secretariat</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Advertisement / Posting" data-description="The BAC posts the invitation and supports public access to bidding information." data-office="BAC Member" data-requirements="PhilGEPS Posting, Invitation to Bid" data-forms="Posting Notice">
+                  <div class="process-title">Advertisement / Posting</div>
+                  <div class="process-meta">Public posting and invitation release</div>
+                  <span class="process-badge">BAC Member</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell lane-doc">
+                <article class="process-card" data-title="Documentary Requirements" data-description="The invitation phase includes bidding documents, invitation to bid, and PhilGEPS posting requirements." data-office="Documentary Requirements" data-requirements="Bidding Documents, Invitation to Bid, PhilGEPS Posting, Minutes of Conferences" data-forms="Posting Form, Conference Minutes">
+                  <div class="process-title">Bidding Documents</div>
+                  <div class="process-meta">Invitation and posting requirements</div>
+                  <span class="process-badge">Requirements</span>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="phase-section" data-phase="III">
+          <button class="phase-toggle" type="button" aria-expanded="true">
+            <h2>III. Receipt and Opening of Bids</h2>
+            <span>Collapse</span>
+          </button>
+          <div class="phase-body">
+            <div class="phase-row">
+              <div class="lane-cell">
+                <article class="process-card" data-title="Receive Bids" data-description="Bids are received and logged by the BAC Secretariat on the prescribed deadline." data-office="BAC Secretariat" data-requirements="Bid Submission Log" data-forms="Bid Receipt Register">
+                  <div class="process-title">Receive bids</div>
+                  <div class="process-meta">Submission and receipt control</div>
+                  <span class="process-badge">BAC Secretariat</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Open Quotations" data-description="The BAC opens the bids publicly and records the details for transparency." data-office="BAC Member" data-requirements="Minutes of BID Opening" data-forms="Bid Opening Sheet">
+                  <div class="process-title">Open quotations</div>
+                  <div class="process-meta">Public opening and recording</div>
+                  <span class="process-badge">BAC Member</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Check Required Documents" data-description="The BAC TWG checks whether each bid contains the required supporting documents." data-office="BAC TWG" data-requirements="Checklist of Required Documents" data-forms="Bid Checklist Form">
+                  <div class="process-title">Check required documents</div>
+                  <div class="process-meta">Document completeness review</div>
+                  <span class="process-badge">BAC TWG</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell lane-doc">
+                <article class="process-card" data-title="Documentary Requirements" data-description="This phase requires the bid-opening minutes and document checklist to support the receipt and opening process." data-office="Documentary Requirements" data-requirements="Minutes of BAC Opening, Abstract of Bids, Bid Checklist" data-forms="Bid Opening Form">
+                  <div class="process-title">Minutes of Conferences</div>
+                  <div class="process-meta">Opening and completeness records</div>
+                  <span class="process-badge">Requirements</span>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="phase-section" data-phase="IV">
+          <button class="phase-toggle" type="button" aria-expanded="true">
+            <h2>IV. Bid Evaluation</h2>
+            <span>Collapse</span>
+          </button>
+          <div class="phase-body">
+            <div class="phase-row">
+              <div class="lane-cell">
+                <article class="process-card" data-title="Prepare Abstract of Bids" data-description="The BAC Secretariat summarizes the submitted bids for evaluation purposes." data-office="BAC Secretariat" data-requirements="Abstract of Bids" data-forms="Abstract Form">
+                  <div class="process-title">Prepare Abstract of Bids</div>
+                  <div class="process-meta">Bid summary and tabulation</div>
+                  <span class="process-badge">BAC Secretariat</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Evaluate Bids" data-description="The BAC evaluates the bids against the criteria and the bid documents." data-office="BAC Member" data-requirements="Bid Evaluation Report" data-forms="Evaluation Matrix">
+                  <div class="process-title">Evaluate bids</div>
+                  <div class="process-meta">Technical and financial review</div>
+                  <span class="process-badge">BAC Member</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Initial Technical Evaluation" data-description="The BAC TWG performs the initial technical review and returns the result to the BAC." data-office="BAC TWG" data-requirements="Technical Evaluation Report" data-forms="Technical Evaluation Checklist">
+                  <div class="process-title">Initial Technical Evaluation</div>
+                  <div class="process-meta">Preliminary technical review</div>
+                  <span class="process-badge">BAC TWG</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell lane-doc">
+                <article class="process-card" data-title="Documentary Requirements" data-description="The evaluation phase depends on the abstract of bids and the bid evaluation report." data-office="Documentary Requirements" data-requirements="Abstract of Bids, Bid Evaluation Report" data-forms="Evaluation Form">
+                  <div class="process-title">Abstract of Bids</div>
+                  <div class="process-meta">Evaluation output and records</div>
+                  <span class="process-badge">Requirements</span>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="phase-section" data-phase="V">
+          <button class="phase-toggle" type="button" aria-expanded="true">
+            <h2>V. Post Qualification</h2>
+            <span>Collapse</span>
+          </button>
+          <div class="phase-body">
+            <div class="phase-row">
+              <div class="lane-cell">
+                <article class="process-card" data-title="Conduct Post Qualification" data-description="The BAC and TWG conduct post-qualification to verify the bidder’s eligibility and responsiveness." data-office="BAC TWG / BAC" data-requirements="Post Qualification Report" data-forms="Post Qualification Form">
+                  <div class="process-title">Conduct Post Qualification</div>
+                  <div class="process-meta">Eligibility and responsiveness review</div>
+                  <span class="process-badge">BAC TWG</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Verify Responsiveness" data-description="The BAC verifies whether the bidder fully complies with the bid requirements and documents." data-office="BAC Member" data-requirements="Responsiveness Checklist" data-forms="Responsiveness Form">
+                  <div class="process-title">Verify responsiveness</div>
+                  <div class="process-meta">Compliance check against bid requirements</div>
+                  <span class="process-badge">BAC Member</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Prepare Post Qualification Report" data-description="The BAC Secretariat compiles the post-qualification findings into the official report." data-office="BAC Secretariat" data-requirements="Post Qualification Report" data-forms="PQR Template">
+                  <div class="process-title">Prepare Post Qualification Report</div>
+                  <div class="process-meta">Documentation of findings</div>
+                  <span class="process-badge">BAC Secretariat</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell lane-doc">
+                <article class="process-card" data-title="Documentary Requirements" data-description="The post qualification phase produces the post qualification report and supporting evidence." data-office="Documentary Requirements" data-requirements="Post Qualification Report, Responsiveness Checklist" data-forms="PQR Template">
+                  <div class="process-title">Post Qualification Report</div>
+                  <div class="process-meta">Verification and compliance evidence</div>
+                  <span class="process-badge">Requirements</span>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="phase-section" data-phase="VI">
+          <button class="phase-toggle" type="button" aria-expanded="true">
+            <h2>VI. Award, Implementation and Contract</h2>
+            <span>Collapse</span>
+          </button>
+          <div class="phase-body">
+            <div class="phase-row">
+              <div class="lane-cell">
+                <article class="process-card" data-title="BAC Resolution" data-description="The BAC issues the resolution recommending the award to the winning bidder." data-office="BAC Member" data-requirements="BAC Resolution" data-forms="Resolution Template">
+                  <div class="process-title">BAC Resolution</div>
+                  <div class="process-meta">Award recommendation action</div>
+                  <span class="process-badge">BAC Member</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Notice of Award" data-description="The HOPE issues the notice of award to the winning bidder upon approval." data-office="HOPE" data-requirements="Notice of Award" data-forms="NOA Form">
+                  <div class="process-title">Notice of Award</div>
+                  <div class="process-meta">Official award issuance</div>
+                  <span class="process-badge">HOPE</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell">
+                <article class="process-card" data-title="Contract Signing" data-description="The procuring entity and bidder enter into the contract after the award is approved." data-office="HOPE" data-requirements="Contract, Notice of Award" data-forms="Contract Template">
+                  <div class="process-title">Contract Signing</div>
+                  <div class="process-meta">Formal agreement execution</div>
+                  <span class="process-badge">HOPE</span>
+                </article>
+              </div>
+              <div class="lane-connector" aria-hidden="true"><span>→</span></div>
+              <div class="lane-cell lane-doc">
+                <article class="process-card" data-title="Documentary Requirements" data-description="The award and implementation phase requires the BAC resolution, notice of award, purchase order, and notice to proceed." data-office="Documentary Requirements" data-requirements="BAC Resolution, Notice of Award, Purchase Order, Notice to Proceed" data-forms="Award Forms">
+                  <div class="process-title">Purchase Order</div>
+                  <div class="process-meta">Award implementation records</div>
+                  <span class="process-badge">Requirements</span>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="process-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-panel">
+      <button class="modal-close" type="button" aria-label="Close dialog">✕</button>
+      <h3 id="modal-title">Process details</h3>
+      <div class="modal-grid" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    const searchBox = document.getElementById('process-search');
+    const cards = Array.from(document.querySelectorAll('.process-card'));
+    const phases = Array.from(document.querySelectorAll('.phase-section'));
+    const modal = document.getElementById('process-modal');
+    const modalBody = document.getElementById('modal-body');
+    const root = document.documentElement;
+    let zoom = 1;
+
+    function filterCards() {
+      const query = searchBox.value.trim().toLowerCase();
+      let hasMatch = false;
+      cards.forEach((card) => {
+        const text = `${card.dataset.title} ${card.dataset.description} ${card.dataset.office} ${card.dataset.requirements} ${card.dataset.forms}`.toLowerCase();
+        const visible = !query || text.includes(query);
+        card.closest('.lane-cell').style.display = visible ? '' : 'none';
+        if (visible) hasMatch = true;
+      });
+      phases.forEach((phase) => {
+        const visibleCards = phase.querySelectorAll('.lane-cell:not([style*="display: none"])').length;
+        if (query && visibleCards === 0) {
+          phase.style.display = 'none';
+        } else {
+          phase.style.display = '';
+        }
+      });
+      if (!query) {
+        phases.forEach((phase) => { phase.style.display = ''; });
+      }
+    }
+
+    searchBox.addEventListener('input', filterCards);
+
+    document.querySelectorAll('.phase-toggle').forEach((button) => {
+      button.addEventListener('click', () => {
+        const section = button.closest('.phase-section');
+        section.classList.toggle('is-collapsed');
+        const label = button.querySelector('span');
+        label.textContent = section.classList.contains('is-collapsed') ? 'Expand' : 'Collapse';
+      });
+    });
+
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const content = `
+          <div class="detail-box"><strong>Process title:</strong><br>${card.dataset.title}</div>
+          <div class="detail-box"><strong>Description:</strong><br>${card.dataset.description}</div>
+          <div class="detail-box"><strong>Responsible office:</strong><br>${card.dataset.office}</div>
+          <div class="detail-box"><strong>Documentary requirements:</strong><br>${card.dataset.requirements}</div>
+          <div class="detail-box"><strong>Related forms:</strong><br>${card.dataset.forms || 'Not specified'}</div>
+        `;
+        modalBody.innerHTML = content;
+        modal.classList.add('open');
+      });
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal || event.target.classList.contains('modal-close')) {
+        modal.classList.remove('open');
+      }
+    });
+
+    document.querySelectorAll('[data-action]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const action = button.dataset.action;
+        if (action === 'zoom-in') {
+          zoom = Math.min(1.4, zoom + 0.1);
+        } else if (action === 'zoom-out') {
+          zoom = Math.max(0.8, zoom - 0.1);
+        } else {
+          zoom = 1;
+        }
+        root.style.setProperty('--zoom', zoom);
+      });
+    });
+  </script>
+
+</body>
+</html>
+

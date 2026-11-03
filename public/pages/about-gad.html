@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About GAD - DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allura:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    /* ── GAD Hero Banner (Citizen's Charter style) ── */
+    .gad-hero {
+      padding: 60px 24px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+    }
+    .gad-hero .container {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+    }
+    .gad-hero h1 {
+      font-family: 'Allura', Arial, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #0f2a6b;
+      margin: 0 0 20px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+    /* ── GAD Content Panel ── */
+    .gad-page-panel {
+      max-width: 1100px;
+      margin: 0 auto 48px;
+      padding: 0 40px 48px;
+      background: transparent;
+    }
+    @media (max-width: 768px) {
+      .gad-hero { padding: 48px 20px 64px; }
+      .gad-hero h1 { font-size: 2rem; }
+    }
+    @media (max-width: 480px) {
+      .gad-hero { padding: 40px 16px 56px; }
+      .gad-hero h1 { font-size: 1.6rem; }
+    }
+    .gad-section {
+      margin-bottom: 36px;
+    }
+    .gad-section h2 {
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin: 0 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--blue);
+      display: inline-block;
+    }
+    .gad-section p {
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #1f3250;
+      line-height: 1.8;
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      font-weight: 700;
+      margin: 0 0 16px;
+    }
+    .gad-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+      display: grid;
+      gap: 12px;
+    }
+    .gad-section ul li {
+      padding: 16px 20px;
+      background: #f8fbff;
+      border-radius: 12px;
+      border-left: 4px solid var(--blue);
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 500;
+    }
+    .gad-section ul li strong {
+      color: var(--navy);
+    }
+    @media (max-width: 720px) {
+      .gad-page-panel { padding: 0 20px 36px; }
+      .gad-hero { min-height: 200px; padding: 44px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li class="dropdown-item-with-submenu">
+              <a href="joint-circulars.html" class="dropdown-item"><span>Joint Circulars</span></a>
+            </li>
+            <li class="dropdown-item-with-submenu">
+              <a href="memo-circulars.html" class="dropdown-item"><span>Memo Circulars</span></a>
+            </li>
+            <li><a href="presidential-directives.html" class="dropdown-item">Presidential Directives</a></li>
+            <li><a href="republic-acts.html" class="dropdown-item">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link active" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item active" aria-current="page">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="../../Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" class="header-logo" alt="DILG Seal" />
+        <img src="../../Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="../../SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="../../SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ── ABOUT GAD Hero ── -->
+    <div class="gad-hero">
+      <div class="container">
+        <h1>About GAD</h1>
+      </div>
+    </div>
+
+    <div class="gad-page-panel">
+      <div class="gad-section">
+        <p>The Gender and Development (GAD) program is a government strategy that promotes gender equality and ensures that the needs and concerns of women, men, and gender-diverse individuals are addressed in development planning, budgeting, implementation, and monitoring.</p>
+        <p>Through gender-responsive governance, GAD aims to eliminate discrimination, reduce gender gaps, and empower all sectors of society to actively participate in sustainable development.</p>
+      </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="../../Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/"><img src="../../Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="../../Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="../../Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="../../Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="../../Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="../../Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="../../Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/" ><img src="../../Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="../../Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="../../Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card" aria-label="Open DILG Surigao del Sur Facebook page (opens in new tab)">
+            <span class="connect-icon" aria-hidden="true">
+              <img src="../../Logos/2021_Facebook_icon.svg" alt="Facebook icon" />
+            </span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script>
+    (function() {
+      // Clock
+      const timeEl = document.getElementById('topbar-time');
+      const dateEl = document.getElementById('topbar-date');
+      function updateClock() {
+        try {
+          const now = new Date();
+          const phTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+          const weekday = phTime.toLocaleDateString('en-PH', { weekday: 'long', timeZone: 'Asia/Manila' });
+          const month = phTime.toLocaleDateString('en-PH', { month: 'long', timeZone: 'Asia/Manila' });
+          const day = phTime.toLocaleDateString('en-PH', { day: 'numeric', timeZone: 'Asia/Manila' });
+          const year = phTime.toLocaleDateString('en-PH', { year: 'numeric', timeZone: 'Asia/Manila' });
+          const timeString = phTime.toLocaleTimeString('en-PH', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Manila' });
+          if (dateEl) dateEl.textContent = weekday + ', ' + month + ' ' + day + ', ' + year;
+          if (timeEl) timeEl.textContent = timeString + ' Tandag City';
+        } catch(e) { 
+          if (dateEl) dateEl.textContent = 'Date unavailable';
+          if (timeEl) timeEl.textContent = 'Time unavailable';
+        }
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+  </script>
+  <script src="../js/lgrc-gad-text.js" data-page="about-gad" defer></script>
+</body>
+</html>
+

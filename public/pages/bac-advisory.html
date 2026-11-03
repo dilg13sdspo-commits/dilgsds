@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BAC Advisory | DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0f2a6b;
+      --dilg-red: #be1111;
+      --dilg-red-dark: #930707;
+      --soft-pink: #f7e9ea;
+      --text: #1f2937;
+      --muted: #5b6470;
+      --border: #cfd7e2;
+      --paper: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% -8%, #e4ecf8 0%, transparent 35%),
+        radial-gradient(circle at 88% 8%, #f4d9dc 0%, transparent 30%),
+        #edf1f6;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page-shell {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 22px 18px 40px;
+    }
+
+    .page-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.94rem;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--dilg-red), var(--dilg-red-dark));
+      color: #fff;
+    }
+
+    .button-secondary {
+      background: #fff;
+      color: var(--navy);
+      border-color: var(--border);
+    }
+
+    .advisory-document {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px 40px;
+      box-shadow: 0 14px 34px rgba(9, 27, 65, 0.14);
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .advisory-document::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 5px;
+      background: linear-gradient(90deg, var(--dilg-red), #f1841d);
+    }
+
+    .document-header {
+      display: grid;
+      grid-template-columns: 140px 1fr 140px;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 90px;
+    }
+
+    .logo-group img {
+      max-height: 84px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .header-center {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--navy);
+    }
+
+    .header-small {
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .header-title {
+      font-size: 1.03rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .header-sub {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #324255;
+    }
+
+    .document-title {
+      text-align: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 8px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #ccd6e3, transparent);
+      margin: 14px 0 18px;
+    }
+
+    .heading {
+      margin: 10px 0 18px;
+      padding: 0;
+      border: 1px solid #d59da2;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 8px 18px rgba(34, 37, 52, 0.08);
+    }
+
+    .heading h1,
+    .heading .advisory-no {
+      margin: 0;
+    }
+
+    .heading h1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      font-size: 0.93rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background: linear-gradient(90deg, var(--dilg-red), var(--dilg-red-dark));
+      font-weight: 700;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+    }
+
+    .heading h1::before {
+      content: "\25A0";
+      font-size: 0.68rem;
+      margin-right: 8px;
+      color: #ffd9b0;
+      flex-shrink: 0;
+    }
+
+    .heading .advisory-no {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #9c1111;
+      background: var(--soft-pink);
+      padding: 8px 14px;
+      border-top: 1px solid #d59da2;
+      text-align: right;
+      letter-spacing: 0.05em;
+    }
+
+    .body-copy {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.02rem;
+      color: #222;
+      text-align: justify;
+      background: var(--soft-pink);
+      border: 1px solid #e5c6c9;
+      border-radius: 4px;
+      padding: 18px 18px 10px;
+    }
+
+    .body-copy p { margin: 0 0 12px; }
+
+    .body-copy ol {
+      margin: 10px 0 14px 18px;
+      padding-left: 8px;
+    }
+
+    .body-copy li { margin-bottom: 8px; }
+
+    .signature-block {
+      margin-top: 28px;
+      max-width: 420px;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.45;
+      border-top: 2px solid #ccd6e3;
+      padding-top: 16px;
+    }
+
+    .signature-block .sig-name {
+      font-weight: 700;
+      margin: 0 0 2px;
+      color: #111;
+    }
+
+    .signature-block .sig-role { margin: 0 0 14px; }
+
+    .signature-block .noted { margin-top: 18px; font-weight: 700; }
+
+    @media (max-width: 760px) {
+      .page-shell { padding: 14px 12px 30px; }
+      .advisory-document { padding: 20px; }
+      .document-header {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .logo-group img { max-height: 72px; }
+      .page-toolbar { justify-content: stretch; flex-wrap: wrap; }
+      .page-toolbar .button { flex: 1 1 100%; }
+      .body-copy { font-size: 0.97rem; }
+      .heading h1 {
+        font-size: 0.82rem;
+        padding: 9px 11px;
+      }
+      .heading .advisory-no {
+        font-size: 0.8rem;
+        padding: 7px 11px;
+      }
+    }
+
+    @media print {
+      @page { size: A4 portrait; margin: 12mm; }
+      body {
+        background: #fff;
+      }
+      .page-toolbar {
+        display: none !important;
+      }
+      .page-shell {
+        max-width: none;
+        padding: 0;
+      }
+      .advisory-document {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="page-toolbar">
+      <a class="button button-secondary" href="index.html#resources-root">Back</a>
+    </div>
+
+    <article class="advisory-document" aria-labelledby="bac-advisory-title">
+      <header class="document-header">
+        <div class="logo-group" aria-hidden="true">
+          <img src="DILG Seal.png" alt="DILG seal" />
+        </div>
+        <div class="header-center">
+          <div class="header-small">Republic of the Philippines</div>
+          <div class="header-title">Department of the Interior and Local Government</div>
+          <div class="header-sub">Regional Office No. XIII (Caraga)</div>
+          <div class="header-sub">Province of Surigao del Sur</div>
+        </div>
+        <div class="logo-group" aria-hidden="true">
+          <img src="Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" />
+        </div>
+      </header>
+
+      <div class="document-title" id="bac-advisory-title">Bids and Awards Committee</div>
+      <div class="divider" aria-hidden="true"></div>
+
+      <div class="heading">
+        <h1>ADVISORY</h1>
+        <p class="advisory-no">ADV 2015-001</p>
+      </div>
+
+      <div class="body-copy">
+        <p>To all concerned offices and members of the Bids and Awards Committee (BAC):</p>
+        <p>In accordance with the applicable procurement guidelines and the standards set forth for transparent and accountable public bidding, all BAC members and concerned offices are hereby directed to strictly observe the procedures below in the conduct of procurement activities.</p>
+        <ol>
+          <li>Ensure that the approved Purchase Request, source of funds, and supporting documents are complete before the procurement process begins.</li>
+          <li>Prepare and review the Request for Quotation or bidding documents carefully, and certify that the procurement mode selected is appropriate for the proposed transaction.</li>
+          <li>Conduct the opening of bids, evaluation, and post-qualification in a fair, orderly, and documented manner, with all findings properly recorded in the BAC minutes.</li>
+          <li>Submit the recommendation for award, the abstract of bids, and all related documentary requirements to the appropriate approving authority without delay.</li>
+        </ol>
+        <p>Compliance with these procedures is essential to maintain the integrity of the procurement process and to uphold the principles of efficiency, accountability, and public trust.</p>
+        <p>This Advisory shall take effect immediately and shall be observed accordingly.</p>
+      </div>
+
+      <div class="signature-block">
+        <p class="sig-name">CHARISSA N. GUERTA</p>
+        <p class="sig-role">Chief, Local Government Capability Development Division</p>
+        <p class="sig-role">BAC Chairperson</p>
+
+        <p class="noted">Noted by:</p>
+        <p class="sig-name">LILIBETH A. FAMACION, CESO IV</p>
+        <p class="sig-role">Regional Director</p>
+        <p class="sig-role">Head of the Procuring Entity (HOPE)</p>
+      </div>
+    </article>
+  </div>
+
+</body>
+</html>
+

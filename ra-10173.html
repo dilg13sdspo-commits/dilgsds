@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Republic Act No. 10173 – Data Privacy Act of 2012 | DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background: #f4f7fb;
+      color: #243447;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+    }
+
+    .document-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 22px 18px 40px;
+    }
+
+    .document-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .breadcrumbs {
+      color: #6c7a8a;
+      font-size: 0.95rem;
+    }
+
+    .breadcrumbs strong {
+      color: #0f2a6b;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.94rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+    .button-primary { background: #0f2a6b; color: #fff; }
+    .button-secondary { background: #fff; color: #0f2a6b; border-color: #d7e0ea; }
+
+    .document-card {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid #dfe6ee;
+      box-shadow: 0 16px 36px rgba(8, 24, 55, 0.08);
+      padding: 22px;
+    }
+
+    .document-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .document-header h1 {
+      margin: 0;
+      font-size: clamp(1.18rem, 1.8vw, 1.7rem);
+      color: #0f2a6b;
+      line-height: 1.25;
+    }
+
+    .document-header p {
+      margin: 8px 0 0;
+      color: #627487;
+      max-width: 840px;
+      line-height: 1.65;
+    }
+
+    .action-grid {
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .action-card {
+      width: min(100%, 720px);
+      border: 1px solid #dce4ec;
+      border-radius: 16px;
+      padding: 24px;
+      background: linear-gradient(135deg, #f8fbff 0%, #fdfefe 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(15, 42, 107, 0.06);
+    }
+
+    .action-card h2 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #0f2a6b;
+    }
+
+    .action-card p {
+      margin: 0;
+      color: #627487;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    @media (max-width: 760px) {
+      .document-shell { padding: 14px 12px 30px; }
+      .document-card { padding: 16px; }
+      .document-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .toolbar-actions {
+        justify-content: flex-start;
+      }
+      .action-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      @page { size: A4 portrait; margin: 10mm; }
+      body { background: #fff; }
+      .document-toolbar, .toolbar-actions { display: none !important; }
+      .document-shell { max-width: none; padding: 0; }
+      .document-card { box-shadow: none; border: none; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link active" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Joint Memorandum">Joint Memorandum</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Memorandum Circulars">Memorandum Circulars</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Presidential Directives">Presidential Directives</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Republic Acts">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="DILG Seal.png" alt="DILG logo" class="header-logo" />
+        <img src="Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="document-shell">
+    <div class="document-toolbar">
+      <div class="breadcrumbs">Home <span aria-hidden="true">›</span> Privacy Policy <span aria-hidden="true">›</span> <strong>Republic Act No. 10173</strong></div>
+      <div class="toolbar-actions">
+        <a class="button button-secondary" href="javascript:history.back()">Back</a>
+      </div>
+    </div>
+
+    <section class="document-card" aria-labelledby="document-title">
+      <div class="document-header">
+        <div>
+          <h1 id="document-title">Republic Act No. 10173 – Data Privacy Act of 2012</h1>
+          <p>Republic Act No. 10173, also known as the Data Privacy Act of 2012, protects personal information and establishes the National Privacy Commission to safeguard the privacy rights of individuals in both government and private institutions.</p>
+        </div>
+      </div>
+
+      <div class="action-grid">
+        <div class="action-card">
+          <h2>Official Source</h2>
+          <p>Open the law directly on the Official Gazette for the official text and context.</p>
+          <a class="button button-primary" href="https://www.officialgazette.gov.ph/2012/08/15/republic-act-no-10173/" target="_blank" rel="noopener">View on Official Gazette</a>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

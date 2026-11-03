@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal Opinions | DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .legal-opinions-page {
+      padding: 28px 0 40px;
+    }
+    .legal-opinions-page-heading {
+      margin-bottom: 24px;
+    }
+    .legal-opinions-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .legal-opinions-main {
+      padding: 24px;
+    }
+    .legal-opinions-tabs {
+      margin-bottom: 18px;
+    }
+    .caraga-search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .caraga-search label {
+      color: #243b68;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .caraga-search input {
+      flex: 1;
+      min-width: 0;
+      min-height: 40px;
+      padding: 0 12px;
+      border: 1px solid #d7e0ea;
+      border-radius: 8px;
+      color: #243b68;
+      font: inherit;
+      box-sizing: border-box;
+    }
+    .caraga-search input:focus {
+      outline: none;
+      border-color: #1f5fcf;
+      box-shadow: 0 0 0 3px rgba(31, 95, 207, 0.12);
+    }
+    .caraga-search-status {
+      color: #64748b;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .nav.nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 24px;
+      padding: 0;
+      list-style: none;
+    }
+    .nav.nav-tabs .nav-item { margin: 0; }
+    .nav.nav-tabs .nav-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border: 1px solid rgba(15, 42, 107, 0.15);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--navy);
+      font-weight: 700;
+      transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+    .nav.nav-tabs .nav-item.active .nav-link,
+    .nav.nav-tabs .nav-link.active {
+      background: #f3f6ff;
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+    .tab-content {
+      border: 1px solid #e6e6e6;
+      border-radius: 6px;
+      background: #ffffff;
+      padding: 0;
+      overflow: hidden;
+    }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+    .opinion-list { list-style: none; margin: 0; padding: 0; border-radius: 6px; overflow: hidden; }
+    .opinion-list li {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 14px 18px;
+      border-bottom: 1px solid #ededed;
+    }
+    /* DILG-specific compact list style (applied only when displaying DILG list) */
+    .dilg-opinion-list {
+      border-radius: 6px;
+      overflow: hidden;
+      counter-reset: dilg-index;
+      list-style: none;
+    }
+    .dilg-opinion-list li {
+      counter-increment: dilg-index;
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 18px;
+      border-bottom: 1px solid #ededed;
+    }
+    .dilg-opinion-list li::before {
+      content: counter(dilg-index) ".";
+      color: #333;
+      font-weight: 700;
+      min-width: 40px;
+      text-align: right;
+    }
+    .dilg-opinion-list li:last-child { border-bottom: none; }
+    .dilg-link {
+      display: block;
+      color: #0b63c6;
+      font-weight: 700;
+      text-decoration: none;
+      margin-bottom: 6px;
+    }
+    .dilg-link:hover { text-decoration: underline; }
+    .dilg-ref {
+      display: block;
+      color: #333;
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+    .dilg-meta {
+      display: block;
+      color: #555;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .dilg-search-panel {
+      background: #fafafa;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+    .dilg-search-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+    .dilg-search-row.secondary-row {
+      margin-top: 12px;
+    }
+    .dilg-search-results {
+      margin: 12px 0 0;
+      color: #555;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .dilg-search-label {
+      min-width: 72px;
+      color: #222;
+      font-weight: 700;
+    }
+    #dilg-search-input,
+    #dilg-search-field,
+    #dilg-category-select {
+      min-width: 180px;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: #222;
+      box-sizing: border-box;
+    }
+    #dilg-search-input,
+    #dilg-category-select {
+      flex: 1;
+      min-width: 240px;
+    }
+    .dilg-pagination {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px 0;
+      margin-bottom: 18px;
+    }
+    .dilg-page-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 38px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: #000;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .dilg-page-link:hover {
+      background: #f3f6ff;
+    }
+    .dilg-page-link.active {
+      background: #0b63c6;
+      color: #fff;
+    }
+    .dilg-page-link.dilg-page-prev,
+    .dilg-page-link.dilg-page-next {
+      min-width: auto;
+      white-space: nowrap;
+    }
+    button[type="button"] {
+      padding: 9px 16px;
+      border: 1px solid #a6a6a6;
+      background: #f7f7f7;
+      color: #222;
+      border-radius: 5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button[type="button"]:hover {
+      background: #e3e3e3;
+    }
+    .dilg-header {
+      padding: 18px;
+      border-bottom: 1px solid #ededed;
+      margin-bottom: 18px;
+    }
+    .dilg-summary {
+      margin: 0;
+      color: #333;
+      font-weight: 700;
+    }
+    .dilg-pagination {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px 0;
+      margin-bottom: 18px;
+    }
+    .dilg-page-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 38px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: #000;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .dilg-page-link:hover {
+      background: #f3f6ff;
+    }
+    .dilg-page-link.active {
+      background: #0b63c6;
+      color: #fff;
+    }
+    .dilg-page-link.dilg-page-prev,
+    .dilg-page-link.dilg-page-next {
+      min-width: auto;
+      white-space: nowrap;
+    }
+    .opinion-list li:nth-child(even) { background: #f6f6f6; }
+    .opinion-list li:last-child { border-bottom: none; }
+    .opinion-ref { font-weight: 700; color: #222; }
+    .opinion-title { margin: 0; line-height: 1.2; }
+    .opinion-title a { color: #00a5d6; text-transform: uppercase; font-weight: 700; text-decoration: none; }
+    .opinion-title a:hover { text-decoration: underline; }
+    .view_details a { color: #00F; }
+    .sidebar-banner {
+      display: block;
+      width: 100%;
+      min-height: 120px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(14, 95, 212, 0.1), rgba(255, 255, 255, 0.9));
+      border: 1px solid rgba(15, 42, 107, 0.12);
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 700;
+      padding: 18px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+    .sidebar-banner img {
+      max-height: 56px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+    @media (max-width: 1060px) {
+      .legal-opinions-layout { grid-template-columns: 1fr; }
+      .legal-opinions-sidebar { order: -1; }
+    }
+    @media (max-width: 760px) {
+      .nav.nav-tabs { gap: 8px; }
+      .opinion-list { grid-template-columns: 1fr; }
+      .caraga-search { align-items: stretch; flex-direction: column; gap: 6px; }
+      .caraga-search-status { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li class="dropdown-item-with-submenu"><a href="joint-circulars.html" class="dropdown-item"><span>Joint Circulars</span></a></li>
+            <li class="dropdown-item-with-submenu"><a href="#" class="dropdown-item" data-action="issuances" data-category="Memorandum Circulars"><span>Memo Circulars</span></a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Presidential Directives">Presidential Directives</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Republic Acts">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link active" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" class="header-logo" />
+        <img src="Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="legal-opinions-page">
+      <div class="container">
+        <div class="legal-opinions-page-heading">
+              <div class="legal-opinions-title-card">
+                <div>
+                  <h2>Legal Opinions Archive - Caraga Region</h2>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="legal-opinions-layout">
+          <article class="legal-opinions-main">
+            <div class="caraga-search" role="search">
+              <label for="caraga-search-input">Search</label>
+              <input id="caraga-search-input" type="search" placeholder="Search reference or opinion title..." aria-label="Search Caraga legal opinions">
+              <span id="caraga-search-status" class="caraga-search-status" role="status" aria-live="polite"></span>
+            </div>
+            <div class="legal-opinions-tabs">
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item active"><a href="#2025" class="nav-link active">2025</a></li>
+                <li class="nav-item"><a href="#2024" class="nav-link">2024</a></li>
+                <li class="nav-item"><a href="#2017" class="nav-link">2017</a></li>
+                <li class="nav-item"><a href="#2016" class="nav-link">2016</a></li>
+                <li class="nav-item"><a href="#2015" class="nav-link">2015</a></li>
+                <li class="nav-item"><a href="#2014" class="nav-link">2014</a></li>
+                <li class="nav-item"><a href="#2013" class="nav-link">2013</a></li>
+              </ul>
+              <div class="tab-content">
+                <div id="2025" class="tab-pane active">
+                  <ul class="opinion-list">
+                    <li><span class="opinion-ref">1. DILG13 LO NO.01, S.2025</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1JKofiNqn61RoxGXsyY6v6rfEY-nj6eD4/view?pli=1" target="_blank" rel="noopener noreferrer">OBTAINING COPIES OF BARANGAY RECORDS ON MATTERS UNDER MEDIATION</a></p></li>
+                    <li><span class="opinion-ref">2. DILG 13 LO NO.06, S.2025</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1CpZDR_oGaFYeXNrIukalU-zvffqN4buy/view" target="_blank" rel="noopener noreferrer">DELIBERATE IN ACTION OF SANGGUNIAN</a></p></li>
+                    <li><span class="opinion-ref">3. DILG13 LO NO.15, S.2025</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1sh9ItQqouUrUxuoCpLTLbsJqer2OiLAJ/view" target="_blank" rel="noopener noreferrer">INTERPRETATION OF BARANGAY UNITS ADJOINING EACH OTHER</a></p></li>
+                    <li><span class="opinion-ref">4. DILG13 LO NO.17, S.2025</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1u4YwCEGl0HOAfJ4DTsfusDLul9YeLD3U/view" target="_blank" rel="noopener noreferrer">CAN MAYOR PRACTICE MD PROFESSION</a></p></li>
+                    <li><span class="opinion-ref">5. DILG13 LO NO.20, S.2025</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1xKNHuTIThZFrdxZ2UvJesWurrc-tFdfL/view" target="_blank" rel="noopener noreferrer">ACCREDITATION OF RELIGIOUS SECTOR</a></p></li>
+                    <li><span class="opinion-ref">6. DILG13 LO NO.21, S.2025</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1FoPUrCTHRRtvod2lvv2sHXpPCe4QYUuu/view" target="_blank" rel="noopener noreferrer">WON ACCOUNTANT SHOULD SECURE MAYORS APPROVAL</a></p></li>
+                    <li><span class="opinion-ref">7. DILG13 LO NO.24, S.2025</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1wj03dSESR2p8w89utug7fXDwkGd4lFyM/view" target="_blank" rel="noopener noreferrer">3 TERM BRGY. KAGAWAD APPOINTED AGAIN</a></p></li>
+                    <li><span class="opinion-ref">8. DILG13 LO NO.25, S.2025</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1NeZybPowPoRxmzSjzk3PtKposP7HAv_2/view" target="_blank" rel="noopener noreferrer">CONDUCT OF SK SPECIAL ELECTIONS</a></p></li>
+                    <li><span class="opinion-ref">9. DILG13 LO NO.34, S.2025</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1C-qrbrw8UvGDJt3YkYIZ_lfiaWErA1nM/view" target="_blank" rel="noopener noreferrer">SESSION AT 1 P.M.</a></p></li>
+                  </ul>
+                </div>
+                <div id="2024" class="tab-pane">
+                  <ul class="opinion-list">
+                    <li><span class="opinion-ref">1. DILG13 LO NO.02, S.2024</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1BLZr5pfqofaekfJpvdzsDh6VJpqCGm3j/view" target="_blank" rel="noopener noreferrer">CLARIFICATION ON INDOOR BETTING IN THE COCKPIT ARENA IS CONSIDERED LEGAL</a></p></li>
+                    <li><span class="opinion-ref">2. DILG13 LO NO.03, S.2024</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1BN72kNk3YpcMwKRZ285dugTsMWREBWUG/view" target="_blank" rel="noopener noreferrer">CONTINUED EMPLOYMENT AS JO BY A SANGGUNIAN BARANGAY MEMBER</a></p></li>
+                    <li><span class="opinion-ref">3. DILG13 LO NO.05, S.2024</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1BrAVEgVAs7Mj7lFPsVH1hfwdILiSr6qn/view" target="_blank" rel="noopener noreferrer">WHETHER RULES ON PROHIBITION OF NEPOTISM APPLIES TO OTHER POSITIONS</a></p></li>
+                    <li><span class="opinion-ref">4. DILG13 LO NO.06, S.2024</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1Bc-TlFtNOmTQ63TUqhtpXZSabKS6wXCD/view" target="_blank" rel="noopener noreferrer">PB DIRECTING IPMR NOT TO ATTEND SESSION</a></p></li>
+                    <li><span class="opinion-ref">5. DILG13 LO NO.07, S.2024</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1Bwx8eYLpjlWvX5rTeAOmEnFHLbxu6ZUY/view" target="_blank" rel="noopener noreferrer">CONTINUED EMPLOYMENT OF SK MEMBERS AS JOB ORDER EMPLOYEE</a></p></li>
+                    <li><span class="opinion-ref">6. DILG13 LO NO.11, S.2024</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1BdmgFS4SyD5oRtdL-Iu4yAOU_ICsD2mt/view" target="_blank" rel="noopener noreferrer">DETERMINATION OF RANKING OF HIGHEST SANGGUNIAN MEMBER FOR PROVINCE WITH 2 DISTRICTS</a></p></li>
+                    <li><span class="opinion-ref">7. DILG13 LO NO.16, S.2024</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1Bi2L44LTrc1aG-rOoUz21MXZwHc2cUrl/view" target="_blank" rel="noopener noreferrer">CONTINUED EMPLOYMENT OF SK CHAIRMAN AS A PROJECT BASED OR CONTRACTUAL EMPLOYEE</a></p></li>
+                    <li><span class="opinion-ref">8. DILG13 LO NO.21, S.2024</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1BxmX_nqKuUvTJaoAnJ-t35guI-z0xhC7/view" target="_blank" rel="noopener noreferrer">REQUEST FOR FLEXIBLE ATTENDANCE TO SESSIONS</a></p></li>
+                    <li><span class="opinion-ref">9. DILG13 LO NO.22, S.2024</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1BlLLsoiTra2L6KknOwriLqWeGoBeTl9F/view" target="_blank" rel="noopener noreferrer">WHETHER OR NOT BARANGAY CAN HAVE ITS OWN OFFICIAL SEAL DESIGN</a></p></li>
+                    <li><span class="opinion-ref">10. DILG13 LO NO.27, S.2024</span><p class="opinion-title"><a href="https://drive.google.com/file/d/1BlLLsoiTra2L6KknOwriLqWeGoBeTl9F/view" target="_blank" rel="noopener noreferrer">WHETHER OR NOT BARANGAY CAN HAVE ITS OWN OFFICIAL SEAL DESIGN</a></p></li>
+                  </ul>
+                </div>
+                <div id="2017" class="tab-pane">
+                  <ul class="opinion-list">
+                    <li><span class="opinion-ref">1. REFERENCE NO. DLO 2017-001</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-001_Internal%20Rules%20of%20Procedure.pdf" target="_blank" rel="noopener noreferrer">INTERNAL RULES OF PROCEDURE OF SANGGUNIANG</a></p></li>
+                    <li><span class="opinion-ref">2. REFERENCE NO. DLO 2017-002</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-002_Review%20Powers%20of%20the%20Sanggunian.pdf" target="_blank" rel="noopener noreferrer">REVIEW POWERS OF THE SANGGUNIAN</a></p></li>
+                    <li><span class="opinion-ref">3. REFERENCE NO. DLO 2017-003</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-003_Corporate%20Powers%20of%20LGUs.pdf" target="_blank" rel="noopener noreferrer">CORPORATE POWERS OF LGUS</a></p></li>
+                    <li><span class="opinion-ref">4. REFERENCE NO. DLO 2017-004</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-004_Annual%20Appropriation.pdf" target="_blank" rel="noopener noreferrer">ANNUAL APPROPRIATION</a></p></li>
+                    <li><span class="opinion-ref">5. REFERENCE NO. DLO 2017-005</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-005_Permanent%20Vacancy%20and%20Succession.pdf" target="_blank" rel="noopener noreferrer">PERMANENT VACANCY AND SUCCESSION</a></p></li>
+                    <li><span class="opinion-ref">6. REFERENCE NO. DLO 2017-006</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-006_Reenacted%20Budget.pdf" target="_blank" rel="noopener noreferrer">REENACTED BUDGET</a></p></li>
+                    <li><span class="opinion-ref">7. REFERENCE NO. DLO 2017-007</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-007_20%25%20Local%20Development%20Fund.pdf" target="_blank" rel="noopener noreferrer">20% LOCAL DEVELOPMENT FUND</a></p></li>
+                    <li><span class="opinion-ref">8. REFERENCE NO. DLO 2017-008</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-008_Katarungang%20Pambarangay.pdf" target="_blank" rel="noopener noreferrer">KATARUNGANG PAMBARANGAY</a></p></li>
+                    <li><span class="opinion-ref">9. REFERENCE NO. DLO 2017-009</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-009_Temporary%20Vacancy%20and%20Succession.pdf" target="_blank" rel="noopener noreferrer">TEMPORARY VACANCY AND SUCCESSION</a></p></li>
+                    <li><span class="opinion-ref">10. REFERENCE NO. DLO 2017-010</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-010_PBB%20for%20LGUs.pdf" target="_blank" rel="noopener noreferrer">PBB FOR LGUS</a></p></li>
+                    <li><span class="opinion-ref">11. REFERENCE NO. DLO 2017-011</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-010_PBB%20for%20LGUs.pdf" target="_blank" rel="noopener noreferrer">ACCREDITATION OF NGOS</a></p></li>
+                    <li><span class="opinion-ref">12. REFERENCE NO. DLO 2017-012</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-012_Penalty%20for%20Violators%20of%20Sec%2054%20of%20RA%207160-IRR.pdf" target="_blank" rel="noopener noreferrer">PENALTY FOR VIOLATORS OF SEC 54 OF RA 7160 - IRR</a></p></li>
+                    <li><span class="opinion-ref">13. REFERENCE NO. DLO 2017-013</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-013_IPMR.pdf" target="_blank" rel="noopener noreferrer">IPMR</a></p></li>
+                    <li><span class="opinion-ref">14. REFERENCE NO. DLO 2017-014</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-014_LGU%20Vetenerian%20as%20Public%20Health%20Worker.pdf" target="_blank" rel="noopener noreferrer">LGU VETERINARIAN AS PUBLIC HEALTH WORKER</a></p></li>
+                    <li><span class="opinion-ref">15. REFERENCE NO. DLO 2017-015</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-015_Issuance%20of%20Invitation%20and%20Summons.pdf" target="_blank" rel="noopener noreferrer">ISSUANCE OF INVITATION AND SUMMONS</a></p></li>
+                    <li><span class="opinion-ref">16. REFERENCE NO. DLO 2017-016</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-016_Determination%20of%20Quorum%20and%20Majority.pdf" target="_blank" rel="noopener noreferrer">DETERMINATION OF QUORUM AND MAJORITY</a></p></li>
+                    <li><span class="opinion-ref">17. REFERENCE NO. DLO 2017-017</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-017_Termination%20of%20Barangay%20Secretary.pdf" target="_blank" rel="noopener noreferrer">TERMINATION OF BARANGAY SECRETARY</a></p></li>
+                    <li><span class="opinion-ref">18. REFERENCE NO. DLO 2017-018</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-018_Determination%20of%20Quorum%20and%20Majority.pdf" target="_blank" rel="noopener noreferrer">DETERMINATION OF QUORUM AND MAJORITY</a></p></li>
+                    <li><span class="opinion-ref">19. REFERENCE NO. DLO 2017-019</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-019_Concurrence%20to%20Appointment%20of%20Provincial%20Admin.pdf" target="_blank" rel="noopener noreferrer">CONCURRENCE TO APPOINTMENT OF PROVINCIAL ADMIN</a></p></li>
+                    <li><span class="opinion-ref">20. REFERENCE NO. DLO 2017-020</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2017/DLO%202017-020_Children%20Legislators.pdf" target="_blank" rel="noopener noreferrer">CHILDREN LEGISLATORS</a></p></li>
+                  </ul>
+                </div>
+                <div id="2016" class="tab-pane">
+                  <ul class="opinion-list">
+                    <li><span class="opinion-ref">1. REFERENCE NO. DLO 2016-001</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20001-2014_29.pdf" target="_blank" rel="noopener noreferrer">VACANCY AND SUCCESSION</a></p></li>
+                    <li><span class="opinion-ref">2. REFERENCE NO. DLO 2016-002</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20001-2014_29.pdf" target="_blank" rel="noopener noreferrer">VACANCY AND SUCCESSION</a></p></li>
+                    <li><span class="opinion-ref">3. REFERENCE NO. DLO 2016-003</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20003-2014_30.pdf" target="_blank" rel="noopener noreferrer">VACANCY AND SUCCESSION</a></p></li>
+                    <li><span class="opinion-ref">4. REFERENCE NO. DLO 2016-004</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20005-2014_32.pdf" target="_blank" rel="noopener noreferrer">IMPLEMENTATION OF CSC DECISIONS</a></p></li>
+                    <li><span class="opinion-ref">5. REFERENCE NO. DLO 2016-005</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20005-2014_32.pdf" target="_blank" rel="noopener noreferrer">DISCIPLINING AUTHORITY OVER THE LGA</a></p></li>
+                    <li><span class="opinion-ref">6. REFERENCE NO. DLO 2016-006</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20007-2014_34.pdf" target="_blank" rel="noopener noreferrer">APPROVAL OF TRAVEL ORDER</a></p></li>
+                    <li><span class="opinion-ref">7. REFERENCE NO. DLO 2016-007</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20008-2014_35.pdf" target="_blank" rel="noopener noreferrer">RESIGNATION OF SANGGUNIAN MEMBERS</a></p></li>
+                    <li><span class="opinion-ref">8. REFERENCE NO. DLO 2016-008</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20009-2014_36.pdf" target="_blank" rel="noopener noreferrer">PRACTICE OF PROFESSION</a></p></li>
+                    <li><span class="opinion-ref">9. REFERENCE NO. DLO 2016-009</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20010-2014_37.pdf" target="_blank" rel="noopener noreferrer">TERMINATION OF BARANGAY TREASURER</a></p></li>
+                    <li><span class="opinion-ref">10. REFERENCE NO. DLO 2016-010</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20011-2014.pdf" target="_blank" rel="noopener noreferrer">APPROVAL OF TRAVELS</a></p></li>
+                    <li><span class="opinion-ref">11. REFERENCE NO. DLO 2016-012</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20012-2014_38.pdf" target="_blank" rel="noopener noreferrer">REVIEW OF LOCAL ORDINANCES</a></p></li>
+                    <li><span class="opinion-ref">12. REFERENCE NO. DLO 2016-013</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20013-2014_39.pdf" target="_blank" rel="noopener noreferrer">DRR EQUIPMENT</a></p></li>
+                    <li><span class="opinion-ref">13. REFERENCE NO. DLO 2016-014</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20014-2014_41.pdf" target="_blank" rel="noopener noreferrer">SCHOLARSHIP FOR PROVINCIAL EMPLOYEES</a></p></li>
+                    <li><span class="opinion-ref">14. REFERENCE NO. DLO 2016-015</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20015-2014_42.pdf" target="_blank" rel="noopener noreferrer">KALAHI CIDSS</a></p></li>
+                    <li><span class="opinion-ref">15. REFERENCE NO. DLO 2016-017</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20016-2014_43.pdf" target="_blank" rel="noopener noreferrer">THREE-TERM LIMIT</a></p></li>
+                    <li><span class="opinion-ref">16. REFERENCE NO. DLO 2016-018</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20017-2014_44.pdf" target="_blank" rel="noopener noreferrer">IP MANDATORY REPRESENTATIVE</a></p></li>
+                    <li><span class="opinion-ref">17. REFERENCE NO. DLO 2016-019</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20018-2014_45.pdf" target="_blank" rel="noopener noreferrer">THREE-TERM LIMIT</a></p></li>
+                    <li><span class="opinion-ref">18. REFERENCE NO. DLO 2016-020</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20019-2014.pdf" target="_blank" rel="noopener noreferrer">MONETIZATION OF EARNED LEAVE</a></p></li>
+                    <li><span class="opinion-ref">19. REFERENCE NO. DLO 2016-022</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20020-2014_51.pdf" target="_blank" rel="noopener noreferrer">TERMINATION OF BARANGAY SECRETARY</a></p></li>
+                    <li><span class="opinion-ref">20. REFERENCE NO. DLO 2016-023</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20021-2014_46.pdf" target="_blank" rel="noopener noreferrer">RESIGNATION OF BARANGAY OFFICIALS</a></p></li>
+                    <li><span class="opinion-ref">21. REFERENCE NO. DLO 2016-024</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20022-2014_47.pdf" target="_blank" rel="noopener noreferrer">QUORUM AND MAJORITY IN THE SANGGUNIAN</a></p></li>
+                    <li><span class="opinion-ref">22. REFERENCE NO. DLO 2016-025</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20023-2014_48.pdf" target="_blank" rel="noopener noreferrer">PHILIPPINE COUNCILOR'S LEAGUE</a></p></li>
+                    <li><span class="opinion-ref">23. REFERENCE NO. DLO 2016-026</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20025-2014_50.pdf" target="_blank" rel="noopener noreferrer">IP MANDATORY REPRESENTATIVE</a></p></li>
+                    <li><span class="opinion-ref">24. REFERENCE NO. DLO 2016-027</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20026-2014.pdf" target="_blank" rel="noopener noreferrer">APPROVAL OF IRP</a></p></li>
+                    <li><span class="opinion-ref">25. REFERENCE NO. DLO 2016-028</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20027-2014.pdf" target="_blank" rel="noopener noreferrer">QUORUM AND MAJORITY</a></p></li>
+                  </ul>
+                </div>
+                <div id="2015" class="tab-pane">
+                  <ul class="opinion-list">
+                    <li><span class="opinion-ref">1. REFERENCE NO. RLO 2015-001</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2015/RLO%202015-001_53.pdf" target="_blank" rel="noopener noreferrer">RULES ON PARLIAMENTARY PROCEDURE</a></p></li>
+                    <li><span class="opinion-ref">2. REFERENCE NO. RLO 2015-002</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2015/RLO%202015-002_54.pdf" target="_blank" rel="noopener noreferrer">BENEFITS OF BARANGAY OFFICIALS</a></p></li>
+                    <li><span class="opinion-ref">3. REFERENCE NO. RLO 2015-003</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2015/RLO%202015-003_55.pdf" target="_blank" rel="noopener noreferrer">ABOLITION OF PLANTILLA POSITION THROUGH A RESOLUTION</a></p></li>
+                    <li><span class="opinion-ref">4. REFERENCE NO. RLO 2015-004</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2015/RLO%202015-004_56.pdf" target="_blank" rel="noopener noreferrer">LEGALIY OF TALIPAPA OR A BARANGAY MARKET</a></p></li>
+                    <li><span class="opinion-ref">5. REFERENCE NO. RLO 2015-005</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2015/RLO%202015-005_52.pdf" target="_blank" rel="noopener noreferrer">IMPLEMENTATION OF THE DECISION OF THE OFFICE OF THE OMBUDSMAN</a></p></li>
+                    <li><span class="opinion-ref">6. REFERENCE NO. RLO 2015-006</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2015/RLO%202015-006.pdf" target="_blank" rel="noopener noreferrer">APPROVAL OF TRAVEL OF PUNONG BARANGAYS</a></p></li>
+                  </ul>
+                </div>
+                <div id="2014" class="tab-pane">
+                  <ul class="opinion-list">
+                    <li><span class="opinion-ref">1. REFERENCE NO. LO 2014-001</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20001-2014_29.pdf" target="_blank" rel="noopener noreferrer">PERMANENT, TEMPORARY VACANCY AND SUCCESSION</a></p></li>
+                    <li><span class="opinion-ref">2. REFERENCE NO. LO 2014-002</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20001-2014_29.pdf" target="_blank" rel="noopener noreferrer">CREATION OF NEW LGU / BARANGAY</a></p></li>
+                    <li><span class="opinion-ref">3. REFERENCE NO. LO 2014-003</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20003-2014_30.pdf" target="_blank" rel="noopener noreferrer">SCOPE OF POWER OF THE BARANGAY</a></p></li>
+                    <li><span class="opinion-ref">4. REFERENCE NO. LO 2014-004</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20004-2014_31.pdf" target="_blank" rel="noopener noreferrer">THREE-TERM LIMIT OF LOCAL OFFICIALS</a></p></li>
+                    <li><span class="opinion-ref">5. REFERENCE NO. LO 2014-005</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20005-2014_32.pdf" target="_blank" rel="noopener noreferrer">LEGALITY OF RESORT TO CONTRACT / UBRIFRUCT IN GOVERNMENT PROJECTS</a></p></li>
+                    <li><span class="opinion-ref">6. REFERENCE NO. LO 2014-007</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20007-2014_34.pdf" target="_blank" rel="noopener noreferrer">HONORARIUM OF BARANGAY OFFICIALS</a></p></li>
+                    <li><span class="opinion-ref">7. REFERENCE NO. LO 2014-008</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20008-2014_35.pdf" target="_blank" rel="noopener noreferrer">VALIDITY OF RESOLUTION & ORDINANCE</a></p></li>
+                    <li><span class="opinion-ref">8. REFERENCE NO. LO 2014-009</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20009-2014_36.pdf" target="_blank" rel="noopener noreferrer">REVIEW OF MUNICIPAL ORDINANCES</a></p></li>
+                    <li><span class="opinion-ref">9. REFERENCE NO. LO 2014-010</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20010-2014_37.pdf" target="_blank" rel="noopener noreferrer">BENEFITS OF BARANGAY OFFICIALS</a></p></li>
+                    <li><span class="opinion-ref">10. REFERENCE NO. LO 2014-011</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20011-2014.pdf" target="_blank" rel="noopener noreferrer">FORMAT OF RESOLUTION OR ORDINANCE</a></p></li>
+                    <li><span class="opinion-ref">11. REFERENCE NO. LO 2014-012</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20012-2014_38.pdf" target="_blank" rel="noopener noreferrer">NEPOTISM IN OTHER APPOINTIVE OFFICIALS IN THE BARANGAY</a></p></li>
+                    <li><span class="opinion-ref">12. REFERENCE NO. LO 2014-013</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20013-2014_39.pdf" target="_blank" rel="noopener noreferrer">"NO-GO-ZONE"</a></p></li>
+                    <li><span class="opinion-ref">13. REFERENCE NO. LO 2014-014</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20014-2014_41.pdf" target="_blank" rel="noopener noreferrer">PUROK SYSTEM IN THE BARANGAY</a></p></li>
+                    <li><span class="opinion-ref">14. REFERENCE NO. LO 2014-015</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20015-2014_42.pdf" target="_blank" rel="noopener noreferrer">SUSTAINABILITY OF THE LOCAL ECONOMIC ENTERPRISE</a></p></li>
+                    <li><span class="opinion-ref">15. REFERENCE NO. LO 2014-016</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20016-2014_43.pdf" target="_blank" rel="noopener noreferrer">AMENDMENTS TO APPROVED LOCAL POVERTY REDUCTION PLAN</a></p></li>
+                    <li><span class="opinion-ref">16. REFERENCE NO. LO 2014-017</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20017-2014_44.pdf" target="_blank" rel="noopener noreferrer">APPROVAL OF TRAVEL OF LOCAL OFFICIALS</a></p></li>
+                    <li><span class="opinion-ref">17. REFERENCE NO. LO 2014-018</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20018-2014_45.pdf" target="_blank" rel="noopener noreferrer">SUCCESSION IN PERMANENT VACANCY IN THE LOCAL SANGGUNIAN</a></p></li>
+                    <li><span class="opinion-ref">18. REFERENCE NO. LO 2014-019</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20019-2014.pdf" target="_blank" rel="noopener noreferrer">VALID FOREST LAND USE PLAN</a></p></li>
+                    <li><span class="opinion-ref">19. REFERENCE NO. LO 2014-020</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20020-2014_51.pdf" target="_blank" rel="noopener noreferrer">IMPLEMENTATION OF THE DECISION OF THE LOCAL SANGGUNIAN IN ADMINISTRATIVE CASE</a></p></li>
+                    <li><span class="opinion-ref">20. REFERENCE NO. LO 2014-021</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20021-2014_46.pdf" target="_blank" rel="noopener noreferrer">UTILIZATION OF LGU'S UNOBLIGATED BALANCE FROM PERSONAL SERVICE</a></p></li>
+                    <li><span class="opinion-ref">21. REFERENCE NO. LO 2014-022</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20022-2014_47.pdf" target="_blank" rel="noopener noreferrer">APPROVAL OF THE OFFICE OF THE MAYOR IN SEEKING LEGAL OPINION</a></p></li>
+                    <li><span class="opinion-ref">22. REFERENCE NO. LO 2014-023</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20023-2014_48.pdf" target="_blank" rel="noopener noreferrer">UTILIZATION OF THE 6%MDRRM FUND</a></p></li>
+                    <li><span class="opinion-ref">23. REFERENCE NO. LO 2014-024</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20025-2014_50.pdf" target="_blank" rel="noopener noreferrer">LOCAL TAXATION</a></p></li>
+                    <li><span class="opinion-ref">24. REFERENCE NO. LO 2014-025</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20026-2014.pdf" target="_blank" rel="noopener noreferrer">ANNUAL BUDGET VS ANNUAL INVESTMENT PLAN</a></p></li>
+                    <li><span class="opinion-ref">25. REFERENCE NO. LO 2014-026</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/2014/LO%20027-2014.pdf" target="_blank" rel="noopener noreferrer">ANNUAL AUDIT REPORT OF THE COMMISSION ON AUDIT</a></p></li>
+                  </ul>
+                </div>
+                <div id="2013" class="tab-pane">
+                  <ul class="opinion-list">
+                    <li><span class="opinion-ref">1. REFERENCE NO. LO 2013-001</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-1.pdf" target="_blank" rel="noopener noreferrer">ADMINISTRATIVE COMPLAINT</a></p></li>
+                    <li><span class="opinion-ref">2. REFERENCE NO. LO 2013-002</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013%20-%2002.pdf" target="_blank" rel="noopener noreferrer">IMPLEMENTING THE SANDIGAN BAYAN'S ORDER</a></p></li>
+                    <li><span class="opinion-ref">3. REFERENCE NO. LO 2013-003</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013%20-%2003.pdf" target="_blank" rel="noopener noreferrer">IMPLEMENTING THE OMBUDSMAN'S ORDER</a></p></li>
+                    <li><span class="opinion-ref">4. REFERENCE NO. LO 2013-004</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-4.pdf" target="_blank" rel="noopener noreferrer">JOB ORDER</a></p></li>
+                    <li><span class="opinion-ref">5. REFERENCE NO. LO 2013-005</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-5.pdf" target="_blank" rel="noopener noreferrer">ADMINISTRATIVE COMPLAINT</a></p></li>
+                    <li><span class="opinion-ref">6. REFERENCE NO. LO 2013-006</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-6.pdf" target="_blank" rel="noopener noreferrer">BUDGET / SAVINGS</a></p></li>
+                    <li><span class="opinion-ref">7. REFERENCE NO. LO 2013-007</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-7.pdf" target="_blank" rel="noopener noreferrer">INVITATION OF SANGGUNIAN</a></p></li>
+                    <li><span class="opinion-ref">8. REFERENCE NO. LO 2013-008</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-8.pdf" target="_blank" rel="noopener noreferrer">ENVIRONMENT FEE</a></p></li>
+                    <li><span class="opinion-ref">9. REFERENCE NO. LO 2013-009</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-9.pdf" target="_blank" rel="noopener noreferrer">REVIEW POWER</a></p></li>
+                    <li><span class="opinion-ref">10. REFERENCE NO. LO 2013-010</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-10.pdf" target="_blank" rel="noopener noreferrer">ELECTION PERIOD</a></p></li>
+                    <li><span class="opinion-ref">11. REFERENCE NO. LO 2013-011</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-11.pdf" target="_blank" rel="noopener noreferrer">USE OF GOVERNMENT OWNED PROPERTY</a></p></li>
+                    <li><span class="opinion-ref">12. REFERENCE NO. LO 2013-012</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-12.pdf" target="_blank" rel="noopener noreferrer">PERMIT TO RALLY</a></p></li>
+                    <li><span class="opinion-ref">13. REFERENCE NO. LO 2013-013</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-13.pdf" target="_blank" rel="noopener noreferrer">DUAL POSITION</a></p></li>
+                    <li><span class="opinion-ref">14. REFERENCE NO. LO 2013-014</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Regional%20LO%202013-14_10.pdf" target="_blank" rel="noopener noreferrer">ATTENDANCE TO SESSION</a></p></li>
+                    <li><span class="opinion-ref">15. REFERENCE NO. LO 2013-015</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-15.pdf" target="_blank" rel="noopener noreferrer">PRACTICE OF PROFESSOR</a></p></li>
+                    <li><span class="opinion-ref">16. REFERENCE NO. LO 2013-016</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-16.pdf" target="_blank" rel="noopener noreferrer">IP REPRESENTATION</a></p></li>
+                    <li><span class="opinion-ref">17. REFERENCE NO. LO 2013-017</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-17.pdf" target="_blank" rel="noopener noreferrer">ATTENDANCE TO SESSION</a></p></li>
+                    <li><span class="opinion-ref">18. REFERENCE NO. LO 2013-018</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-18.pdf" target="_blank" rel="noopener noreferrer">ACTING MAYOR</a></p></li>
+                    <li><span class="opinion-ref">19. REFERENCE NO. LO 2013-019</span><p class="opinion-title"><a href="https://downloads.caraga.dilg.gov.ph/Legal%20Ops/LegalOps%202013/Legal%20Op%202013-19.pdf" target="_blank" rel="noopener noreferrer">ADMINISTRATIVE COMPLAINT</a></p></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Template for DILG Philippines list (used when ?region=DILG%20Philippines) -->
+            <template id="dilg-list-template">
+              <div id="dilg-region" class="view_details">
+                <div class="dilg-search-panel">
+                  <div class="dilg-search-row">
+                    <label class="dilg-search-label" for="dilg-search-input">Search</label>
+                    <input id="dilg-search-input" type="text" placeholder="Enter keyword" />
+                    <select id="dilg-search-field">
+                      <option>Title/Subject</option>
+                      <option>Reference Number</option>
+                      <option>Keywords</option>
+                    </select>
+                    <button type="button">Search</button>
+                  </div>
+                  <p class="dilg-search-results" id="dilg-search-results" role="status" aria-live="polite"></p>
+                  <div class="dilg-search-row secondary-row">
+                    <label class="dilg-search-label" for="dilg-category-select">&nbsp;</label>
+                    <select id="dilg-category-select">
+                      <option>Select Category</option>
+                      <option>3 TERM-LIMIT RULE</option>
+                      <option>ADMINISTRATIVE INVESTIGATION PROCESS (LOCAL OFFICIALS)</option>
+                      <option>APPOINTIVE BARANGAY OFFICIALS</option>
+                      <option>APPOINTMENT / DESIGNATION OF LOCAL FUNCTIONARIES</option>
+                      <option>APPROPRIATION/FUNDS/BUDGET MATTERS</option>
+                      <option>Attachment of the Name, Image/Likeness of Public Officials</option>
+                      <option>AUTHORITY TO ADMINISTER OATHS</option>
+                      <option>BARANGAY MATTERS</option>
+                      <option>BENEFITS OF BARANGAY OFFICIALS</option>
+                      <option>Benefits of Employees</option>
+                      <option>Benefits of Local Officials</option>
+                      <option>Cockpit/Illegal Gambling/Smoking</option>
+                      <option>Comelec Matters</option>
+                      <option>COMPOSITION OF THE SANGGUNIANG BAYAN</option>
+                      <option>CONFLICT OF INTEREST</option>
+                      <option>Contracts/Agreements</option>
+                      <option>Control and Supervision</option>
+                      <option>CONVERSION MERGER/CREATION OF LGU</option>
+                      <option>COVID/SAP MATTERS</option>
+                      <option>Creation of LGU</option>
+                      <option>Designation/Appointment</option>
+                      <option>DILG Women's Bulletin 2016</option>
+                      <option>Disaster Risk</option>
+                      <option>Donation/Structure/Road</option>
+                      <option>Effect of Filing COC</option>
+                      <option>Election Ban</option>
+                      <option>ELECTIVE/APPOINTIVE LOCAL OFFICIALS</option>
+                      <option>EXECUTION/IMPLEMENTATION OF DECISION OF OMBUDSMAN/COMELEC</option>
+                      <option>FAILURE OF SANGGUNIAN TO PASS AN APPROPRIATION ORDINANCE</option>
+                      <option>Filing Complaint</option>
+                      <option>FIRE CODE OF THE PHILIPPINES</option>
+                      <option>FRANCHISES</option>
+                      <option>FUNCTIONS OF SANGGUNIANS</option>
+                      <option>Funds and Budget Matter</option>
+                      <option>General Welfare</option>
+                      <option>HIRING OF PRIVATE LAWYER</option>
+                      <option>Hiring Officials/Employees</option>
+                      <option>Honorarium</option>
+                      <option>IMPLEMENTATION OF A PRESIDENTIAL DIRECTIVE</option>
+                      <option>Implementation/Decision/Validity of an Order</option>
+                      <option>Indigeneous People</option>
+                      <option>INDIGENOUS PEOPLE (REPRESENTATIVE TO SANGGUNIAN)</option>
+                      <option>INTERNAL RULES & PROCEDURES OF THE SANGGUNIAN</option>
+                      <option>Internal Rules and Procedures of Sanggunians</option>
+                      <option>IRA/DEV'T FUND</option>
+                      <option>Issuance of Clearance/Permit</option>
+                      <option>ISSUANCE OF TRAVEL ORDERS</option>
+                      <option>Job Order/Contract of Services Matters</option>
+                      <option>LCEs DESIGNATION / APPOINTMENT /AUTHORIZATION / REPRESENTATION</option>
+                      <option>LEAGUES/LIGA NG MGA BARANGAY</option>
+                      <option>Legislative Function</option>
+                      <option>LGU'S CORPORATE POWERS</option>
+                      <option>LIABILITY OF A BARANGAY OFFICIAL AFFILIATED TO A POLITICAL PARTY</option>
+                      <option>LICENSE/MAYOR'S PERMIT</option>
+                      <option>LOCAL LEGISLATION</option>
+                      <option>LOCAL OFFICIALS POWER, AUTHORITY FUNCTION & COMPENSATION</option>
+                      <option>Local/Municipal/Provincial Development Councils</option>
+                      <option>LONGEVITY PAY</option>
+                      <option>MUNICIPAL DEVELOPMENT PLAN</option>
+                      <option>NGO/CSO</option>
+                      <option>OFFICIALS/EMPLOYEES OF THE SANGGUNIANG BAYAN</option>
+                      <option>OSCA MATTERS</option>
+                      <option>Philippine Councilors League</option>
+                      <option>Power, Duties and Functions</option>
+                      <option>PRACTICE OF PROFESSION</option>
+                      <option>Private Owned-Property</option>
+                      <option>PROVINCIAL DEVELOPMENT COUNCIL</option>
+                      <option>Provisions of Republic Act/ Administrative Order</option>
+                      <option>QUORUM</option>
+                      <option>REGULAR OFFICE HOURS OF ELECTIVE OFFICIALS</option>
+                      <option>REMOVAL FROM OFFICE</option>
+                      <option>Removal/Suspension/Termination/ Resignation of Local Officials</option>
+                      <option>Reorganization of Committees in the SP</option>
+                      <option>RESIGNATION OF LOCAL OFFICIAL</option>
+                      <option>Revenue/Tax/Fees</option>
+                      <option>Review of Ordinances/Resolutions</option>
+                      <option>Sangguniang Session</option>
+                      <option>SANGGUNIAN STANDING COMMITTEES</option>
+                      <option>SESSIONS</option>
+                      <option>Sharing Agreement/Term</option>
+                      <option>SK Matters</option>
+                      <option>SPECIAL EDUCATION FUND</option>
+                      <option>STATE OF CALAMITY</option>
+                      <option>SUSPENSION OF LOCAL ELECTIVE OFFICIALS</option>
+                      <option>TAX/COLLECTION OF REVENUES</option>
+                      <option>TAXING POWERS OF BARANGAYS</option>
+                      <option>Vacancy/Succession</option>
+                      <option>VACANCY/SUCCESSION/ASSUMPTION</option>
+                      <option>VALIDITY OF AN ORDINANCE/RESOLUTION</option>
+                      <option>VETO POWER</option>
+                      <option>vonrcoim</option>
+                    </select>
+                  </div>
+                </div>
+                <ol class="dilg-opinion-list">
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_a735125c47.pdf">Whether SK Federation president be allowed to concurrently serve and receive compensation as a contractual/job order employee in a state university</a>
+                     <strong style="display:block;font-weight:bold;">Reference No: LO-021s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_6d817b915d.pdf">ClarificatioN on the Decision rendered by the City of Manila- Non Disciplinary Case -AWOL, Administrative case- Dishonesty</a>
+                      <strong style="display:block;font-weight:bold;">Reference Number: LO-020s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_9bec351fc4.pdf">Whether the term “local fiestas” under Presidential Decree No. 449 includes barangay fiestas; (2) whether cockfighting activities may be legally conducted during voter registration days, considering that COMELEC issuances generally prohibit cockfighting only during the election period; and (3) whether civil society organizations may request the holding of special cockfighting activities for charitable purposes.</a>
+                      <strong style="display:block;font-weight:bold;">Reference Number: LO-019s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_db3e529252.pdf">Whether a Sangguniang Barangay Member (SBM) may be considered present in a regular session under the following circumstances: (1) when the SBM did not physically attend the session but submitted a medical certificate to justify the absence; (2) when the SBM was physically present and participated in the session but failed to log or record attendance; and (3) when the SBM participated in the session through online or virtual attendance</a>
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-018s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_726f5dcc27.pdf">Mediating/settling dispute between the LGU and a water concessionaire- SAVS- Cebu</a>
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-017s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_380b46c5fe.pdf">Ineligible and annulling proclamation on the ground of failure to meet the one-year residency requirement- Tarlac City</a>
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-016s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_2c6d7ae0f5.pdf">Delegating by the Provincial Government to the Municipal Treasurer of Magalang, Pampanga the Autority to Collect Transfer taxes within the Municipality</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-015s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_203cf68db1.pdf">Lawful use of Sangguniang Kabataan (SK) funds, particularly on whether SK funds may be utilized for the construction of public school buildings, whether such projects fall within the allowable programs, projects, and activities (PPAs) under Republic Act No. 10742, and whether SK funds may be used to augment or supplement the Special Education Fund (SEF).</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-014s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_3287d63b2c.pdf">Propriety of actions of Local Officials in the Implementation of Zoning Ordinance</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-013s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_8451bd0d8f.pdf">Proposed ordinance by the Sangguniang Bayan of San Teodoro, which seeks to impose a Regulatory access fee on motor vehicles</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-012s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_440a4a48f4.pdf">May the Sangguniang Bayan issue a Resolution authorizing the Municipality Mayor to enter into a contract with the Job order (JO) workers of the municipality to increase the amount of salary from P300.00-450.00 which also effectively reduced the number the of JO workers as approved in the previous years reenacted budget</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-011s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_674a5e74db.pdf">Can the Former Mayor convert and appropriate for her personal use the official Facebook Page of LGU Gubat through her alleged NGOs "Shared Governance and "Shared Gubatourismo</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-010s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_02ebc9b982.pdf">Clarification on the imposition of tax on peddlers</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-009s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_ccfe856ce8.pdf">Imposition of Fuel Storage Fee by the Municipality of Buenavista, Marinduque</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-008s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_5757139f85.pdf">Whether the incumbent Municipal Planning and Development Coordinator (MPDC) may route for ratification a draft Municipal Development Council (MDC) Resolution approving an earlier MDC Executive Committee Resolution which served as basis for a supplemental investment procurement plan (SIPP)</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-007s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026525_3a7e64bc4b.pdf">Application for clearances from Brgy Darangan, Binangonan, Rizal, for the construction of the National Grid Corporation of the Philippines (NGCP) Taguig-Baras 500kv Transmission Line Project</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-006s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 25, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-202657_e41dbdc93d.pdf">Proper compliance with the publication requirments for ordinances with penal provisions under Section 511 of the Local Government Code- No existing newspaper of General Circulation</a>
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-005s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 7, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-202657_a48cbbd24a.pdf">Whether a punong barangay can impose a curfew within his or her territorial jurisdiction through an executive order or barangay ordinance</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-004s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">May 7, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026429_b79391d810.pdf">Are Sangguniang Kabataan (SK) officials , who receive only honoraria, restricted from being engaged as Job Order (JO) or Contract of Service (COS) workers in government</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-003s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">April 29, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_a2bc5dcc12.pdf">Whether the Joint Venture Agreement (JVA) is subject to government procurement procedures, despite previous and existing legislation and guidelines for PPP and JVs</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-002s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_e3c04a6d9f.pdf">The non-submission of barangay financial documents</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-001s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_a6aa93756a.pdf">Whether an individual who has been convicted for violation of PD No. 1602 is eligible to be appointed to fill the permanent vacancy in the Sangguniang Barangay caused by the resignation of SB Member</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-000s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_499717ea4b.pdf">Whether the Mayor's refusal or delay in signing or processing such travel documents may be considered as interference with the legislative functions of the Sangguniang Bayan</a>
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-003s2026</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_e84338e406.pdf">Appointing Mr. Arnielo Olandria, a second nominee of the AGAP party-List, to fill the vacancy in the Sanggunaing Bayan of Candijay, Bohol, which arose after an elected member failed to assume office due to the finality of a disqualifiation case</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0178s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_424876435f.pdf">Whether the second-highest ranking member of the Sangguniang Barangay may assume the position of Punong barangay if the highest-ranking member refuses to assume office</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number: LO-0177s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_b8d0e12edb.pdf">Where can the Clean Air Breather (SubCas) units be legally procured, and what is the approximate cost per unit, particularly for small-scall or municipal fishermen who may wish to transition to this safer equipment</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0176s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_4aa214fc44.pdf">Concerning waivers before the conduct of basketball game sanctioned by the SK</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0175s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_147bd67e71.pdf">Appointment of Mr. Allan Diamante as Local Disaster Risk Reduction and Management (LDRRM) Officer III of the Municipality of Vallhermoso, Province of Negros Oriental</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0174s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_08c676732b.pdf">Whether the Provincial Government of Bulacan may validly require the registration of mineral transport vehicles operating within its territorial jurisdiction</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0173s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_18bac86b11.pdf">Proper appointing authority over the personnel of the office of the secretary to the Sangguniang Panlungsod of Makati</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0172s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_22e2133d76.pdf">Section 10, Article X of the 1987 Constitution and Section 10 of RA 7160 both require the conduct of a plebiscite for the creation, division, merging and alteration of boundaries of local government units. Do these provisions equallly apply to the conversion of a component city to an HUC, as in the case of the City of Lucena</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0171s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_a7ddb07384.pdf">Requiring government employees to use personal belongings for official duties</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0170s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_c5382a27c0.pdf">Validity of the Municipal Ordinance of the Mun of Madrid which imposed environmental protection fee on all commercial and industrial vehicles and vessels loading quarry and mineral resosurces</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0169s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_9335b394ae.pdf">Guidance or clarification on whether a Mayor has the authority to issue a Show-cause Order against an erring Punong barangay or elective officials</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0168s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_088342f9e8.pdf">Proper procedure for revoking the appointment of a Lupon Tagapamayapa Member</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0167s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_31f6f8a1d0.pdf">Proposed ordinance of Barangay Damilag requiring residents to secure a purok clearance from their respective purok leaders a pre-requisite for the issuance of a brangay clearance</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0166s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_3800023a27.pdf">Can barangsl legally refuse to issue a barangay clearance solely on the basis of the absence of a Certificate of Residency from the HOA- evne when the applicant presents other valid documents such as government-issued IDs, utility bills, lease agreements, or a land title</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0165s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_3cb127153e.pdf">Whether the account code "other professional services" may be used in lieu of honorarium as basis for monetary consideration of organic personnel of the Municipal Government who were designated by the Mun Mayor to fill vacant positions</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0164s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_4364808004.pdf">Proper approving authority for the travel orders of the members of the Sangguniang Bayan, their staff, and the personnel of the Office of the Vice Mayor in the Municipality of General Nakar, Quezon</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0163s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_e39dfdd956.pdf">Is there any existing law, DILG circular, or official issuance that explicitly prohibits non-EnP LPDSs from signing the Annual Ivestment Plan/Local Development Investment Plan</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0162s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_8357e624f3.pdf">Whether a former Vice_mayor may validly issue a leave/travel authority whose effective period extends beyond his term of office</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0161s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_0e583e21ba.pdf">Whether the recent zonal elections conducted by the Municipal LGU pursuant to the ordinance are valid, f not whether the punong barangay may appoint purok or zone officers pursuant to DILG No. 92</a>
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0160s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_5f11301a31.pdf">Whether an acting SK Chairperson is warranted while the case is still pending before the COMELEC- appointment of an Acting SK Chairperson</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0159s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_46135ef255.pdf">Whether she may retain her ownership and business interest over Jajan without violation the prohibition laid down under Section 90 of the LGC</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0158s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_13434a7770.pdf">Whether absent the oath of office, by November 13, 2025 (sixm months from proclation), the mayoralty seat will be deemed vacant and vice-mayor Elect Sebastian Duterte will then sit as mayor until June 30, 2028?</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0157s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_c53a692403.pdf">Guidance or clarification on whether a Mayor has the authority to issue a Show-cause Order against an erring Punong barangay or elective officials</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0156s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_9cb8fe207e.pdf">Refusal of the Punong Barangay to recognize the Special Power of Attorney (SPA) executed by client in relation to proceedings under the Katarungang Pambarangay Law (KPL)</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0155s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_41ae9ed134.pdf">Requirments imposed by certain LGUs for the issuance of Certified True Copies (CTCs) of Tax declarations and Landholding Certicates-SPA, RPT</a>
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0154s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_8e13f71bd6.pdf">Whether an elected government official is allowed to work concurrently in another department, specifically under the Department of Social Welfare and Development (DSWD)</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0153s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="https://www.dilg.gov.ph/PDF_File/issuances/legal_opinions/dilg-legalopinions-2026428_3738323b42.pdf">Whether an incumbent barangay kagawad may be qualified as beneficiary of the Pantawid Pamilyang Pilipino Program (4Ps) of the DSWD</a> 
+                      <strong style="display:block;font-weight:bold;">Reference Number:  LO-0152s2025</strong>
+                    </div>
+                    <td nowrap="nowrap">April 28, 2026</td>
+                  </li>
+                </ol>
+                <nav class="dilg-pagination" aria-label="DILG legal opinions pagination">
+                  <a href="legal-opinions.html" class="dilg-page-link dilg-page-prev">« previous</a>
+                  <a href="legal-opinions.html" class="dilg-page-link active">1</a>
+                  <a href="Page/page2.html" class="dilg-page-link">2</a>
+                  <a href="#" class="dilg-page-link">3</a>
+                  <a href="#" class="dilg-page-link">4</a>
+                  <a href="#" class="dilg-page-link">5</a>
+                  <a href="#" class="dilg-page-link">6</a>
+                  <a href="#" class="dilg-page-link">7</a>
+                  <span class="dilg-page-link">...</span>
+                  <a href="#" class="dilg-page-link">33</a>
+                  <a href="#" class="dilg-page-link">34</a>
+                  <a href="#" class="dilg-page-link dilg-page-next">next »</a>
+                </nav>
+              </div>
+            </template>
+
+          </article>
+          <aside class="cn-sidebar">
+            <a class="cn-portal-card" href="https://op-proper.gov.ph/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/banner-president-corner.png" alt="Visit the Office of the President" />
+            </a>
+            <a class="cn-portal-card" href="https://www.dilg.gov.ph/secretarys-corner/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/secretarys-corner.png" alt="Visit the Secretary's Corner" />
+            </a>
+            <div class="cn-secondary-row">
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/GAA-Reportorial-Requirement-Archive/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/gaa2015.png" alt="GAA Reportorial Requirement" />
+              </a>
+              <a class="cn-sec-card" href="https://www.foi.gov.ph/agencies/dilg/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/banner/foi-corner.jpg" alt="Freedom of Information" />
+              </a>
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/leo-70/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/banner/leo70-box.png" alt="Localization of EO 70" />
+              </a>
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/files/dilg_document_202706_8dc37fea59.pdf" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/logo/dilg-dpa-cor-3.jpg" alt="Data Privacy" />
+              </a>
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/other/GAD-Corner/49" target="_blank" rel="noopener noreferrer">
+                <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fdilg.philippines&amp;width=380&amp;height=500&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=true&amp;show_border=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false&amp;small_header=true" scrolling="yes" frameborder="0" style="background-color:#3A559F; border:3px solid #3A559F; border-right:4px solid #3A559F; overflow:hidden; width:100%; height:250px;" allowtransparency="true">
+              </iframe>
+              <iframe src="https://www.facebook.com/v2.5/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61556404163480&amp;tabs=timeline%2Cevents&amp;width=320&amp;height=650&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false" width="100%" height="650" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+            </div>
+          </aside>
+        </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/"><img src="Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/" ><img src="Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card" aria-label="Open DILG Surigao del Sur Facebook page (opens in new tab)">
+            <span class="connect-icon" aria-hidden="true">
+              <img src="Logos/2021_Facebook_icon.svg" alt="Facebook icon" />
+            </span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+  </footer>
+
+  <input type="file" id="upload-file-input" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,image/*" style="display:none" />
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = Array.from(document.querySelectorAll('.nav-tabs .nav-link'));
+      const panes = Array.from(document.querySelectorAll('.tab-pane'));
+      const caragaSearchInput = document.getElementById('caraga-search-input');
+      const caragaSearchStatus = document.getElementById('caraga-search-status');
+
+      const applyCaragaSearch = () => {
+        if (!caragaSearchInput) return;
+        const activePane = panes.find((pane) => pane.classList.contains('active'));
+        const query = caragaSearchInput.value.trim().toLowerCase();
+        const items = activePane ? Array.from(activePane.querySelectorAll('.opinion-list li')) : [];
+        const matches = items.filter((item) => item.textContent.toLowerCase().includes(query));
+        items.forEach((item) => {
+          const visible = !query || matches.includes(item);
+          item.hidden = !visible;
+          item.style.display = visible ? '' : 'none';
+        });
+        if (caragaSearchStatus) {
+          caragaSearchStatus.textContent = query ? `Showing ${matches.length} of ${items.length} records` : `Showing all ${items.length} records`;
+        }
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', (event) => {
+          event.preventDefault();
+          const targetId = tab.getAttribute('href')?.slice(1);
+          if (!targetId) return;
+          tabs.forEach((item) => item.classList.remove('active'));
+          tab.classList.add('active');
+          tab.closest('.nav-item')?.classList.add('active');
+          tabs.forEach((item) => {
+            if (item !== tab) item.closest('.nav-item')?.classList.remove('active');
+          });
+          panes.forEach((pane) => {
+            pane.classList.toggle('active', pane.id === targetId);
+          });
+          applyCaragaSearch();
+        });
+      });
+
+      if (caragaSearchInput) {
+        caragaSearchInput.addEventListener('input', applyCaragaSearch);
+        applyCaragaSearch();
+      }
+
+      // Utility: convert filenames into readable titles
+      function cleanFilenameLabel(filename) {
+        if (!filename) return '';
+        // Remove query string/hash
+        filename = filename.split('?')[0].split('#')[0];
+        // Extract basename
+        const parts = filename.split('/');
+        let base = parts[parts.length - 1];
+        // Remove extension
+        base = base.replace(/\.[^.]+$/, '');
+        // Remove common prefix
+        base = base.replace(/^dilg-legalopinions-?/i, '');
+        // Remove leading dates (6+ digits at start)
+        base = base.replace(/^\d{5,8}[-_]?/,'');
+        // Replace separators with spaces
+        base = base.replace(/[-_]+/g, ' ');
+        // Trim and collapse spaces
+        base = base.replace(/\s+/g, ' ').trim();
+        // Title case small words preserved uppercased for short acronyms
+        return base.split(' ').map(w => w.length <= 2 ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+      }
+
+      function setupDilgSearch() {
+        const region = document.getElementById('dilg-region');
+        if (!region) return;
+        const searchInput = region.querySelector('#dilg-search-input');
+        const searchField = region.querySelector('#dilg-search-field');
+        const categorySelect = region.querySelector('#dilg-category-select');
+        const searchButton = region.querySelector('.dilg-search-row button');
+        const resultSummary = region.querySelector('#dilg-search-results');
+        const items = Array.from(region.querySelectorAll('.dilg-opinion-list li'));
+        if (!searchInput || !searchField || !categorySelect || !searchButton) return;
+
+        const applySearch = () => {
+          const query = searchInput.value.trim().toLowerCase();
+          const selectedField = searchField.value;
+          const category = categorySelect.value === 'Select Category' ? '' : categorySelect.value.trim().toLowerCase();
+          items.forEach((item) => {
+            const title = item.querySelector('a')?.textContent.toLowerCase() || '';
+            const reference = item.querySelector('strong')?.textContent.toLowerCase() || '';
+            const allText = item.textContent.toLowerCase();
+            const searchableText = selectedField === 'Reference Number'
+              ? reference
+              : selectedField === 'Keywords'
+                ? allText
+                : title;
+            const matches = !((query && !searchableText.includes(query)) || (category && !allText.includes(category)));
+            item.hidden = !matches;
+            item.style.display = matches ? '' : 'none';
+          });
+          if (resultSummary) resultSummary.textContent = query || category ? 'Showing ' + items.filter((item) => !item.hidden).length + ' of ' + items.length + ' records' : 'Showing all ' + items.length + ' records';
+        };
+
+        searchButton.addEventListener('click', applySearch);
+        searchInput.addEventListener('input', applySearch);
+        searchInput.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') applySearch();
+        });
+        searchField.addEventListener('change', applySearch);
+        categorySelect.addEventListener('change', applySearch);
+        applySearch();
+      }
+
+      // Ensure DILG list shows readable words and opens PDFs in a new tab
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const region = params.get('region');
+        if (region && region.toLowerCase().includes('dilg')) {
+          const caragaSearch = document.querySelector('.caraga-search');
+          if (caragaSearch) caragaSearch.hidden = true;
+          // Update heading
+          const heading = document.querySelector('.legal-opinions-page-heading h2');
+          if (heading) heading.textContent = 'Legal Opinions Archive — DILG Philippines';
+
+          // Remove the Caraga year tabs from the DILG variant
+          const navTabs = document.querySelector('.legal-opinions-tabs .nav.nav-tabs');
+          if (navTabs) {
+            navTabs.remove();
+          }
+
+          // Inject template content into the tab-content container
+          const tpl = document.getElementById('dilg-list-template');
+          const tabContent = document.querySelector('.tab-content');
+          if (tpl && tabContent) {
+            tabContent.innerHTML = tpl.innerHTML;
+            setupDilgSearch();
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  </script>
+  <script src="public/js/sidebar-cards.js"></script>
+</body>
+</html>

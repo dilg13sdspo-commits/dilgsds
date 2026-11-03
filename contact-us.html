@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .contact-page-panel { padding: 64px 32px; }
+    .contact-section { display: flex; gap: 25px; align-items: flex-start; }
+    .contact-card { width: 70%; background: #ffffff; border: 1px solid rgba(31, 95, 207, 0.12); box-shadow: 0 24px 60px rgba(15, 42, 107, 0.08); padding: 34px; }
+    .contact-card h2 { margin: 0 0 18px; font-size: clamp(2rem, 2.4vw, 3rem); color: var(--navy-dark); letter-spacing: 0; }
+    .contact-card p { margin: 0 0 16px; color: var(--muted); line-height: 1.8; }
+    .contact-meta { display: grid; gap: 32px; }
+    .section-block { display: grid; gap: 12px; }
+    .section-heading { margin: 0; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); }
+    .section-copy { margin: 0; color: var(--navy-dark); line-height: 1.9; }
+    .section-link { color: var(--blue); text-decoration: none; font-weight: 600; }
+    .section-link:hover { text-decoration: underline; }
+    .map-embed { width: 100%; min-height: 350px; border-radius: 15px; box-shadow: 0 16px 40px rgba(15, 42, 107, 0.08); margin: 20px 0; border: 0; }
+    .section-divider { border: 0; height: 1px; background: rgba(15,42,107,0.1); margin: 0; }
+    .contact-sidebar { width: 30%; }
+    .contact-sidebar .cn-sidebar { width: 100%; }
+    @media (max-width: 960px) {
+      .contact-section { flex-direction: column; }
+      .contact-card, .contact-sidebar { width: 100%; }
+    }
+  </style>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="YOUR_NONCE"></script>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li class="dropdown-item-with-submenu"><a href="joint-circulars.html" class="dropdown-item"><span>Joint Circulars</span></a></li>
+            <li class="dropdown-item-with-submenu"><a href="#" class="dropdown-item" data-action="issuances" data-category="Memorandum Circulars"><span>Memo Circulars</span></a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Presidential Directives">Presidential Directives</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Republic Acts">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item active" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" class="header-logo" />
+        <img src="Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+      <div class="news-ticker-section">
+      </div>
+
+      <div class="contact-section">
+        <div class="contact-card">
+          <h2>CONTACT US</h2>
+          <div class="contact-meta">
+            <div class="section-block">
+              <p class="section-heading">ADDRESS</p>
+              <p class="section-copy">2/F Provincial Capitol Bldg., Capitol Hills, Telaje, City of Tandag, Surigao del Sur</p>
+              <iframe
+                class="map-embed"
+                src="https://www.google.com/maps?q=Surigao+del+Sur+Provincial+Capitol,+Tandag+City&output=embed"
+                width="100%"
+                height="350"
+                style="border:0; border-radius:15px;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <hr class="section-divider" />
+            <div class="section-block">
+              <p class="section-heading">CONTACTS</p>
+              <p class="section-copy">(086) 214-3470</p>
+            </div>
+            <hr class="section-divider" />
+            <div class="section-block">
+              <p class="section-heading">EMAIL</p>
+              <p class="section-copy"><a class="section-link" href="mailto:dilgl3sdspo@gmail.com">dilgl3sdspo@gmail.com</a></p>
+            </div>
+            <hr class="section-divider" />
+            <div class="section-block">
+              <p class="section-heading">FACEBOOK</p>
+              <p class="section-copy">DILG Surigao del Sur</p>
+            </div>
+            <hr class="section-divider" />
+            <div class="section-block">
+              <p class="section-heading">WEBSITE</p>
+              <p class="section-copy"><a class="section-link" href="https://www.dilgsurigaodelsur.com" target="_blank" rel="noopener noreferrer">www.dilgsurigaodelsur.com</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-sidebar">
+          <aside class="cn-sidebar" aria-label="Government links and social media">
+            <a class="cn-portal-card cn-link-card" href="https://op-proper.gov.ph/" target="_blank" rel="noopener noreferrer">
+              <span class="cn-card-mark" aria-hidden="true">OP</span>
+              <span class="cn-card-copy"><strong>Office of the President</strong><small>Visit the official website</small></span>
+              <span class="cn-card-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="cn-portal-card cn-link-card" href="https://www.dilg.gov.ph/secretarys-corner/" target="_blank" rel="noopener noreferrer">
+              <span class="cn-card-mark" aria-hidden="true">SC</span>
+              <span class="cn-card-copy"><strong>Secretary's Corner</strong><small>Visit the official page</small></span>
+              <span class="cn-card-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="cn-portal-card cn-link-card" href="https://www.dilg.gov.ph/transparency/" target="_blank" rel="noopener noreferrer">
+              <span class="cn-card-mark" aria-hidden="true">TS</span>
+              <span class="cn-card-copy"><strong>Philippine Transparency Seal</strong><small>View transparency information</small></span>
+              <span class="cn-card-arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="cn-secondary-row">
+              <a class="cn-sec-card cn-link-card" href="https://www.dilg.gov.ph/GAA-Reportorial-Requirement-Archive/" target="_blank" rel="noopener noreferrer">
+                <span class="cn-card-mark" aria-hidden="true">GAA</span>
+                <strong>GAA Reportorial Requirement</strong>
+                <span class="cn-card-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="cn-sec-card cn-link-card" href="https://www.foi.gov.ph/agencies/dilg/" target="_blank" rel="noopener noreferrer">
+                <span class="cn-card-mark" aria-hidden="true">FOI</span>
+                <strong>Freedom of Information</strong>
+                <span class="cn-card-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="cn-sec-card cn-link-card" href="https://www.dilg.gov.ph/leo-70/" target="_blank" rel="noopener noreferrer">
+                <span class="cn-card-mark" aria-hidden="true">EO 70</span>
+                <strong>Localization of EO 70</strong>
+                <span class="cn-card-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="cn-sec-card cn-link-card" href="https://www.dilg.gov.ph/files/dilg_document_202706_8dc37fea59.pdf" target="_blank" rel="noopener noreferrer">
+                <span class="cn-card-mark" aria-hidden="true">DPA</span>
+                <strong>Data Privacy</strong>
+                <span class="cn-card-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="cn-sec-card cn-link-card" href="https://www.dilg.gov.ph/other/GAD-Corner/49" target="_blank" rel="noopener noreferrer">
+                <span class="cn-card-mark" aria-hidden="true">GAD</span>
+                <strong>Gender and Development</strong>
+                <span class="cn-card-arrow" aria-hidden="true">↗</span>
+              </a>
+              <div class="cn-sec-card">
+                <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fdilg.philippines&amp;width=380&amp;height=500&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=true&amp;show_border=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false&amp;small_header=true" scrolling="yes" frameborder="0" style="background-color:#3A559F; border:3px solid #3A559F; border-right:4px solid #3A559F; overflow:hidden; width:100%; height:250px;" allowtransparency="true">
+              </iframe>
+              </div>
+            </div>
+            <div class="cn-fb-widget">
+              <iframe src="https://www.facebook.com/v2.5/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61556404163480&tabs=timeline%2Cevents&width=320&height=650&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false"
+                width="100%" height="650" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/"><img src="Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/"><img src="Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card" aria-label="Open DILG Surigao del Sur Facebook page (opens in new tab)">
+            <span class="connect-icon" aria-hidden="true"><img src="Logos/2021_Facebook_icon.svg" alt="Facebook icon" /></span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <input type="file" id="upload-file-input" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,image/*" style="display:none" />
+  <script src="script.js"></script>
+</body>
+</html>

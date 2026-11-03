@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSAC - DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    main { max-width: 100%; padding: 0; }
+    .msac-page { margin: 0; padding: 0; }
+    .msac-logo-strip {
+      background: #ffffff;
+      padding: 24px 20px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .msac-logo-strip img {
+      width: 86px;
+      height: 86px;
+      object-fit: contain;
+      display: block;
+    }
+.msac-content-wrap {
+      background: #ffffff;
+      padding: 48px 0;
+    }
+.msac-content {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 38% 65%;
+      align-items: center;
+    }
+.msac-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 14px;
+      min-height: 100%;
+    }
+.msac-left h1 {
+      margin: 0;
+      font-family: "Roboto serif", Arial;
+      font-size: clamp(2.1rem, 3.8vw, 3.4rem);
+      line-height: 1.12;
+      color: #0b5394;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      overflow-wrap: normal;
+      word-break: normal;
+      white-space: normal;
+    }
+    .msac-main-logo {
+      display: block;
+      width: min(100%, 430px);
+      height: auto;
+      object-fit: contain;
+    }
+    .msac-meta-title {
+      margin: 0;
+      color: #334155;
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .msac-meta-location {
+      margin: 0;
+      color: #111827;
+      font-family: "Outfit", Arial, sans-serif;
+      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .msac-right {
+      max-width: 100%;
+    }
+    .msac-right p {
+      margin: 0 0 18px;
+      color: #334155;
+      font-size: clamp(1rem, 1.05vw, 1.1rem);
+      line-height: 1.6;
+      text-align: justify;
+      max-width: 980px;
+    }
+    .msac-right p:last-child { margin-bottom: 0; }
+/* Roles section: full-width, centered heading and image */
+.msac-roles-section {
+  margin-top: 0;
+  background: #ffffff;
+  padding: 24px 20px;
+  display: block;
+  text-align: center;
+}
+
+.msac-roles-header {
+  max-width: 1320px;
+  margin: 0 auto 18px;
+  padding: 8px 24px;
+  box-sizing: border-box;
+}
+
+.msac-roles-header .msac-section-title {
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+}
+
+.msac-roles-body {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.msac-roles-body .msac-roles-image {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.msac-nav-title { display: none; }
+/* Full-width light gray header bar for MSAC Members and MSAC News */
+    .msac-members-block,
+    .msac-news-block {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* Header wrapper: full-width light gray bar spanning the content area */
+    .msac-members-header {
+      width: 100%;
+      background: #eef0f2;
+      padding: 22px 24px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    /* Section title: elegant serif, centered within the gray bar */
+    .msac-section-title {
+      margin: 0;
+      color: #0b2a6b;
+      font-family: "Roboto Serif", "Alice", Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 2vw, 2.1rem);
+      line-height: 1.2;
+      text-align: center;
+      display: block;
+      background: transparent;
+    }
+
+    /* Tighten spacing on small screens */
+    @media (max-width: 640px) {
+      .msac-members-header {
+        padding: 16px 14px;
+      }
+      .msac-section-title {
+        font-size: 1.25rem;
+      }
+    }
+    .msac-nav-list {
+      display: grid;
+      gap: 12px;
+    }
+    .msac-nav-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 2px solid #7fb3da;
+      color: #2f7bb1;
+      background: #fff;
+      text-decoration: none;
+      font-family: "Montserrat", Arial, sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.03em;
+      text-align: center;
+      text-transform: uppercase;
+      transition: background 0.18s, color 0.18s, border-color 0.18s;
+    }
+    .msac-nav-btn:hover {
+      background: #f4f9ff;
+      color: #1f608f;
+      border-color: #5a9ccf;
+    }
+    .msac-roles-image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 1px;
+    }
+.msac-members-block,
+    .msac-news-block {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      text-align: center;
+    }
+    .msac-members-desc {
+      margin: 0 auto;
+      max-width: 880px;
+      color: #334155;
+      font-family: "Outfit", Arial, sans-serif;
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      line-height: 1.7;
+      text-align: center;
+    }
+.msac-members-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px 24px;
+      max-width: 1320px;
+      margin: 30px auto 0;
+      padding: 0 24px;
+      text-align: left;
+    }
+    .msac-member-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      min-height: 0;
+      padding: 6px 0;
+      text-align: left;
+    }
+    .msac-member-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 0;
+    }
+    .msac-member-item span {
+      color: #0f2a6b;
+      font-family: "Outfit", Arial, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.3;
+      font-weight: 600;
+      text-align: left;
+      display: block;
+      width: 100%;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+.msac-news-list {
+      display: flex;
+      justify-content: center;
+      max-width: 1320px;
+      margin: 30px auto 0;
+      padding: 0 24px;
+    }
+.msac-news-card {
+      width: 100%;
+      max-width: 100%;
+      background: #ffffff;
+      border: 1px solid #dbe7f2;
+      overflow: hidden;
+      box-shadow: 0 14px 34px rgba(15, 42, 107, 0.08);
+    }
+    .msac-news-card figure {
+      margin: 0;
+      padding: 0;
+      background: #eef4ff;
+    }
+    .msac-news-card-image {
+      width: 100%;
+      display: block;
+      height: 260px;
+      object-fit: cover;
+    }
+    .msac-news-card-body {
+      padding: 18px 22px 22px;
+    }
+.msac-news-card-title {
+      display: block;
+      margin: 0 0 12px;
+      font-family: "Roboto Serif", Arial, serif;
+      font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+      font-weight: 700;
+      line-height: 1.3;
+      color: #0b5394;
+      text-decoration: none;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.2s ease;
+    }
+    .msac-news-card-title:hover {
+      color: #08427a;
+      text-decoration: underline;
+    }
+    .msac-news-card-summary {
+      margin: 0;
+      color: #334155;
+      font-family: "Outfit", Arial, sans-serif;
+      font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+      line-height: 1.65;
+      text-align: justify;
+    }
+.msac-news-cta {
+      max-width: 1320px;
+      margin: 26px auto 0;
+      padding: 0 24px;
+      text-align: left;
+    }
+.msac-cta-title {
+      margin: 0 0 12px;
+      color: #15579f;
+      font-family: "Roboto Serif", Arial;
+      font-weight: 700;
+    }
+    .msac-cta-text {
+      margin: 0 0 8px;
+      color: #1f2937;
+      font-family: "Outfit", Arial, sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+    .msac-cta-text:last-child { margin-bottom: 0; }
+    .msac-cta-text strong { color: #111827; font-weight: 800; }
+    .msac-cta-text a {
+      color: #0b5394;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+@media (max-width: 980px) {
+      .msac-content {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+      .msac-content-wrap { padding: 34px 0; }
+      .msac-logo-strip { gap: 14px; padding: 16px 12px 24px; }
+      .msac-logo-strip img { width: 66px; height: 66px; }
+      /* Mobile adjustments for roles section */
+      .msac-roles-section {
+        padding: 20px 14px;
+      }
+      .msac-members-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .msac-member-item img { width: 80px; height: 80px; }
+    }
+    @media (max-width: 640px) {
+      .msac-members-grid { grid-template-columns: 1fr; }
+      .msac-member-item { min-height: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li class="dropdown-item-with-submenu">
+              <a href="joint-circulars.html" class="dropdown-item"><span>Joint Circulars</span></a>
+            </li>
+            <li class="dropdown-item-with-submenu">
+              <a href="memo-circulars.html" class="dropdown-item"><span>Memo Circulars</span></a>
+            </li>
+            <li><a href="presidential-directives.html" class="dropdown-item">Presidential Directives</a></li>
+            <li><a href="republic-acts.html" class="dropdown-item">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link active" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item active" aria-current="page">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" class="header-logo" alt="DILG Seal" />
+        <img src="Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="msac-page" aria-label="MSAC content">
+      <div class="msac-content-wrap">
+        <div class="msac-content">
+          <div class="msac-left">
+            <img class="msac-main-logo" src="Logos/MSAC_Logo.png" alt="Multi-Stakeholders Advisory Committee logo" />
+          </div>
+          <div class="msac-right">
+            <p>With the ultimate goal of creating and institutionalizing a knowledge center that is diverse, convenient, with free access to all available information on local governance, the DILG Surigao del Sur and its LGRC "Tambuli" officially inked its collaborative partnership with the Surigao del Sur Multi-Stakeholders Advisory Committee (MSAC).</p>
+            <p>The MOPA signing ignited the engine for a more significant partnership between the DILG Surigao del Sur LGRC and the MSAC to help initiate steps towards building organizations as Knowledge Centric Organizations (KCO) to promote the culture of knowledge sharing and learning; contribute to LGRRC Surigao del Sur's relevant local governance knowledge products, good practices, and its replication; improve socioeconomic conditions via means of knowledge sharing; and effectively transform each organization into becoming more productive and transformative development partners.</p>
+            <p>As the TAMBULI positions itself as a learning hub by institutionalizing knowledge management and encouraging a culture of learning, sharing, and replication of best practices in local governance for its clientele with the aim of customizing knowledge products and services to the needs and demands of clients, the official collaboration between the DILG and its MSAC shall achieve the end goal of fostering communities that are safe and secure, business-friendly and competitive, environment-friendly and climate change-adaptive, and transparent and responsible local governments.</p>
+          </div>
+        </div>
+
+        <section class="msac-roles-section" aria-label="MSAC Roles">
+          <div class="msac-roles-header">
+            <h2 class="msac-section-title">ROLES OF MSAC</h2>
+          </div>
+          <div class="msac-roles-body">
+            <img src="Logos/msac-roles-functions1.jpg" class="msac-roles-image" alt="MSAC roles and functions" role="img">
+          </div>
+        </section>
+
+<section class="msac-members-block" aria-label="MSAC Members">
+<div class="msac-members-header">
+            <h2 class="msac-section-title">MSAC Members</h2>
+          </div>
+          <div class="msac-members-grid">
+            <div class="msac-member-item"><img src="Logos/images.png" alt="Office of the Secretary to the Sangguniang Panlalawigan (OSSP) - Surigao del Sur" /><span>Office of the Secretary to the Sangguniang Panlalawigan (OSSP) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/surigao-del-sur (1).png" alt="Surigao del Sur Academy for Barangay Good GovernancFe"/><span>Surigao del Sur Academy for Barangay Good Governance</span></div>
+            <div class="msac-member-item"><img src="Logos/Department_of_Information_and_Communications_Technology_(DICT).svg" alt="Department of Information and Communications Technology (DICT) - Surigao del Sur" /><span>Department of Information and Communications Technology (DICT) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" alt="Department of the Interior and Local Government (DILG) - Surigao del Sur" /><span>Department of the Interior and Local Government (DILG) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Department_of_Agrarian_Reform_(DAR).svg" alt="Department of Agrarian Reform (DAR) - Surigao del Sur" /><span>Department of Agrarian Reform (DAR) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Department_of_Agriculture_of_the_Philippines.svg" alt="Department of Agriculture (DA) - Surigao del Sur" /><span>Department of Agriculture (DA) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/DOST_seal.svg" alt="Department of Science and Technology (DOST) - Surigao del Sur" /><span>Department of Science and Technology (DOST) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Seal_of_the_Department_of_Social_Welfare_and_Development.svg" alt="Department of Social Welfare and Development (DSWD) - Surigao del Sur" /><span>Department of Social Welfare and Development (DSWD) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Department_of_Health_(DOH)_PHL.svg" alt="Department of Health (DOH) - Surigao del Sur" /><span>Department of Health (DOH) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/DTI_PH_new_logo.svg" alt="Department of Trade and Industry (DTI) - Surigao del Sur" /><span>Department of Trade and Industry (DTI) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Land_Transportation_Office.svg" alt="Land Transportation Office (LTO) - Surigao del Sur" /><span>Land Transportation Office (LTO) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Department_of_Education_(DepEd).svg" alt="Department of Education (DepEd) - Surigao del Sur" /><span>Department of Education (DepEd) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Logo_of_the_Department_of_Environment_and_Natural_Resources.svg" alt="Department of Environment and Natural Resources (DENR) - Surigao del Sur" /><span>Department of Environment and Natural Resources (DENR) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Department_of_Justice_(DOJ).svg" alt="Department of Justice (DOJ) - Surigao del Sur" /><span>Department of Justice (DOJ) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/TESDA_OFFICIAL_LOGO.jpg" alt="Technical Education and Skills Development Authority (TESDA) - Surigao del Sur" /><span>Technical Education and Skills Development Authority (TESDA) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Department_of_Labor_and_Employment_(DOLE).svg" alt="Department of Labor and Employment (DOLE) - Surigao del Sur" /><span>Department of Labor and Employment (DOLE) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/National_Commission_on_Indigenous_Peoples_(NCIP).png" alt="National Commission on Indigenous Peoples (NCIP) - Surigao del Sur" /><span>National Commission on Indigenous Peoples (NCIP) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/stctandag-logo.png" alt="Saint Theresa College of Tandag" /><span>Saint Theresa College of Tandag</span></div>
+            <div class="msac-member-item"><img src="Logos/images.jpg" alt="Media Partner - Surigao del Sur" /><span>North Eastern Mindanao State University (NEMSU) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/cropped-Corrected-BM-Logo-2019.webp" alt="Bombo Radyo Philippines - Surigao del Sur" /><span>Balay Mindanaw - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/images (1).png" alt="Organization for Human Development Inc. - Surigao del Sur" /><span>Organization for Human Development Inc. - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Philippine_Statistics_Authority.svg" alt="Philippine Statistics Authority (PSA) - Surigao del Sur" /><span>Philippine Statistics Authority (PSA) - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/images (1).jpg" alt="Media Partner - Surigao del Sur" /><span>Police Provincial Office - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/RadyoPilipinas-logo.png" alt="Radyo Pilipinas - Surigao del Sur" /><span>Radyo Pilipinas - Surigao del Sur</span></div>
+            <div class="msac-member-item"><img src="Logos/Philippine_Information_Agency_Logo.svg" alt="Philippine Information Agency (PIA) - Surigao del Sur" /><span>Philippine Information Agency (PIA) - Surigao del Sur</span></div>
+          </div>
+        </section>
+
+<section class="msac-news-block" aria-label="MSAC News">
+          <div class="msac-members-header">
+            <h2 class="msac-section-title">MSAC News</h2>
+          </div>
+          <div class="msac-news-list">
+            <article class="msac-news-card">
+              <a href="https://www.facebook.com/DILGsds/posts/pfbid0roL1Mm8v3kR6wXo9Sym2RiDgJDT7xb8WJrQzHmAdH1sBGEaMofZ5ugBT5VDwiv6Dl" target="_blank" rel="noreferrer noopener" aria-label="Read the full MSAC news article">
+                <figure>
+                  <img class="msac-news-card-image" src="Logos/712704465_967565625909957_1407642451199729814_n.jpg" alt="DILG Surigao del Sur MSAC news post" loading="lazy" />
+                </figure>
+              </a>
+<div class="msac-news-card-body">
+                <a class="msac-news-card-title" href="https://www.facebook.com/DILGsds/posts/pfbid0roL1Mm8v3kR6wXo9Sym2RiDgJDT7xb8WJrQzHmAdH1sBGEaMofZ5ugBT5VDwiv6Dl" target="_blank" rel="noreferrer noopener">
+                  DILG Surigao del Sur and MSAC strengthen collaborative partnership
+                </a>
+                <p class="msac-news-card-summary">
+                  The Multi-Stakeholder Advisory Committee (MSAC) of Surigao del Sur convened its first semestral meeting for Calendar Year 2026 on May 26, 2026, at the SCI Building, Capitol Hills, Tandag City.
+                The meeting, chaired by the DILG Surigao del Sur, was actively participated in by heads of offices and representatives from various national government agencies, including the DICT, DAR, DA, DSWD, DOH, DTI, LTO–Tandag, DepEd, DOJ–Prosecutor’s Office, TESDA, DOLE, NCIP, and Balay Mindanaw as the civil society organization partner.
+                The Provincial Government, through the Surigao del Sur Academy for Barangay Good Governance, represented by the Provincial  Administrator, Mr. John Vincent Pimentel, likewise participated in the activity.
+                A key highlight of the meeting was the presentation of current programs and proposed innovations by MSAC members, showcasing collaborative initiatives aimed at strengthening local governance and service delivery. The committee also adopted the expanded membership of the MSAC, which now includes the PIA, Radyo Pilipinas, PSA, and PNP.
+                To recall, the MSAC continues to serve as a vital convergence mechanism that harmonizes the efforts of various stakeholders toward responsive governance—fostering a more connected, empowered, and sustainable Surigao del Sur.
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="msac-news-cta">
+            <p class="msac-cta-title">Be a part of the Surigao del Sur Multi-Stakeholders Committee!</p>
+            <p class="msac-cta-text">Send a letter of intent to our e-mail address : <a href="mailto:dilgregion3.aurora79@gmail.com">dilg13sds@gmail.com</a></p>
+            <p class="msac-cta-text">or visit us at the <strong>Capitol Hills, Barangay Telaje, Tandag, Philippines, 8300</strong></p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/"><img src="Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/" ><img src="Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card" aria-label="Open DILG Surigao del Sur Facebook page (opens in new tab)">
+            <span class="connect-icon" aria-hidden="true">
+              <img src="Logos/2021_Facebook_icon.svg" alt="Facebook icon" />
+            </span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function() {
+      const timeEl = document.getElementById('topbar-time');
+      const dateEl = document.getElementById('topbar-date');
+      function updateClock() {
+        try {
+          const now = new Date();
+          const phTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+          const weekday = phTime.toLocaleDateString('en-PH', { weekday: 'long', timeZone: 'Asia/Manila' });
+          const month = phTime.toLocaleDateString('en-PH', { month: 'long', timeZone: 'Asia/Manila' });
+          const day = phTime.toLocaleDateString('en-PH', { day: 'numeric', timeZone: 'Asia/Manila' });
+          const year = phTime.toLocaleDateString('en-PH', { year: 'numeric', timeZone: 'Asia/Manila' });
+          const timeString = phTime.toLocaleTimeString('en-PH', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Manila' });
+          if (dateEl) dateEl.textContent = weekday + ', ' + month + ' ' + day + ', ' + year;
+          if (timeEl) timeEl.textContent = timeString + ' Tandag City';
+        } catch(e) { 
+          if (dateEl) dateEl.textContent = 'Date unavailable';
+          if (timeEl) timeEl.textContent = 'Time unavailable';
+        }
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+  </script>
+</body>
+</html>

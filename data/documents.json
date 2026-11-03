@@ -1,0 +1,50 @@
+{
+    "pbac": [
+        {
+            "id": 1,
+            "title": "SVP Checklist",
+            "description": "Checklist for Small Value Procurement records.",
+            "link_url": "svp-checklist.html",
+            "sort_order": 1,
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "title": "BAC Advisory",
+            "description": "Procurement advisory and updates.",
+            "link_url": "bac-advisory.html",
+            "sort_order": 2,
+            "is_active": true
+        }
+    ],
+    "quality": [
+        {
+            "id": 1,
+            "title": "Quality Policy",
+            "description": "Quality Management System policy.",
+            "link_url": "quality-policy.html",
+            "sort_order": 1,
+            "is_active": true
+        }
+    ],
+    "annual": [
+        {
+            "id": 1,
+            "title": "2024 Annual Report",
+            "description": "Provincial annual report.",
+            "link_url": "annual-report.html",
+            "sort_order": 1,
+            "is_active": true
+        }
+    ],
+    "privacy": [
+        {
+            "id": 1,
+            "title": "RA 10173",
+            "description": "Data privacy and personal information protection.",
+            "link_url": "ra-10173.html",
+            "sort_order": 1,
+            "is_active": true
+        }
+    ]
+}

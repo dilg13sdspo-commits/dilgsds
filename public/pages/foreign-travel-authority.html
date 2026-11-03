@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foreign Travel Authority | DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body {
+      background: #f4f7fb;
+      color: #243447;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+    }
+
+    .service-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 22px 18px 40px;
+    }
+
+    .page-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .breadcrumbs {
+      color: #6c7a8a;
+      font-size: 0.95rem;
+    }
+
+    .breadcrumbs strong {
+      color: #0f2a6b;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.94rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+    .button-primary { background: #0f2a6b; color: #fff; }
+    .button-secondary { background: #fff; color: #0f2a6b; border-color: #d7e0ea; }
+
+    .service-card {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid #dfe6ee;
+      box-shadow: 0 16px 36px rgba(8, 24, 55, 0.08);
+      padding: 24px;
+    }
+
+    .service-header h1 {
+      margin: 0;
+      font-size: clamp(1.2rem, 2vw, 1.75rem);
+      color: #0f2a6b;
+      line-height: 1.25;
+    }
+
+    .service-header p {
+      margin: 10px 0 0;
+      color: #627487;
+      line-height: 1.7;
+      max-width: 880px;
+    }
+
+    .info-table,
+    .requirements-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid #dce4ec;
+    }
+
+    .info-table th,
+    .info-table td,
+    .requirements-table th,
+    .requirements-table td {
+      border: 1px solid #dce4ec;
+      padding: 12px 14px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .info-table th,
+    .requirements-table th {
+      background: #0f2a6b;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .info-table tr:nth-child(even),
+    .requirements-table tr:nth-child(even) {
+      background: #f8fbff;
+    }
+
+    .requirements-table th:first-child {
+      width: 90px;
+    }
+
+    .requirements-table td ul,
+    .requirements-table td ol {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .requirements-table li {
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    .content-section {
+      margin-top: 20px;
+    }
+
+    .content-section h2 {
+      margin-bottom: 8px;
+      color: #0f2a6b;
+      font-size: 1.05rem;
+    }
+
+    .note-box {
+      margin-top: 22px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: #fff7e8;
+      border: 1px solid #f2d19c;
+      color: #4b5563;
+      line-height: 1.7;
+    }
+
+    .note-box strong {
+      color: #0f2a6b;
+    }
+
+    @media (max-width: 760px) {
+      .service-shell { padding: 14px 12px 30px; }
+      .service-card { padding: 16px; }
+      .page-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .toolbar-actions {
+        justify-content: flex-start;
+      }
+      .info-table, .requirements-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .info-table th, .info-table td, .requirements-table th, .requirements-table td {
+        white-space: normal;
+      }
+    }
+
+    @media print {
+      @page { size: A4 portrait; margin: 10mm; }
+      body { background: #fff; }
+      .page-toolbar, .toolbar-actions { display: none !important; }
+      .service-shell { max-width: none; padding: 0; }
+      .service-card { box-shadow: none; border: none; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item active" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Joint Memorandum">Joint Memorandum</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Memorandum Circulars">Memorandum Circulars</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Presidential Directives">Presidential Directives</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Republic Acts">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="DILG Seal.png" alt="DILG logo" class="header-logo" />
+        <img src="Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="../../SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="../../SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="service-shell">
+    <div class="page-toolbar">
+      <div class="breadcrumbs">Home <span aria-hidden="true">›</span> Citizen's Charter <span aria-hidden="true">›</span> <strong>Foreign Travel Authority</strong></div>
+      <div class="toolbar-actions">
+        <a class="button button-secondary" href="citizen-charter.html">Back</a>
+      </div>
+    </div>
+
+    <section class="service-card" aria-labelledby="service-title">
+      <div class="service-header">
+        <h1 id="service-title">Issuance of Certificate for Foreign Travel Authority of Local Government Officials and Employees</h1>
+        <p>This service covers the issuance of a certificate authorizing local government officials and employees to travel abroad for official business, study or training programs, and other lawful purposes in accordance with government rules and procedures.</p>
+      </div>
+
+      <table class="info-table" aria-label="Service information">
+        <tbody>
+          <tr>
+            <th scope="row">Office or Division</th>
+            <td>Bureau of Local Government Supervision (BLGS); DILG Regional Offices; DILG Field Offices</td>
+          </tr>
+          <tr>
+            <th scope="row">Classification</th>
+            <td>Complex Transaction</td>
+          </tr>
+          <tr>
+            <th scope="row">Type of Transaction</th>
+            <td>G2C – Government to Citizens</td>
+          </tr>
+          <tr>
+            <th scope="row">Who May Avail</th>
+            <td>Local Government Employees and Local Government Elective Officials</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <section class="content-section" aria-labelledby="checklist-title">
+        <h2 id="checklist-title">Checklist of Requirements</h2>
+        <table class="requirements-table" aria-label="Checklist of requirements">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Requirement</th>
+              <th scope="col">Where to Secure</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <ol>
+                  <li><strong>For Study or Training Trips</strong>
+                    <ol type="a">
+                      <li>Letter of request from the Local Chief Executive or Head of Office.</li>
+                      <li>Approved travel itinerary showing dates, destination, purpose, and duration.</li>
+                      <li>Copy of acceptance, endorsement, or invitation from the host institution or training provider.</li>
+                      <li>Program of activities or study plan, if applicable.</li>
+                      <li>Proof of funding support or sponsorship, if any.</li>
+                    </ol>
+                  </li>
+                  <li><strong>For Non-Study Trips</strong>
+                    <ol type="a">
+                      <li>Letter-request addressed to the approving authority indicating the official purpose of travel.</li>
+                      <li>Approved itinerary, mission order, or office travel order.</li>
+                      <li>Certification of official business from the LGU or office.</li>
+                      <li>Supporting documents such as invitations, conference schedules, or meeting invitations.</li>
+                    </ol>
+                  </li>
+                </ol>
+              </td>
+              <td>
+                <ul>
+                  <li>Office of the Local Chief Executive</li>
+                  <li>Administrative or Human Resource Office</li>
+                  <li>Training or Scholarship Coordinator</li>
+                  <li>Host Institution or Conference Organizer</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <ol>
+                  <li><strong>For Personal Trips of Governors, Mayors of Highly Urbanized Cities, and Independent Component Cities</strong>
+                    <ol type="a">
+                      <li>Formal written request for travel authority.</li>
+                      <li>Travel itinerary, including dates, destination, and purpose of travel.</li>
+                      <li>Affidavit or sworn statement confirming that the trip is personal and not official in nature.</li>
+                      <li>Proof of financial capacity or travel arrangements, where required.</li>
+                    </ol>
+                  </li>
+                </ol>
+              </td>
+              <td>
+                <ul>
+                  <li>Office of the Governor or Mayor</li>
+                  <li>Local Executive Office</li>
+                  <li>Legal or Administrative Office</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>
+                <ol>
+                  <li><strong>Supporting government clearances</strong>
+                    <ol type="a">
+                      <li>Copy of passport or identification document, where required.</li>
+                      <li>Visa or entry document, if already secured.</li>
+                      <li>Clearance from the concerned department or office, if applicable.</li>
+                    </ol>
+                  </li>
+                </ol>
+              </td>
+              <td>
+                <ul>
+                  <li>Passport Office or Travel Agency</li>
+                  <li>Embassy or Consular Office</li>
+                  <li>LGU Administration Office</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="content-section" aria-labelledby="secure-title">
+        <h2 id="secure-title">Where to Secure</h2>
+        <table class="requirements-table" aria-label="Where to secure requirements">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Service / Item</th>
+              <th scope="col">Where to Secure</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Letter of request, itinerary, and official travel purpose</td>
+              <td>Office of the Local Chief Executive / Head of Office / Administrative Office</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Training, study, or conference invitation and program details</td>
+              <td>Host Institution, Training Provider, Conference Secretariat, or Sponsoring Agency</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Travel documents and identification</td>
+              <td>Passport Office, Embassy / Consular Office, or Travel Agency</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Clearance and approval for travel authority</td>
+              <td>Bureau of Local Government Supervision (BLGS), DILG Regional Office, or DILG Field Office</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div class="note-box" role="note">
+        <strong>📌 Note:</strong> For clients from NCR and HUCs and ICCs in other regions, please note that agency actions to be done at the <strong>"Provincial Office"</strong> shall be assumed by the concerned <strong>Regional Office</strong> (as applicable).
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260810-1500" />
+  <!-- Facebook SDK -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="YOUR_NONCE"></script>
+  <style>html{scroll-behavior:smooth;} /* smooth scroll for in-page nav */</style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item active" data-page="home"><span class="nav-label">Home</span></a></li>
+
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li class="dropdown-item-with-submenu">
+              <a href="joint-circulars.html" class="dropdown-item">
+                <span>Joint Circulars</span>
+              </a>
+            </li>
+            <li class="dropdown-item-with-submenu">
+              <a href="memo-circulars.html" class="dropdown-item">
+                <span>Memo Circulars</span>
+              </a>
+            </li>
+            <li><a href="presidential-directives.html" class="dropdown-item">Presidential Directives</a></li>
+            <li><a href="republic-acts.html" class="dropdown-item">Republic Acts</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" class="header-logo" />
+        <img src="Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="page-home" class="page active">
+      <section class="slider-section">
+        <div class="slider carousel" aria-label="Homepage image slider">
+          <div class="slide active">
+            <img src="https://i.imgur.com/4NGCY31.jpeg" alt="Homepage image 1" />
+          </div>
+          <div class="slide">
+            <img src="https://i.imgur.com/jmNXZxc.jpeg" alt="Homepage image 2" />
+          </div>
+          <div class="slide">
+            <img src="https://i.imgur.com/Vh5sp4J.jpeg" alt="Homepage image 3" />
+          </div>
+          <div class="slide">
+            <img src="https://i.imgur.com/uY8ZQ3z.jpeg" alt="Homepage image 4" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_8945.jpeg" alt="Homepage image 5" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_0513.jpeg" alt="Homepage image 6" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_0467.jpeg" alt="Homepage image 7" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_0578.jpeg" alt="Homepage image 8" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_0315.jpeg" alt="Homepage image 9" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_8598.jpeg" alt="Homepage image 10" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_1328.jpeg" alt="Homepage image 11" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_1042.jpeg" alt="Homepage image 12" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_0769.jpeg" alt="Homepage image 13" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_0697.jpeg" alt="Homepage image 14" />
+          </div>
+          <div class="slide">
+            <img src="Logos/IMG_0686.jpeg" alt="Homepage image 15" />
+          </div>
+          <button class="slider-control prev" aria-label="Previous slide"></button>
+          <button class="slider-control next" aria-label="Next slide"></button>
+        </div>
+      </section>
+
+      <section class="category-tabs-section">
+          <div id="resources-root"></div>
+      </section>
+
+      <section class="news-ticker-section">
+        <div class="news_ticker" style="display: block;">
+          <h3 class="ticker_title">ADVISORY</h3>
+          <div class="tickercontainer">
+            <div class="mask">
+              <ul id="ticker" class="newsticker">
+                <li class="news-item">
+                  <a href="https://www.facebook.com/share/p/18yBEeKCHQ/">UNDP Philippines - 2026 Circular Solutions: Innovation Challenge and CSO Grants</a>
+                  <span>June 17, 2026</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="news-columns">
+          <div class="news-left-stack">
+            <div class="cn-layout">
+              <div class="cn-main">
+                <div class="cn-header">
+                  <span class="cn-header-title">
+                    CENTRAL NEWS
+                  </span>
+                  <a href="https://www.dilg.gov.ph/news-archive/" class="cn-more-btn" target="_blank" rel="noopener noreferrer">MORE</a>
+                </div>
+                <div class="cn-body">
+                  <div class="cn-news-frame">
+                    <h2 class="cn-news-title">DILG Statement on the BJMP's Custody of Senator Rodante Dizon Marcoleta</h2>
+                    <div class="cn-news-date">July 15, 2026</div>
+                    <div class="cn-news-copy">
+                      <p>The Department of the Interior and Local Government (DILG), through the Bureau of Jail Management and Penology (BJMP), confirms the commitment of Senator Rodante Dizon Marcoleta to the Quezon City Jail–Male Dormitory at 10:49 AM on July 15, 2026, pursuant to a Commitment Order issued by the Sandiganbayan Third Division in connection with a plunder case.</p>
+                      <p>The DILG assures the public that the BJMP will continue to uphold its mandate with professionalism, impartiality, and strict adherence to established rules and procedures. No person deprived of liberty under the Bureau's custody shall be accorded special treatment.</p>
+                    </div>
+                    <div class="cn-news-actions">
+                      <a href="#" class="cn-read-more">Read More</a>
+                    </div>
+                  </div>
+                  <div class="cn-dots-row">
+                    <span class="cn-dot active"></span>
+                    <span class="cn-dot"></span>
+                    <span class="cn-dot"></span>
+                    <span class="cn-dot"></span>
+                    <span class="cn-dot"></span>
+                  </div>
+                  <div class="cn-headline-links" aria-label="Central news headlines">
+                    <ul class="cn-headline-list"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rn-layout">
+              <div class="rn-main">
+                <div class="cn-header">
+                  <span class="cn-header-title">
+                    PROVINCIAL NEWS
+                  </span>
+                  <a href="https://www.dilg.gov.ph/regional-news-archive/" class="cn-more-btn" target="_blank" rel="noopener noreferrer">MORE</a>
+                </div>
+                <div class="rn-body">
+                  <div class="rn-news-frame">
+                    <h2 class="rn-news-title">Provincial Rural Improvement Club (PRIC) 2nd Quarter Meeting</h2>
+                    <div class="rn-news-date">June 30, 2026</div>
+                    <div class="rn-news-copy">
+                      <span class="rn-feature-media">
+                        <a href="https://surigaodelsur.gov.ph/news-single/550" target="_blank" rel="noopener noreferrer">
+                          <img src="Logos/PRIC 2ND QUARTER MEETING (1).png" alt="Provincial news image" />
+                        </a>
+                      </span>
+                    </div>
+                    <div class="cn-news-actions">
+                      <a href="#" class="rn-read-more cn-read-more" target="_blank" rel="noopener noreferrer">Read More</a>
+                    </div>
+                  </div>
+                  <div class="rn-dots-row" aria-label="Provincial news carousel navigation">
+                    <button type="button" class="provincial-dot active" data-index="0" aria-label="Show Provincial News item 1" style="width: 13px; height: 13px; border: 0; border-radius: 50%; padding: 0; background: #cc3300; cursor: pointer;"></button>
+                    <button type="button" class="provincial-dot" data-index="1" aria-label="Show Provincial News item 2" style="width: 13px; height: 13px; border: 0; border-radius: 50%; padding: 0; background: #b0b0b0; cursor: pointer;"></button>
+                    <button type="button" class="provincial-dot" data-index="2" aria-label="Show Provincial News item 3" style="width: 13px; height: 13px; border: 0; border-radius: 50%; padding: 0; background: #b0b0b0; cursor: pointer;"></button>
+                    <button type="button" class="provincial-dot" data-index="3" aria-label="Show Provincial News item 4" style="width: 13px; height: 13px; border: 0; border-radius: 50%; padding: 0; background: #b0b0b0; cursor: pointer;"></button>
+                    <button type="button" class="provincial-dot" data-index="4" aria-label="Show Provincial News item 5" style="width: 13px; height: 13px; border: 0; border-radius: 50%; padding: 0; background: #b0b0b0; cursor: pointer;"></button>
+                  </div>
+                  <div class="rn-headline-links" aria-label="Provincial news headlines">
+                    <ul class="rn-headline-list">
+                      <li class="rn-headline-item">
+                        <a class="rn-headline-link provincial-headline-link" href="https://surigaodelsur.gov.ph/news-single/550" target="_blank" rel="noopener noreferrer"><span class="headline-text">Provincial Rural Improvement Club (PRIC) 2nd Quarter Meeting</span></a>
+                        <span class="rn-headline-item-date">June 30, 2026</span>
+                      </li>
+                      <li class="rn-headline-item">
+                        <a class="rn-headline-link provincial-headline-link" href="https://surigaodelsur.gov.ph/news-single/546" target="_blank" rel="noopener noreferrer"><span class="headline-text">Carrying Capacity Development Seminar Workshop</span></a>
+                        <span class="rn-headline-item-date">June 30, 2026</span>
+                      </li>
+                      <li class="rn-headline-item">
+                        <a class="rn-headline-link provincial-headline-link" href="https://surigaodelsur.gov.ph/news-single/541" target="_blank" rel="noopener noreferrer"><span class="headline-text">Provincial GFPS Strengthens Gender Mainstreaming in 2nd Quarter Meeting</span></a>
+                        <span class="rn-headline-item-date">June 25, 2026</span>
+                      </li>
+                      <li class="rn-headline-item">
+                        <a class="rn-headline-link provincial-headline-link" href="https://surigaodelsur.gov.ph/news-single/547" target="_blank" rel="noopener noreferrer"><span class="headline-text">DILG Surigao del Sur promotes community-led resilience and disaster preparedness</span></a>
+                        <span class="rn-headline-item-date">June 04, 2026</span>
+                      </li>
+                      <li class="rn-headline-item">
+                        <a class="rn-headline-link provincial-headline-link" href="https://surigaodelsur.gov.ph/news-single/546" target="_blank" rel="noopener noreferrer"><span class="headline-text">Local governance teams review indicators for stronger program performance</span></a>
+                        <span class="rn-headline-item-date">May 28, 2026</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="whatsnew-bids-row">
+              <div class="cl-column whatsnew-theme">
+                <h1>
+                  <span class="section-title-with-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7A2.5 2.5 0 0 1 17.5 16H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5v-7Zm2.5-.5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5h-11Z"/></svg>
+                    WHAT'S NEW
+                  </span>
+                  <a href="https://www.facebook.com/DILGsds">More</a>
+                </h1>
+                <div class="cl-column-body">
+                  <div class="cl-column-content whatsnew-featured" aria-live="polite">
+                    <div class="featured-wrapper">
+                      <div class="featured-card" data-index="0">
+                        <div class="featured-header">
+                          <h3 class="featured-title">𝗗𝗜𝗟𝗚 𝗦𝘂𝗿𝗶𝗴𝗮𝗼 𝗱𝗲𝗹 𝗦𝘂𝗿 𝗧𝗲𝗮𝗺 𝗣𝗮𝘆𝘀 𝗖𝗼𝘂𝗿𝘁𝗲𝘀𝘆 𝗩𝗶𝘀𝗶𝘁 𝗮𝘀 𝗣𝗿𝗼𝘃𝗶𝗻𝗰𝗶𝗮𝗹 𝗚𝗼𝘃𝗲𝗿𝗻𝗼𝗿 𝗣𝗶𝗺𝗲𝗻𝘁𝗲𝗹 𝗥𝗲𝘀𝘂𝗺𝗲𝘀 𝗢𝗳𝗳𝗶𝗰𝗲</h3>
+                          <time class="featured-date">August 18, 2026</time>
+                        </div>
+                        <a class="featured-media preview-link" href="https://www.facebook.com/DILGsds" target="_blank" rel="noopener noreferrer">
+                         <img src="Logos/IMG_0769.jpeg" alt="Whats new image" />
+                         </a>
+                        <div class="featured-body">
+                          <div class="featured-excerpt">
+                            <p>The DILG Surigao del Sur Provincial Office personnel and City/Municipal Local Government Operations Officers, led by PD Rizza D. Sion, CESO V, paid a courtesy visit to the Office of the Provincial Governor on August 12, 2026, to warmly welcome Provincial Governor Johnny T. Pimentel as he resumes office after months of recuperation.</p>
+                            <p>The visit marked a positive and meaningful return to public service, as the DILG SurSur Team expressed its warm welcome, well-wishes, and continued support to the Provincial Government in advancing responsive and people-centered governance in Surigao del Sur.</p>
+                          </div>
+                          <a class="featured-read-more" href="https://www.facebook.com/DILGsds/posts/pfbid0samhMRNsv6VzknAAscxzpwEHkjgRFNDBayf2HHGTctyGcqYqYKbhpJ2b7kQhC4Xvl" target="_blank" rel="noopener noreferrer">Read More</a>
+                        </div>
+                      </div>
+                      <div class="rn-dots-row" aria-label="Whats new carousel navigation">
+                        <button type="button" class="whatsnew-dot active" data-index="0" aria-label="Show What's New item 1" style="width: 13px; height: 13px; border: 0; border-radius: 50%; padding: 0; background: #b0b0b0; cursor: pointer;"></button>
+                        <button type="button" class="whatsnew-dot" data-index="1" aria-label="Show What's New item 2" style="width: 13px; height: 13px; border: 0; border-radius: 50%; padding: 0; background: #b0b0b0; cursor: pointer;"></button>
+                        <button type="button" class="whatsnew-dot" data-index="2" aria-label="Show What's New item 3" style="width: 13px; height: 13px; border: 0; border-radius: 50%; padding: 0; background: #b0b0b0; cursor: pointer;"></button>
+                        <button type="button" class="whatsnew-dot" data-index="3" aria-label="Show What's New item 4" style="width: 13px; height: 13px; border: 0; border-radius: 50%; padding: 0; background: #b0b0b0; cursor: pointer;"></button>
+                        <button type="button" class="whatsnew-dot" data-index="4" aria-label="Show What's New item 5" style="width: 13px; height: 13px; border: 0; border-radius: 50%; padding: 0; background: #b0b0b0; cursor: pointer;"></button>
+                      </div>
+                    </div>
+                    <nav class="whatsnew-list" aria-label="Whats new headlines">
+                      <ul class="whatsnew-list-items">
+                        <li>
+                          <a class="whats-link" href="https://www.facebook.com/DILGsds/posts/pfbid0samhMRNsv6VzknAAscxzpwEHkjgRFNDBayf2HHGTctyGcqYqYKbhpJ2b7kQhC4Xvl" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank', 'noopener,noreferrer'); return false;">𝗗𝗜𝗟𝗚 𝗦𝘂𝗿𝗶𝗴𝗮𝗼 𝗱𝗲𝗹 𝗦𝘂𝗿 𝗧𝗲𝗮𝗺 𝗣𝗮𝘆𝘀 𝗖𝗼𝘂𝗿𝘁𝗲𝘀𝘆 𝗩𝗶𝘀𝗶𝘁 𝗮𝘀 𝗣𝗿𝗼𝘃𝗶𝗻𝗰𝗶𝗮𝗹 𝗚𝗼𝘃𝗲𝗿𝗻𝗼𝗿 𝗣𝗶𝗺𝗲𝗻𝘁𝗲𝗹 𝗥𝗲𝘀𝘂𝗺𝗲𝘀 𝗢𝗳𝗳𝗶𝗰𝗲</a>
+                          <span class="item-date">August 18, 2026</span>
+                        </li>
+                        <li>
+                          <a class="whats-link" href="https://www.facebook.com/DILGsds/posts/pfbid033oZdBWpVWm56iK81ZpoMzqFxkutHNUMtKvwFXv1EVmPNUHRv5dsyiA698pKyPmY1l" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank', 'noopener,noreferrer'); return false;">𝗗𝗜𝗟𝗚 𝗦𝘂𝗿𝗶𝗴𝗮𝗼 𝗱𝗲𝗹 𝗦𝘂𝗿 𝗛𝗼𝗹𝗱𝘀 𝗔𝘂𝗴𝘂𝘀𝘁 𝗧𝗲𝗮𝗺 𝗖𝗼𝗻𝗳𝗲𝗿𝗲𝗻𝗰𝗲, 𝗙𝗼𝗰𝘂𝘀𝗲𝘀 𝗼𝗻 𝗖𝗮𝘁𝗰𝗵-𝗨𝗽 𝗣𝗹𝗮𝗻𝗻𝗶𝗻𝗴</a>
+                          <span class="item-date">August 18, 2026</span>
+                        </li>
+                        <li>
+                          <a class="whats-link" href="https://www.facebook.com/DILGsds/posts/pfbid02R89g9Yaksn6u8G6ViPEAUp9E6bbvh4y7JFE4EA2M7nPDxZiWrh95ZBBAkmraCHDcl" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank', 'noopener,noreferrer'); return false;">𝗗𝗜𝗟𝗚 𝗦𝘂𝗿𝗦𝘂𝗿 𝗘𝗺𝗽𝗼𝘄𝗲𝗿𝘀 𝗬𝗼𝘂𝘁𝗵 𝗟𝗲𝗮𝗱𝗲𝗿𝘀 𝗧𝗼𝘄𝗮𝗿𝗱 𝗥𝗲𝘀𝘂𝗹𝘁𝘀-𝗕𝗮𝘀𝗲𝗱 𝗚𝗼𝘃𝗲𝗿𝗻𝗮𝗻𝗰𝗲</a>
+                          <span class="item-date">August 17, 2026</span>
+                        </li>
+                        <li>
+                          <a class="whats-link" href="http://facebook.com/DILGsds/posts/pfbid0sVdzMtuUHYcZjUhyRAYm996w1PN696zpSKXoPoPUYfDkLFJPArDVJELN3EGHptgUl" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank', 'noopener,noreferrer'); return false;">𝐃𝐈𝐋𝐆 𝐒𝐮𝐫𝐢𝐠𝐚𝐨 𝐝𝐞𝐥 𝐒𝐮𝐫 𝐒𝐭𝐫𝐞𝐧𝐠𝐭𝐡𝐞𝐧𝐬 𝐆𝐀𝐃 𝐏𝐥𝐚𝐧𝐧𝐢𝐧𝐠 𝐢𝐧 𝐋𝐢𝐚𝐧𝐠𝐚</a>
+                          <span class="item-date">August 17, 2026</span>
+                        </li>
+                        <li>
+                          <a class="whats-link" href="https://www.facebook.com/DILGsds/posts/pfbid02j6883xsNcQ6eanmQUJhxthakotRbwWPpCup1wte1GsLvshTbpzsqBxrBqKzBt11Tl" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank', 'noopener,noreferrer'); return false;">𝗗𝗜𝗟𝗚 𝗦𝘂𝗿𝗶𝗴𝗮𝗼 𝗱𝗲𝗹 𝗦𝘂𝗿 𝗝𝗼𝗶𝗻𝘀 𝗧𝘂𝗿𝗻 𝗼𝘃𝗲𝗿 𝗼𝗳 𝗟𝗚𝗦𝗙-𝗦𝗕𝗗𝗣 𝗣𝗿𝗼𝗷𝗲𝗰𝘁𝘀 𝗶𝗻 𝗛𝗶𝗻𝗮𝘁𝘂𝗮𝗻</a>
+                          <span class="item-date">August 15, 2026</span>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="cn-sidebar">
+            <a class="cn-portal-card" href="https://op-proper.gov.ph/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/banner-president-corner.png" alt="Visit the Office of the President" />
+            </a>
+            <a class="cn-portal-card" href="https://www.dilg.gov.ph/secretarys-corner/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/secretarys-corner.png" alt="Visit the Secretary's Corner" />
+            </a>
+            <a class="cn-portal-card" href="https://www.dilg.gov.ph/transparency/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/banner-transparency-seal.png" alt="Philippine Transparency Seal" />
+            </a>
+
+            <div class="cn-secondary-row">
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/GAA-Reportorial-Requirement-Archive/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/gaa2015.png" alt="GAA Reportorial Requirement" />
+              </a>
+              <a class="cn-sec-card" href="https://www.foi.gov.ph/agencies/dilg/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/banner/foi-corner.jpg" alt="Freedom of Information" />
+              </a>
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/leo-70/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/banner/leo70-box.png" alt="Localization of EO 70" />
+              </a>
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/files/dilg_document_202706_8dc37fea59.pdf" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/logo/dilg-dpa-cor-3.jpg" alt="Data Privacy" />
+              </a>
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/other/GAD-Corner/49" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/gad-corner.jpg" alt="Gender and Development" />
+              </a>
+              <a class="cn-sec-card" href="https://www.facebook.com/dilg.philippines/" target="_blank" rel="noopener noreferrer">
+                <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fdilg.philippines&amp;width=380&amp;height=500&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=true&amp;show_border=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false&amp;small_header=true" scrolling="yes" frameborder="0" style="background-color:#3A559F; border:3px solid #3A559F; border-right:4px solid #3A559F; overflow:hidden; width:100%; height:250px;" allowtransparency="true">
+              </iframe>
+              </a>
+            </div>
+            <div class="cn-fb-widget">
+              <iframe src="https://www.facebook.com/v2.5/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61556404163480&tabs=timeline%2Cevents&width=320&height=650&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false"
+                width="100%" height="650" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+        <section id="page-programs" class="page" style="display:none;">
+      <div class="page-panel programs-page-panel programs-services-panel">
+        <div class="programs-hero">
+          <div class="programs-title-card">
+            <h2>Programs & Services</h2>
+          </div>
+          <div class="programs-search-block">
+            <form class="search programs-search" id="programs-search-form">
+              <input type="search" id="programs-search" name="q" placeholder="Search programs, outcome areas, or services..." autocomplete="off" />
+            </form>
+            <p class="programs-count"><span id="programs-outcome-count">4</span> outcome areas available</p>
+          </div>
+        </div>
+
+        <div class="programs-accordion" id="programs-accordion">
+          <div class="accordion-item active">
+            <button type="button" class="accordion-trigger" aria-expanded="true">
+              <span class="accordion-title">Outcome Area 1: Excellence in Local Governance upheld</span>
+              <span class="accordion-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="accordion-panel">
+              <ul class="programs-list">
+                <li><a href="#" class="program-link">Child-friendly Local Governance Audit (CFLGA)</a></li>
+                <li><a href="#" class="program-link">Ease of Doing Business (EODB)</a></li>
+                <li><a href="#" class="program-link">Full Disclosure Policy (FDP)</a></li>
+                <li><a href="#" class="program-link">Katarungang Pambarangay (KP)</a></li>
+                <li><a href="#" class="program-link">Local Economic Development for Local Government Units (LED4LGUs)</a></li>
+                <li><a href="#" class="program-link">Local Governance Performance Management System (LGPMS)</a></li>
+                <li><a href="#" class="program-link">Local Government Resource Center (LGRC)</a></li>
+                <li><a href="#" class="program-link">Local Governance Support Program for Local Economic Development (LGSP-LED)</a></li>
+                <li><a href="#" class="program-link">Local Government Unit Support System (LGUSS): Barangay Information and Management System (BIMS) and City and Municipality Information Management System (CMIMS)</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-title">Outcome Area 2: Responsive and participatory governance</span>
+              <span class="accordion-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="accordion-panel">
+              <ul class="programs-list">
+                <li><a href="#" class="program-link">Participatory Local Development Planning</a></li>
+                <li><a href="#" class="program-link">Citizen's Charter Implementation</a></li>
+                <li><a href="#" class="program-link">Local Social Accountability Mechanisms</a></li>
+                <li><a href="#" class="program-link">Public Consultation and Stakeholder Engagement</a></li>
+                <li><a href="#" class="program-link">Peace and Order Council Strengthening</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-title">Outcome Area 3: Sustainable, inclusive development supported</span>
+              <span class="accordion-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="accordion-panel">
+              <ul class="programs-list">
+                <li><a href="#" class="program-link">Disaster Risk Reduction and Climate Resilience</a></li>
+                <li><a href="#" class="program-link">Local Economic Recovery and Investment Facilitation</a></li>
+                <li><a href="#" class="program-link">Gender-Responsive Local Governance</a></li>
+                <li><a href="#" class="program-link">Senior Citizens and Persons with Disability Support Services</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button type="button" class="accordion-trigger" aria-expanded="false">
+              <span class="accordion-title">Outcome Area 4: Good governance systems strengthened</span>
+              <span class="accordion-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="accordion-panel">
+              <ul class="programs-list">
+                <li><a href="#" class="program-link">Local Governance Performance Inspection</a></li>
+                <li><a href="#" class="program-link">Fiscal Transparency and Accountability</a></li>
+                <li><a href="#" class="program-link">Human Resource Development for LGUs</a></li>
+                <li><a href="#" class="program-link">Innovation and Technology Support</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="page-officials" class="page" style="display:none;">
+      <div class="page-panel officials-page-panel">
+        <div class="officials-headline">
+          <span class="eyebrow officials-eyebrow">Provincial Officials</span>
+          <h2>Province of Surigao del Sur</h2>
+          <p class="officials-copy">A transparent and responsive local government promoting inclusive development, accountability, and service excellence for every community in Surigao del Sur.</p>
+        </div>
+
+        <div class="officials-grid">
+          <aside class="officials-card">
+            <div class="officials-card-top">
+              <span class="officials-card-label">Province Overview</span>
+              <img src="logo/239-2393447_republic-of-the-philippines-logo-png-transparent-png.webp" alt="Surigao del Sur provincial seal" class="officials-seal" loading="lazy" />
+            </div>
+            <h3>Province of Surigao del Sur</h3>
+            <dl class="officials-details">
+              <div>
+                <dt>Location</dt>
+                <dd>Caraga Region, northeastern Mindanao</dd>
+              </div>
+              <div>
+                <dt>Capital</dt>
+                <dd>Tandag City</dd>
+              </div>
+              <div>
+                <dt>Cities</dt>
+                <dd>2</dd>
+              </div>
+              <div>
+                <dt>Municipalities</dt>
+                <dd>20</dd>
+              </div>
+              <div>
+                <dt>Barangays</dt>
+                <dd>309</dd>
+              </div>
+              <div>
+                <dt>Land area</dt>
+                <dd>4,973.20 km²</dd>
+              </div>
+              <div>
+                <dt>Population</dt>
+                <dd>~617,000 (2025 est.)</dd>
+              </div>
+            </dl>
+            <div class="officials-card-actions">
+              <a class="button button-secondary" href="https://caraga.dilg.gov.ph/" target="_blank" rel="noreferrer noopener">Visit official website</a>
+              <a class="button button-outline" href="https://en.wikipedia.org/wiki/Surigao_del_Sur" target="_blank" rel="noreferrer noopener">More province facts</a>
+            </div>
+          </aside>
+
+          <section class="officials-carousel-panel">
+            <div class="officials-carousel-header">
+              <div>
+                <p class="officials-card-label">Featured visuals</p>
+                <h3>Featured images</h3>
+              </div>
+              <div class="carousel-status" aria-live="polite"><span id="officials-carousel-current">1</span> / <span id="officials-carousel-total">3</span></div>
+            </div>
+
+            <div class="officials-carousel" id="officials-carousel">
+              <a class="official-slide active" href="https://caraga.dilg.gov.ph/" target="_blank" rel="noreferrer noopener" data-link="https://caraga.dilg.gov.ph/">
+                <img src="logo/278464-middle.webp" alt="Surigao del Sur provincial building" loading="lazy" />
+                <div class="officials-carousel-caption">Provincial government center</div>
+              </a>
+              <a class="official-slide" href="https://caraga.dilg.gov.ph/" target="_blank" rel="noreferrer noopener" data-link="https://caraga.dilg.gov.ph/">
+                <img src="logo/64748de35d9fd82ab4539b3f878f8b2c.webp" alt="Community development activities" loading="lazy" />
+                <div class="officials-carousel-caption">Community engagement and programs</div>
+              </a>
+              <a class="official-slide" href="https://caraga.dilg.gov.ph/" target="_blank" rel="noreferrer noopener" data-link="https://caraga.dilg.gov.ph/">
+                <img src="logo/57.webp" alt="Province map illustration" loading="lazy" />
+                <div class="officials-carousel-caption">Province-wide service delivery</div>
+              </a>
+            </div>
+
+            <div class="officials-carousel-controls">
+              <button type="button" class="carousel-btn" data-action="prev" aria-label="Previous slide">Previous</button>
+              <button type="button" class="carousel-btn" data-action="next" aria-label="Next slide">Next</button>
+            </div>
+          </section>
+        </div>
+
+        <div class="officials-content-grid">
+          <article class="officials-panel officials-panel--vision">
+            <h3>Vision</h3>
+            <p>The Province of Surigao del Sur envisions a safe, progressive, and inclusive community where every citizen enjoys quality public services, effective governance, and sustainable local development.</p>
+          </article>
+          <article class="officials-panel officials-panel--mission">
+            <h3>Mission</h3>
+            <ul class="officials-list">
+              <li>Advance transparent and accountable governance across all local government units.</li>
+              <li>Empower communities through strengthened public participation and responsive service delivery.</li>
+              <li>Support inclusive economic growth, peace, and resilience for all barangays.</li>
+            </ul>
+          </article>
+          <article class="officials-panel officials-panel--goals">
+            <h3>Goals</h3>
+            <ul class="officials-list">
+              <li>Protect and enhance local governance systems through capacity-building and digital adoption.</li>
+              <li>Increase access to quality social 6544 services for vulnerable communities.</li>
+              <li>Promote stronger partnerships with national agencies, LGUs, and civil society.</li>
+              <li>Deliver timely information, programs, and technical assistance for sustainable development.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="page-legal-opinion" class="page" style="display:none;">
+      <div class="page-panel issuances-panel legal-opinions-panel">
+        <div class="documents-section">
+          <div class="container">
+            <section class="legal-opinions-hero">
+                <div class="legal-opinions-title-card">
+                  <div>
+                    <p class="legal-opinions-eyebrow">Official Records</p>
+                    <h2>Legal Opinions Archive</h2>
+                    <p class="legal-opinions-intro">Browse and manage official DILG legal opinions with quick search, upload, and access links.</p>
+                  </div>
+                </div>
+                <div class="legal-opinions-search-block">
+                  <div class="legal-opinions-search-row">
+                    <form class="search legal-opinions-search">
+                      <input type="search" name="q" placeholder="Search by title or opinion number..." />
+                    </form>
+                    <button class="add-document" type="button">+ Add Document</button>
+                  </div>
+                  <p class="legal-opinions-count">86 opinions available</p>
+                  <p class="legal-opinions-region-label">Region: All</p>
+                </div>
+              </div>
+            </section>
+
+                <!-- Repeat .doc-row cards below as needed -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="page-news" class="page" style="display:none;">
+      <div class="page-panel news-page-panel">
+        <div class="news-container">
+          <!-- First Row: Featured Content -->
+          <div class="news-row news-row-featured">
+            <div class="news-left">
+              <div class="news-embed news-embed-featured">
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/DILGsds&show_text=true&appId=YOUR_APP_ID" width="100%" height="620" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+              </div>
+            </div>
+            <div class="news-right">
+              <div class="news-updates-panel">
+                <h3 class="news-updates-title">News & Updates</h3>
+                <div class="news-updates-list">
+                  <div class="news-post">
+                    <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/share/v/1DczVfFzfJ/&show_text=true&appId=YOUR_APP_ID" width="100%" height="240" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                  </div>
+                  <div class="news-post">
+                    <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/share/p/1E1GUXPJe2/&show_text=true&appId=YOUR_APP_ID" width="100%" height="240" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                  </div>
+                  <div class="news-post">
+                    <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/share/p/16asMysWJJ/&show_text=true&appId=YOUR_APP_ID" width="100%" height="240" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                  </div>
+                  <div class="news-post">
+                    <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/share/p/1a2gsb8vA1/&show_text=true&appId=YOUR_APP_ID" width="100%" height="240" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                  </div>
+                  <div class="news-post">
+                    <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/share/p/1Gh4mWajf7/&show_text=true&appId=YOUR_APP_ID" width="100%" height="240" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Row: Two Videos Side by Side -->
+          <div class="news-row news-row-videos">
+            <div class="news-video-container">
+              <div class="news-embed news-embed-video">
+                <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/v/18Y4AkUmrD/&show_text=true&appId=YOUR_APP_ID" width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+              </div>
+            </div>
+            <div class="news-video-container">
+              <div class="news-embed news-embed-video">
+                <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/r/1BnYiZrUym/&show_text=true&appId=YOUR_APP_ID" width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <!-- Third Row: Promotional Banner -->
+          <div class="news-row news-row-banner">
+            <div class="news-banner-container">
+              <img src="uploads/promotional-banner.jpg" alt="DILG Promotional Banner" class="news-banner-image" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-contact" class="page" style="display:none;">
+      <div class="page-panel contact-page-panel">
+        <div class="contact-headline">
+          <span class="eyebrow">Contact Us</span>
+          <h2>Get in touch with DILG Surigao del Sur</h2>
+          <p class="contact-subtitle">Submit inquiries, request assistance, or connect with the provincial office through our secure contact form and official channels.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-left">
+            <div class="contact-info-card">
+              <h3>Contact Information</h3>
+              <p class="contact-copy">Use the office phone, email, or social media links below for direct support and updates.</p>
+
+              <div class="contact-detail">
+                <span class="contact-icon">☎</span>
+                <div>
+                  <p class="detail-label">Telephone</p>
+                  <a id="contact-phone" href="tel:+63862143470">+63 (086) 214-3470</a>
+                </div>
+              </div>
+
+              <div class="contact-detail">
+                <span class="contact-icon">✉</span>
+                <div>
+                  <p class="detail-label">Email</p>
+                  <a id="contact-email" href="mailto:dilg13sdspo@gmail.com">dilg13sdspo@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="contact-detail">
+                <span class="contact-icon">👍</span>
+                <div>
+                  <p class="detail-label">Facebook</p>
+                  <a id="contact-facebook" href="https://www.facebook.com/DILGSurigaoDelSur" target="_blank" rel="noreferrer noopener">DILG Surigao del Sur</a>
+                </div>
+              </div>
+
+              <div class="contact-detail">
+                <span class="contact-icon">📍</span>
+                <div>
+                  <p class="detail-label">Office Location</p>
+                  <p id="contact-location">Surigao del Sur Provincial Capitol, Capitol Hills Telaje, City of Tandag, Surigao del Sur</p>
+                  <p class="contact-copy">This location is shown on the map below and corresponds to the DILG Tandag location in Google Maps.</p>
+                </div>
+              </div>
+
+              <div class="contact-detail">
+                <span class="contact-icon">⏰</span>
+                <div>
+                  <p class="detail-label">Office Hours</p>
+                  <p id="contact-hours">Monday to Friday, 8:00 AM – 5:00 PM</p>
+                </div>
+              </div>
+
+              <div class="contact-detail">
+                <span class="contact-icon">ℹ</span>
+                <div>
+                  <p class="detail-label">Notes</p>
+                  <p id="contact-notes">For urgent concerns, please use the phone number or official Facebook page.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-map-card">
+              <div class="map-header">
+                <div>
+                  <h4>Office location</h4>
+                  <p class="contact-copy">Explore the DILG Tandag location and open navigation in Google Maps.</p>
+                </div>
+                <a id="view-map-link" class="map-link" href="https://www.google.com/maps/search/?api=1&query=Surigao+del+Sur+Provincial+Capitol+Capitol+Hills+Telaje+Tandag+City" target="_blank" rel="noreferrer noopener">Open in Google Maps</a>
+              </div>
+              <div class="contact-map">
+                <iframe id="contact-map-embed" src="https://maps.google.com/maps?q=Surigao+del+Sur+Provincial+Capitol+Capitol+Hills+Telaje+Tandag+City&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="DILG Tandag Location"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-right">
+            <div class="contact-form-panel">
+              <h3>Send us a message</h3>
+              <p class="contact-copy">Fill out the form below and our team will respond as soon as possible.</p>
+
+              <form id="contact-form" class="contact-form" novalidate>
+                <div class="row two-cols">
+                  <div class="form-group">
+                    <label for="first-name">First name</label>
+                    <input id="first-name" name="firstName" type="text" placeholder="First name" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="last-name">Last name</label>
+                    <input id="last-name" name="lastName" type="text" placeholder="Last name" required />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input id="subject" name="subject" type="text" placeholder="Subject" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="6" placeholder="How can we help?" required></textarea>
+                </div>
+
+                <div class="form-row checkbox-row">
+                  <label class="checkbox">
+                    <input type="checkbox" id="subscribe" name="subscribe" />
+                    <span>Subscribe to our mailing list</span>
+                  </label>
+                </div>
+
+                <input type="hidden" id="contact-recaptcha-token" name="recaptchaToken" value="" />
+                <input type="text" id="bot-field" name="botField" class="bot-field" autocomplete="off" tabindex="-1" />
+
+                <div class="form-status" id="contact-form-status" aria-live="polite"></div>
+
+                <button type="submit" class="submit-btn">
+                  <span class="btn-text">Send Message</span>
+                  <span class="btn-loader" aria-hidden="true"></span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="image-modal" class="modal" aria-hidden="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <button type="button" class="modal-close" aria-label="Close">✕</button>
+        <img src="" alt="Preview" class="modal-image" />
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/"><img src="Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/" ><img src="Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card" aria-label="Open DILG Surigao del Sur Facebook page (opens in new tab)">
+            <span class="connect-icon" aria-hidden="true">
+              <img src="Logos/2021_Facebook_icon.svg" alt="Facebook icon" />
+            </span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+  </footer>
+
+  <input type="file" id="upload-file-input" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,image/*" style="display:none" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const { useState, useRef, useEffect } = React;
+
+function Resources() {
+        const tabs = [
+          {
+            key: 'pbac',
+            title: 'PBAC',
+            items: [
+              { title: 'SVP Checklist', link: 'svp-checklist.html' },
+              { title: 'BAC Advisory', link: 'bac-advisory.html' },
+              { title: 'Process Flow: Bids and Awards Committee for Public Bidding', link: 'process-flow-public-bidding.html' },
+              { title: 'Process Flow: Bids and Awards Committee for Small Value Procurement', link: 'process-flow-public-bidding.html' }
+            ]
+          },
+          {
+            key: 'quality',
+            title: 'Quality Management System',
+            items: [
+              { title: 'Quality Policy', link: 'quality-policy.html' }
+            ]
+          },
+          {
+            key: 'annual',
+            title: 'Annual Report',
+            items: [
+              { title: '2024 Annual Report', link: 'annual-report.html' }
+            ]
+          },
+          {
+            key: 'privacy',
+            title: 'Privacy Notice',
+            items: [
+              { title: 'AN ACT PROTECTING INDIVIDUAL PERSONAL INFORMATION IN INFORMATION AND COMMUNICATIONS SYSTEMS IN THE GOVERNMENT AND THE PRIVATE SECTOR, CREATING FOR THIS PURPOSE A NATIONAL PRIVACY COMMISSION, AND FOR OTHER PURPOSES', link: 'ra-10173.html' }
+            ]
+          }
+        ];
+
+        const [open, setOpen] = useState('quality');
+
+        const toggle = (event, key) => {
+          event.preventDefault();
+          setOpen(key);
+        };
+
+        return (
+          <div className="resources-root-wrapper">
+            <div className="resources-card">
+              <div className="resources-tabs" role="tablist" aria-label="Resources Tabs">
+                {tabs.map((t) => (
+                  <button
+                    key={t.key}
+                    type="button"
+                    className={"resources-tab" + (open === t.key ? ' active' : '')}
+                    aria-selected={open === t.key}
+                    role="tab"
+                    onClick={(e) => toggle(e, t.key)}
+                  >
+                    {t.title}
+                  </button>
+                ))}
+              </div>
+
+              <div className="resources-panels">
+                {tabs.map((t) => (
+                  <div
+                    key={t.key}
+                    className={"resources-panel" + (open === t.key ? ' open' : '')}
+                    aria-hidden={open === t.key ? 'false' : 'true'}
+                    style={{ display: open === t.key ? 'block' : 'none' }}
+                  >
+                   <div className="resources-list-wrapper">
+                     <div className="resources-list">
+                       {t.items.map((it, i) => {
+                         const previews = it.title.toLowerCase().includes('process flow') ? 2 : 1;
+return (
+                           <div key={i} className="doc-row">
+                             <a href={it.link} className="doc-card-link" aria-label={`View ${it.title}`}>
+                               <div className="doc-thumb" role="img" aria-label="Document preview">
+                                 <div className="thumb-box">
+                                   <div className="thumb-icon" aria-hidden="true">📄</div>
+                                   <div className="thumb-copy">
+                                     <div className="thumb-count">{it.title}</div>
+                                     <div className="thumb-link">Click to view</div>
+                                   </div>
+                                 </div>
+                               </div>
+                             </a>
+                           </div>
+                         );
+                       })}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      const rootEl = document.getElementById('resources-root');
+      if (rootEl) {
+        ReactDOM.createRoot(rootEl).render(<Resources />);
+      }
+    </script>
+    <script>
+    
+    </script>
+
+    <script src="script.js?v=20260810-1500"></script>
+    <script>
+      (() => {
+        const featuredCard = document.querySelector('.whatsnew-featured .featured-card');
+        const dots = Array.from(document.querySelectorAll('.whatsnew-featured .whatsnew-dot'));
+        if (!featuredCard || dots.length !== 5) return;
+
+        const items = [
+          {
+            title: '𝗗𝗜𝗟𝗚 𝗦𝘂𝗿𝗶𝗴𝗮𝗼 𝗱𝗲𝗹 𝗦𝘂𝗿 𝗧𝗲𝗮𝗺 𝗣𝗮𝘆𝘀 𝗖𝗼𝘂𝗿𝘁𝗲𝘀𝘆 𝗩𝗶𝘀𝗶𝘁 𝗮𝘀 𝗣𝗿𝗼𝘃𝗶𝗻𝗰𝗶𝗮𝗹 𝗚𝗼𝘃𝗲𝗿𝗻𝗼𝗿 𝗣𝗶𝗺𝗲𝗻𝘁𝗲𝗹 𝗥𝗲𝘀𝘂𝗺𝗲𝘀 𝗢𝗳𝗳𝗶𝗰𝗲', date: 'August 18, 2026',
+            image: 'Logos/IMG_0769.jpeg', url: 'https://www.facebook.com/DILGsds/posts/pfbid0samhMRNsv6VzknAAscxzpwEHkjgRFNDBayf2HHGTctyGcqYqYKbhpJ2b7kQhC4Xvl',
+            paragraphs: ['The DILG Surigao del Sur Provincial Office personnel and City/Municipal Local Government Operations Officers, led by PD Rizza D. Sion, CESO V, paid a courtesy visit to the Office of the Provincial Governor to welcome Provincial Governor Johnny T. Pimentel as he resumes office after months of recuperation.', 'The visit marked a positive return to public service, as the DILG SurSur Team expressed its warm welcome, well-wishes, and continued support to the Provincial Government.']
+          },
+          {
+            title: '𝗗𝗜𝗟𝗚 𝗦𝘂𝗿𝗶𝗴𝗮𝗼 𝗱𝗲𝗹 𝗦𝘂𝗿 𝗛𝗼𝗹𝗱𝘀 𝗔𝘂𝗴𝘂𝘀𝘁 𝗧𝗲𝗮𝗺 𝗖𝗼𝗻𝗳𝗲𝗿𝗲𝗻𝗰𝗲, 𝗙𝗼𝗰𝘂𝘀𝗲𝘀 𝗼𝗻 𝗖𝗮𝘁𝗰𝗵-𝗨𝗽 𝗣𝗹𝗮𝗻𝗻𝗶𝗻𝗴', date: 'August 18, 2026', 
+            image: 'Logos/IMG_0697.jpeg', url: 'https://www.facebook.com/DILGsds/posts/pfbid033oZdBWpVWm56iK81ZpoMzqFxkutHNUMtKvwFXv1EVmPNUHRv5dsyiA698pKyPmY1l',
+            paragraphs: 'The DILG Surigao del Sur Provincial Office conducted its August Team Conference cum Catch-Up Planning on August 12–13, 2026, at the Royal Function Hall, Shacene, Tandag City, led by Provincial Director Rizza D. Sion, CESO V. The activity gathered DILG personnel and C/MLGOOs to review program implementation, PPA performance and compliance, and operational concerns of the Field Operating Units (FOUs). The conference also welcomed the newly assigned personnel in Surigao del Sur, strengthening team integration and coordination.<br></br>A key highlight was the catch-up planning, where Provincial Focal Persons presented current compliance updates, allowing the team to identify gaps and challenges, determine the support needed from the Provincial Office, and set corresponding commitments from the FOUs.',
+          },
+          {
+            title: '𝗗𝗜𝗟𝗚 𝗦𝘂𝗿𝗦𝘂𝗿 𝗘𝗺𝗽𝗼𝘄𝗲𝗿𝘀 𝗬𝗼𝘂𝘁𝗵 𝗟𝗲𝗮𝗱𝗲𝗿𝘀 𝗧𝗼𝘄𝗮𝗿𝗱 𝗥𝗲𝘀𝘂𝗹𝘁𝘀-𝗕𝗮𝘀𝗲𝗱 𝗚𝗼𝘃𝗲𝗿𝗻𝗮𝗻𝗰𝗲', date: 'August 17, 2026', 
+            image: 'Logos/776130258_1599697848834100_9168148043174585936_n.jpg', url: 'https://www.facebook.com/DILGsds/posts/pfbid02R89g9Yaksn6u8G6ViPEAUp9E6bbvh4y7JFE4EA2M7nPDxZiWrh95ZBBAkmraCHDcl',
+            paragraphs: ['To strengthen youth governance and organizational excellence, DILG Surigao del Sur collaborated as technical resource speakers for youth leaders and members of the Provincial Youth Development Council (PYDC) during the PYDC Meeting and CapDev Activity held on August 14, 2026, at Villa Azarcon Mountain Resort, Tago, Surigao del Sur.', 'To guide participants from project formulation to milestone documentation, 𝗦𝗲𝘀𝘀𝗶𝗼𝗻 𝟯: 𝗦𝘂𝘀𝘁𝗮𝗶𝗻𝗮𝗯𝗶𝗹𝗶𝘁𝘆, 𝗔𝗱𝘃𝗼𝗰𝗮𝗰𝘆 & 𝗜𝗺𝗽𝗮𝗰𝘁/𝗠𝗶𝗹𝗲𝘀𝘁𝗼𝗻𝗲𝘀 𝗗𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻 was strategically structured into two parts.', 'In Part 1, LGOO V Adel Dominique P. Gujilde discussed the foundational principles of Results-Based Monitoring & Evaluation (RBME), guiding youth leaders on measuring project success beyond mere compliance by tracking concrete outputs, outcomes, and sustainable impacts.']
+          },
+          {
+            title: '𝐃𝐈𝐋𝐆 𝐒𝐮𝐫𝐢𝐠𝐚𝐨 𝐝𝐞𝐥 𝐒𝐮𝐫 𝐒𝐭𝐫𝐞𝐧𝐠𝐭𝐡𝐞𝐧𝐬 𝐆𝐀𝐃 𝐏𝐥𝐚𝐧𝐧𝐢𝐧𝐠 𝐢𝐧 𝐋𝐢𝐚𝐧𝐠𝐚', date: 'August 17, 2026', 
+            image: 'Logos/776692776_1612793397019863_314399736514864627_n.jpg', url: 'http://facebook.com/DILGsds/posts/pfbid0sVdzMtuUHYcZjUhyRAYm996w1PN696zpSKXoPoPUYfDkLFJPArDVJELN3EGHptgUl',
+            paragraphs: ['Program Manager Mary Jean Panchito of DILG Surigao del Sur provided technical assistance during the Gender and Development (GAD) Agenda Formulation Workshop initiated by the Municipality of Lianga, Surigao del Sur, held on August 6–8, 2026, in Butuan City.', 'The workshop was participated by all members of the municipality’s GAD Focal Point System (GFPS), headed by Municipal Mayor Hon. Amado Layno, Jr., which aimed to enhance their capacity to develop a responsive and gender-inclusive GAD Agenda.', 'Through sustained technical assistance and capacity-building, DILG continues to support LGUs in advancing gender-responsive and inclusive local governance.']
+          },
+          {
+            title: '𝗗𝗜𝗟𝗚 𝗦𝘂𝗿𝗶𝗴𝗮𝗼 𝗱𝗲𝗹 𝗦𝘂𝗿 𝗝𝗼𝗶𝗻𝘀 𝗧𝘂𝗿𝗻 𝗼𝘃𝗲𝗿 𝗼𝗳 𝗟𝗚𝗦𝗙-𝗦𝗕𝗗𝗣 𝗣𝗿𝗼𝗷𝗲𝗰𝘁𝘀 𝗶𝗻 𝗛𝗶𝗻𝗮𝘁𝘂𝗮𝗻',date: 'August 15, 2026', 
+            image: 'Logos/772611354_1951831995483791_6554305196303924343_n.jpg', url: 'https://www.facebook.com/DILGsds/posts/pfbid02j6883xsNcQ6eanmQUJhxthakotRbwWPpCup1wte1GsLvshTbpzsqBxrBqKzBt11Tl',
+            paragraphs: ['DILG Surigao del Sur recently graced the turnover ceremonies of six completed FY 2025 Local Government Support Fund–Support to Barangay Development Program (LGSF-SBDP) projects in Hinatuan on August 10 – 11, 2026. Provincial Director Rizza D. Sion, CESO V, attended with MLGOO Recto M. Mantiza Jr., Hinatuan Municipal Mayor Atty. Tito A. Cañedo III, officials and representatives of the concerned barangays, and other stakeholders.', 'The projects include 50 solar streetlights each for Barangays Harip, Bitoon, Tidman, and Tarusan; a solar-powered Level II water system in Barangay Dugmanon; and a school building with a comfort room in Barangay San Juan. With ₱2.5 million allotted for each project, these facilities bring essential services closer to communities and support safer and better living conditions for residents.']
+          }
+        ];
+
+        const showItem = (index) => {
+          const item = items[index];
+          featuredCard.querySelector('.featured-title').textContent = item.title;
+          featuredCard.querySelector('.featured-date').textContent = item.date;
+          const imageLink = featuredCard.querySelector('.featured-media');
+          imageLink.href = item.url;
+          imageLink.querySelector('img').src = item.image;
+          imageLink.querySelector('img').alt = item.title;
+          const excerpt = featuredCard.querySelector('.featured-excerpt');
+          const paragraphs = Array.isArray(item.paragraphs)
+            ? item.paragraphs
+            : (item.paragraphs || '').split(/\s*<\/?br\s*\/?>\s*|\n\s*\n/i).filter(Boolean);
+          excerpt.innerHTML = '';
+          paragraphs.forEach((text) => {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = text;
+            excerpt.appendChild(paragraph);
+          });
+          featuredCard.querySelector('.featured-read-more').href = item.url;
+          dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle('active', dotIndex === index);
+            dot.style.background = dotIndex === index ? '#cc3300' : '#b0b0b0';
+          });
+        };
+
+        dots.forEach((dot) => dot.addEventListener('click', () => showItem(Number(dot.dataset.index))));
+        showItem(0);
+      })();
+    </script>
+    <script>
+      (() => {
+        const section = document.querySelector('.rn-layout');
+        const card = section?.querySelector('.rn-news-frame');
+        const dots = Array.from(section?.querySelectorAll('.provincial-dot') || []);
+        if (!card || dots.length !== 5) return;
+
+        const items = [
+          {
+            title: 'Provincial Rural Improvement Club (PRIC) 2nd Quarter Meeting', date: 'June 30, 2026',
+            image: 'Logos/PRIC 2ND QUARTER MEETING (1).png', url: 'https://surigaodelsur.gov.ph/news-single/550',
+            paragraphs: ['To further strengthen the implementation of programs for Rural Improvement Clubs (RICs) across Surigao del Sur, the Office of the Provincial Agriculturist (OPAg) convened the Provincial Rural Improvement Club (PRIC) 2nd Quarter Meeting on June 30, 2026, at the OPAg Training Hall, Paradise Heights, Telaje, Tandag City.', 'The activity brought together City and Municipal RIC Coordinators, Provincial RIC Officers, and OPAg personnel to discuss updates, address concerns, and plan activities that will benefit RIC members and their communities.']
+          },
+          {
+            title: 'Carrying Capacity Development Seminar Workshop', date: 'June 30, 2026',
+            image: 'Logos/1783319661_6a4b4c6d3aaa7.png', url: 'https://surigaodelsur.gov.ph/news-single/546',
+            paragraphs: ['TANDAG CITY, Surigao del Sur - The Department of Tourism (DOT)-Caraga, in partnership with the Provincial Tourism Office of Surigao del Sur, conducted a two-day Carrying Capacity Development Seminar-Workshop on June 30 to July 1, 2026, at Uptown Corporate Hotel, Tandag City.', 'The activity brought together Municipal Tourism Officers and representatives from the Municipal and Provincial Environment and Natural Resources Offices from different local government units in the province.']
+          },
+          {
+            title: 'Provincial GFPS Strengthens Gender Mainstreaming in 2nd Quarter Meeting', date: 'June 25, 2026',
+            url: 'https://surigaodelsur.gov.ph/news-single/541',
+            paragraphs: ['SURIGAO DEL SUR – Strengthening gender-responsive governance requires more than compliance—it demands commitment, collaboration, and a shared understanding that Gender and Development (GAD) is everyone\'s responsibility. This was the central message during the 2nd Quarter Gender and Development (GAD) Focal Point System (GFPS) Meeting held on June 25, 2026, at the Provincial Government Office (PGO) Conference Room.', 'The quarterly gathering brought together GAD Focal Persons, department representatives, and provincial officials to discuss organizational updates, GAD planning and budgeting, accomplishment reports, and strategies to further institutionalize gender mainstreaming across the Provincial Government of Surigao del Sur.', 'Opening the meeting, Acting Governor Hon. Manuel D. Alameda Sr. delivered an inspiring welcome message, sharing his personal journey toward appreciating the importance of Gender and Development. Hon. Alameda underscored the need to eliminate discrimination and cultivate a culture where everyone is treated with dignity and respect. He emphasized that opportunities should never be limited by gender, citing an occurrence he witnessed years ago where four women successfully entered CAFGU training—an achievement that proves women are equally capable of excelling in fields traditionally dominated by men.']
+          },
+          {
+            title: 'DILG Surigao del Sur promotes community-led resilience and disaster preparedness', date: 'June 04, 2026',
+            image: 'Logos/IMG_0697.jpeg', url: 'https://surigaodelsur.gov.ph/news-single/547',
+            paragraphs: ['The province advanced community resilience and disaster response capacity through province-wide coordination and readiness initiatives.', 'Local leaders emphasized practical planning, stronger communication pathways, and enhanced public awareness for disaster preparedness.']
+          },
+          {
+            title: 'Local governance teams review indicators for stronger program performance', date: 'May 28, 2026',
+            image: 'Logos/IMG_0467.jpeg', url: 'https://surigaodelsur.gov.ph/news-single/546',
+            paragraphs: ['Provincial leaders assessed program performance indicators to guide responsive resource allocation and improve local service outcomes.', 'The review underscores a collective commitment to measurable results, accountability, and better coordination across all governance levels.']
+          }
+        ];
+
+        const showItem = (index) => {
+          const item = items[index];
+          card.querySelector('.rn-news-title').textContent = item.title;
+          card.querySelector('.rn-news-date').textContent = item.date;
+          const imageLink = card.querySelector('.rn-feature-media a');
+          const image = card.querySelector('.rn-feature-media img');
+          imageLink.href = item.url;
+          image.src = item.image;
+          image.alt = item.title;
+          const copy = card.querySelector('.rn-news-copy');
+          copy.querySelectorAll('p').forEach((paragraph) => paragraph.remove());
+          item.paragraphs.forEach((text) => {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = text;
+            copy.appendChild(paragraph);
+          });
+          const readMore = card.querySelector('.rn-read-more');
+          readMore.href = item.url;
+          dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle('active', dotIndex === index);
+            dot.style.background = dotIndex === index ? '#cc3300' : '#b0b0b0';
+          });
+        };
+
+        dots.forEach((dot) => dot.addEventListener('click', () => showItem(Number(dot.dataset.index))));
+        showItem(0);
+      })();
+    </script>
+

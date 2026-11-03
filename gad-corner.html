@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GAD Corner - DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .gad-corner-panel {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 48px 40px;
+    }
+    .gad-corner-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .gad-corner-header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      color: #0f2a6b;
+      letter-spacing: -0.03em;
+    }
+    .gad-corner-header .gad-eyebrow {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 999px;
+      background: rgba(246, 185, 59, 0.18);
+      color: var(--navy-dark);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .gad-corner-header p {
+      color: var(--muted);
+      max-width: 1380px;
+      width: 100%;
+      margin: 12px auto 0;
+      text-align: center;
+      line-height: 1.7;
+    }
+    /* Two-column card grid */
+    .gad-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .gad-card {
+      background: #ffffff;
+      border: 1px solid rgba(31, 95, 207, 0.14);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(15, 42, 107, 0.06);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s ease;
+    }
+    .gad-card:hover {
+      box-shadow: 0 12px 32px rgba(15, 42, 107, 0.10);
+    }
+    .gad-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+    .gad-card-header a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(31, 95, 207, 0.08);
+      color: var(--blue);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .gad-card-header a:hover {
+      background: var(--blue);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .gad-card-header svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    .gad-card iframe {
+      width: 100%;
+      border: none;
+      display: block;
+      border-radius: 8px;
+      background: #f8fbff;
+      min-height: 321px;
+    }
+    .gad-card-title {
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--navy-dark);
+      margin-top: 14px;
+      padding: 8px 0 4px;
+      line-height: 1.4;
+    }
+    /* ── GAD Plans & Reports Section ─ */
+    .gad-plans-section {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid #cccccc;
+    }
+    .gad-plans-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .gad-plans-header h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      color: #000000;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+    .gad-plans-header p {
+      margin: 0 auto;
+      max-width: 680px;
+      color: #333333;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    /* PDF viewer & list share same max-width for alignment */
+    .gad-plans-content {
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .gad-plans-preview {
+      text-align: center;
+      margin: 0 0 28px;
+    }
+    .gad-plans-preview iframe {
+      width: 100%;
+      border: 1px solid #cccccc;
+      display: block;
+      margin: 0 auto;
+      background: #ffffff;
+      min-height: 500px;
+    }
+    .gad-plans-list {
+      width: 100%;
+      margin: 0;
+    }
+    .gad-plans-list-item {
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #eeeeee;
+    }
+    .gad-plans-list-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .gad-plans-list-item h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #000000;
+      font-family: 'Poppins', sans-serif;
+    }
+    .gad-plans-list-item p {
+      margin: 0;
+      color: #333333;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    /* GAD/GEDSI LEGAL BASES Section */
+    .legal-bases-section {
+      margin-top: 48px;
+      padding-top: 36px;
+      border-top: 2px solid #cccccc;
+    }
+    .legal-bases-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .legal-bases-header h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      color: #000000;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+    .legal-bases-subtitle {
+      margin: 0 auto;
+      max-width: 700px;
+      color: #333333;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .legal-bases-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .legal-bases-card {
+      background: #ffffff;
+      border: 1px solid #d0d0d0;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .legal-bases-card-title {
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #1f5fcf;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #1f5fcf;
+    }
+    .legal-bases-card-body {
+      flex: 1;
+      min-height: 0;
+    }
+    .legal-bases-card-body iframe {
+      width: 100%;
+      border: none;
+      display: block;
+      border-radius: 8px;
+      background: #f8fbff;
+      min-height: 400px;
+    }
+    @media (max-width: 800px) {
+      .gad-card-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .gad-corner-panel { padding: 28px 20px; }
+      .gad-plans-preview iframe {
+        min-height: 300px;
+      }
+      .legal-bases-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li class="dropdown-item-with-submenu">
+              <a href="joint-circulars.html" class="dropdown-item"><span>Joint Circulars</span></a>
+            </li>
+            <li class="dropdown-item-with-submenu">
+              <a href="memo-circulars.html" class="dropdown-item"><span>Memo Circulars</span></a>
+            </li>
+            <li><a href="presidential-directives.html" class="dropdown-item">Presidential Directives</a></li>
+            <li><a href="republic-acts.html" class="dropdown-item">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link active" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item active" aria-current="page">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" class="header-logo" alt="DILG Seal" />
+        <img src="Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="gad-corner-panel">
+      <div class="gad-corner-header">
+        <h1>GAD Corner</h1>
+        <p>The GAD Corner serves as an information hub for policies, programs, activities, and accomplishments that promote gender equality, women's empowerment, and inclusive development in accordance with national laws and government policies.</p>
+      </div>
+
+      <!-- Two-Column Card Grid -->
+      <div class="gad-card-grid">
+        <!-- Card 1: GAD Corner Narrative Reports -->
+        <div class="gad-card">
+          <div class="gad-card-header">
+            <span></span>
+            <a href="https://docs.google.com/folderview?id=1M6IcSl42usRnqwH6FhsSg67pXzGx3Pt2" target="_blank" rel="noopener noreferrer" title="Open Drive Folder in new window" aria-label="Open Drive Folder in new window">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg>
+            </a>
+          </div>
+          <iframe src="https://drive.google.com/embeddedfolderview?id=1M6IcSl42usRnqwH6FhsSg67pXzGx3Pt2#list" style="height: 321px" allowfullscreen></iframe>
+          <div class="gad-card-title">GAD Corner Narrative Reports</div>
+        </div>
+
+        <!-- Card 2: Provincial Orders, Memo, Etc. -->
+        <div class="gad-card">
+          <div class="gad-card-header">
+            <span></span>
+            <a href="https://docs.google.com/folderview?id=119_oJq_YpF70WhdTFJ8joskZpPnb9ATq" target="_blank" rel="noopener noreferrer" title="Open Drive Folder in new window" aria-label="Open Drive Folder in new window">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg>
+            </a>
+          </div>
+          <iframe src="https://drive.google.com/embeddedfolderview?id=119_oJq_YpF70WhdTFJ8joskZpPnb9ATq#list" style="height: 322px" allowfullscreen></iframe>
+          <div class="gad-card-title">Provincial Orders, Memo, Etc.</div>
+        </div>
+      </div>
+
+      <!-- ── GAD Plans & Reports Section ──────────────────────────────── -->
+      <div class="gad-plans-section">
+        <div class="gad-plans-header">
+          <h2>GAD PLANS AND REPORTS</h2>
+          <p>This section contains official GAD documents prepared and submitted in compliance with national requirements:</p>
+        </div>
+
+        <div class="gad-plans-content">
+          <div class="gad-plans-preview">
+            <iframe src="https://drive.google.com/file/d/1WjczQrmUmt0Crg725htWBowz_lrwqVaz/preview" allowfullscreen></iframe>
+          </div>
+
+          <div class="gad-plans-list">
+            <div class="gad-plans-list-item">
+              <h3>GAD Plan and Budget (GPB)</h3>
+              <p>The GPB outlines the agency's gender issues, objectives, programs, activities, and corresponding budget allocations for each fiscal year.</p>
+            </div>
+            <div class="gad-plans-list-item">
+              <h3>GAD Accomplishment Report (GAR)</h3>
+              <p>The GAR presents the results and accomplishments of implemented GAD programs and activities, including outcomes and utilization of funds.</p>
+            </div>
+            <div class="gad-plans-list-item">
+              <h3>GAD Audit and Monitoring Reports</h3>
+              <p>These reports reflect the findings, recommendations, and compliance status based on GAD audits and evaluations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAD/GEDSI LEGAL BASES Section -->
+      <div class="legal-bases-section">
+        <div class="legal-bases-header">
+          <h2>GAD/GEDSI LEGAL BASES</h2>
+          <p class="legal-bases-subtitle">The implementation of Gender and Development (GAD) programs is anchored on the following legal and policy frameworks.</p>
+        </div>
+        <div class="legal-bases-grid">
+          <div class="legal-bases-card">
+            <div class="legal-bases-card-title">Treatises</div>
+            <div class="legal-bases-card-body">
+              <iframe src="https://drive.google.com/embeddedfolderview?id=1TdzToFuCSXYBMqTI32AVj8fmRi-UUUDu#list" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="legal-bases-card">
+            <div class="legal-bases-card-title">Republic Acts</div>
+            <div class="legal-bases-card-body">
+              <iframe src="https://drive.google.com/embeddedfolderview?id=1J1OhVofbuS8qVQ5zZdjSydo3spJsMZhr#list" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/"><img src="Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/" ><img src="Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card" aria-label="Open DILG Surigao del Sur Facebook page (opens in new tab)">
+            <span class="connect-icon" aria-hidden="true">
+              <img src="Logos/2021_Facebook_icon.svg" alt="Facebook icon" />
+            </span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function() {
+      const timeEl = document.getElementById('topbar-time');
+      const dateEl = document.getElementById('topbar-date');
+      function updateClock() {
+        try {
+          const now = new Date();
+          const phTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+          const weekday = phTime.toLocaleDateString('en-PH', { weekday: 'long', timeZone: 'Asia/Manila' });
+          const month = phTime.toLocaleDateString('en-PH', { month: 'long', timeZone: 'Asia/Manila' });
+          const day = phTime.toLocaleDateString('en-PH', { day: 'numeric', timeZone: 'Asia/Manila' });
+          const year = phTime.toLocaleDateString('en-PH', { year: 'numeric', timeZone: 'Asia/Manila' });
+          const timeString = phTime.toLocaleTimeString('en-PH', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Manila' });
+          if (dateEl) dateEl.textContent = weekday + ', ' + month + ' ' + day + ', ' + year;
+          if (timeEl) timeEl.textContent = timeString + ' Tandag City';
+        } catch(e) { 
+          if (dateEl) dateEl.textContent = 'Date unavailable';
+          if (timeEl) timeEl.textContent = 'Time unavailable';
+        }
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+  </script>
+</body>
+</html>

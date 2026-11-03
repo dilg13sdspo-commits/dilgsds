@@ -1,0 +1,432 @@
+<?php
+require_once __DIR__ . '/auth/middleware.php';
+require_role('ADMIN');
+?>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elected Officials Management - DILG SDS</title>
+  <link rel="stylesheet" href="styles.css?v=20260814-admin-ref-01">
+  <style>
+    .admin-sidebar__nav { display: flex; flex-direction: column; gap: 4px; padding: 8px 10px 18px; }
+    .sidebar-section-label { margin: 14px 8px 6px; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 800; color: rgba(188, 211, 255, 0.7); }
+    .admin-sidebar__nav a, .sidebar-settings-link, .sidebar-logout { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 42px; padding: 9px 12px; color: rgba(232, 240, 255, 0.92); text-decoration: none; border-radius: 10px; font-size: 0.92rem; font-weight: 700; transition: background-color 0.18s ease, transform 0.18s ease, color 0.18s ease; box-sizing: border-box; background: transparent; border: 0; text-align: left; cursor: pointer; }
+    .admin-sidebar__nav a:hover, .sidebar-settings-link:hover, .sidebar-logout:hover, .admin-sidebar__nav a:focus-visible, .sidebar-settings-link:focus-visible, .sidebar-logout:focus-visible { background: rgba(255,255,255,0.08); transform: translateX(2px); outline: none; }
+    .admin-sidebar__nav a.is-active { background: #1f5fcf; color: #ffffff; box-shadow: inset 3px 0 0 #ffffff; }
+    .officials-admin { max-width: 1280px; margin: 0 auto; width: 100%; }
+    .officials-admin h1 { color: #0f2a6b; margin: 0 0 6px; }
+    .officials-admin > p { color: #64748b; margin: 0 0 22px; }
+    .officials-admin-grid { display: grid; grid-template-columns: minmax(280px, 360px) 1fr; gap: 22px; align-items: start; }
+    .official-form, .official-list { background: #fff; border: 1px solid #dfe7f0; border-radius: 12px; padding: 22px; box-shadow: 0 8px 24px rgba(15,42,107,.06); }
+    .official-form h2, .official-list h2 { color: #0f2a6b; margin: 0 0 18px; font-size: 1.15rem; }
+    .official-form label { display: block; color: #334155; font-weight: 700; font-size: .78rem; margin: 12px 0 5px; }
+    .official-form input, .official-form textarea, .official-form select { width: 100%; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 7px; padding: 10px 11px; font: inherit; color: #1e293b; }
+    .official-form textarea { min-height: 90px; resize: vertical; }
+    .official-form input[type=file] { padding: 7px; }
+    .image-adjustment { margin-top: 8px; padding: 14px; border: 1px solid #d8e4f8; background: #f8fbff; border-radius: 10px; }
+    .image-adjustment__preview { width: 100%; height: 140px; border-radius: 9px; overflow: hidden; border: 1px solid #dfe7f0; background: #edf3fb; }
+    .image-adjustment__preview img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 50%; background: #edf3fb; }
+    .image-adjustment__row { display: grid; gap: 10px; margin-top: 12px; }
+    .image-adjustment__row input[type="range"] { padding: 0; }
+    .image-adjustment__meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: .72rem; color: #475569; }
+    .form-actions { display: flex; gap: 9px; margin-top: 18px; }
+    .form-actions button, .official-row button { border: 0; border-radius: 7px; padding: 9px 13px; cursor: pointer; font-weight: 700; }
+    #save-official { background: #1f5fcf; color: #fff; }
+    #cancel-edit { background: #e2e8f0; color: #334155; }
+    .official-row { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; gap: 13px; align-items: center; padding: 12px 0; border-bottom: 1px solid #e2e8f0; }
+    .official-row:last-child { border-bottom: 0; }
+    .official-row img { width: 54px; height: 54px; object-fit: contain; border-radius: 50%; background: #eef3f8; }
+    .official-row strong { display: block; color: #1e293b; }
+    .official-row small { color: #64748b; }
+    .official-row button { background: #e8eef8; color: #0f2a6b; margin-left: 5px; }
+    .official-row .delete { color: #b42318; background: #fff0ef; }
+    .empty-state, .status-message { color: #64748b; padding: 18px 0; }
+    .status-message { min-height: 18px; font-weight: 700; }
+    .admin-sidebar {
+      background: linear-gradient(180deg, rgba(15, 42, 107, 0.98) 0%, rgba(8, 22, 50, 0.96) 100%);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .admin-sidebar__title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 18px 12px 14px;
+      color: rgba(255,255,255,0.96);
+      font-weight: 800;
+      min-height: 76px;
+      box-sizing: border-box;
+      position: relative;
+      padding-right: 28px;
+    }
+    .admin-sidebar__brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      padding: 4px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .admin-sidebar__brand-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      min-width: 0;
+      line-height: 1.18;
+      white-space: normal;
+      flex: 1;
+    }
+    .admin-sidebar__brand-name {
+      font-size: 0.7rem;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: #ffffff;
+      font-weight: 700;
+      line-height: 1.3;
+      white-space: normal;
+      overflow: visible;
+    }
+    .admin-sidebar__brand-line { display: block; }
+    .admin-sidebar__brand-subtitle {
+      font-size: 0.58rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(220, 232, 255, 0.8);
+      font-weight: 700;
+      white-space: nowrap;
+      line-height: 1.3;
+    }
+    .sidebar-collapse-toggle {
+      position: absolute;
+      top: 18px;
+      right: 8px;
+      left: auto;
+      transform: none;
+      width: 18px;
+      height: 18px;
+      border: 0;
+      background: transparent;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 40;
+      transition: left 0.22s ease, transform 0.22s ease;
+      padding: 0;
+    }
+    .sidebar-collapse-toggle span {
+      display: inline-block;
+      font-size: 2rem;
+      line-height: 1;
+      transform: translateX(-1px);
+      transition: transform 0.22s ease;
+      color: #ffffff;
+    }
+    .admin-portal-shell {
+      position: relative;
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      min-height: 100vh;
+      transition: grid-template-columns 0.22s ease;
+    }
+    .admin-sidebar {
+      position: relative;
+      width: 320px;
+      min-width: 320px;
+      transition: width 0.22s ease, min-width 0.22s ease;
+    }
+    body.sidebar-collapsed .admin-portal-shell {
+      grid-template-columns: 90px minmax(0, 1fr);
+    }
+    body.sidebar-collapsed .admin-sidebar {
+      width: 90px;
+      min-width: 90px;
+    }
+    body.sidebar-collapsed .admin-sidebar__title,
+    body.sidebar-collapsed .sidebar-section-label,
+    body.sidebar-collapsed .admin-sidebar__nav a span:last-child,
+    body.sidebar-collapsed .sidebar-settings-link span:last-child,
+    body.sidebar-collapsed .sidebar-logout span:last-child {
+      display: none;
+    }
+    body.sidebar-collapsed .admin-sidebar__nav a,
+    body.sidebar-collapsed .sidebar-settings-link,
+    body.sidebar-collapsed .sidebar-logout {
+      justify-content: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    body.sidebar-collapsed .sidebar-collapse-toggle {
+      right: 8px;
+      left: auto;
+    }
+    body.sidebar-collapsed .sidebar-collapse-toggle span {
+      transform: rotate(180deg) translateX(-1px);
+    }
+    @media (max-width: 850px) { .officials-admin-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="admin-dashboard-ref-body">
+  <div class="admin-portal-shell">
+    <button type="button" class="sidebar-collapse-toggle" id="sidebar-toggle" aria-label="Collapse sidebar"><span>‹</span></button>
+    <aside class="admin-sidebar" aria-label="Sidebar navigation">
+      <div class="admin-sidebar__title" aria-label="Department of the Interior and Local Government">
+        <img class="admin-sidebar__brand-logo" src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" alt="DILG logo" />
+        <div class="admin-sidebar__brand-text">
+          <span class="admin-sidebar__brand-name">
+            <span class="admin-sidebar__brand-line">Department of the Interior and Local Government</span>
+          </span>
+          <span class="admin-sidebar__brand-subtitle">SURIGAO DEL SUR</span>
+        </div>
+      </div>
+      <nav class="admin-sidebar__nav">
+        <div class="sidebar-section-label">ADMINISTRATION</div>
+        <a href="admin-dashboard.php" aria-label="Dashboard" title="Dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 11.5L12 4l8 7.5V20a1 1 0 0 1-1 1h-4v-7H9v7H5a1 1 0 0 1-1-1v-8.5z"/></svg></span><span>Dashboard</span></a>
+        <a href="admin-users.php" aria-label="User Management" title="User Management"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-3.33 0-8 1.79-8 4v1h16v-1c0-2.21-4.67-4-8-4z"/></svg></span><span>User Management</span></a>
+
+        <div class="sidebar-section-label">CONTENT MANAGEMENT</div>
+        <a href="admin-home.php" aria-label="Home Management" title="Home Management"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 11.5L12 4l8 7.5V20H4z"/></svg></span><span>Home Management</span></a>
+        <a href="admin-officials.php" class="is-active" aria-label="Elected Officials" title="Elected Officials"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span><span>Elected Officials</span></a>
+        <a href="admin-news.php" aria-label="News Management" title="News Management"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H7l-3 3V5z"/></svg></span><span>News Management</span></a>
+        <a href="admin-issuances.php" aria-label="Issuances Management" title="Issuances Management"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z"/></svg></span><span>Issuances Management</span></a>
+        <a href="admin-programs.php" aria-label="Programs &amp; Services" title="Programs &amp; Services"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h16"/></svg></span><span>Programs &amp; Services</span></a>
+        <a href="admin-dashboard.php#media-files" aria-label="Media Files" title="Media Files"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zM6 16l3-4 3 3 3-4 3 5"/></svg></span><span>Media Files</span></a>
+
+        <div class="sidebar-section-label">REPORTS &amp; ANALYTICS</div>
+        <a href="admin-dashboard.php#reports-analytics" aria-label="Reports &amp; Analytics" title="Reports &amp; Analytics"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 18V9M12 18V5M19 18v-7M4 18h16"/></svg></span><span>Reports &amp; Analytics</span></a>
+
+        <div class="sidebar-section-label">SYSTEM</div>
+        <button type="button" class="sidebar-settings-link" data-open-settings aria-label="System Settings" title="System Settings"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 12h2m12 0h2M12 4v2m0 12v2"/></svg></span><span>System Settings</span></button>
+        <a href="index.html" id="logout-btn" class="sidebar-logout" aria-label="Log Out" title="Log Out"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v3H3v4h7v3zm9-13h-7v2h7v12h-7v2h7a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/></svg></span><span>Log Out</span></a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <section class="officials-admin">
+        <h1>Elected Officials</h1>
+        <p>Manage logos, names, photos, contact information, Facebook pages, and websites.</p>
+        <div class="officials-admin-grid">
+          <form class="official-form" id="official-form" enctype="multipart/form-data">
+            <h2 id="form-title">Add Official</h2>
+            <input type="hidden" name="id" id="official-id">
+            <label for="office-title">Office / LGU</label><input id="office-title" name="office_title" required>
+            <label for="official-name">Official name</label><input id="official-name" name="official_name" required>
+            <label for="contact-details">Contact information</label><textarea id="contact-details" name="contact_details" placeholder="One detail per line"></textarea>
+            <label for="logo-path">Logo path or URL</label><input id="logo-path" name="logo_path" placeholder="Logos/example.png">
+            <label for="logo">Upload new logo</label><input id="logo" name="logo" type="file" accept="image/*,.svg">
+            <label for="photo-path">Photo path or URL</label><input id="photo-path" name="photo_path" placeholder="Logos/Local Officials Image/example.jpg">
+            <label for="photo">Upload new photo</label><input id="photo" name="photo" type="file" accept="image/*,.svg">
+            <div class="image-adjustment" id="image-adjustment">
+              <label for="image-fit">Image fit</label>
+              <select id="image-fit" name="image_fit">
+                <option value="cover" selected>Cover</option>
+                <option value="contain">Contain</option>
+              </select>
+              <div class="image-adjustment__preview">
+                <img id="official-image-preview" src="" alt="Official photo preview">
+              </div>
+              <div class="image-adjustment__row">
+                <div class="image-adjustment__meta"><span>Horizontal focus</span><strong id="image-x-label">50%</strong></div>
+                <input id="image-position-x" name="image_position_x" type="range" min="0" max="100" value="50">
+                <div class="image-adjustment__meta"><span>Vertical focus</span><strong id="image-y-label">50%</strong></div>
+                <input id="image-position-y" name="image_position_y" type="range" min="0" max="100" value="50">
+              </div>
+            </div>
+            <label for="facebook-url">Facebook URL</label><input id="facebook-url" name="facebook_url" type="url">
+            <label for="website-url">Website URL</label><input id="website-url" name="website_url" type="url">
+            <label for="profile-url">LGU profile URL</label><input id="profile-url" name="profile_url" type="url">
+            <label for="sort-order">Display order</label><input id="sort-order" name="sort_order" type="number" min="1" value="1">
+            <label><input id="is-active" name="is_active" type="checkbox" checked> Show on public directory</label>
+            <div class="form-actions"><button id="save-official" type="submit">Save Official</button><button id="cancel-edit" type="button">Clear</button></div>
+            <div class="status-message" id="form-status" role="status"></div>
+          </form>
+          <section class="official-list"><h2>Directory Records</h2><div id="official-list"><div class="empty-state">Loading...</div></div></section>
+        </div>
+      </section>
+    </main>
+  </div>
+<script>
+(function () {
+  var api = 'auth/officials_api.php';
+  var form = document.getElementById('official-form');
+  var list = document.getElementById('official-list');
+  var status = document.getElementById('form-status');
+  var fields = ['office_title', 'official_name', 'contact_details', 'logo_path', 'photo_path', 'facebook_url', 'website_url', 'profile_url', 'sort_order'];
+  function esc(value) { return String(value || '').replace(/[&<>"']/g, function (char) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]); }); }
+  function clamp(value, min, max) { return Math.min(Math.max(value, min), max); }
+  function updateOfficialImagePreview() {
+    var preview = document.getElementById('official-image-preview');
+    var source = document.getElementById('photo-path').value || document.getElementById('logo-path').value || '';
+    var file = document.getElementById('photo').files && document.getElementById('photo').files[0];
+    var objectUrl = null;
+    if (file) {
+      objectUrl = URL.createObjectURL(file);
+      source = objectUrl;
+    }
+    preview.src = source || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1200" height="600"%3E%3Crect width="100%" height="100%" fill="%23edf3fb"/%3E%3C/svg%3E';
+    preview.style.objectFit = document.getElementById('image-fit').value || 'cover';
+    preview.style.objectPosition = document.getElementById('image-position-x').value + '% ' + document.getElementById('image-position-y').value + '%';
+    if (objectUrl) {
+      setTimeout(function () { URL.revokeObjectURL(objectUrl); }, 1000);
+    }
+    document.getElementById('image-x-label').textContent = document.getElementById('image-position-x').value + '%';
+    document.getElementById('image-y-label').textContent = document.getElementById('image-position-y').value + '%';
+  }
+  function load() { fetch(api).then(function (r) { return r.json(); }).then(function (data) { render(data.officials || []); }).catch(function () { list.innerHTML = '<div class="empty-state">Unable to load records.</div>'; }); }
+  function render(records) { if (!records.length) { list.innerHTML = '<div class="empty-state">No officials yet.</div>'; return; } list.innerHTML = records.map(function (item) { var fit = item.image_fit === 'contain' ? 'contain' : 'cover'; var x = clamp(Number(item.image_position_x || 50), 0, 100); var y = clamp(Number(item.image_position_y || 50), 0, 100); var style = 'object-fit: ' + fit + '; object-position: ' + x + '% ' + y + '%;'; return '<div class="official-row"><img src="' + esc(item.photo_path || item.logo_path) + '" alt="" style="' + style + '"><div><strong>' + esc(item.official_name) + '</strong><small>' + esc(item.office_title) + '</small></div><div><button type="button" data-edit="' + item.id + '">Edit</button><button type="button" class="delete" data-delete="' + item.id + '">Delete</button></div></div>'; }).join(''); }
+  function clearForm() { form.reset(); document.getElementById('official-id').value = ''; document.getElementById('form-title').textContent = 'Add Official'; document.getElementById('is-active').checked = true; document.getElementById('image-fit').value = 'cover'; document.getElementById('image-position-x').value = '50'; document.getElementById('image-position-y').value = '50'; updateOfficialImagePreview(); status.textContent = ''; }
+  list.addEventListener('click', function (event) { var id = event.target.getAttribute('data-edit') || event.target.getAttribute('data-delete'); if (!id) return; if (event.target.hasAttribute('data-delete')) { if (!confirm('Delete this official?')) return; var body = new URLSearchParams({ action: 'delete', id: id }); fetch(api, { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: body }).then(function (r) { return r.json(); }).then(function (data) { if (data.error) throw new Error(data.error); load(); }); return; } fetch(api).then(function (r) { return r.json(); }).then(function (data) { var item = (data.officials || []).find(function (record) { return String(record.id) === String(id); }); if (!item) return; fields.forEach(function (name) { document.getElementById(name.replace('_', '-')).value = item[name] || ''; }); document.getElementById('official-id').value = item.id; document.getElementById('is-active').checked = !!item.is_active; document.getElementById('image-fit').value = item.image_fit === 'contain' ? 'contain' : 'cover'; document.getElementById('image-position-x').value = clamp(Number(item.image_position_x || 50), 0, 100); document.getElementById('image-position-y').value = clamp(Number(item.image_position_y || 50), 0, 100); document.getElementById('form-title').textContent = 'Edit Official'; updateOfficialImagePreview(); window.scrollTo({top: 0, behavior: 'smooth'}); }); });
+  form.addEventListener('submit', function (event) { event.preventDefault(); var data = new FormData(form); data.append('action', data.get('official-id') ? 'update' : (document.getElementById('official-id').value ? 'update' : 'create')); if (document.getElementById('official-id').value) data.set('action', 'update'); fetch(api, { method: 'POST', body: data }).then(function (r) { return r.json(); }).then(function (result) { if (result.error) throw new Error(result.error); status.textContent = 'Saved.'; clearForm(); load(); }).catch(function (error) { status.textContent = error.message; }); });
+  document.getElementById('photo').addEventListener('change', updateOfficialImagePreview);
+  document.getElementById('photo-path').addEventListener('input', updateOfficialImagePreview);
+  document.getElementById('logo-path').addEventListener('input', updateOfficialImagePreview);
+  document.getElementById('image-fit').addEventListener('change', updateOfficialImagePreview);
+  document.getElementById('image-position-x').addEventListener('input', updateOfficialImagePreview);
+  document.getElementById('image-position-y').addEventListener('input', updateOfficialImagePreview);
+  document.getElementById('cancel-edit').addEventListener('click', clearForm);
+  document.getElementById('logout-btn').addEventListener('click', function (event) { event.preventDefault(); fetch('auth/logout.php', {method: 'POST'}).finally(function () { location.href = 'index.html'; }); });
+  updateOfficialImagePreview();
+  load();
+}());
+
+const settingsModal = document.getElementById('settings-modal');
+const settingsForm = document.getElementById('system-settings-form');
+const settingsStatus = document.getElementById('settings-status');
+
+function openSettingsModal() {
+  if (!settingsModal) return;
+  settingsModal.classList.add('is-open');
+  settingsModal.setAttribute('aria-hidden', 'false');
+  if (settingsStatus) settingsStatus.textContent = '';
+}
+
+function closeSettingsModal() {
+  if (!settingsModal) return;
+  settingsModal.classList.remove('is-open');
+  settingsModal.setAttribute('aria-hidden', 'true');
+}
+
+document.querySelectorAll('[data-open-settings]').forEach(function (button) {
+  button.addEventListener('click', openSettingsModal);
+});
+
+document.querySelectorAll('[data-close-settings]').forEach(function (button) {
+  button.addEventListener('click', closeSettingsModal);
+});
+
+if (settingsModal) {
+  settingsModal.addEventListener('click', function (event) {
+    if (event.target === settingsModal || event.target.classList.contains('settings-modal__backdrop')) {
+      closeSettingsModal();
+    }
+  });
+}
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape' && settingsModal && settingsModal.classList.contains('is-open')) {
+    closeSettingsModal();
+  }
+});
+
+if (settingsForm) {
+  const savedSettings = JSON.parse(localStorage.getItem('dilgSystemSettings') || '{}');
+  if (savedSettings.websiteTitle) settingsForm.websiteTitle.value = savedSettings.websiteTitle;
+  if (savedSettings.contactEmail) settingsForm.contactEmail.value = savedSettings.contactEmail;
+  if (savedSettings.timezone) settingsForm.timezone.value = savedSettings.timezone;
+  if (savedSettings.maintenanceMode) settingsForm.maintenanceMode.value = savedSettings.maintenanceMode;
+  if (savedSettings.publishState) settingsForm.publishState.value = savedSettings.publishState;
+
+  settingsForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const formData = new FormData(settingsForm);
+    const values = Object.fromEntries(formData.entries());
+    localStorage.setItem('dilgSystemSettings', JSON.stringify(values));
+    if (settingsStatus) settingsStatus.textContent = 'Settings saved successfully.';
+    closeSettingsModal();
+  });
+}
+</script>
+<div class="settings-modal" id="settings-modal" aria-hidden="true">
+  <div class="settings-modal__backdrop" data-close-settings></div>
+  <div class="settings-modal__panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div class="settings-modal__header">
+      <h2 id="settings-title">System Settings</h2>
+      <button type="button" class="settings-modal__close" aria-label="Close settings" data-close-settings>×</button>
+    </div>
+    <form class="settings-form" id="system-settings-form">
+      <label>
+        Website Title
+        <input type="text" name="websiteTitle" value="DILG SDS" />
+      </label>
+      <div class="settings-form__row">
+        <label>
+          Contact Email
+          <input type="email" name="contactEmail" value="info@dilg.gov.ph" />
+        </label>
+        <label>
+          Default Timezone
+          <select name="timezone">
+            <option value="Asia/Manila" selected>Asia/Manila</option>
+            <option value="UTC">UTC</option>
+            <option value="America/New_York">America/New_York</option>
+          </select>
+        </label>
+      </div>
+      <div class="settings-form__row">
+        <label>
+          Maintenance Mode
+          <select name="maintenanceMode">
+            <option value="off" selected>Off</option>
+            <option value="on">On</option>
+          </select>
+        </label>
+        <label>
+          Default Publishing
+          <select name="publishState">
+            <option value="published" selected>Published</option>
+            <option value="draft">Draft</option>
+          </select>
+        </label>
+      </div>
+      <div class="settings-modal__actions">
+        <button type="button" class="settings-btn settings-btn--secondary" data-close-settings>Cancel</button>
+        <button type="submit" class="settings-btn settings-btn--primary">Save Settings</button>
+      </div>
+    </form>
+    <p class="settings-status" id="settings-status" aria-live="polite"></p>
+  </div>
+</div>
+<script>
+  (function () {
+    var toggle = document.getElementById('sidebar-toggle');
+    if (!toggle) return;
+    var body = document.body;
+    function apply(collapsed) {
+      body.classList.toggle('sidebar-collapsed', collapsed);
+      toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+      toggle.setAttribute('title', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+      toggle.innerHTML = collapsed ? '<span>›</span>' : '<span>‹</span>';
+    }
+    try {
+      apply(localStorage.getItem('dilg-admin-sidebar-collapsed') === '1');
+    } catch (error) {
+      apply(false);
+    }
+    toggle.addEventListener('click', function () {
+      var collapsed = body.classList.toggle('sidebar-collapsed');
+      try {
+        localStorage.setItem('dilg-admin-sidebar-collapsed', collapsed ? '1' : '0');
+      } catch (error) {}
+      toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+      toggle.setAttribute('title', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+      toggle.innerHTML = collapsed ? '<span>›</span>' : '<span>‹</span>';
+    });
+  }());
+</script>
+</body>
+</html>

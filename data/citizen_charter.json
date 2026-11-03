@@ -1,0 +1,100 @@
+{
+    "about": [
+        {
+            "id": 1,
+            "title": "About GAD - DILG Surigao del Sur",
+            "description": "The Gender and Development (GAD) program is a government strategy that promotes gender equality and ensures that the needs and concerns of women, men, and gender-diverse individuals are addressed in development planning, budgeting, implementation, and monitoring.",
+            "link_url": "",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        }
+    ],
+    "charter": [
+        {
+            "id": 1,
+            "title": "Issuance of Certificate for Foreign Travel Authority of Local Government Officials and Employees",
+            "description": "Citizen\u2019s Charter service entry",
+            "link_url": "https://drive.google.com/drive/folders/1R9MOxU7vwRCYHrVxvOX9DugyZS8Br3eM",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        },
+        {
+            "id": 2,
+            "title": "Request for the Issuance of Certification of Compliance to Full Disclosure Policy (FDP)",
+            "description": "Citizen\u2019s Charter service entry",
+            "link_url": "https://drive.google.com/drive/folders/12wFvXyhbSQGqEpL9tuqMBumbaC_2QMos",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        },
+        {
+            "id": 3,
+            "title": "Request for the Issuance of Department Authority to LGUs to Purchase Vehicle",
+            "description": "Citizen\u2019s Charter service entry",
+            "link_url": "https://drive.google.com/drive/folders/1qdTfYM6q0haHxIeEvDiCz40Q-VQYkam6",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        },
+        {
+            "id": 4,
+            "title": "Issuance to Department Authorization to Utilize Confidential Funds of LGUs",
+            "description": "Citizen\u2019s Charter service entry",
+            "link_url": "https://drive.google.com/drive/folders/1Zjd3Uk7yzYxWESeHSI5Pgtm_6LDiv9R0",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        },
+        {
+            "id": 5,
+            "title": "Processing of Barangay Official's Death and Burial Assistance (BODBA)",
+            "description": "Citizen\u2019s Charter service entry",
+            "link_url": "https://drive.google.com/drive/folders/1uLJbOIS4KHK_GnbDNnhZmWjXCkVx1gNF",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        },
+        {
+            "id": 6,
+            "title": "Request for Certification for Service Rendered by Local/Barangay Official for Application for CSC Eligibility",
+            "description": "Citizen\u2019s Charter service entry",
+            "link_url": "https://drive.google.com/drive/folders/1OZIvCQaMWKNO57BpeoIXKHHyY5iXb4Zd",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        },
+        {
+            "id": 7,
+            "title": "Request for Technical Assistance (Resource Person)",
+            "description": "Citizen\u2019s Charter service entry",
+            "link_url": "https://drive.google.com/drive/folders/1zKfyl0a8smKUEFAA_z2eRh3l2MFrb7k4",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        }
+    ],
+    "legal": [
+        {
+            "id": 1,
+            "title": "Legal Opinions | DILG Surigao del Sur",
+            "description": "OBTAINING COPIES OF BARANGAY RECORDS ON MATTERS UNDER MEDIATION",
+            "link_url": "",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        }
+    ],
+    "contact": [
+        {
+            "id": 1,
+            "title": "Contact Us | DILG Surigao del Sur",
+            "description": "2/F Provincial Capitol Bldg., Capitol Hills, Telaje, City of Tandag, Surigao del Sur",
+            "link_url": "",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        }
+    ],
+    "lgrc-gad": [
+        {
+            "id": 1,
+            "title": "LGRC and GAD | DILG Surigao del Sur",
+            "description": "Explore the Local Government Resource Center (LGRC) and Gender and Development (GAD) programs of DILG Surigao del Sur. Access resources, learn about our initiatives, and stay updated.",
+            "link_url": "",
+            "is_active": true,
+            "updated_at": "2026-08-31T03:52:27+02:00"
+        }
+    ]
+}

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .contact-page-panel {
+      padding: 72px 32px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+      min-height: calc(100vh - 180px);
+    }
+    .contact-section {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+    .contact-card {
+      width: 70%;
+      background: rgba(255,255,255,0.98);
+      border: 1px solid rgba(31,95,207,0.14);
+      border-radius: 28px;
+      box-shadow: 0 24px 50px rgba(15,42,107,0.10);
+      padding: 34px;
+      display: grid;
+      gap: 28px;
+    }
+    .contact-heading {
+      display: grid;
+      gap: 14px;
+    }
+    .contact-heading .eyebrow {
+      display: inline-flex;
+      color: var(--blue);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .contact-heading h2 {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 3.4vw, 3.2rem);
+      line-height: 1.05;
+      color: var(--navy-dark);
+      letter-spacing: -0.04em;
+    }
+    .contact-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.85;
+      max-width: 720px;
+    }
+    .contact-info-grid {
+      display: grid;
+      gap: 18px;
+    }
+    .contact-info-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: #f7f9ff;
+      border: 1px solid rgba(31,95,207,0.10);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .contact-info-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 32px rgba(15,42,107,0.12);
+    }
+    .contact-info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(31,95,207,0.12);
+      color: var(--blue);
+      font-size: 1.1rem;
+    }
+    .contact-info-label {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .contact-info-text {
+      margin: 0;
+      color: var(--navy-dark);
+      font-size: 0.98rem;
+      line-height: 1.75;
+      word-break: break-word;
+    }
+    .contact-info-text a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact-info-text a:hover {
+      text-decoration: underline;
+    }
+    .map-frame {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(31,95,207,0.14);
+      box-shadow: 0 18px 36px rgba(15,42,107,0.10);
+      min-height: 360px;
+    }
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      border: 0;
+      display: block;
+    }
+    .contact-form-card {
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid rgba(31,95,207,0.1);
+      box-shadow: 0 20px 40px rgba(15,42,107,0.08);
+      padding: 28px;
+      display: grid;
+      gap: 22px;
+    }
+    .contact-form-card h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+    .contact-form-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .form-row.single {
+      grid-template-columns: 1fr;
+    }
+    .field-group {
+      display: grid;
+      gap: 10px;
+    }
+    .field-group label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+    .field-group input,
+    .field-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(31,95,207,0.18);
+      background: #f9fbff;
+      color: var(--navy-dark);
+      font-size: 1rem;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+    .field-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    .field-group input:focus,
+    .field-group textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(31,95,207,0.12);
+      transform: translateY(-1px);
+    }
+    .field-group input::placeholder,
+    .field-group textarea::placeholder {
+      color: rgba(55,86,149,0.6);
+    }
+    .form-status {
+      min-height: 46px;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+      transition: all 180ms ease;
+    }
+    .form-status.success {
+      background: #eaf4ff;
+      color: #0f2a6b;
+      border-color: rgba(31,95,207,0.24);
+    }
+    .form-status.error {
+      background: #ffe9e9;
+      color: #8b2434;
+      border-color: rgba(178,54,65,0.24);
+    }
+    .form-status.hidden {
+      display: none;
+    }
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+    }
+    .form-actions p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      max-width: 72%;
+    }
+    .submit-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 24px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--blue), #144fc2);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 16px 36px rgba(31,95,207,0.18);
+      transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+    }
+    .submit-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 40px rgba(31,95,207,0.22);
+    }
+    .submit-button:disabled {
+      opacity: 0.72;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .submit-icon {
+      font-size: 1.1rem;
+    }
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.65);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.85s linear infinite;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+    .spinner.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .honeypot-field {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+    }
+    @media (max-width: 980px) {
+      .contact-section { flex-direction: column; }
+      .contact-card { width: 100%; }
+      .contact-sidebar { width: 100%; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .contact-page-panel { padding: 42px 18px 32px; }
+      .contact-heading h2 { font-size: 2.2rem; }
+      .form-actions { flex-direction: column; align-items: stretch; }
+      .form-actions p { max-width: 100%; }
+      .contact-info-card { padding: 16px; }
+      .map-frame { min-height: 260px; }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="YOUR_NONCE"></script>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li class="dropdown-item-with-submenu"><a href="joint-circulars.html" class="dropdown-item"><span>Joint Circulars</span></a></li>
+            <li class="dropdown-item-with-submenu"><a href="#" class="dropdown-item" data-action="issuances" data-category="Memorandum Circulars"><span>Memo Circulars</span></a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Presidential Directives">Presidential Directives</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Republic Acts">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item active" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" class="header-logo" />
+        <img src="Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+      <div class="news-ticker-section">
+      </div>
+
+      <div class="contact-section">
+        <div class="contact-card">
+          <div class="contact-heading">
+            <p class="eyebrow">Get in Touch</p>
+            <h2>Send inquiries, requests, concerns, or feedback to DILG Surigao del Sur.</h2>
+            <p>Please use the form below or the official contact details to reach our office. Our team is ready to assist citizens with transparent, timely, and helpful responses.</p>
+          </div>
+
+          <div class="contact-info-grid">
+            <div class="contact-info-card">
+              <span class="contact-info-icon" aria-hidden="true">📍</span>
+              <div>
+                <p class="contact-info-label">Office Address</p>
+                <p class="contact-info-text">2/F Provincial Capitol Bldg., Capitol Hills, Telaje, City of Tandag, Surigao del Sur</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <span class="contact-info-icon" aria-hidden="true">📞</span>
+              <div>
+                <p class="contact-info-label">Contact Number</p>
+                <p class="contact-info-text"><a href="tel:+63862143470">(086) 214-3470</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <span class="contact-info-icon" aria-hidden="true">✉️</span>
+              <div>
+                <p class="contact-info-label">Email Address</p>
+                <p class="contact-info-text"><a href="mailto:dilgl3sdspo@gmail.com">dilgl3sdspo@gmail.com</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <span class="contact-info-icon" aria-hidden="true">👍</span>
+              <div>
+                <p class="contact-info-label">Facebook Page</p>
+                <p class="contact-info-text"><a href="https://www.facebook.com/DILGsds" target="_blank" rel="noopener noreferrer">facebook.com/DILGsds</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <span class="contact-info-icon" aria-hidden="true">🌐</span>
+              <div>
+                <p class="contact-info-label">Official Website</p>
+                <p class="contact-info-text"><a href="https://www.dilgsurigaodelsur.com" target="_blank" rel="noopener noreferrer">www.dilgsurigaodelsur.com</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-frame">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16169.511907698746!2d126.15256383555728!3d9.141954320076449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x330e2bffd193c2f9%3A0xbf5aa72663a4abbe!2sCapitol%20Hills%20Telaje%2C%20City%20of%20Tandag%2C%20Surigao%20del%20Sur!5e0!3m2!1sen!2sph!4v1700000000000"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen=""
+              aria-label="Google Map showing Capitol Hills Telaji in City of Tandag, Surigao del Sur"></iframe>
+          </div>
+
+          <div class="contact-form-card">
+            <div>
+              <h3>Send Us a Message</h3>
+              <p>Complete the form and our office will respond as soon as possible during business hours.</p>
+            </div>
+            <form id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="field-group">
+                  <label for="full-name">Full Name</label>
+                  <input id="full-name" name="fullName" type="text" placeholder="Juan Dela Cruz" required />
+                </div>
+                <div class="field-group">
+                  <label for="email">Email Address</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field-group">
+                  <label for="phone">Contact Number</label>
+                  <input id="phone" name="phone" type="tel" placeholder="0912 345 6789" pattern="\+?[0-9\s-]{7,}" required />
+                </div>
+                <div class="field-group">
+                  <label for="subject">Subject</label>
+                  <input id="subject" name="subject" type="text" placeholder="Short subject" required />
+                </div>
+              </div>
+
+              <div class="form-row single">
+                <div class="field-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" placeholder="Type your inquiry, request, or feedback here..." required></textarea>
+                </div>
+              </div>
+
+              <div class="honeypot-field">
+                <label for="website">Website</label>
+                <input id="website" name="website" autocomplete="off" />
+              </div>
+
+              <div id="form-status" class="form-status hidden" aria-live="polite"></div>
+
+              <div class="form-actions">
+                <p>All fields are required. We strive to reply within 2 business days.</p>
+                <button type="submit" class="submit-button">
+                  <span>Send Message</span>
+                  <span class="submit-icon" aria-hidden="true">✈️</span>
+                  <span id="submit-spinner" class="spinner" aria-hidden="true"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="contact-sidebar">
+          <aside class="cn-sidebar">
+            <a class="cn-portal-card" href="https://op-proper.gov.ph/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/banner-president-corner.png" alt="Visit the Office of the President" />
+            </a>
+            <a class="cn-portal-card" href="https://www.dilg.gov.ph/secretarys-corner/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/secretarys-corner.png" alt="Visit the Secretary's Corner" />
+            </a>
+            <a class="cn-portal-card" href="https://www.dilg.gov.ph/transparency/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/banner-transparency-seal.png" alt="Philippine Transparency Seal" />
+            </a>
+            <div class="cn-secondary-row">
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/GAA-Reportorial-Requirement-Archive/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/gaa2015.png" alt="GAA Reportorial Requirement" />
+              </a>
+              <a class="cn-sec-card" href="https://www.foi.gov.ph/agencies/dilg/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/banner/foi-corner.jpg" alt="Freedom of Information" />
+              </a>
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/leo-70/" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/banner/leo70-box.png" alt="Localization of EO 70" />
+              </a>
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/files/dilg_document_202706_8dc37fea59.pdf" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/logo/dilg-dpa-cor-3.jpg" alt="Data Privacy" />
+              </a>
+              <a class="cn-sec-card" href="https://www.dilg.gov.ph/other/GAD-Corner/49" target="_blank" rel="noopener noreferrer">
+                <img src="https://www.dilg.gov.ph/images/gad-corner.jpg" alt="Gender and Development" />
+              </a>
+              <a class="cn-sec-card" href="https://www.facebook.com/stories/104505911714141/" target="_blank" rel="noopener noreferrer">
+                <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fdilg.philippines&amp;width=380&amp;height=500&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=true&amp;show_border=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false&amp;small_header=true" scrolling="yes" frameborder="0" style="background-color:#3A559F; border:3px solid #3A559F; border-right:4px solid #3A559F; overflow:hidden; width:100%; height:250px;" allowtransparency="true">
+              </iframe>
+              </a>
+            </div>
+            <div class="cn-fb-widget">
+              <iframe src="https://www.facebook.com/v2.5/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61556404163480&tabs=timeline%2Cevents&width=320&height=650&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false"
+                width="100%" height="650" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/"><img src="Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/"><img src="Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card" aria-label="Open DILG Surigao del Sur Facebook page (opens in new tab)">
+            <span class="connect-icon" aria-hidden="true"><img src="Logos/2021_Facebook_icon.svg" alt="Facebook icon" /></span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <input type="file" id="upload-file-input" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,image/*" style="display:none" />
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+
+      var statusEl = document.getElementById('form-status');
+      var submitButton = form.querySelector('.submit-button');
+      var spinner = document.getElementById('submit-spinner');
+      var honeypot = form.querySelector('input[name="website"]');
+
+      function setStatus(message, type) {
+        statusEl.textContent = message;
+        statusEl.className = 'form-status ' + type;
+      }
+
+      function setLoading(isLoading) {
+        submitButton.disabled = isLoading;
+        spinner.classList.toggle('visible', isLoading);
+      }
+
+      function clearStatus() {
+        statusEl.textContent = '';
+        statusEl.className = 'form-status hidden';
+      }
+
+      function validateField(field) {
+        if (!field.checkValidity()) {
+          if (field.validity.valueMissing) {
+            return 'Please complete the ' + field.previousElementSibling.textContent.toLowerCase() + ' field.';
+          }
+          if (field.validity.typeMismatch) {
+            return 'Please enter a valid ' + field.previousElementSibling.textContent.toLowerCase() + '.';
+          }
+          if (field.validity.patternMismatch) {
+            return 'Please provide a valid ' + field.previousElementSibling.textContent.toLowerCase() + '.';
+          }
+        }
+        return '';
+      }
+
+      form.addEventListener('input', function () {
+        if (!statusEl.classList.contains('hidden')) {
+          clearStatus();
+        }
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        clearStatus();
+
+        if (honeypot && honeypot.value.trim() !== '') {
+          setStatus('Thank you! Your message has been sent successfully.', 'success');
+          form.reset();
+          return;
+        }
+
+        var requiredFields = Array.from(form.querySelectorAll('input[required], textarea[required]'));
+        for (var i = 0; i < requiredFields.length; i++) {
+          var error = validateField(requiredFields[i]);
+          if (error) {
+            setStatus(error, 'error');
+            requiredFields[i].focus();
+            return;
+          }
+        }
+
+        setLoading(true);
+        setStatus('Sending your message, please wait...', 'success');
+
+        window.setTimeout(function () {
+          setLoading(false);
+          form.reset();
+          setStatus('Thank you! Your message has been sent successfully.', 'success');
+        }, 1400);
+      });
+    });
+  </script>
+</body>
+</html>
+

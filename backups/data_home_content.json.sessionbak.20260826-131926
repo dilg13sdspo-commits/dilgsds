@@ -1,0 +1,255 @@
+{
+    "slides": [
+        {
+            "id": 1,
+            "title": "Homepage image 1",
+            "image_url": "https://i.imgur.com/4NGCY31.jpeg",
+            "sort_order": 1,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 2,
+            "title": "Homepage image 2",
+            "image_url": "https://i.imgur.com/jmNXZxc.jpeg",
+            "sort_order": 2,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 3,
+            "title": "Homepage image 3",
+            "image_url": "https://i.imgur.com/Vh5sp4J.jpeg",
+            "sort_order": 3,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 4,
+            "title": "Homepage image 4",
+            "image_url": "https://i.imgur.com/uY8ZQ3z.jpeg",
+            "sort_order": 4,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 5,
+            "title": "Homepage image 5",
+            "image_url": "Logos/IMG_8945.jpeg",
+            "sort_order": 5,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 6,
+            "title": "Homepage image 6",
+            "image_url": "Logos/IMG_0513.jpeg",
+            "sort_order": 6,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 7,
+            "title": "Homepage image 7",
+            "image_url": "Logos/IMG_0467.jpeg",
+            "sort_order": 7,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 8,
+            "title": "Homepage image 8",
+            "image_url": "Logos/IMG_0578.jpeg",
+            "sort_order": 8,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 9,
+            "title": "Homepage image 9",
+            "image_url": "Logos/IMG_0315.jpeg",
+            "sort_order": 9,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 10,
+            "title": "Homepage image 10",
+            "image_url": "Logos/IMG_8598.jpeg",
+            "sort_order": 10,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 11,
+            "title": "Homepage image 11",
+            "image_url": "Logos/IMG_1328.jpeg",
+            "sort_order": 11,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 12,
+            "title": "Homepage image 12",
+            "image_url": "Logos/IMG_1042.jpeg",
+            "sort_order": 12,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 13,
+            "title": "Homepage image 13",
+            "image_url": "Logos/IMG_0769.jpeg",
+            "sort_order": 13,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 14,
+            "title": "Homepage image 14",
+            "image_url": "Logos/IMG_0697.jpeg",
+            "sort_order": 14,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        },
+        {
+            "id": 15,
+            "title": "Homepage image 15",
+            "image_url": "Logos/IMG_0686.jpeg",
+            "sort_order": 15,
+            "is_active": true,
+            "image_position_x": 50,
+            "image_position_y": 50,
+            "image_fit": "cover"
+        }
+    ],
+    "ticker": [
+        {
+            "id": 1,
+            "title": "UNDP Philippines - 2026 Circular Solutions: Innovation Challenge and CSO Grants",
+            "date": "June 17, 2026",
+            "link_url": "https://www.facebook.com/share/p/18yBEeKCHQ/",
+            "is_active": true
+        }
+    ],
+    "central": [
+        {
+            "id": 1,
+            "title": "DILG Statement on the BJMP's Custody of Senator Rodante Dizon Marcoleta",
+            "date": "July 15, 2026",
+            "description": "The Department of the Interior and Local Government (DILG), through the Bureau of Jail Management and Penology (BJMP), confirms its commitment to lawful, impartial, and professional custodial service.",
+            "link_url": "https://www.dilg.gov.ph/news-archive/",
+            "sort_order": 1,
+            "is_active": true
+        }
+    ],
+    "provincial": [
+        {
+            "id": 1,
+            "title": "Provincial Rural Improvement Club (PRIC) 2nd Quarter Meeting",
+            "date": "June 30, 2026",
+            "description": "The Office of the Provincial Agriculturist convened the Provincial Rural Improvement Club 2nd Quarter Meeting in Tandag City.",
+            "image_url": "https://surigaodelsur.gov.ph/news-single/550",
+            "link_url": "https://surigaodelsur.gov.ph/news-single/550",
+            "sort_order": 1,
+            "is_active": true
+        }
+    ],
+    "featured": [
+        {
+            "id": 1,
+            "title": "Featured news",
+            "date": "July 21, 2026",
+            "description": "The Department of the Interior and Local Government (DILG) Surigao del Sur conducted a three-day workshop on the formulation of the 2026\u20132028 Peace and Order and Public Safety Plan.",
+            "image_url": "https://picsum.photos/seed/featured/1200/700",
+            "link_url": "https://www.dilg.gov.ph/whatsnew-archive/",
+            "sort_order": 1,
+            "is_active": true
+        }
+    ],
+    "pbac": [
+        {
+            "id": 1,
+            "title": "SVP Checklist",
+            "link_url": "svp-checklist.html",
+            "sort_order": 1,
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "title": "BAC Advisory",
+            "link_url": "bac-advisory.html",
+            "sort_order": 2,
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "title": "Process Flow: Bids and Awards Committee for Public Bidding",
+            "link_url": "process-flow-public-bidding.html",
+            "sort_order": 3,
+            "is_active": true
+        },
+        {
+            "id": 4,
+            "title": "Process Flow: Bids and Awards Committee for Small Value Procurement",
+            "link_url": "process-flow-public-bidding.html",
+            "sort_order": 4,
+            "is_active": true
+        }
+    ],
+    "quality": [
+        {
+            "id": 1,
+            "title": "Quality Policy",
+            "link_url": "quality-policy.html",
+            "sort_order": 1,
+            "is_active": true
+        }
+    ],
+    "annual": [
+        {
+            "id": 1,
+            "title": "2024 Annual Report",
+            "link_url": "annual-report.html",
+            "sort_order": 1,
+            "is_active": true
+        }
+    ],
+    "privacy": [
+        {
+            "id": 1,
+            "title": "AN ACT PROTECTING INDIVIDUAL PERSONAL INFORMATION IN INFORMATION AND COMMUNICATIONS SYSTEMS IN THE GOVERNMENT AND THE PRIVATE SECTOR, CREATING FOR THIS PURPOSE A NATIONAL PRIVACY COMMISSION, AND FOR OTHER PURPOSES",
+            "link_url": "ra-10173.html",
+            "sort_order": 1,
+            "is_active": true
+        }
+    ]
+}

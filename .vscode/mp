@@ -1,0 +1,1241 @@
+﻿<?php
+require_once __DIR__ . '/auth/middleware.php';
+require_role('ADMIN');
+?>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programs & Services Management - DILG SDS</title>
+  <link rel="stylesheet" href="styles.css?v=20260831-programs-redesign-01">
+  <style>
+    :root {
+      --navy-900: #0f2a6b;
+      --navy-800: #173c87;
+      --navy-700: #1f5fcf;
+      --navy-100: #edf4ff;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-500: #64748b;
+      --slate-700: #334155;
+      --slate-900: #0f172a;
+      --success-100: #e7f9ee;
+      --success-700: #157f4a;
+      --warning-100: #fff4db;
+      --warning-700: #a16207;
+      --danger-100: #ffe8e7;
+      --danger-700: #b42318;
+      --shadow-soft: 0 10px 30px rgba(15, 42, 107, 0.08);
+      --shadow-card: 0 8px 16px rgba(15, 42, 107, 0.06);
+    }
+
+    body {
+      background: #f3f6fb;
+      color: var(--slate-700);
+    }
+
+    .admin-main {
+      background: linear-gradient(180deg, #f4f7fb 0%, #eef3f9 100%);
+    }
+
+    .programs-admin {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      padding: 24px 18px 32px;
+      box-sizing: border-box;
+    }
+
+    .programs-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .programs-header h1 {
+      margin: 0;
+      color: var(--navy-900);
+      font-size: clamp(2rem, 2.6vw, 2.9rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .programs-header p {
+      margin: 8px 0 0;
+      font-size: 1rem;
+      color: var(--slate-500);
+    }
+
+    .primary-btn {
+      appearance: none;
+      border: 0;
+      border-radius: 10px;
+      background: linear-gradient(180deg, var(--navy-700) 0%, var(--navy-800) 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      min-height: 46px;
+      padding: 0 18px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(31, 95, 207, 0.18);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .primary-btn:hover,
+    .primary-btn:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(31, 95, 207, 0.22);
+      outline: none;
+    }
+
+    .programs-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 18px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .programs-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 22px 22px 16px;
+      border-bottom: 1px solid var(--slate-200);
+      background: rgba(248, 250, 252, 0.75);
+    }
+
+    .programs-card__title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .programs-card__icon {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: var(--navy-100);
+      color: var(--navy-800);
+      box-shadow: inset 0 0 0 1px rgba(31, 95, 207, 0.08);
+    }
+
+    .programs-card__icon svg {
+      width: 19px;
+      height: 19px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .programs-card__title {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--navy-900);
+    }
+
+    .programs-card__subtitle {
+      color: var(--slate-500);
+      font-size: 0.82rem;
+      margin: 2px 0 0;
+    }
+
+    .programs-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 16px 22px 18px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .programs-toolbar__left,
+    .programs-toolbar__right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .search-field {
+      position: relative;
+      min-width: min(100%, 320px);
+      flex: 1 1 280px;
+    }
+
+    .search-field svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 17px;
+      height: 17px;
+      stroke: var(--slate-500);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .search-field input,
+    .toolbar-select,
+    .drawer-field {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--slate-300);
+      border-radius: 9px;
+      background: #fff;
+      color: var(--slate-700);
+      font: inherit;
+      padding: 0 12px 0 38px;
+      box-sizing: border-box;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .toolbar-select {
+      appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, var(--slate-500) 50%), linear-gradient(135deg, var(--slate-500) 50%, transparent 50%);
+      background-position: calc(100% - 16px) calc(50% - 3px), calc(100% - 11px) calc(50% - 3px);
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      padding-left: 12px;
+      min-width: 150px;
+    }
+
+    .search-field input:focus,
+    .toolbar-select:focus,
+    .drawer-field:focus,
+    .drawer-textarea:focus {
+      outline: none;
+      border-color: rgba(31, 95, 207, 0.6);
+      box-shadow: 0 0 0 4px rgba(31, 95, 207, 0.08);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: #fff;
+    }
+
+    .programs-table {
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+      table-layout: fixed;
+      background: #fff;
+    }
+
+    .programs-table th,
+    .programs-table td {
+      padding: 15px 14px;
+      border-bottom: 1px solid var(--slate-200);
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .programs-table th {
+      background: #f8fafc;
+      color: var(--slate-500);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .programs-table td {
+      font-size: 0.92rem;
+      color: var(--slate-700);
+    }
+
+    .programs-table th:nth-child(1),
+    .programs-table td:nth-child(1) { width: 34%; }
+    .programs-table th:nth-child(2),
+    .programs-table td:nth-child(2) { width: 16%; }
+    .programs-table th:nth-child(3),
+    .programs-table td:nth-child(3) { width: 12%; }
+    .programs-table th:nth-child(4),
+    .programs-table td:nth-child(4) { width: 11%; }
+    .programs-table th:nth-child(5),
+    .programs-table td:nth-child(5) { width: 15%; }
+    .programs-table th:nth-child(6),
+    .programs-table td:nth-child(6) { width: 12%; }
+
+    .program-cell {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .program-cell__icon {
+      flex: 0 0 36px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #edf5ff 0%, #e3ecff 100%);
+      color: var(--navy-800);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(111, 144, 214, 0.18);
+    }
+
+    .program-cell__icon svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .program-cell__content {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .program-cell__title {
+      font-weight: 800;
+      color: var(--slate-900);
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .program-cell__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--navy-700);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .program-cell__link:hover,
+    .program-cell__link:focus-visible {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    .program-cell__link svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      min-width: 82px;
+      letter-spacing: 0.01em;
+    }
+
+    .badge--published {
+      background: var(--success-100);
+      color: var(--success-700);
+    }
+
+    .badge--draft {
+      background: var(--warning-100);
+      color: var(--warning-700);
+    }
+
+    .order-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 38px;
+      height: 30px;
+      border-radius: 8px;
+      background: #f3f5f9;
+      border: 1px solid var(--slate-200);
+      font-weight: 800;
+      color: var(--slate-700);
+    }
+
+    .updated-text {
+      color: var(--slate-500);
+      font-size: 0.86rem;
+    }
+
+    .action-cluster {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 7px;
+    }
+
+    .icon-button {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--slate-200);
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy-700);
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+      padding: 0;
+      text-decoration: none;
+    }
+
+    .icon-button:hover,
+    .icon-button:focus-visible {
+      background: var(--navy-100);
+      border-color: rgba(31, 95, 207, 0.35);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .icon-button--danger {
+      color: var(--danger-700);
+      border-color: rgba(180, 35, 24, 0.18);
+    }
+
+    .icon-button--danger:hover,
+    .icon-button--danger:focus-visible {
+      background: var(--danger-100);
+      border-color: rgba(180, 35, 24, 0.2);
+    }
+
+    .icon-button svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .table-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 22px 20px;
+      border-top: 1px solid var(--slate-200);
+      background: rgba(248, 250, 252, 0.65);
+      color: var(--slate-500);
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      min-width: 32px;
+      height: 32px;
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--slate-700);
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .page-btn:hover,
+    .page-btn:focus-visible {
+      border-color: rgba(31, 95, 207, 0.28);
+      background: var(--navy-100);
+      color: var(--navy-800);
+      outline: none;
+    }
+
+    .page-btn.is-active {
+      background: var(--navy-700);
+      border-color: var(--navy-700);
+      color: #fff;
+    }
+
+    .page-btn.is-disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .page-jump {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 4px;
+    }
+
+    .page-jump input {
+      width: 56px;
+      min-height: 32px;
+      border: 1px solid var(--slate-300);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--slate-700);
+      font: inherit;
+      text-align: center;
+    }
+
+    .page-jump button {
+      min-height: 32px;
+      border: 1px solid var(--navy-700);
+      border-radius: 7px;
+      background: var(--navy-700);
+      color: #fff;
+      font-weight: 700;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+
+    .program-drawer {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: min(420px, 100%);
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: -12px 0 32px rgba(15, 42, 107, 0.15);
+      transform: translateX(105%);
+      visibility: hidden;
+      opacity: 0;
+      transition: transform 0.22s ease, opacity 0.22s ease, visibility 0.22s ease;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .program-drawer.is-open {
+      transform: translateX(0);
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .program-drawer__overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.24);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      z-index: 1100;
+    }
+
+    .program-drawer__overlay.is-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .program-drawer__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid var(--slate-200);
+      background: rgba(248, 250, 252, 0.8);
+    }
+
+    .program-drawer__title {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--navy-900);
+    }
+
+    .program-drawer__close {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      background: transparent;
+      border-radius: 8px;
+      color: var(--slate-500);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .program-drawer__close:hover,
+    .program-drawer__close:focus-visible {
+      background: var(--slate-100);
+      color: var(--navy-900);
+      outline: none;
+    }
+
+    .program-form {
+      flex: 1;
+      padding: 20px 20px 14px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 12px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field-group label {
+      color: var(--slate-700);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .field-required {
+      color: #d14343;
+    }
+
+    .drawer-field,
+    .drawer-textarea {
+      padding: 10px 12px;
+      box-sizing: border-box;
+      border-radius: 9px;
+      border: 1px solid var(--slate-300);
+      background: #fff;
+      color: var(--slate-700);
+      font: inherit;
+    }
+
+    .drawer-textarea {
+      min-height: 92px;
+      resize: vertical;
+      padding-top: 10px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      background: var(--slate-50);
+      color: var(--slate-700);
+      font-weight: 600;
+    }
+
+    .checkbox-row input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--navy-700);
+    }
+
+    .drawer-actions {
+      position: sticky;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 14px 20px 18px;
+      background: rgba(255,255,255,0.96);
+      border-top: 1px solid var(--slate-200);
+      margin-top: auto;
+    }
+
+    .secondary-btn,
+    .submit-btn {
+      min-height: 42px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 800;
+      padding: 0 16px;
+      font: inherit;
+    }
+
+    .secondary-btn {
+      border: 1px solid var(--slate-300);
+      background: #fff;
+      color: var(--slate-700);
+    }
+
+    .submit-btn {
+      border: 0;
+      background: linear-gradient(180deg, var(--navy-700) 0%, var(--navy-800) 100%);
+      color: #fff;
+      box-shadow: 0 10px 18px rgba(31, 95, 207, 0.18);
+    }
+
+    .drawer-status {
+      min-height: 18px;
+      color: var(--slate-500);
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .drawer-status.is-error {
+      color: var(--danger-700);
+    }
+
+    .drawer-status.is-success {
+      color: var(--success-700);
+    }
+
+    @media (max-width: 820px) {
+      .programs-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .programs-toolbar {
+        align-items: stretch;
+      }
+
+      .programs-toolbar__left,
+      .programs-toolbar__right {
+        width: 100%;
+      }
+
+      .search-field {
+        min-width: 100%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .programs-admin {
+        padding: 18px 12px 26px;
+      }
+
+      .programs-card__header,
+      .programs-toolbar,
+      .table-footer {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .programs-card__header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .programs-toolbar__left,
+      .programs-toolbar__right {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .toolbar-select,
+      .search-field {
+        width: 100%;
+      }
+
+      .program-drawer {
+        width: min(100%, 420px);
+      }
+    }
+  </style>
+</head>
+<body class="admin-dashboard-ref-body">
+  <div class="admin-portal-shell">
+    <?php include __DIR__ . '/admin-sidebar.php'; ?>
+    <main class="admin-main">
+      <section class="programs-admin">
+        <header class="programs-header">
+          <div>
+            <h1>Programs &amp; Services Management</h1>
+            <p>Manage program categories, links, display order, and public visibility.</p>
+          </div>
+          <button type="button" class="primary-btn" id="add-program-btn">+ Add New Program</button>
+        </header>
+
+        <div class="programs-card">
+          <div class="programs-card__header">
+            <div class="programs-card__title-wrap">
+              <span class="programs-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 4h9l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M16 4v5h5"/><path d="M8 13h8M8 17h8"/></svg>
+              </span>
+              <div>
+                <h2 class="programs-card__title">Program Records</h2>
+                <p class="programs-card__subtitle">Manage and organize all public programs and services.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="programs-toolbar">
+            <div class="programs-toolbar__left">
+              <label class="search-field" aria-label="Search programs">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/></svg>
+                <input type="search" id="program-search" placeholder="Search programs or services..." />
+              </label>
+            </div>
+            <div class="programs-toolbar__right">
+              <select class="toolbar-select" id="category-filter" aria-label="Category filter">
+                <option value="all">Category</option>
+              </select>
+              <select class="toolbar-select" id="status-filter" aria-label="Status filter">
+                <option value="all">Status</option>
+                <option value="published">Published</option>
+                <option value="draft">Draft</option>
+              </select>
+              <select class="toolbar-select" id="sort-filter" aria-label="Sort records">
+                <option value="order_asc">Sort by: Display Order</option>
+                <option value="order_desc">Display Order: High to Low</option>
+                <option value="title_asc">Title: A to Z</option>
+                <option value="latest">Last Updated</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="programs-table" aria-label="Program records table">
+              <thead>
+                <tr>
+                  <th>Program / Service</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Display Order</th>
+                  <th>Last Updated</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="program-table-body"></tbody>
+            </table>
+          </div>
+
+          <div class="table-footer">
+            <div id="table-summary">Showing 0 to 0 of 0 entries</div>
+            <div class="pagination" id="pagination"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="program-drawer__overlay" id="program-drawer-overlay"></div>
+  <aside class="program-drawer" id="program-drawer" aria-hidden="true">
+    <div class="program-drawer__header">
+      <h2 class="program-drawer__title" id="program-drawer-title">Add New Program</h2>
+      <button type="button" class="program-drawer__close" id="program-drawer-close" aria-label="Close program form">×</button>
+    </div>
+
+    <form class="program-form" id="program-form">
+      <input type="hidden" id="program-id" name="id" />
+
+      <div class="form-row">
+        <div class="field-group">
+          <label for="program-category">Category / Outcome Area <span class="field-required">*</span></label>
+          <input type="text" id="program-category" name="category" class="drawer-field" placeholder="Select category" required />
+        </div>
+
+        <div class="field-group">
+          <label for="program-title">Program or Service <span class="field-required">*</span></label>
+          <input type="text" id="program-title" name="title" class="drawer-field" placeholder="Enter program or service name" required />
+        </div>
+
+        <div class="field-group">
+          <label for="program-link">Program Link (Google Drive) <span class="field-required">*</span></label>
+          <input type="url" id="program-link" name="link_url" class="drawer-field" placeholder="Paste Google Drive link here" required />
+        </div>
+
+        <div class="field-group">
+          <label for="program-order">Display Order</label>
+          <input type="number" id="program-order" name="sort_order" class="drawer-field" min="1" value="1" />
+        </div>
+      </div>
+
+      <label class="checkbox-row" for="program-visible">
+        <span>Show on public page</span>
+        <input type="checkbox" id="program-visible" name="is_active" checked />
+      </label>
+
+      <p class="drawer-status" id="program-status" aria-live="polite"></p>
+
+      <div class="drawer-actions">
+        <button type="button" class="secondary-btn" id="program-cancel-btn">Cancel</button>
+        <button type="submit" class="submit-btn" id="program-submit-btn">Save Program</button>
+      </div>
+    </form>
+  </aside>
+
+  <script>
+    const state = {
+      programs: [],
+      filtered: [],
+      page: 1,
+      perPage: 5,
+      search: '',
+      category: 'all',
+      status: 'all',
+      sort: 'order_asc'
+    };
+
+    const tableBody = document.getElementById('program-table-body');
+    const tableSummary = document.getElementById('table-summary');
+    const pagination = document.getElementById('pagination');
+    const searchInput = document.getElementById('program-search');
+    const categoryFilter = document.getElementById('category-filter');
+    const statusFilter = document.getElementById('status-filter');
+    const sortFilter = document.getElementById('sort-filter');
+    const drawer = document.getElementById('program-drawer');
+    const overlay = document.getElementById('program-drawer-overlay');
+    const drawerTitle = document.getElementById('program-drawer-title');
+    const form = document.getElementById('program-form');
+    const submitButton = document.getElementById('program-submit-btn');
+    const statusBox = document.getElementById('program-status');
+
+    function formatUpdated(dateValue) {
+      if (!dateValue) return '—';
+      const parsed = new Date(dateValue);
+      if (Number.isNaN(parsed.getTime())) return '—';
+      return parsed.toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function getBadgeMarkup(isActive) {
+      return isActive
+        ? '<span class="badge badge--published">Published</span>'
+        : '<span class="badge badge--draft">Draft</span>';
+    }
+
+    function openDrawer(mode, item = null) {
+      const isEdit = mode === 'edit';
+      drawerTitle.textContent = isEdit ? 'Edit Program' : 'Add New Program';
+      submitButton.textContent = isEdit ? 'Save Changes' : 'Save Program';
+      form.reset();
+      document.getElementById('program-id').value = item ? item.id : '';
+      document.getElementById('program-category').value = item ? item.category || '' : '';
+      document.getElementById('program-title').value = item ? item.title || '' : '';
+      document.getElementById('program-link').value = item ? item.link_url || '' : '';
+      document.getElementById('program-order').value = item ? (item.sort_order || 1) : 1;
+      document.getElementById('program-visible').checked = !!(item ? item.is_active : true);
+      setStatus('');
+      drawer.classList.add('is-open');
+      overlay.classList.add('is-visible');
+      drawer.setAttribute('aria-hidden', 'false');
+      setTimeout(function () {
+        const firstInput = isEdit ? document.getElementById('program-title') : document.getElementById('program-category');
+        if (firstInput) firstInput.focus();
+      }, 50);
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('is-open');
+      overlay.classList.remove('is-visible');
+      drawer.setAttribute('aria-hidden', 'true');
+      form.reset();
+      document.getElementById('program-id').value = '';
+      setStatus('');
+    }
+
+    function setStatus(message, type = '') {
+      statusBox.textContent = message || '';
+      statusBox.classList.remove('is-error', 'is-success');
+      if (type) statusBox.classList.add(type);
+    }
+
+    function renderPagination(totalPages, currentPage) {
+      pagination.innerHTML = '';
+      const prev = document.createElement('button');
+      prev.type = 'button';
+      prev.className = 'page-btn' + (currentPage === 1 ? ' is-disabled' : '');
+      prev.textContent = '‹';
+      prev.disabled = currentPage === 1;
+      prev.addEventListener('click', function () {
+        if (currentPage > 1) {
+          state.page = currentPage - 1;
+          renderRows();
+        }
+      });
+      pagination.appendChild(prev);
+
+      for (let i = 1; i <= totalPages; i += 1) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'page-btn' + (i === currentPage ? ' is-active' : '');
+        btn.textContent = String(i);
+        btn.addEventListener('click', function () {
+          state.page = i;
+          renderRows();
+        });
+        pagination.appendChild(btn);
+      }
+
+      const next = document.createElement('button');
+      next.type = 'button';
+      next.className = 'page-btn' + (currentPage === totalPages ? ' is-disabled' : '');
+      next.textContent = '›';
+      next.disabled = currentPage === totalPages;
+      next.addEventListener('click', function () {
+        if (currentPage < totalPages) {
+          state.page = currentPage + 1;
+          renderRows();
+        }
+      });
+      pagination.appendChild(next);
+    }
+
+    function renderRows() {
+      const filtered = [...state.filtered];
+      const totalEntries = filtered.length;
+      const totalPages = Math.max(1, Math.ceil(totalEntries / state.perPage));
+      if (state.page > totalPages) state.page = totalPages;
+
+      const startIndex = totalEntries === 0 ? 0 : (state.page - 1) * state.perPage;
+      const endIndex = Math.min(startIndex + state.perPage, totalEntries);
+      const slice = filtered.slice(startIndex, endIndex);
+
+      tableSummary.textContent = totalEntries === 0
+        ? 'Showing 0 to 0 of 0 entries'
+        : 'Showing ' + (startIndex + 1) + ' to ' + endIndex + ' of ' + totalEntries + ' entries';
+
+      if (slice.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="6"><div style="padding: 22px 10px; color: var(--slate-500); text-align: center; font-weight: 700;">No programs found.</div></td></tr>';
+        renderPagination(totalPages, state.page);
+        return;
+      }
+
+      tableBody.innerHTML = slice.map(function (item) {
+        const safeTitle = escapeHtml(item.title || 'Untitled Program');
+        const safeCategory = escapeHtml(item.category || 'General');
+        const safeLink = escapeHtml(item.link_url || '');
+        const statusMarkup = getBadgeMarkup(!!item.is_active);
+        const updateText = formatUpdated(item.updated_at);
+        const viewLink = item.link_url
+          ? '<a class="program-cell__link" href="' + safeLink + '" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.5"/></svg>View Program Document</a>'
+          : '<span style="color: var(--slate-500); font-size: 0.78rem; font-weight: 700;">No document link</span>';
+
+        return '<tr>' +
+          '<td>' +
+            '<div class="program-cell">' +
+              '<span class="program-cell__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h9l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M16 4v5h5"/><path d="M8 13h8M8 17h8"/></svg></span>' +
+              '<div class="program-cell__content">' +
+                '<span class="program-cell__title">' + safeTitle + '</span>' +
+                viewLink +
+              '</div>' +
+            '</div>' +
+          '</td>' +
+          '<td>' + safeCategory + '</td>' +
+          '<td>' + statusMarkup + '</td>' +
+          '<td><span class="order-pill">' + (item.sort_order || 1) + '</span></td>' +
+          '<td><span class="updated-text">' + updateText + '</span></td>' +
+          '<td>' +
+            '<div class="action-cluster">' +
+              (item.link_url ? '<a class="icon-button" href="' + safeLink + '" target="_blank" rel="noopener noreferrer" aria-label="Open program document"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.5"/></svg></a>' : '<span class="icon-button" aria-hidden="true" style="opacity:0.45; pointer-events:none;"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.5"/></svg></span>') +
+              '<button type="button" class="icon-button" data-action="edit" data-id="' + item.id + '" aria-label="Edit program"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>' +
+              '<button type="button" class="icon-button icon-button--danger" data-action="delete" data-id="' + item.id + '" aria-label="Delete program"><svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg></button>' +
+            '</div>' +
+          '</td>' +
+        '</tr>';
+      }).join('');
+
+      renderPagination(totalPages, state.page);
+
+      document.querySelectorAll('[data-action="edit"]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          const itemId = Number(button.getAttribute('data-id'));
+          const selected = state.programs.find(function (program) { return Number(program.id) === itemId; });
+          openDrawer('edit', selected);
+        });
+      });
+
+      document.querySelectorAll('[data-action="delete"]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          const itemId = Number(button.getAttribute('data-id'));
+          const selected = state.programs.find(function (program) { return Number(program.id) === itemId; });
+          const confirmed = window.confirm('Delete "' + (selected && selected.title ? selected.title : 'this program') + '"?');
+          if (!confirmed) return;
+          deleteProgram(itemId);
+        });
+      });
+    }
+
+    function applyFilters() {
+      const searchValue = state.search.trim().toLowerCase();
+      const categoryValue = state.category;
+      const statusValue = state.status;
+
+      state.filtered = state.programs.filter(function (item) {
+        const matchesSearch = !searchValue ||
+          (item.title || '').toLowerCase().includes(searchValue) ||
+          (item.category || '').toLowerCase().includes(searchValue);
+        const matchesCategory = categoryValue === 'all' || (item.category || '') === categoryValue;
+        const matchesStatus = statusValue === 'all' ||
+          (statusValue === 'published' && !!item.is_active) ||
+          (statusValue === 'draft' && !item.is_active);
+
+        return matchesSearch && matchesCategory && matchesStatus;
+      });
+
+      state.filtered.sort(function (a, b) {
+        if (state.sort === 'order_desc') return Number(b.sort_order || 0) - Number(a.sort_order || 0);
+        if (state.sort === 'title_asc') return String(a.title || '').localeCompare(String(b.title || ''));
+        if (state.sort === 'latest') return new Date(b.updated_at || 0) - new Date(a.updated_at || 0);
+        return Number(a.sort_order || 0) - Number(b.sort_order || 0);
+      });
+
+      state.page = 1;
+      renderRows();
+    }
+
+    function populateCategoryOptions() {
+      const categories = Array.from(new Set(state.programs.map(function (item) { return item.category || 'General'; }))).sort(function (a, b) { return a.localeCompare(b); });
+      const currentValue = categoryFilter.value || 'all';
+      categoryFilter.innerHTML = '<option value="all">Category</option>' + categories.map(function (category) {
+        return '<option value="' + escapeHtml(category) + '">' + escapeHtml(category) + '</option>';
+      }).join('');
+      categoryFilter.value = categories.includes(currentValue) ? currentValue : 'all';
+    }
+
+    function fetchPrograms() {
+      return fetch('auth/programs_api.php', {
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('Unable to load programs.');
+          }
+          return response.json();
+        })
+        .then(function (payload) {
+          state.programs = Array.isArray(payload.programs) ? payload.programs : [];
+          populateCategoryOptions();
+          applyFilters();
+        })
+        .catch(function (error) {
+          tableBody.innerHTML = '<tr><td colspan="6"><div style="padding: 26px 10px; color: var(--danger-700); font-weight: 700; text-align: center;">' + escapeHtml(error.message) + '</div></td></tr>';
+          tableSummary.textContent = 'Showing 0 to 0 of 0 entries';
+        });
+    }
+
+    function submitProgram(event) {
+      event.preventDefault();
+      const payload = {
+        id: document.getElementById('program-id').value || undefined,
+        category: document.getElementById('program-category').value.trim(),
+        title: document.getElementById('program-title').value.trim(),
+        link_url: document.getElementById('program-link').value.trim(),
+        sort_order: Number(document.getElementById('program-order').value || 1),
+        is_active: document.getElementById('program-visible').checked,
+        action: document.getElementById('program-id').value ? 'update' : 'create'
+      };
+
+      if (!payload.category || !payload.title || !payload.link_url) {
+        setStatus('Category, title, and a valid document link are required.', 'is-error');
+        return;
+      }
+
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      };
+
+      fetch('auth/programs_api.php', requestOptions)
+        .then(function (response) {
+          return response.json().then(function (data) {
+            if (!response.ok || data.error) {
+              throw new Error(data.error || 'Unable to save the program.');
+            }
+            return data;
+          });
+        })
+        .then(function () {
+          setStatus('Program saved successfully.', 'is-success');
+          closeDrawer();
+          fetchPrograms();
+        })
+        .catch(function (error) {
+          setStatus(error.message || 'Unable to save the program.', 'is-error');
+        });
+    }
+
+    function deleteProgram(id) {
+      fetch('auth/programs_api.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ action: 'delete', id: id })
+      })
+        .then(function (response) {
+          return response.json().then(function (data) {
+            if (!response.ok || data.error) {
+              throw new Error(data.error || 'Unable to delete the program.');
+            }
+            return data;
+          });
+        })
+        .then(function () {
+          fetchPrograms();
+        })
+        .catch(function (error) {
+          window.alert(error.message || 'Unable to delete the program.');
+        });
+    }
+
+    document.getElementById('add-program-btn').addEventListener('click', function () {
+      openDrawer('create');
+    });
+
+    document.getElementById('program-drawer-close').addEventListener('click', closeDrawer);
+    document.getElementById('program-cancel-btn').addEventListener('click', closeDrawer);
+    document.getElementById('program-drawer-overlay').addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && drawer.classList.contains('is-open')) {
+        closeDrawer();
+      }
+    });
+
+    form.addEventListener('submit', submitProgram);
+
+    searchInput.addEventListener('input', function (event) {
+      state.search = event.target.value;
+      applyFilters();
+    });
+
+    categoryFilter.addEventListener('change', function (event) {
+      state.category = event.target.value;
+      applyFilters();
+    });
+
+    statusFilter.addEventListener('change', function (event) {
+      state.status = event.target.value;
+      applyFilters();
+    });
+
+    sortFilter.addEventListener('change', function (event) {
+      state.sort = event.target.value;
+      applyFilters();
+    });
+
+    fetchPrograms();
+  </script>
+</body>
+</html>

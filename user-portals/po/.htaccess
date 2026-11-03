@@ -1,0 +1,13 @@
+RewriteEngine On
+
+RewriteRule ^calendar\.php$ po-calendar.php [L]
+RewriteRule ^create-inquiry\.php$ po-create-inquiry.php [L]
+RewriteRule ^dashboard\.php$ po-dashboard.php [L]
+RewriteRule ^documents\.php$ po-documents.php [L]
+RewriteRule ^help\.php$ po-help.php [L]
+RewriteRule ^inquiries\.php$ po-inquiries.php [L]
+RewriteRule ^messages\.php$ po-messages.php [L]
+RewriteRule ^notifications\.php$ po-notifications.php [L]
+RewriteRule ^office\.php$ po-office.php [L]
+RewriteRule ^reports\.php$ po-reports.php [L]
+RewriteRule ^settings\.php$ po-settings.php [L]

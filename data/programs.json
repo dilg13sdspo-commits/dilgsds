@@ -1,0 +1,242 @@
+[
+    {
+        "id": 1,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Child-friendly Local Governance Audit (CFLGA)",
+        "link_url": "https://drive.google.com/drive/folders/1kmQNOQ4Vg2T6lFHpBrUOK1E3rUQDzQ2t",
+        "sort_order": 1,
+        "is_active": true
+    },
+    {
+        "id": 2,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Ease of Doing Business (EODB)",
+        "link_url": "https://drive.google.com/drive/folders/1TtzvgV3CX4u3HxTn_G6Y3tY1-Ehnx6yP",
+        "sort_order": 2,
+        "is_active": true
+    },
+    {
+        "id": 3,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Full Disclosure Policy (FDP)",
+        "link_url": "https://drive.google.com/drive/folders/1ScZXbN0Uy3hUH1qKt6r7qpJ1m9OJ1dFT",
+        "sort_order": 3,
+        "is_active": true
+    },
+    {
+        "id": 4,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Katarungang Pambarangay (KP)",
+        "link_url": "https://drive.google.com/drive/folders/1zfST8Rn2AB59mRtJl0JVr7nqWbF74VpC",
+        "sort_order": 4,
+        "is_active": true
+    },
+    {
+        "id": 5,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Local Government Unit Support System (LGUSS): Barangay Information and Management System (BIMS) and City and Municipality Information Management System (CMIMS)",
+        "link_url": "https://drive.google.com/drive/folders/19f0s4wfynHMoPk6BmTugyEy3rBvQUt0M",
+        "sort_order": 5,
+        "is_active": true
+    },
+    {
+        "id": 6,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Local Legislative Award (LLA)",
+        "link_url": "https://drive.google.com/drive/folders/1uNGbwDRpSbKYjDB3Nfhtogt4Ynw-tdGU",
+        "sort_order": 6,
+        "is_active": true
+    },
+    {
+        "id": 7,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Lupong Tagapamayapa Incentive Award (LTIA)",
+        "link_url": "https://drive.google.com/drive/folders/1EkHRqrxX8imBODdcvl69gVfejoTg6sRT",
+        "sort_order": 7,
+        "is_active": true
+    },
+    {
+        "id": 8,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Nationwide Streamlining of Business Permits and Licensing System (BPLS)",
+        "link_url": "https://drive.google.com/drive/folders/1ZB8h-uYv5TBIeiPqlD9-lTnvlqusy7rH",
+        "sort_order": 8,
+        "is_active": true
+    },
+    {
+        "id": 9,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Newly Elected Officials/Barangay Newly Elected Officials (NEO/BNEO) Program",
+        "link_url": "https://drive.google.com/drive/folders/1b4fwj46S1pn7PUxZuIg0Fo_eRYXFOQqJ?hl=fil",
+        "sort_order": 9,
+        "is_active": true
+    },
+    {
+        "id": 10,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Seal of Good Local Governance (SGLG)",
+        "link_url": "https://drive.google.com/drive/folders/1wAxcE6c4yd2JoAiryIVrYGEYP8s8oC6M?hl=fil",
+        "sort_order": 10,
+        "is_active": true
+    },
+    {
+        "id": 11,
+        "category": "01Outcome Area 1: Excellence in Local Governance upheld",
+        "title": "Seal of Good Local Governance for Barangay (SGLGB)",
+        "link_url": "https://drive.google.com/drive/folders/1SqBdAOfWvubG6lS4FNNitph1tyCqnZGB",
+        "sort_order": 11,
+        "is_active": true
+    },
+    {
+        "id": 12,
+        "category": "02Outcome Area 2: Peaceful, orderly, safe, and secure communities strengthened",
+        "title": "Anti-Illegal Drug Abuse (ADAC)",
+        "link_url": "https://drive.google.com/drive/folders/1n_VxAj8YBY-qQrIKXxH7sSPmo6hMRSKM",
+        "sort_order": 12,
+        "is_active": true
+    },
+    {
+        "id": 13,
+        "category": "02Outcome Area 2: Peaceful, orderly, safe, and secure communities strengthened",
+        "title": "Barangay Road Clearing Operations (BarCO)",
+        "link_url": "https://drive.google.com/drive/folders/1y_bP4TKt7wk7qbn1n7tfmd0cIQ6lg9sE",
+        "sort_order": 13,
+        "is_active": true
+    },
+    {
+        "id": 14,
+        "category": "02Outcome Area 2: Peaceful, orderly, safe, and secure communities strengthened",
+        "title": "Community for Peace (C4PEACE)",
+        "link_url": "https://drive.google.com/drive/folders/1bJ3bR3agqFLV0lZAoqpxEgF9-WUS-BnT",
+        "sort_order": 14,
+        "is_active": true
+    },
+    {
+        "id": 15,
+        "category": "02Outcome Area 2: Peaceful, orderly, safe, and secure communities strengthened",
+        "title": "Peace and Order Council (POC)",
+        "link_url": "https://drive.google.com/drive/folders/12ZZqwh-ig3IT0rvRgutdhDLjeYcu1_U6",
+        "sort_order": 15,
+        "is_active": true
+    },
+    {
+        "id": 16,
+        "category": "02Outcome Area 2: Peaceful, orderly, safe, and secure communities strengthened",
+        "title": "Provision of DILG-Administered Package of Assistance to the Former Rebels (FRs) and Former Violent Extremists (FVEs) under the Enhanced Comprehensive Local Integration Program (ECLIP)",
+        "link_url": "https://drive.google.com/drive/folders/18tZv-1CV3g0qcbTjy96l-amrYprsVcPV",
+        "sort_order": 16,
+        "is_active": true
+    },
+    {
+        "id": 17,
+        "category": "02Outcome Area 2: Peaceful, orderly, safe, and secure communities strengthened",
+        "title": "Retooled Community Support Program (RCSP)",
+        "link_url": "https://drive.google.com/drive/folders/1MSRSqQXxtz7Mq8EEVENuyTg-K8IExZa2",
+        "sort_order": 17,
+        "is_active": true
+    },
+    {
+        "id": 18,
+        "category": "02Outcome Area 2: Peaceful, orderly, safe, and secure communities strengthened",
+        "title": "National Task Force to End Local Communist Armed Conflict (NTF-ELCAC)",
+        "link_url": "https://drive.google.com/drive/folders/1G0oAYQam8PoFV6yP3anIAT_q0Hr_pKv_",
+        "sort_order": 18,
+        "is_active": true
+    },
+    {
+        "id": 19,
+        "category": "02Outcome Area 2: Peaceful, orderly, safe, and secure communities strengthened",
+        "title": "Support to Barangay Development Program (SBDP)",
+        "link_url": "https://drive.google.com/drive/folders/1PGV3yaVXeAWja0yZmRKL7cGfb2r7nwLr",
+        "sort_order": 19,
+        "is_active": true
+    },
+    {
+        "id": 20,
+        "category": "03Outcome Area 3: Resilient communities reinforced",
+        "title": "Barangay Kalinisan Day (BarKaDa)",
+        "link_url": "https://drive.google.com/drive/folders/1yXLxFteQll35ketwIKLOfvNv_OVanmrz",
+        "sort_order": 20,
+        "is_active": true
+    },
+    {
+        "id": 21,
+        "category": "03Outcome Area 3: Resilient communities reinforced",
+        "title": "Operation LISTO",
+        "link_url": "https://drive.google.com/drive/folders/1N_M_VhJWJwFvaiQSV9IxCD2QSzndFvYN",
+        "sort_order": 21,
+        "is_active": true
+    },
+    {
+        "id": 22,
+        "category": "03Outcome Area 3: Resilient communities reinforced",
+        "title": "Halina't Magtanim ng Prutas at Gulay",
+        "link_url": "https://drive.google.com/drive/folders/141pFCXplIAQF-oIOt4Sx0cG_oiej7JBv",
+        "sort_order": 22,
+        "is_active": true
+    },
+    {
+        "id": 23,
+        "category": "03Outcome Area 3: Resilient communities reinforced",
+        "title": "KALINISAN sa Bagong Pilipinas Program",
+        "link_url": "https://drive.google.com/drive/folders/11_TrLhC-Y9eJ-qfKL2XrsDy5236SrUO-",
+        "sort_order": 23,
+        "is_active": true
+    },
+    {
+        "id": 24,
+        "category": "03Outcome Area 3: Resilient communities reinforced",
+        "title": "Kadiwa ng Pangulo (KNP)",
+        "link_url": "https://drive.google.com/drive/folders/1H3uXkaQyqR_-pQFWJZuExf2RYEMGVa_t",
+        "sort_order": 24,
+        "is_active": true
+    },
+    {
+        "id": 25,
+        "category": "04Outcome Area 4: Inclusive communities enabled",
+        "title": "Community-Based Monitoring System (CBMS)",
+        "link_url": "https://drive.google.com/drive/folders/14GhnwYGGe5alq9R5qYP8z22w3detyGKG",
+        "sort_order": 25,
+        "is_active": true
+    },
+    {
+        "id": 26,
+        "category": "04Outcome Area 4: Inclusive communities enabled",
+        "title": "CSO/People's Participation Partnership Program (PPPP)/CSIS/CSO Accreditation/Technical Assistance for LRI/Civil Society Participation Fund (CSPF)",
+        "link_url": "https://drive.google.com/drive/folders/1ErRdITTC3KeIkIn_kBG6vMtSfSxa4xU4",
+        "sort_order": 26,
+        "is_active": true
+    },
+    {
+        "id": 27,
+        "category": "04Outcome Area 4: Inclusive communities enabled",
+        "title": "Gender and Development (GAD)",
+        "link_url": "https://drive.google.com/drive/folders/1-CKZDO7p4KuBpXHey4m3PvTwiTNojGT-",
+        "sort_order": 27,
+        "is_active": true
+    },
+    {
+        "id": 28,
+        "category": "04Outcome Area 4: Inclusive communities enabled",
+        "title": "Local Council for the Protection of Children (LCPC)",
+        "link_url": "https://drive.google.com/drive/folders/1QWywEq9ZXzrrpOcOK14JBgHETfSvPApP",
+        "sort_order": 28,
+        "is_active": true
+    },
+    {
+        "id": 29,
+        "category": "04Outcome Area 4: Inclusive communities enabled",
+        "title": "Local Committee Against Anti-Trafficking and Violence Against Women and their Children (LCAT-VAWC)",
+        "link_url": "https://drive.google.com/drive/folders/1X76BfssBSFjF8RbHteZX1BfAx11sJ0zx",
+        "sort_order": 29,
+        "is_active": true
+    },
+    {
+        "id": 30,
+        "category": "04Outcome Area 4: Inclusive communities enabled",
+        "title": "Support for Local Governance Program (SLGP)",
+        "link_url": "https://drive.google.com/drive/folders/1izjaudvd7Pz8HydbO-Kq4JQIBA9Y9JuH",
+        "sort_order": 30,
+        "is_active": true
+    }
+]

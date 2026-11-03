@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "title": "Contact Us | DILG Surigao del Sur",
+        "address": "2/F Provincial Capitol Bldg., Capitol Hills, Telaje, City of Tandag, Surigao del Sur",
+        "phone_number": "(086) 123-4567",
+        "email_address": "info@surigaodelsur.dilg.gov.ph",
+        "office_hours": "Monday - Friday, 8:00 AM - 5:00 PM",
+        "description": "We are here to serve you. For inquiries, suggestions, or concerns, feel free to reach out to us.",
+        "map_location": "",
+        "is_active": true,
+        "updated_at": "2026-09-01T00:00:00+00:00"
+    }
+]

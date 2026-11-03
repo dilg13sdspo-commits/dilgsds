@@ -1,0 +1,926 @@
+<?php
+require_once __DIR__ . '/auth/middleware.php';
+require_role('ADMIN');
+$pdo = db_connect();
+
+function count_html_nodes($filename, $query) {
+  if (!class_exists('DOMDocument') || !is_file($filename)) return 0;
+  libxml_use_internal_errors(true);
+  $document = new DOMDocument();
+  $document->loadHTMLFile($filename);
+  $xpath = new DOMXPath($document);
+  return $xpath->query($query)->length;
+}
+
+function count_html_class($filename, $className) {
+  return count_html_nodes($filename, "//*[contains(concat(' ', normalize-space(@class), ' '), ' " . $className . " ')]");
+}
+
+function count_files_by_type($directory, $extensions) {
+  if (!is_dir($directory)) return 0;
+  $count = 0;
+  $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, FilesystemIterator::SKIP_DOTS));
+  foreach ($iterator as $file) {
+    if ($file->isFile() && in_array(strtolower($file->getExtension()), $extensions, true)) $count++;
+  }
+  return $count;
+}
+
+function percentage($part, $total) {
+  return $total > 0 ? round(($part / $total) * 100) : 0;
+}
+
+function count_active_json_records($filename) {
+  if (!is_file($filename)) return null;
+  $records = json_decode(file_get_contents($filename), true);
+  if (!is_array($records)) return null;
+  return count(array_filter($records, function ($record) { return !empty($record['is_active']); }));
+}
+
+// Attempt to connect to the DB and run queries. If DB is unavailable, fall back to safe defaults so the dashboard still renders.
+try {
+  $pdo = db_connect();
+} catch (Exception $e) {
+  $pdo = null;
+  error_log('admin-dashboard db_connect failed: ' . $e->getMessage());
+}
+
+// Initialize safe defaults
+$totalUsers = 0;
+$roleCounts = ['ADMIN' => 0, 'PO USER' => 0, 'FO USER' => 0];
+$adminPercent = $poPercent = $foPercent = 0;
+
+$totalNews = count_active_json_records(__DIR__ . '/data/news.json');
+if ($totalNews === null) $totalNews = count_html_class(__DIR__ . '/news.html', 'video-card') + count_html_class(__DIR__ . '/news.html', 'katon-card');
+$totalIssuances = count_html_nodes(__DIR__ . '/issuances.html', "//*[contains(concat(' ', normalize-space(@class), ' '), ' jmc-table ')]//tbody/tr");
+$totalPrograms = count_html_class(__DIR__ . '/programs-and-services.html', 'program-link');
+$imageFiles = count_files_by_type(__DIR__ . '/images', ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg']);
+$imageFiles += count_files_by_type(__DIR__ . '/Logos', ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg']);
+$documentFiles = count_files_by_type(__DIR__, ['pdf', 'doc', 'docx', 'xls', 'xlsx']);
+$mediaFiles = $imageFiles + $documentFiles;
+$activeUsers = 'N/A';
+
+$reportCounts = ['PENDING' => 0, 'SUBMITTED' => 0, 'OVERDUE' => 0];
+$pendingCount = 0;
+$pendingActions = [];
+$recentActivity = [];
+$userRows = [];
+$userOfficeDefaults = ['ADMIN' => 'DILG Central Office', 'FO USER' => 'DILG Field Office', 'PO USER' => 'DILG Provincial Office'];
+
+if ($pdo) {
+  try {
+    $totalUsers = (int) $pdo->query('SELECT COUNT(*) AS c FROM users')->fetchColumn();
+    foreach ($pdo->query('SELECT role, COUNT(*) AS c FROM users GROUP BY role') as $row) {
+      if (isset($row['role'])) $roleCounts[$row['role']] = (int) $row['c'];
+    }
+    $adminPercent = percentage($roleCounts['ADMIN'], $totalUsers);
+    $poPercent = percentage($roleCounts['PO USER'], $totalUsers);
+    $foPercent = percentage($roleCounts['FO USER'], $totalUsers);
+
+    foreach ($pdo->query('SELECT status, COUNT(*) AS c FROM reports GROUP BY status') as $row) {
+      if (isset($row['status'])) $reportCounts[$row['status']] = (int) $row['c'];
+    }
+    $pendingCount = ($reportCounts['PENDING'] ?? 0) + ($reportCounts['OVERDUE'] ?? 0);
+
+    $pendingActions = [];
+    $reportQuery = $pdo->query("SELECT r.title, r.status, u.username FROM reports r LEFT JOIN users u ON u.id = r.user_id WHERE r.status IN ('PENDING', 'OVERDUE') ORDER BY r.created_at DESC LIMIT 10");
+    foreach ($reportQuery as $report) {
+      $pendingActions[] = [
+        'item' => $report['title'], 'type' => 'Report', 'submittedBy' => $report['username'] ?: 'Unknown user',
+        'status' => ucfirst(strtolower($report['status'])), 'statusColor' => $report['status'] === 'OVERDUE' ? 'danger' : ($report['status'] === 'SUBMITTED' ? 'success' : 'warning')
+      ];
+    }
+
+    $recentActivity = $pdo->query("SELECT a.action, a.created_at, u.username FROM audit_logs a LEFT JOIN users u ON u.id = a.user_id ORDER BY a.created_at DESC LIMIT 6")->fetchAll();
+    $userRows = $pdo->query('SELECT id, username, email, role, created_at FROM users ORDER BY username ASC')->fetchAll();
+  } catch (Exception $e) {
+    error_log('admin-dashboard queries failed: ' . $e->getMessage());
+    // keep safe defaults so the page renders
+  }
+}
+
+// News CRUD moved to Home Management. Dashboard no longer handles What's New server-side; use admin-home.php or auth/news_api.php as the canonical management surface.
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ADMIN Dashboard — DILG SDS</title>
+  <link rel="stylesheet" href="styles.css?v=20260814-admin-ref-01">
+  <style>
+    .admin-shell,
+    .admin-portal-shell {
+      position: relative;
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      min-height: 100vh;
+      transition: grid-template-columns 0.22s ease;
+    }
+    .admin-sidebar {
+      position: relative;
+      width: 320px;
+      min-width: 320px;
+      transition: width 0.22s ease, min-width 0.22s ease;
+    }
+    .admin-sidebar__title {
+    .admin-sidebar__title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 18px 12px 14px;
+      color: rgba(255,255,255,0.96);
+      font-weight: 800;
+      min-height: 76px;
+      box-sizing: border-box;
+      position: relative;
+      padding-right: 28px;
+    }
+    .admin-sidebar__brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      padding: 4px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .admin-sidebar__brand-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      min-width: 0;
+      line-height: 1.18;
+      white-space: normal;
+      flex: 1;
+    }
+    .admin-sidebar__brand-name {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.74rem;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: #ffffff;
+      font-weight: 700;
+      line-height: 1.18;
+      white-space: normal;
+      overflow: visible;
+      gap: 0;
+    }
+    .admin-sidebar__brand-line {
+      display: block;
+      line-height: 1.18;
+    }
+    .admin-sidebar__brand-subtitle {
+      font-size: 0.58rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(220, 232, 255, 0.8);
+      font-weight: 700;
+      white-space: nowrap;
+      line-height: 1.3;
+    }
+    .admin-main {
+      min-width: 0;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .sidebar-collapse-toggle {
+      position: absolute;
+      top: 18px;
+      right: 8px;
+      left: auto;
+      transform: none;
+      width: 18px;
+      height: 18px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #ffffff;
+      box-shadow: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 40;
+      transition: left 0.22s ease, transform 0.22s ease, opacity 0.22s ease;
+      padding: 0;
+    }
+    .sidebar-collapse-toggle span {
+      display: inline-block;
+      font-size: 2rem;
+      line-height: 1;
+      transform: translateX(-1px);
+      transition: transform 0.22s ease;
+      color: #ffffff;
+    }
+    body.sidebar-collapsed .admin-portal-shell,
+    body.sidebar-collapsed .admin-shell {
+      grid-template-columns: 90px minmax(0, 1fr);
+    }
+    body.sidebar-collapsed .admin-sidebar {
+      width: 90px;
+      min-width: 90px;
+    }
+    body.sidebar-collapsed .admin-sidebar .sidebar-section-label,
+    body.sidebar-collapsed .admin-sidebar .admin-sidebar__title,
+    body.sidebar-collapsed .admin-sidebar .admin-sidebar__nav a span:last-child,
+    body.sidebar-collapsed .admin-sidebar .sidebar-settings-link span:last-child,
+    body.sidebar-collapsed .admin-sidebar .sidebar-logout span:last-child {
+      display: none;
+    }
+    body.sidebar-collapsed .admin-sidebar .admin-sidebar__nav a,
+    body.sidebar-collapsed .admin-sidebar .sidebar-settings-link,
+    body.sidebar-collapsed .admin-sidebar .sidebar-logout {
+      justify-content: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    body.sidebar-collapsed .sidebar-collapse-toggle {
+      right: 8px;
+      left: auto;
+      background: transparent;
+      color: #ffffff;
+    }
+    body.sidebar-collapsed .sidebar-collapse-toggle span {
+      transform: rotate(180deg) translateX(-1px);
+      color: #ffffff;
+    }
+    .sidebar-settings-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 36px;
+      padding: 7px 10px;
+      margin: 0;
+      box-sizing: border-box;
+      border: 0;
+      background: transparent;
+      color: rgba(233, 241, 255, 0.9);
+      text-decoration: none;
+      font: inherit;
+      font-size: 0.94rem;
+      font-weight: 600;
+      border-radius: 12px;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 180ms ease, transform 180ms ease, color 180ms ease;
+      text-align: left;
+      white-space: nowrap;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .sidebar-settings-link:hover,
+    .sidebar-settings-link:focus-visible {
+      background: #1f5fcf;
+      color: #ffffff;
+      transform: translateX(4px);
+    }
+    .sidebar-settings-link .nav-icon {
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.96;
+      flex-shrink: 0;
+    }
+    .sidebar-settings-link .nav-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+    .settings-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1200;
+    }
+    .settings-modal.is-open {
+      display: flex;
+    }
+    .settings-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 14, 33, 0.62);
+      backdrop-filter: blur(3px);
+    }
+    .settings-modal__panel {
+      position: relative;
+      z-index: 1;
+      width: min(560px, calc(100vw - 32px));
+      background: #ffffff;
+      color: #12264d;
+      border-radius: 18px;
+      box-shadow: 0 30px 80px rgba(13, 25, 61, 0.32);
+      padding: 24px 24px 18px;
+    }
+    .settings-modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .settings-modal__header h2 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: #0d2249;
+    }
+    .settings-modal__close {
+      border: 0;
+      background: #edf3ff;
+      color: #15356d;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    .settings-form {
+      display: grid;
+      gap: 16px;
+    }
+    .settings-form label {
+      display: grid;
+      gap: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #1d325c;
+    }
+    .settings-form input,
+    .settings-form select {
+      width: 100%;
+      border: 1px solid #dfe7f7;
+      border-radius: 10px;
+      height: 44px;
+      padding: 0 12px;
+      font: inherit;
+      color: #1d325c;
+      background: #f9fbff;
+    }
+    .settings-form input:focus,
+    .settings-form select:focus {
+      outline: 2px solid rgba(31,95,207,0.18);
+      border-color: #7aa0ff;
+    }
+    .settings-form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .settings-modal__actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .settings-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .settings-btn--secondary {
+      background: #eef3ff;
+      color: #15356d;
+    }
+    .settings-btn--primary {
+      background: #0d4ed3;
+      color: #ffffff;
+    }
+    .settings-status {
+      min-height: 20px;
+      margin: 12px 0 0;
+      color: #0d7a4a;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .user-management-page { display: grid; gap: 16px; scroll-margin-top: 20px; }
+    .user-management-page__header, .user-management-page__toolbar, .user-management-page__table-panel, .user-management-page__panel { background: #fff; border: 1px solid #e1e8f2; border-radius: 10px; box-shadow: 0 2px 8px rgba(15,42,107,.04); }
+    .user-management-page__header { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 22px 24px; }
+    .user-management-page__header h1 { margin: 0 0 5px; color: #12264d; font-size: 1.6rem; }
+    .user-management-page__header p { margin: 0; color: #64748b; font-size: .85rem; }
+    .user-management-page__add { display: inline-flex; align-items: center; gap: 7px; border: 0; border-radius: 5px; padding: 11px 16px; background: #1f5fcf; color: #fff; font-weight: 700; cursor: pointer; }
+    .user-management-page__add:hover { background: #1550b3; }
+    .user-management-page__summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .user-summary-card { display: flex; align-items: center; gap: 12px; padding: 16px; background: #fff; border: 1px solid #e1e8f2; border-radius: 9px; }
+    .user-summary-card__icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #e5efff; color: #1f5fcf; font-weight: 800; }
+    .user-summary-card:nth-child(2) .user-summary-card__icon { background: #d9f7eb; color: #0b9d68; }
+    .user-summary-card:nth-child(3) .user-summary-card__icon { background: #fff0d2; color: #d98200; }
+    .user-summary-card:nth-child(4) .user-summary-card__icon { background: #efe1ff; color: #8138d4; }
+    .user-summary-card small, .user-summary-card strong { display: block; }
+    .user-summary-card small { color: #64748b; font-size: .68rem; font-weight: 800; text-transform: uppercase; }
+    .user-summary-card strong { margin-top: 3px; color: #12264d; font-size: 1.35rem; }
+    .user-management-page__toolbar { display: grid; grid-template-columns: minmax(190px, 1.6fr) repeat(3, minmax(120px, 1fr)) auto; gap: 10px; padding: 14px 16px; }
+    .user-management-page__toolbar input, .user-management-page__toolbar select { min-width: 0; padding: 10px; border: 1px solid #d6e0ec; border-radius: 5px; color: #334155; background: #fff; font: inherit; font-size: .78rem; }
+    .user-management-page__toolbar button { border: 1px solid #d6e0ec; border-radius: 5px; background: #fff; color: #334155; padding: 0 13px; cursor: pointer; }
+    .user-management-page__content { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 14px; }
+    .user-management-page__table-panel { overflow: hidden; }
+    .user-management-page__table-heading { padding: 15px 16px; border-bottom: 1px solid #e6edf5; color: #12264d; font-size: .86rem; font-weight: 800; }
+    .user-management-table { width: 100%; border-collapse: collapse; font-size: .72rem; }
+    .user-management-table th { padding: 10px 12px; background: #f8fafc; color: #64748b; text-align: left; font-size: .61rem; letter-spacing: .04em; }
+    .user-management-table td { padding: 11px 12px; border-top: 1px solid #edf1f6; color: #334155; vertical-align: middle; }
+    .user-management-table tr:hover { background: #f8fbff; }
+    .user-management-table .user-name-cell { color: #12264d; font-weight: 700; }
+    .user-role-pill, .user-status-pill { display: inline-block; padding: 4px 7px; border-radius: 4px; font-size: .62rem; font-weight: 800; }
+    .user-role-pill { background: #e8f0ff; color: #1f5fcf; }
+    .user-status-pill { background: #dff8eb; color: #087b4d; }
+    .user-action { border: 0; background: transparent; color: #1f5fcf; cursor: pointer; font-weight: 700; padding: 3px; }
+    .user-management-page__panel { padding: 18px; }
+    .user-management-page__panel h2 { margin: 0 0 15px; color: #12264d; font-size: .9rem; }
+    .user-detail-avatar { width: 48px; height: 48px; display: grid; place-items: center; margin-bottom: 10px; border-radius: 50%; background: #e5efff; color: #1f5fcf; font-size: 1.2rem; font-weight: 800; }
+    .user-detail-name { margin: 0; color: #12264d; font-size: 1rem; }
+    .user-detail-role { margin: 3px 0 16px; color: #64748b; font-size: .74rem; }
+    .user-detail-list { display: grid; gap: 10px; margin: 0; }
+    .user-detail-list div { display: flex; justify-content: space-between; gap: 12px; font-size: .7rem; }
+    .user-detail-list dt { color: #64748b; }
+    .user-detail-list dd { margin: 0; color: #334155; text-align: right; font-weight: 600; }
+    .user-detail-actions { display: grid; gap: 8px; margin-top: 18px; }
+    .user-detail-actions button { border: 0; border-radius: 5px; padding: 9px; color: #fff; background: #1f5fcf; font-weight: 700; cursor: pointer; }
+    .user-detail-actions button:last-child { background: #e8eef8; color: #1f5fcf; }
+    @media (max-width: 1050px) { .user-management-page__content { grid-template-columns: 1fr; } .user-management-page__panel { order: -1; } }
+    @media (max-width: 800px) { .user-management-page__summary { grid-template-columns: repeat(2, 1fr); } .user-management-page__toolbar { grid-template-columns: 1fr 1fr; } .user-management-page__toolbar input { grid-column: 1 / -1; } .user-management-page__table-panel { overflow-x: auto; } .user-management-table { min-width: 760px; } }
+    @media (max-width: 520px) { .user-management-page__header { align-items: flex-start; flex-direction: column; } .user-management-page__summary { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) {
+      .settings-form__row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="admin-dashboard-ref-body">
+
+
+  <div class="admin-portal-shell">
+    <button type="button" class="sidebar-collapse-toggle" id="sidebar-toggle" aria-label="Collapse sidebar"><span>‹</span></button>
+    <aside class="admin-sidebar" aria-label="Sidebar navigation">
+      <div class="admin-sidebar__title" aria-label="Department of the Interior and Local Government">
+        <img class="admin-sidebar__brand-logo" src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" alt="DILG logo" />
+        <div class="admin-sidebar__brand-text">
+          <span class="admin-sidebar__brand-name">
+            <span class="admin-sidebar__brand-line">Department of the Interior and Local Government</span>
+          </span>
+          <span class="admin-sidebar__brand-subtitle">SURIGAO DEL SUR</span>
+        </div>
+      </div>
+      <nav class="admin-sidebar__nav">
+        <div class="sidebar-section-label">ADMINISTRATION</div>
+        <a href="admin-dashboard.php" class="is-active" aria-label="Dashboard: overview of website activity and administration metrics" title="Overview and administration metrics">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5L12 4l8 7.5V20a1 1 0 0 1-1 1h-4v-7H9v7H5a1 1 0 0 1-1-1v-8.5z"/></svg>
+          </span>
+          <span>Dashboard</span>
+        </a>
+        <a href="admin-users.php" aria-label="User Management: manage administrator and staff accounts" title="Manage administrator and staff accounts">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-3.33 0-8 1.79-8 4v1h16v-1c0-2.21-4.67-4-8-4z"/></svg></span>
+          <span>User Management</span>
+        </a>
+
+        <div class="sidebar-section-label">CONTENT MANAGEMENT</div>
+        <a href="admin-home.php" aria-label="Home Management: manage homepage slides and featured content" title="Manage homepage content">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 11.5L12 4l8 7.5V20H4z"/></svg></span>
+          <span>Home Management</span>
+        </a>
+        <a href="admin-officials.php" aria-label="Elected Officials: manage published official profiles" title="Manage elected official profiles">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span>
+          <span>Elected Officials</span>
+        </a>
+        <a href="admin-news.php" aria-label="News Management: manage news articles and publications" title="Manage news publications">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H7l-3 3V5zm2 2v6h12V7H6zm2 2h8v2H8V9zm0 3h6v2H8v-2z"/></svg></span>
+          <span>News Management</span>
+        </a>
+        <a href="issuances.html" aria-label="Issuances Management: review published circulars and legal issuances" title="Review published issuances">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm9 1.5V9h3.5L14 5.5zM7 12h10v2H7v-2zm0 4h7v2H7v-2z"/></svg></span>
+          <span>Issuances Management</span>
+        </a>
+        <a href="admin-programs.php" aria-label="Programs and Services: manage published programs and services" title="Manage programs and services">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16v2H4V7zm0 5h10v2H4v-2zm0 5h16v2H4v-2z"/></svg></span>
+          <span>Programs & Services</span>
+        </a>
+        <a href="admin-media-files.php" aria-label="Media Files: view the website media inventory" title="View media inventory">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 19V5H3v14h18zm-8-6.5l2.5 3.5H8.5L13 12.5zM6 8h12v2H6V8zm0 5h8v2H6v-2z"/></svg></span>
+          <span>Media Files</span>
+        </a>
+
+        <div class="sidebar-section-label">REPORTS & ANALYTICS</div>
+        <a href="admin-dashboard.php#reports-analytics" aria-label="Reports and Analytics: review operational reports and activity" title="Review reports and activity">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M18 3H6a2 2 0 0 0-2 2v14l4-3 4 3 4-3 4 3V5a2 2 0 0 0-2-2zm-1 9H7V8h10v4zm-1-6H8V5h8v1z"/></svg></span>
+          <span>Reports & Analytics</span>
+        </a>
+
+        <div class="sidebar-section-label">SYSTEM</div>
+        <button type="button" class="sidebar-settings-link" data-open-settings aria-label="System Settings: manage portal configuration" title="Manage portal configuration">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94a7.49 7.49 0 0 0 .05-.94 7.49 7.49 0 0 0-.05-.94l2.03-1.58a.5.5 0 0 0 .12-.65l-1.92-3.32a.5.5 0 0 0-.6-.18l-2.39.96a6.94 6.94 0 0 0-1.63-.94L14.5 2.5a.5.5 0 0 0-.5-.5h-3.99a.5.5 0 0 0-.5.5l-.25 2.45a6.94 6.94 0 0 0-1.63.94l-2.39-.96a.5.5 0 0 0-.6.18L2.71 9.83a.5.5 0 0 0 .12.65l2.03 1.58a7.49 7.49 0 0 0-.05.94 7.49 7.49 0 0 0 .05.94L2.83 15.52a.5.5 0 0 0-.12.65l1.92 3.32a.5.5 0 0 0 .6.18l2.39-.96c.5.38 1.04.69 1.63.94l.25 2.45a.5.5 0 0 0 .5.5h3.99a.5.5 0 0 0 .5-.5l.25-2.45c.59-.25 1.13-.56 1.63-.94l2.39.96a.5.5 0 0 0 .6-.18l1.92-3.32a.5.5 0 0 0-.12-.65l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 12 8a3.5 3.5 0 0 1 0 7.5z"/></svg></span>
+          <span>System Settings</span>
+        </button>
+        <a href="#" id="logout-btn" class="sidebar-logout" aria-label="Log Out: end the administrator session" title="End administrator session">
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v3H3v4h7v3zm9-13h-7v2h7v12h-7v2h7a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/></svg></span>
+          <span>Log Out</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+
+      <header class="dashboard-top-bar" aria-label="Admin dashboard header">
+        <div class="welcome-panel">
+          <p class="welcome-eyebrow">DILG Administration</p>
+          <h1 class="welcome-title">Welcome back, Administrator</h1>
+        </div>
+
+        <div class="dashboard-top-actions-right">
+          <div class="search-bar">
+            <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 0 0 1.48-5.34c0-3.59-2.91-6.5-6.5-6.5s-6.5 2.91-6.5 6.5 2.91 6.5 6.5 6.5c1.35 0 2.61-.38 3.68-1.04l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="search" placeholder="Search DILG records...">
+          </div>
+          <div class="header-notifications">
+            <button class="notification-btn" type="button" aria-label="Notifications">
+              <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.96 5.36 6.3 7.92 6.3 11v5l-2 2v1h15.7v-1l-2-2z"/></svg>
+              <span class="notification-badge"><?= $pendingCount ?></span>
+            </button>
+          </div>
+          <div class="header-user">
+            <div class="user-avatar">A</div>
+            <div class="user-info">
+              <div class="user-name">Administrator</div>
+              <div class="user-role">Super Admin</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="stat-grid" aria-label="Key system metrics">
+        <article class="metric-card">
+          <div class="metric-card__top">
+            <div class="metric-card__icon metric-card__icon--blue">
+              <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-2.67 0-8 1.34-8 4v1h16v-1c0-2.66-5.33-4-8-4zM8 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-1.34 0-4 1.17-4 2.5V16h8v-.5C12 14.17 9.34 13 8 13z"/></svg>
+            </div>
+            <div class="metric-card__trend metric-card__trend--up">
+              <span>Live</span>
+              <span>Database</span>
+            </div>
+          </div>
+          <div class="metric-card__label">Total Users</div>
+          <div class="metric-card__value"><?= htmlspecialchars($totalUsers) ?></div>
+          <div class="metric-card__breakdown"><?= $roleCounts['ADMIN'] ?> Admins • <?= $roleCounts['PO USER'] ?> PO • <?= $roleCounts['FO USER'] ?> FO</div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-card__top">
+            <div class="metric-card__icon metric-card__icon--purple">
+              <svg viewBox="0 0 24 24"><path d="M7 3h10a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5a2 2 0 0 1 2-2zm2 4h6v2H9V7zm0 4h8v2H9v-2z"/></svg>
+            </div>
+            <div class="metric-card__trend metric-card__trend--up">
+              <span>Live</span>
+              <span>Website files</span>
+            </div>
+          </div>
+          <div class="metric-card__label">Published News</div>
+          <div class="metric-card__value"><?= htmlspecialchars($totalNews) ?></div>
+          <div class="metric-card__breakdown"><?= $totalNews ?> published website items</div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-card__top">
+            <div class="metric-card__icon metric-card__icon--green">
+              <svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm9 1.5V9h3.5L14 5.5zM7 12h10v2H7v-2zm0 4h7v2H7v-2z"/></svg>
+            </div>
+            <div class="metric-card__trend metric-card__trend--up">
+              <span>Live</span>
+              <span>Website files</span>
+            </div>
+          </div>
+          <div class="metric-card__label">Issuances</div>
+          <div class="metric-card__value"><?= htmlspecialchars($totalIssuances) ?></div>
+          <div class="metric-card__breakdown"><?= $totalIssuances ?> entries in issuances.html</div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-card__top">
+            <div class="metric-card__icon metric-card__icon--orange">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4V6zm2 2v8h12V8H6zm2 2h8v2H8v-2zm0 4h5v2H8v-2z"/></svg>
+            </div>
+            <div class="metric-card__trend metric-card__trend--up">
+              <span>Live</span>
+              <span>Website files</span>
+            </div>
+          </div>
+          <div class="metric-card__label">Programs & Services</div>
+          <div class="metric-card__value"><?= htmlspecialchars($totalPrograms) ?></div>
+          <div class="metric-card__breakdown"><?= $totalPrograms ?> program links</div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-card__top">
+            <div class="metric-card__icon metric-card__icon--blue">
+              <svg viewBox="0 0 24 24"><path d="M21 19V5H3v14h18zm-8-6.5l2.5 3.5H8.5L13 12.5zM6 8h12v2H6V8zm0 5h8v2H6v-2z"/></svg>
+            </div>
+            <div class="metric-card__trend metric-card__trend--up">
+              <span>Live</span>
+              <span>Website files</span>
+            </div>
+          </div>
+          <div class="metric-card__label" id="media-files">Media Files</div>
+          <div class="metric-card__value"><?= htmlspecialchars($mediaFiles) ?></div>
+          <div class="metric-card__breakdown"><?= $imageFiles ?> Images • <?= $documentFiles ?> Docs</div>
+        </article>
+
+      </section>
+
+      <div class="dashboard-grid-2col">
+        <article class="panel panel--chart" id="reports-analytics">
+          <div class="panel-header">
+            <h3>Website Content Inventory</h3>
+            <div class="chart-time-selector"><span class="time-btn active">Current files</span></div>
+          </div>
+          <div class="chart-empty-state">Historical activity is unavailable because website content is stored in static files.</div>
+          <div class="chart-summary">
+            <div class="summary-item">
+              <strong><?= $totalNews ?></strong>
+              <span>Total News</span>
+              <small>Current website count</small>
+            </div>
+            <div class="summary-item">
+              <strong><?= $totalIssuances ?></strong>
+              <span>Total Issuances</span>
+              <small>Current website count</small>
+            </div>
+            <div class="summary-item">
+              <strong><?= $totalPrograms ?></strong>
+              <span>Total Programs</span>
+              <small>Current website count</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel panel--activity">
+          <div class="panel-header">
+            <h3>Recent System Activity</h3>
+          </div>
+          <ul class="activity-list">
+            <?php if (!$recentActivity): ?>
+            <li><span class="activity-text"><strong>No recorded system activity</strong></span></li>
+            <?php else: ?>
+            <?php foreach ($recentActivity as $activity): ?>
+            <li>
+              <span class="status-pill status-pill--blue">LOG</span>
+              <span class="activity-text">
+                <strong><?= htmlspecialchars(ucwords(str_replace('_', ' ', $activity['action']))) ?></strong><br>
+                <small>By: <?= htmlspecialchars($activity['username'] ?: 'System') ?></small>
+              </span>
+              <small class="activity-time"><?= htmlspecialchars(date('M j, Y g:i A', strtotime($activity['created_at']))) ?></small>
+            </li>
+            <?php endforeach; ?>
+            <?php endif; ?>
+          </ul>
+          <div class="activity-footer">
+            <a href="#" class="view-all-link">View all activities →</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="dashboard-grid-2col">
+        <article class="panel panel--donut">
+          <h3>Users by Role</h3>
+          <div class="donut-wrap">
+            <div class="donut-chart" aria-label="Users by role chart">
+              <div class="donut-center">
+                <strong><?= $totalUsers ?></strong>
+                <span>Total Users</span>
+              </div>
+            </div>
+            <ul class="role-legend">
+              <li><span class="legend-dot legend-dot--blue"></span> <strong>Admins</strong> <span class="legend-value"><?= $roleCounts['ADMIN'] ?> (<?= $adminPercent ?>%)</span></li>
+              <li><span class="legend-dot legend-dot--green"></span> <strong>PO Users</strong> <span class="legend-value"><?= $roleCounts['PO USER'] ?> (<?= $poPercent ?>%)</span></li>
+              <li><span class="legend-dot legend-dot--purple"></span> <strong>FO Users</strong> <span class="legend-value"><?= $roleCounts['FO USER'] ?> (<?= $foPercent ?>%)</span></li>
+            </ul>
+          </div>
+          <p class="role-note">User distribution across all roles in the system</p>
+        </article>
+
+        <article class="panel panel--pending">
+          <div class="panel-header">
+            <h3>Pending Actions</h3>
+            <a href="auth/reports_api.php?action=list" class="view-all-link">View All Reports →</a>
+          </div>
+          <div class="pending-table-wrap">
+            <table class="pending-table">
+              <thead>
+                <tr>
+                  <th>ITEM</th>
+                  <th>TYPE</th>
+                  <th>SUBMITTED BY</th>
+                  <th>STATUS</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php if (!$pendingActions): ?>
+                <tr><td colspan="5">No pending reports.</td></tr>
+                <?php endif; ?>
+                <?php foreach ($pendingActions as $action): ?>
+                <tr>
+                  <td class="item-cell"><strong><?= htmlspecialchars($action['item']) ?></strong></td>
+                  <td><span class="badge badge-type"><?= htmlspecialchars($action['type']) ?></span></td>
+                  <td><?= htmlspecialchars($action['submittedBy']) ?></td>
+                  <td><span class="status-badge status-badge--<?= htmlspecialchars($action['statusColor']) ?>"><?= htmlspecialchars($action['status']) ?></span></td>
+                  <td>
+                    <button class="action-link" type="button">Review</button>
+                    <button class="action-link secondary" type="button">Edit</button>
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+
+      <section class="quick-actions-section">
+        <h3>Quick Actions</h3>
+        <div class="quick-actions">
+          <a class="quick-action-btn quick-action-btn--success" href="admin-news.php" aria-label="Add News">
+            <span class="action-icon">
+              <svg viewBox="0 0 24 24"><path d="M5 3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5zm0 2h14v10H5V5zm0 12h14v2H5v-2z"/></svg>
+            </span>
+            <div class="action-content">
+              <div class="action-title">Add News</div>
+              <div class="action-subtitle">Create a new news article</div>
+            </div>
+          </a>
+          <button class="quick-action-btn quick-action-btn--warning" type="button" aria-label="Create Issuance">
+            <span class="action-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-8-6z"/></svg>
+            </span>
+            <div class="action-content">
+              <div class="action-title">Create Issuance</div>
+              <div class="action-subtitle">Create a new issuance</div>
+            </div>
+          </button>
+          <a class="quick-action-btn quick-action-btn--secondary" href="admin-programs.php" aria-label="Add Program">
+            <span class="action-icon">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75-3.54L6 15h12L11.96 8.29z"/></svg>
+            </span>
+            <div class="action-content">
+              <div class="action-title">Add Program</div>
+              <div class="action-subtitle">Add a new program/service</div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+
+    </main>
+  </div>
+
+  <div class="settings-modal" id="settings-modal" aria-hidden="true">
+    <div class="settings-modal__backdrop" data-close-settings></div>
+    <div class="settings-modal__panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="settings-modal__header">
+        <h2 id="settings-title">System Settings</h2>
+        <button type="button" class="settings-modal__close" aria-label="Close settings" data-close-settings>×</button>
+      </div>
+      <form class="settings-form" id="system-settings-form">
+        <label>
+          Website Title
+          <input type="text" name="websiteTitle" value="DILG SDS" />
+        </label>
+        <div class="settings-form__row">
+          <label>
+            Contact Email
+            <input type="email" name="contactEmail" value="info@dilg.gov.ph" />
+          </label>
+          <label>
+            Default Timezone
+            <select name="timezone">
+              <option value="Asia/Manila" selected>Asia/Manila</option>
+              <option value="UTC">UTC</option>
+              <option value="America/New_York">America/New_York</option>
+            </select>
+          </label>
+        </div>
+        <div class="settings-form__row">
+          <label>
+            Maintenance Mode
+            <select name="maintenanceMode">
+              <option value="off" selected>Off</option>
+              <option value="on">On</option>
+            </select>
+          </label>
+          <label>
+            Default Publishing
+            <select name="publishState">
+              <option value="published" selected>Published</option>
+              <option value="draft">Draft</option>
+            </select>
+          </label>
+        </div>
+        <div class="settings-modal__actions">
+          <button type="button" class="settings-btn settings-btn--secondary" data-close-settings>Cancel</button>
+          <button type="submit" class="settings-btn settings-btn--primary">Save Settings</button>
+        </div>
+      </form>
+      <p class="settings-status" id="settings-status" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <script>
+  const sidebarToggle = document.getElementById('sidebar-toggle');
+  if (sidebarToggle) {
+    const savedSidebarState = localStorage.getItem('dilgSidebarCollapsed') === 'true';
+    if (savedSidebarState) {
+      document.body.classList.add('sidebar-collapsed');
+    }
+    sidebarToggle.addEventListener('click', function () {
+      const collapsed = document.body.classList.toggle('sidebar-collapsed');
+      localStorage.setItem('dilgSidebarCollapsed', String(collapsed));
+    });
+  }
+
+  const settingsModal = document.getElementById('settings-modal');
+  const settingsForm = document.getElementById('system-settings-form');
+  const settingsStatus = document.getElementById('settings-status');
+
+  function openSettingsModal() {
+    settingsModal.classList.add('is-open');
+    settingsModal.setAttribute('aria-hidden', 'false');
+    if (settingsStatus) {
+      settingsStatus.textContent = '';
+    }
+  }
+
+  function closeSettingsModal() {
+    settingsModal.classList.remove('is-open');
+    settingsModal.setAttribute('aria-hidden', 'true');
+  }
+
+  document.querySelectorAll('[data-open-settings]').forEach(function (button) {
+    button.addEventListener('click', openSettingsModal);
+  });
+
+  document.querySelectorAll('[data-close-settings]').forEach(function (button) {
+    button.addEventListener('click', closeSettingsModal);
+  });
+
+  settingsModal.addEventListener('click', function (event) {
+    if (event.target === settingsModal || event.target.classList.contains('settings-modal__backdrop')) {
+      closeSettingsModal();
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && settingsModal.classList.contains('is-open')) {
+      closeSettingsModal();
+    }
+  });
+
+  const savedSettings = JSON.parse(localStorage.getItem('dilgSystemSettings') || '{}');
+  if (savedSettings.websiteTitle) {
+    settingsForm.websiteTitle.value = savedSettings.websiteTitle;
+  }
+  if (savedSettings.contactEmail) {
+    settingsForm.contactEmail.value = savedSettings.contactEmail;
+  }
+  if (savedSettings.timezone) {
+    settingsForm.timezone.value = savedSettings.timezone;
+  }
+  if (savedSettings.maintenanceMode) {
+    settingsForm.maintenanceMode.value = savedSettings.maintenanceMode;
+  }
+  if (savedSettings.publishState) {
+    settingsForm.publishState.value = savedSettings.publishState;
+  }
+
+  settingsForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const formData = new FormData(settingsForm);
+    const values = Object.fromEntries(formData.entries());
+    localStorage.setItem('dilgSystemSettings', JSON.stringify(values));
+    if (settingsStatus) {
+      settingsStatus.textContent = 'Settings saved successfully.';
+    }
+    closeSettingsModal();
+  });
+
+  document.getElementById('logout-btn').addEventListener('click', async function (e) {
+    e.preventDefault();
+    try {
+      await fetch('auth/logout.php', { method: 'POST' });
+    } finally {
+      location.href = 'index.html';
+    }
+  });
+
+  </script>
+</body>
+</html>

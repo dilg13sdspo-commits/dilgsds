@@ -1,0 +1,3 @@
+<FilesMatch "(?i)^(?:config(?:\.local|\.sample)?|db|init_admin|reset(?:_users)?|temp_bypass_session|setup_database|seed_.*|test_.*)\.php$">
+    Require all denied
+</FilesMatch>

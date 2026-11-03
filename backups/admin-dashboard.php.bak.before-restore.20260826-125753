@@ -1,0 +1,358 @@
+﻿<?php
+require_once __DIR__ . '/auth/middleware.php';
+require_role('ADMIN');
+$pdo = db_connect();
+
+function count_html_nodes($filename, $query) {
+  if (!class_exists('DOMDocument') || !is_file($filename)) return 0;
+  libxml_use_internal_errors(true);
+  $document = new DOMDocument();
+  $document->loadHTMLFile($filename);
+  $xpath = new DOMXPath($document);
+  return $xpath->query($query)->length;
+}
+
+function count_html_class($filename, $className) {
+  return count_html_nodes($filename, "//*[contains(concat(' ', normalize-space(@class), ' '), ' " . $className . " ')]");
+}
+
+function count_files_by_type($directory, $extensions) {
+  if (!is_dir($directory)) return 0;
+  $count = 0;
+  $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, FilesystemIterator::SKIP_DOTS));
+  foreach ($iterator as $file) {
+    if ($file->isFile() && in_array(strtolower($file->getExtension()), $extensions, true)) $count++;
+  }
+  return $count;
+}
+
+function percentage($part, $total) {
+  return $total > 0 ? round((($part / $total) * 100)) : 0;
+}
+
+function count_active_json_records($filename) {
+  if (!is_file($filename)) return null;
+  $records = json_decode(file_get_contents($filename), true);
+  if (!is_array($records)) return null;
+  return count(array_filter($records, function ($record) { return !empty($record['is_active']); }));
+}
+
+// Attempt to connect to the DB and run queries. If DB is unavailable, fall back to safe defaults so the dashboard still renders.
+try {
+  $pdo = db_connect();
+} catch (Exception $e) {
+  $pdo = null;
+  error_log('admin-dashboard db_connect failed: ' . $e->getMessage());
+}
+
+// Initialize safe defaults
+$totalUsers = 0;
+$roleCounts = ['ADMIN' => 0, 'PO USER' => 0, 'FO USER' => 0];
+$adminPercent = $poPercent = $foPercent = 0;
+
+$totalNews = count_active_json_records(__DIR__ . '/data/news.json');
+if ($totalNews === null) $totalNews = count_html_class(__DIR__ . '/news.html', 'video-card') + count_html_class(__DIR__ . '/news.html', 'katon-card');
+$totalIssuances = count_html_nodes(__DIR__ . '/issuances.html', "//*[contains(concat(' ', normalize-space(@class), ' '), ' jmc-table ')]//tbody/tr");
+$totalPrograms = count_html_class(__DIR__ . '/programs-and-services.html', 'program-link');
+$imageFiles = count_files_by_type(__DIR__ . '/images', ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg']);
+$imageFiles += count_files_by_type(__DIR__ . '/Logos', ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg']);
+$documentFiles = count_files_by_type(__DIR__, ['pdf', 'doc', 'docx', 'xls', 'xlsx']);
+$mediaFiles = $imageFiles + $documentFiles;
+$activeUsers = 'N/A';
+
+$reportCounts = ['PENDING' => 0, 'SUBMITTED' => 0, 'OVERDUE' => 0];
+$pendingCount = 0;
+$pendingActions = [];
+$recentActivity = [];
+$userRows = [];
+$userOfficeDefaults = ['ADMIN' => 'DILG Central Office', 'FO USER' => 'DILG Field Office', 'PO USER' => 'DILG Provincial Office'];
+
+if ($pdo) {
+  try {
+    $totalUsers = (int) $pdo->query('SELECT COUNT(*) AS c FROM users')->fetchColumn();
+    foreach ($pdo->query('SELECT role, COUNT(*) AS c FROM users GROUP BY role') as $row) {
+      if (isset($row['role'])) $roleCounts[$row['role']] = (int) $row['c'];
+    }
+    $adminPercent = percentage($roleCounts['ADMIN'], $totalUsers);
+    $poPercent = percentage($roleCounts['PO USER'], $totalUsers);
+    $foPercent = percentage($roleCounts['FO USER'], $totalUsers);
+
+    foreach ($pdo->query('SELECT status, COUNT(*) AS c FROM reports GROUP BY status') as $row) {
+      if (isset($row['status'])) $reportCounts[$row['status']] = (int) $row['c'];
+    }
+    $pendingCount = ($reportCounts['PENDING'] ?? 0) + ($reportCounts['OVERDUE'] ?? 0);
+
+    $pendingActions = [];
+    $reportQuery = $pdo->query("SELECT r.title, r.status, u.username FROM reports r LEFT JOIN users u ON u.id = r.user_id WHERE r.status IN ('PENDING', 'OVERDUE') ORDER BY r.created_at DESC LIMIT 10");
+    foreach ($reportQuery as $report) {
+      $pendingActions[] = [
+        'item' => $report['title'], 'type' => 'Report', 'submittedBy' => $report['username'] ?: 'Unknown user',
+        'status' => ucfirst(strtolower($report['status'])), 'statusColor' => $report['status'] === 'OVERDUE' ? 'danger' : ($report['status'] === 'SUBMITTED' ? 'success' : 'warning')
+      ];
+    }
+
+    $recentActivity = $pdo->query("SELECT a.action, a.created_at, u.username FROM audit_logs a LEFT JOIN users u ON u.id = a.user_id ORDER BY a.created_at DESC LIMIT 6")->fetchAll();
+    $userRows = $pdo->query('SELECT id, username, email, role, created_at FROM users ORDER BY username ASC')->fetchAll();
+  } catch (Exception $e) {
+    error_log('admin-dashboard queries failed: ' . $e->getMessage());
+    // keep safe defaults so the page renders
+  }
+}
+
+// News CRUD moved to Home Management. Dashboard no longer handles What's New server-side; use admin-home.php or auth/news_api.php as the canonical management surface.
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ADMIN Dashboard — DILG SDS</title>
+  <link rel="stylesheet" href="styles.css?v=20260814-admin-ref-01">
+  <style>
+    .admin-shell,
+    .admin-portal-shell {
+      position: relative;
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      min-height: 100vh;
+      transition: grid-template-columns 0.22s ease;
+    }
+    .admin-sidebar {
+      position: relative;
+      width: 320px;
+      min-width: 320px;
+      transition: width 0.22s ease, min-width 0.22s ease;
+    }
+    .admin-sidebar__title {
+    .admin-sidebar__title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 18px 12px 14px;
+      color: rgba(255,255,255,0.96);
+      font-weight: 800;
+      min-height: 76px;
+      box-sizing: border-box;
+      position: relative;
+      padding-right: 28px;
+    }
+    .admin-sidebar__brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      padding: 4px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .admin-sidebar__brand-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      min-width: 0;
+      line-height: 1.18;
+      white-space: normal;
+      flex: 1;
+    }
+    .admin-sidebar__brand-name {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.74rem;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: #ffffff;
+      font-weight: 700;
+      line-height: 1.18;
+      white-space: normal;
+      overflow: visible;
+      gap: 0;
+    }
+    .admin-sidebar__brand-line {
+      display: block;
+      line-height: 1.18;
+    }
+    .admin-sidebar__brand-subtitle {
+      font-size: 0.58rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(220, 232, 255, 0.8);
+      font-weight: 700;
+      white-space: nowrap;
+      line-height: 1.3;
+    }
+    .admin-main {
+      min-width: 0;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .sidebar-collapse-toggle {
+      position: absolute;
+      top: 18px;
+      right: 8px;
+      left: auto;
+      transform: none;
+      width: 18px;
+      height: 18px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #ffffff;
+      box-shadow: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 40;
+      transition: left 0.22s ease, transform 0.22s ease, opacity 0.22s ease;
+      padding: 0;
+    }
+    .sidebar-collapse-toggle span {
+      display: inline-block;
+      font-size: 2rem;
+      line-height: 1;
+      transform: translateX(-1px);
+      transition: transform 0.22s ease;
+      color: #ffffff;
+    }
+    body.sidebar-collapsed .admin-portal-shell,
+    body.sidebar-collapsed .admin-shell {
+      grid-template-columns: 90px minmax(0, 1fr);
+    }
+    body.sidebar-collapsed .admin-sidebar {
+      width: 90px;
+      min-width: 90px;
+    }
+    body.sidebar-collapsed .admin-sidebar .sidebar-section-label,
+    body.sidebar-collapsed .admin-sidebar .admin-sidebar__title,
+    body.sidebar-collapsed .admin-sidebar .admin-sidebar__nav a span:last-child,
+    body.sidebar-collapsed .admin-sidebar .sidebar-settings-link span:last-child,
+    body.sidebar-collapsed .admin-sidebar .sidebar-logout span:last-child {
+      display: none;
+    }
+    body.sidebar-collapsed .admin-sidebar .admin-sidebar__nav a,
+    body.sidebar-collapsed .admin-sidebar .sidebar-settings-link,
+    body.sidebar-collapsed .admin-sidebar .sidebar-logout {
+      justify-content: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    body.sidebar-collapsed .sidebar-collapse-toggle {
+      right: 8px;
+      left: auto;
+      background: transparent;
+      color: #ffffff;
+    }
+    body.sidebar-collapsed .sidebar-collapse-toggle span {
+      transform: rotate(180deg) translateX(-1px);
+      color: #ffffff;
+    }
+    .sidebar-settings-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 36px;
+      padding: 7px 10px;
+      margin: 0;
+      box-sizing: border-box;
+      border: 0;
+      background: transparent;
+      color: rgba(233, 241, 255, 0.9);
+      text-decoration: none;
+      font: inherit;
+      font-size: 0.94rem;
+      font-weight: 600;
+      border-radius: 12px;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 180ms ease, transform 180ms ease, color 180ms ease;
+      text-align: left;
+      white-space: nowrap;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .sidebar-settings-link:hover,
+    .sidebar-settings-link:focus-visible {
+      background: #1f5fcf;
+      color: #ffffff;
+      transform: translateX(4px);
+    }
+    .sidebar-settings-link .nav-icon {
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.96;
+      flex-shrink: 0;
+    }
+    .sidebar-settings-link .nav-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+    .settings-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1200;
+    }
+    .settings-modal.is-open {
+      display: flex;
+    }
+    .settings-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 14, 33, 0.62);
+      backdrop-filter: blur(3px);
+    }
+    .settings-modal__panel {
+      position: relative;
+      z-index: 1;
+      width: min(560px, calc(100vw - 32px));
+      background: #ffffff;
+      color: #12264d;
+      border-radius: 18px;
+      box-shadow: 0 30px 80px rgba(13, 25, 61, 0.32);
+      padding: 24px 24px 18px;
+    }
+    .settings-modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+  </style>
+</head>
+<body class="admin-dashboard-ref-body">
+
+
+  <div class="admin-portal-shell">
+    <button type="button" class="sidebar-collapse-toggle" id="sidebar-toggle" aria-label="Collapse sidebar"><span>‹</span></button>
+    <aside class="admin-sidebar" aria-label="Sidebar navigation">
+      <div class="admin-sidebar__title" aria-label="Department of the Interior and Local Government">
+        <img class="admin-sidebar__brand-logo" src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" alt="DILG logo" />
+        <div class="admin-sidebar__brand-text">
+          <span class="admin-sidebar__brand-name">
+            <span class="admin-sidebar__brand-line">Department of the Interior and Local Government</span>
+          </span>
+          <span class="admin-sidebar__brand-subtitle">SURIGAO DEL SUR</span>
+        </div>
+      </div>
+      <nav class="admin-sidebar__nav">
+        <div class="sidebar-section-label">ADMINISTRATION</div>
+        <a href="admin-dashboard.php" class="is-active" aria-label="Dashboard: overview of website activity and administration metrics" title="Overview and administration metrics">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5L12 4l8 7.5V20a1 1 0 0 1-1 1h-4v-7H9v7H5a1 1 0 0 1-1-1v-8.5z"/></svg>
+          </span>
+          <span>Dashboard</span>
+        </a>
+... (truncated for brevity) ...

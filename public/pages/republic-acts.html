@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Republic Acts — DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body {
+      background: #f4f7fb;
+      color: #243447;
+      min-height: 100vh;
+    }
+    .page-shell {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 24px 18px 42px;
+    }
+    .ra-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 24px;
+      align-items: start;
+    }
+    .page-card {
+      padding: 28px;
+    }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .breadcrumbs {
+      color: #6c7a8a;
+      font-size: 0.95rem;
+    }
+    .breadcrumbs strong {
+      color: #0f2a6b;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid #d7e0ea;
+      background: #fff;
+      color: #0f2a6b;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .ra-hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .ra-hero-copy h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.45rem, 2.3vw, 2.25rem);
+      color: #0f2a6b;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .ra-hero-copy p {
+      margin: 0;
+      color: #5f6f88;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 720px;
+    }
+    .archive-search { position: relative; margin-bottom: 18px; }
+    .archive-search label { display: block; margin-bottom: 7px; color: #0f2a6b; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .archive-search input { width: 100%; box-sizing: border-box; padding: 13px 16px 13px 44px; border: 1px solid #d7e0ea; border-radius: 10px; background: #fff; color: #243447; font: inherit; outline: none; }
+    .archive-search input:focus { border-color: #2e66e5; box-shadow: 0 0 0 3px rgba(46, 102, 229, 0.12); }
+    .archive-search::before { position: absolute; left: 16px; bottom: 13px; color: #6b7a92; content: '\2315'; font-size: 1.2rem; line-height: 1; transform: rotate(-20deg); }
+    .archive-empty { margin: 22px 4px; color: #5f6f88; text-align: center; }
+    .ra-summary {
+      min-width: 170px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid #dce7f5;
+      background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+      text-align: right;
+    }
+    .ra-summary-label {
+      display: block;
+      color: #6b7a92;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .ra-summary-value {
+      display: block;
+      margin-top: 4px;
+      color: #0f2a6b;
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .ra-summary-note {
+      display: block;
+      margin-top: 6px;
+      color: #5f6f88;
+      font-size: 0.86rem;
+    }
+    .ra-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid #e8edf4;
+    }
+    .issuance-row {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr) 120px;
+      gap: 12px 16px;
+      align-items: start;
+      padding: 16px 4px;
+      border-bottom: 1px solid #e8edf4;
+      transition: background-color 0.18s ease;
+    }
+    .issuance-row:hover {
+      background: #fbfdff;
+    }
+    .issuance-num {
+      color: #57667f;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.5;
+      padding-top: 2px;
+    }
+    .issuance-body {
+      min-width: 0;
+    }
+    .issuance-title {
+      margin: 0 0 6px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .issuance-title a {
+      color: #2e66e5;
+      text-decoration: none;
+    }
+    .issuance-title a:hover {
+      text-decoration: underline;
+    }
+    .issuance-ref {
+      margin: 0;
+      color: #243447;
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .issuance-date {
+      color: #57667f;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      text-align: right;
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+    .ra-pagination {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 22px;
+    }
+    .ra-pagination button {
+      min-width: 40px;
+      padding: 10px 14px;
+      border: 1px solid #d7e0ea;
+      border-radius: 10px;
+      background: #fff;
+      color: #0f2a6b;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+    .ra-pagination button:hover:not(:disabled) {
+      border-color: #9eb7e8;
+      background: #f3f7ff;
+    }
+    .ra-pagination button.is-active {
+      border-color: #0f2a6b;
+      background: #0f2a6b;
+      color: #fff;
+    }
+    .ra-pagination button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .ra-sidebar {
+      width: 100%;
+    }
+    .ra-sidebar .cn-sidebar {
+      width: 100%;
+    }
+    @media (max-width: 1040px) {
+      .ra-layout {
+        grid-template-columns: 1fr;
+      }
+      .ra-sidebar {
+        order: 2;
+      }
+      .ra-hero {
+        align-items: start;
+      }
+      .ra-summary {
+        text-align: left;
+      }
+    }
+    @media (max-width: 860px) {
+      .page-shell {
+        padding: 18px 14px 30px;
+      }
+      .issuance-row {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: 8px 12px;
+        padding: 14px 2px;
+      }
+      .issuance-date {
+        grid-column: 2;
+        text-align: left;
+        white-space: normal;
+        padding-top: 0;
+        font-size: 0.86rem;
+      }
+      .issuance-title {
+        font-size: 0.94rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false"><span class="nav-label">About Us</span><span class="nav-arrow" aria-hidden="true">▾</span></a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link active" data-page="issuances" aria-haspopup="true" aria-expanded="false"><span class="nav-label">Issuances</span><span class="nav-arrow" aria-hidden="true">▾</span></a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li><a href="joint-circulars.html" class="dropdown-item">Joint Circulars</a></li>
+            <li><a href="memo-circulars.html" class="dropdown-item">Memo Circulars</a></li>
+            <li><a href="presidential-directives.html" class="dropdown-item">Presidential Directives</a></li>
+            <li><a href="republic-acts.html" class="dropdown-item active" aria-current="page">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false"><span class="nav-label">Legal Opinion</span><span class="nav-arrow" aria-hidden="true">▾</span></a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left"><div class="logo-row"><img src="../../Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" alt="DILG logo" class="header-logo" /><img src="../../Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" /><img src="../../SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" /><img src="../../SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" /></div></div>
+    <div class="topbar-center"><div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div><div class="title-divider" aria-hidden="true"></div><div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div><div class="topbar-subtitle">Province of Surigao del Sur</div></div>
+    <div class="topbar-right"><div class="topbar-clock clock"><div class="topbar-clock-date" id="topbar-date">Loading date...</div><div class="topbar-clock-time" id="topbar-time">Loading time...</div></div></div>
+  </header>
+
+  <main class="page-shell">
+    <section class="ra-layout">
+      <article class="page-card">
+        <div class="toolbar">
+          <div class="breadcrumbs">Home <span aria-hidden="true">›</span> Issuances <span aria-hidden="true">›</span> <strong>Republic Acts</strong></div>
+          <a class="back-link" href="index.html">← Back to Home</a>
+        </div>
+
+        <div class="ra-hero">
+          <div class="ra-hero-copy">
+            <h1>Republic Acts</h1>
+            <p>Browse the Republic Acts archive shown in your image. The entries below keep the same wording and open the corresponding DILG category links you provided.</p>
+          </div>
+          <div class="ra-summary" aria-live="polite">
+            <span class="ra-summary-label">Archive Entries</span>
+            <span class="ra-summary-value" id="ra-total-count">9</span>
+            <span class="ra-summary-note" id="ra-page-summary">Page 1 of 2</span>
+          </div>
+        </div>
+
+        <div class="archive-search">
+          <label for="ra-search">Search republic acts</label>
+          <input id="ra-search" type="search" placeholder="Search by title or reference number" autocomplete="off" />
+        </div>
+        <div class="ra-list" id="ra-list" aria-live="polite"></div>
+        <nav class="ra-pagination" id="ra-pagination" aria-label="Republic acts pagination"></nav>
+        <div class="ra-status" id="ra-status" aria-live="polite"></div>
+      </article>
+
+      <div class="ra-sidebar">
+        <aside class="cn-sidebar">
+          <a class="cn-portal-card" href="https://op-proper.gov.ph/" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.dilg.gov.ph/images/banner/banner-president-corner.png" alt="Visit the Office of the President" />
+          </a>
+          <a class="cn-portal-card" href="https://www.dilg.gov.ph/secretarys-corner/" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.dilg.gov.ph/images/banner/secretarys-corner.png" alt="Visit the Secretary's Corner" />
+          </a>
+          <a class="cn-portal-card" href="https://www.dilg.gov.ph/transparency/" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.dilg.gov.ph/images/banner/banner-transparency-seal.png" alt="Philippine Transparency Seal" />
+          </a>
+          <div class="cn-secondary-row">
+            <a class="cn-sec-card" href="https://www.dilg.gov.ph/GAA-Reportorial-Requirement-Archive/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/gaa2015.png" alt="GAA Reportorial Requirement" />
+            </a>
+            <a class="cn-sec-card" href="https://www.foi.gov.ph/agencies/dilg/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/foi-corner.jpg" alt="Freedom of Information" />
+            </a>
+            <a class="cn-sec-card" href="https://www.dilg.gov.ph/leo-70/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/leo70-box.png" alt="Localization of EO 70" />
+            </a>
+            <a class="cn-sec-card" href="https://www.dilg.gov.ph/files/dilg_document_202706_8dc37fea59.pdf" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/logo/dilg-dpa-cor-3.jpg" alt="Data Privacy" />
+            </a>
+            <a class="cn-sec-card" href="https://www.dilg.gov.ph/other/GAD-Corner/49" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/gad-corner.jpg" alt="Gender and Development" />
+            </a>
+          </div>
+          <div class="cn-fb-widget">
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fdilg.philippines&amp;width=380&amp;height=500&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=true&amp;show_border=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false&amp;small_header=true" scrolling="yes" frameborder="0" style="background-color:#3A559F; border:3px solid #3A559F; border-right:4px solid #3A559F; overflow:hidden; width:100%; height:250px;" allowtransparency="true"></iframe>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="../../Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/"><img src="../../Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="../../Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="../../Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="../../Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="../../Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="../../Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="../../Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/"><img src="../../Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="../../Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand"><img src="../../Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" /><div><p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p><p class="footer-brand-subtitle">DILG Surigao del Sur Province</p></div></div>
+      <div class="footer-links"><h3>GOVERNMENT LINKS</h3><ul><li><a href="#">Office of the President</a></li><li><a href="#">Office of the Vice President</a></li><li><a href="#">Senate of the Philippines</a></li><li><a href="#">House of Representatives</a></li><li><a href="#">Supreme Court</a></li><li><a href="#">Court of Appeals</a></li><li><a href="#">Sandiganbayan</a></li></ul></div>
+      <div class="footer-connect"><h3>Connect with us</h3><div class="footer-connect-widget"><a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card"><span class="connect-icon" aria-hidden="true"><img src="../../Logos/2021_Facebook_icon.svg" alt="Facebook icon" /></span><span class="connect-content"><span class="connect-title">Like us on Facebook</span><span class="connect-sub">Be updated about DILG</span></span></a></div></div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script>
+    const republicActs = [
+      {
+        code: 'RA 9485',
+        date: 'Aug 29, 2010',
+        title: 'RA 9485 Anti Red Tape of 2007',
+        url: 'https://dilg.gov.ph/issuances/ra/RA-8792-Phil-eCommerce-Act-of-2000/4'
+      },
+      {
+        code: 'RA 8792',
+        date: 'Aug 29, 2010',
+        title: 'RA 8792 Phil eCommerce Act of 2000',
+        url: 'https://dilg.gov.ph/issuances/ra/RA-8792-Phil-eCommerce-Act-of-2000/4'
+      },
+      {
+        code: 'RA 7432',
+        date: 'Aug 29, 2010',
+        title: 'RA 7432 An Act to Maximize the Contribution of Senior Citizens to Nation Building Grant',
+        url: 'https://dilg.gov.ph/issuances/ra/RA-7432-An-Act-to-Maximize-the-Contribution-of-Senior-Citizens-to-Nation-Building-Grant-/3'
+      },
+      {
+        code: 'RA 6972',
+        date: 'Aug 29, 2010',
+        title: 'RA 6972 Barangay level Total Development and Protection of Children Act',
+        url: 'https://dilg.gov.ph/issuances/ra/RA-6972-Barangay-level-Total-Development-and-Protection-of-Children-Act-/2'
+      },
+      {
+        code: 'RA 6713',
+        date: 'Aug 29, 2010',
+        title: 'RA 6713 Code of Ethics and Ethical Standards',
+        url: 'https://dilg.gov.ph/issuances/ra/RA-6713-Code-of-Ethics-and-Ethical-Standards-/1'
+      },
+      {
+        code: 'RA 9263',
+        date: 'Oct 15, 2010',
+        title: 'An Act Providing for the Professionalization of the Bureau of Fire Protection (BFP) and the Bureau of Jail Management and Penology (BJMP), Amending Certain Provisions of Republic Act No. 6975, Providing the Funds Thereof and for Other Purposes',
+        url: 'https://dilg.gov.ph/issuances/ra/An-Act-Providing-for-the-Professionalization-of-the-Bureau-of-Fire-Protection-BFP-and-the-Bureau-of-Jail-Management-and-Penology-BJMP-Amending-Certain-Provisions-of-Republic-Act-No-6975-Providing-the-Funds-Thereof-and-for-Other-Purposes/11'
+      },
+      {
+        code: 'RA 10176',
+        date: 'Apr 3, 2014',
+        title: 'Implementing Rules and Regulations of Republic Act 10176. Also Known as "An Act Reviving the Observance of Arbor Day by Authorizing the Local Government Units the responsibilities for celebrating the day for the tree planting as annual event"',
+        url: 'https://dilg.gov.ph/issuances/ra/Implementing-Rules-and-Regulations-of-Republic-Act-10176-Also-Known-as-An-Act-Reviving-the-Observance-of-Arbor-Day-by-Authorizing-the-Local-Government-Units-the-responsibilities-for-celebrating-the-day-for-the-tree-planting-as-annual-event/12'
+      },
+      {
+        code: 'Draft IRR of RA 112911',
+        date: 'Nov 7, 2019',
+        title: 'Comments and Inputs to the Magna Carta of the Poor Implementing Rules and Regulations (MCP-IRR)',
+        url: 'https://dilg.gov.ph/issuances/ra/Comments-and-Inputs-to-the-Magna-Carta-of-the-Poor-Implementing-Rules-and-Regulations-MCP-IRR/13'
+      },
+      {
+        code: 'IRR of RA 11292',
+        date: 'Dec 29, 2020',
+        title: 'Implementing Rules and Regulations of RA 11292, The SGLG Act of 2019',
+        url: 'https://dilg.gov.ph/issuances/ra/Implementing-Rules-and-Regulations-of-RA-11292-The-SGLG-Act-of-2019/14'
+      }
+    ];
+
+    const raList = document.getElementById('ra-list');
+    const raPagination = document.getElementById('ra-pagination');
+    const raTotalCount = document.getElementById('ra-total-count');
+    const raPageSummary = document.getElementById('ra-page-summary');
+    const raSearch = document.getElementById('ra-search');
+    const pageSize = 7;
+    let currentPage = 1;
+
+    function getFilteredActs() {
+      const query = raSearch.value.trim().toLowerCase();
+      return query ? republicActs.filter(item => (item.title + ' ' + item.code).toLowerCase().includes(query)) : republicActs;
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderList() {
+      const filteredActs = getFilteredActs();
+      const totalPages = Math.max(1, Math.ceil(filteredActs.length / pageSize));
+      if (currentPage > totalPages) currentPage = totalPages;
+      const start = (currentPage - 1) * pageSize;
+      const items = filteredActs.slice(start, start + pageSize);
+
+      raList.innerHTML = items.length ? items.map((item, index) => {
+        const title = escapeHtml(item.title);
+        const code = escapeHtml(item.code);
+        const date = escapeHtml(item.date);
+        const rowNumber = start + index + 1;
+        const titleMarkup = '<a href="' + item.url + '" target="_blank" rel="noopener noreferrer">' + title + '</a>';
+
+        return (
+          '<article class="issuance-row">' +
+            '<div class="issuance-num" aria-hidden="true">' + rowNumber + '</div>' +
+            '<div class="issuance-body">' +
+              '<h2 class="issuance-title">' + titleMarkup + '</h2>' +
+              '<p class="issuance-ref">Reference No: ' + code + '</p>' +
+            '</div>' +
+            '<div class="issuance-date">' + date + '</div>' +
+          '</article>'
+        );
+      }).join('') : '<p class="archive-empty">No republic acts matched your search.</p>';
+
+      raTotalCount.textContent = String(filteredActs.length);
+      raPageSummary.textContent = 'Page ' + currentPage + ' of ' + totalPages;
+    }
+
+    function renderPagination() {
+      const totalPages = Math.max(1, Math.ceil(getFilteredActs().length / pageSize));
+      const buttons = [];
+      buttons.push('<button type="button" class="js-page-nav" data-page="' + (currentPage - 1) + '" ' + (currentPage === 1 ? 'disabled' : '') + '>Previous</button>');
+
+      for (let page = 1; page <= totalPages; page += 1) {
+        buttons.push('<button type="button" class="js-page-nav ' + (page === currentPage ? 'is-active' : '') + '" data-page="' + page + '">' + page + '</button>');
+      }
+
+      buttons.push('<button type="button" class="js-page-nav" data-page="' + (currentPage + 1) + '" ' + (currentPage === totalPages ? 'disabled' : '') + '>Next</button>');
+      raPagination.innerHTML = buttons.join('');
+    }
+
+    function updateView() {
+      renderList();
+      renderPagination();
+    }
+
+    raPagination.addEventListener('click', function (event) {
+      const target = event.target.closest('.js-page-nav');
+      if (!target) {
+        return;
+      }
+
+      const requestedPage = Number(target.getAttribute('data-page'));
+      const totalPages = Math.max(1, Math.ceil(getFilteredActs().length / pageSize));
+      if (!requestedPage || requestedPage < 1 || requestedPage > totalPages || requestedPage === currentPage) {
+        return;
+      }
+
+      currentPage = requestedPage;
+      updateView();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    raSearch.addEventListener('input', function () {
+      currentPage = 1;
+      updateView();
+    });
+
+    updateView();
+  </script>
+  <script src="../js/sidebar-cards.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2024 Annual Report | DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background: #f4f7fb;
+      color: #243447;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+    }
+
+    .annual-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 22px 18px 40px;
+    }
+
+    .annual-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .breadcrumbs {
+      color: #6c7a8a;
+      font-size: 0.95rem;
+    }
+
+    .breadcrumbs strong {
+      color: #0f2a6b;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.94rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+    .button-primary { background: #0f2a6b; color: #fff; }
+    .button-secondary { background: #fff; color: #0f2a6b; border-color: #d7e0ea; }
+
+    .annual-card {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid #dfe6ee;
+      box-shadow: 0 16px 36px rgba(8, 24, 55, 0.08);
+      padding: 22px;
+    }
+
+    .annual-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .annual-header h1 {
+      margin: 0;
+      font-size: clamp(1.2rem, 1.8vw, 1.68rem);
+      color: #0f2a6b;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .annual-header p {
+      margin: 6px 0 0;
+      color: #627487;
+      max-width: 760px;
+    }
+
+    .viewer-wrap {
+      position: relative;
+      border: 1px solid #dce4ec;
+      border-radius: 14px;
+      overflow: hidden;
+      min-height: 720px;
+      background: #f7faff;
+    }
+
+    .viewer-wrap iframe {
+      width: 100%;
+      height: min(80vh, 860px);
+      min-height: 680px;
+      border: 0;
+      display: block;
+      background: #fff;
+    }
+
+    .loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 2;
+      color: #0f2a6b;
+      font-weight: 700;
+      gap: 10px;
+      transition: opacity 0.25s ease;
+    }
+
+    .spinner {
+      border: 3px solid #dfe7f2;
+      border-top-color: #0f2a6b;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .fallback {
+      display: none;
+      padding: 28px 20px;
+      text-align: center;
+      color: #4b5563;
+      background: #fffaf2;
+      border-top: 1px solid #f5d6a5;
+    }
+
+    .fallback.show { display: block; }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 900px) {
+      .viewer-wrap iframe {
+        height: min(70vh, 760px);
+        min-height: 560px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .annual-shell { padding: 14px 12px 30px; }
+      .annual-card { padding: 16px; }
+      .annual-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .toolbar-actions {
+        justify-content: flex-start;
+      }
+      .viewer-wrap iframe {
+        height: 62vh;
+        min-height: 460px;
+      }
+    }
+
+    @media print {
+      @page { size: A4 portrait; margin: 10mm; }
+      body { background: #fff; }
+      .annual-toolbar, .toolbar-actions { display: none !important; }
+      .annual-shell { max-width: none; padding: 0; }
+      .annual-card { box-shadow: none; border: none; padding: 0; }
+      .viewer-wrap { border: none; min-height: auto; }
+      .viewer-wrap iframe { display: none; }
+      .fallback { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link active" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Joint Circulars">Joint Circulars</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Memo Circulars">Memo Circulars</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Presidential Directives">Presidential Directives</a></li>
+            <li><a href="#" class="dropdown-item" data-action="issuances" data-category="Republic Acts">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="DILG Seal.png" alt="DILG logo" class="header-logo" />
+        <img src="Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="annual-shell">
+    <div class="annual-toolbar">
+      <div class="breadcrumbs">Home <span aria-hidden="true">›</span> Transparency <span aria-hidden="true">›</span> Annual Reports <span aria-hidden="true">›</span> <strong>2024 Annual Report</strong></div>
+      <div class="toolbar-actions">
+        <a class="button button-secondary" href="index.html">Back</a>
+        <a class="button button-secondary" href="https://online.fliphtml5.com/uyttw/eyon/#p=5" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+
+    <section class="annual-card" aria-labelledby="annual-title">
+      <div class="annual-header">
+        <div>
+          <h1 id="annual-title">2024 Annual Report</h1>
+          <p>Browse the DILG annual report directly on this page. The publication opens at page 5.</p>
+        </div>
+      </div>
+
+      <div class="viewer-wrap">
+        <div class="loading" id="loading-indicator"><span class="spinner" aria-hidden="true"></span><span>Loading publication…</span></div>
+        <iframe id="flipbook-frame" title="2024 Annual Report publication" src="https://online.fliphtml5.com/uyttw/eyon/#p=5"></iframe>
+      </div>
+
+      <div class="fallback" id="fallback-message">
+        <p><strong>The Annual Report cannot be displayed within this page. Please click “Open in New Tab” to view the publication.</strong></p>
+        <a class="button button-primary" href="https://online.fliphtml5.com/uyttw/eyon/#p=5" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    const frame = document.getElementById('flipbook-frame');
+    const loader = document.getElementById('loading-indicator');
+    const fallback = document.getElementById('fallback-message');
+
+    const showFallback = () => {
+      if (loader) loader.style.display = 'none';
+      if (fallback) fallback.classList.add('show');
+    };
+
+    frame.addEventListener('load', () => {
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 220);
+    });
+
+    frame.addEventListener('error', showFallback);
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (loader && loader.style.display !== 'none') {
+          showFallback();
+        }
+      }, 3500);
+    });
+  </script>
+</body>
+</html>
+

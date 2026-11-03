@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Citizen's Charter — DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Citizen's Charter: accordion details layout */
+    .accordion-details {
+      padding: 0 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Download area styling inserted above the Note box in each accordion */
+    .download-area-wrap {
+      padding: 0 28px;
+    }
+
+    .download-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: transparent;
+      padding: 6px 0;
+    }
+
+    .download-label {
+      font-family: "Poppins", "Outfit", Arial, sans-serif;
+      font-weight: 700;
+      color: #0b2a6b;
+      font-size: 0.98rem;
+    }
+
+    .download-btn {
+      display: inline-block;
+      background: #0b5394;
+      color: #ffffff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-family: "Poppins", "Outfit", Arial, sans-serif;
+      box-shadow: 0 6px 14px rgba(11,83,148,0.12);
+      transition: background 0.16s ease, transform 0.08s ease;
+    }
+
+    .download-btn:hover,
+    .download-btn:focus {
+      background: #084a7a;
+      transform: translateY(-1px);
+    }
+
+    /* Ensure spacing and responsiveness */
+    @media (max-width: 640px) {
+      .download-area { padding: 6px 12px; gap: 8px; }
+      .download-label { font-size: 0.92rem; }
+      .download-btn { padding: 7px 12px; }
+      .download-area-wrap { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation (copied from index.html) -->
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+
+        <li><a href="citizen-charter.html" class="nav-item active" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li class="dropdown-item-with-submenu">
+              <a href="joint-circulars.html" class="dropdown-item">
+                <span>Joint Circulars</span>
+              </a>
+            </li>
+            <li class="dropdown-item-with-submenu">
+              <a href="memo-circulars.html" class="dropdown-item">
+                <span>Memo Circulars</span>
+              </a>
+            </li>
+            <li><a href="presidential-directives.html" class="dropdown-item">Presidential Directives</a></li>
+            <li><a href="republic-acts.html" class="dropdown-item">Republic Acts</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" class="header-logo" />
+        <img src="Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page content (Citizen's Charter) -->
+  <main>
+    <section class="citizen-hero">
+      <div class="container">
+        <h1>Citizen's Charter</h1>
+        <p>Click to view details</p>
+
+        <div class="citizen-content">
+          <div class="accordion-list">
+            <!-- Service 1 -->
+            <div class="accordion-item" data-doc-url="https://drive.google.com/drive/folders/1R9MOxU7vwRCYHrVxvOX9DugyZS8Br3eM">
+              <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-title">Issuance of Certificate for Foreign Travel Authority of Local Government Officials and Employees</span>
+                <span class="accordion-chevron" aria-hidden="true">›</span>
+              </button>
+              <div class="accordion-body">
+                <div class="accordion-details">
+                  <div class="detail-section">
+                    <table class="info-table" aria-label="Service information">
+                      <tbody>
+                        <tr>
+                          <th scope="row">Office or Division</th>
+                          <td>Bureau of Local Government Supervision (BLGS); DILG Regional Offices; DILG Field Offices</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Classification</th>
+                          <td>Complex Transaction</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Type of Transaction</th>
+                          <td>G2C – Government to Citizens</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Who May Avail</th>
+                          <td>Local Government Employees and Local Government Elective Officials</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Checklist of Requirements</h3>
+                    <table class="requirements-table" aria-label="Checklist of requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Requirement</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            <ol>
+                              <li><strong>For Study or Training Trips</strong>
+                                <ol type="a">
+                                  <li>Letter of request from the Local Chief Executive or Head of Office.</li>
+                                  <li>Approved travel itinerary showing dates, destination, purpose, and duration.</li>
+                                  <li>Copy of acceptance, endorsement, or invitation from the host institution or training provider.</li>
+                                  <li>Program of activities or study plan, if applicable.</li>
+                                  <li>Proof of funding support or sponsorship, if any.</li>
+                                </ol>
+                              </li>
+                              <li><strong>For Non-Study Trips</strong>
+                                <ol type="a">
+                                  <li>Letter-request addressed to the approving authority indicating the official purpose of travel.</li>
+                                  <li>Approved itinerary, mission order, or office travel order.</li>
+                                  <li>Certification of official business from the LGU or office.</li>
+                                  <li>Supporting documents such as invitations, conference schedules, or meeting invitations.</li>
+                                </ol>
+                              </li>
+                            </ol>
+                          </td>
+                          <td>
+                            <ul>
+                              <li>Office of the Local Chief Executive</li>
+                              <li>Administrative or Human Resource Office</li>
+                              <li>Training or Scholarship Coordinator</li>
+                              <li>Host Institution or Conference Organizer</li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>
+                            <ol>
+                              <li><strong>For Personal Trips of Governors, Mayors of Highly Urbanized Cities, and Independent Component Cities</strong>
+                                <ol type="a">
+                                  <li>Formal written request for travel authority.</li>
+                                  <li>Travel itinerary, including dates, destination, and purpose of travel.</li>
+                                  <li>Affidavit or sworn statement confirming that the trip is personal and not official in nature.</li>
+                                  <li>Proof of financial capacity or travel arrangements, where required.</li>
+                                </ol>
+                              </li>
+                            </ol>
+                          </td>
+                          <td>
+                            <ul>
+                              <li>Office of the Governor or Mayor</li>
+                              <li>Local Executive Office</li>
+                              <li>Legal or Administrative Office</li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>
+                            <ol>
+                              <li><strong>Supporting government clearances</strong>
+                                <ol type="a">
+                                  <li>Copy of passport or identification document, where required.</li>
+                                  <li>Visa or entry document, if already secured.</li>
+                                  <li>Clearance from the concerned department or office, if applicable.</li>
+                                </ol>
+                              </li>
+                            </ol>
+                          </td>
+                          <td>
+                            <ul>
+                              <li>Passport Office or Travel Agency</li>
+                              <li>Embassy or Consular Office</li>
+                              <li>LGU Administration Office</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Where to Secure</h3>
+                    <table class="requirements-table" aria-label="Where to secure requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Service / Item</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Letter of request, itinerary, and official travel purpose</td>
+                          <td>Office of the Local Chief Executive / Head of Office / Administrative Office</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Training, study, or conference invitation and program details</td>
+                          <td>Host Institution, Training Provider, Conference Secretariat, or Sponsoring Agency</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Travel documents and identification</td>
+                          <td>Passport Office, Embassy / Consular Office, or Travel Agency</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Clearance and approval for travel authority</td>
+                          <td>Bureau of Local Government Supervision (BLGS), DILG Regional Office, or DILG Field Office</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <div class="note-box" role="note">
+                      <strong>📌 Note:</strong> For clients from NCR and HUCs and ICCs in other regions, please note that agency actions to be done at the <strong>"Provincial Office"</strong> shall be assumed by the concerned <strong>Regional Office</strong> (as applicable).
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="accordion-item" data-doc-url="https://drive.google.com/drive/folders/12wFvXyhbSQGqEpL9tuqMBumbaC_2QMos">
+              <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-title">Request for the Issuance of Certification of Compliance to Full Disclosure Policy (FDP)</span>
+                <span class="accordion-chevron" aria-hidden="true">›</span>
+              </button>
+              <div class="accordion-body">
+                <div class="accordion-details">
+                  <div class="detail-section">
+                    <table class="info-table" aria-label="Service information">
+                      <tbody>
+                        <tr>
+                          <th scope="row">Office or Division</th>
+                          <td>Bureau of Local Government Supervision (BLGS); DILG Regional Offices; DILG Field Offices</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Classification</th>
+                          <td>Highly Technical Transaction</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Type of Transaction</th>
+                          <td>G2G – Government to Government</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Who May Avail</th>
+                          <td>All Local Government Units (LGU)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Checklist of Requirements</h3>
+                    <table class="requirements-table" aria-label="Checklist of requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Requirement</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            <ol>
+                              <li><strong>Request for certification</strong>
+                                <ol type="a">
+                                  <li>Written request from the LGU concerned.</li>
+                                  <li>Copy of the LGU's posted financial documents and disclosures.</li>
+                                  <li>Proof of submission to the designated transparency portal, if applicable.</li>
+                                </ol>
+                              </li>
+                            </ol>
+                          </td>
+                          <td>
+                            <ul>
+                              <li>Office of the Local Chief Executive</li>
+                              <li>Local Treasurer or Accountant</li>
+                              <li>Planning and Budget Office</li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>
+                            <ol>
+                              <li><strong>Supporting documents</strong>
+                                <ol type="a">
+                                  <li>Validated financial statements or reports.</li>
+                                  <li>Proof of public posting of required documents.</li>
+                                  <li>Other supporting documents as may be required by the reviewing office.</li>
+                                </ol>
+                              </li>
+                            </ol>
+                          </td>
+                          <td>
+                            <ul>
+                              <li>Local Finance Office</li>
+                              <li>Municipal/City Planning and Budget Office</li>
+                              <li>DILG Regional Office</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Where to Secure</h3>
+                    <table class="requirements-table" aria-label="Where to secure requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Service / Item</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Written request and supporting disclosure documents</td>
+                          <td>Office of the Local Chief Executive / Local Finance Office</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Posted financial and transparency documents</td>
+                          <td>Municipal/City Treasurer's Office / Budget Office</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Certification review and endorsement</td>
+                          <td>Bureau of Local Government Supervision (BLGS), DILG Regional Office, or DILG Field Office</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Service Processing Table</h3>
+                    <div class="table-scroll">
+                      <table class="process-table" aria-label="Service processing table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Client Steps</th>
+                            <th scope="col">Agency Action</th>
+                            <th scope="col">Fees to be Paid</th>
+                            <th scope="col">Processing Time</th>
+                            <th scope="col">Person Responsible</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1. Receive complete set of documents from the client</td>
+                            <td>1.1 Receive and stamp received documents</td>
+                            <td>None</td>
+                            <td>1 day</td>
+                            <td>Receiving Staff</td>
+                          </tr>
+                          <tr>
+                            <td>2. Submit documents for review</td>
+                            <td>1.1.1 Validate and confirm posted financial documents</td>
+                            <td>None</td>
+                            <td>3 days</td>
+                            <td>Reviewing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>3. Wait for evaluation</td>
+                            <td>1.1.2 Prepare the FDP Compliance Certificate</td>
+                            <td>None</td>
+                            <td>4 days</td>
+                            <td>Certification Officer</td>
+                          </tr>
+                          <tr>
+                            <td>4. Follow up on endorsement</td>
+                            <td>1.1.3 Transmit and endorse the certificate to the concerned office</td>
+                            <td>None</td>
+                            <td>3 days</td>
+                            <td>Endorsing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>5. Respond to incomplete requirements</td>
+                            <td>1.1.4 Handle incomplete requirements and request the needed documents</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>Administrative Staff</td>
+                          </tr>
+                          <tr>
+                            <td>6. Receive approved certificate</td>
+                            <td>1.1.5 Release the approved Compliance Certificate</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>Releasing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>7. Accomplish feedback form</td>
+                            <td>1.1.6 Provide and collect Customer Satisfaction Feedback Form</td>
+                            <td>None</td>
+                            <td>1 day</td>
+                            <td>Frontline Officer</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>Total Processing Time: 18 Working Days</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="detail-section">
+                    <div class="note-box" role="note">
+                      <strong>📌 Note:</strong> For clients from NCR and HUCs and ICCs in other regions, please note that agency actions to be done at the <strong>"Provincial Office"</strong> shall be assumed by the concerned <strong>Regional Office</strong> (as applicable).
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="accordion-item" data-doc-url="https://drive.google.com/drive/folders/1qdTfYM6q0haHxIeEvDiCz40Q-VQYkam6">
+              <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-title">Request for the Issuance of Department Authority to LGUs to Purchase Vehicle</span>
+                <span class="accordion-chevron" aria-hidden="true">›</span>
+              </button>
+              <div class="accordion-body">
+                <div class="accordion-details">
+                  <div class="detail-section">
+                    <table class="info-table" aria-label="Service information">
+                      <tbody>
+                        <tr>
+                          <th scope="row">Office or Division</th>
+                          <td>Bureau of Local Government Supervision (BLGS); DILG Regional Offices; DILG Field Offices</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Classification</th>
+                          <td>Highly Technical Transaction</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Type of Transaction</th>
+                          <td>G2G – Government to Government</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Who May Avail</th>
+                          <td>All Local Government Units (LGUs)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Checklist of Requirements</h3>
+                    <table class="requirements-table" aria-label="Checklist of requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Requirement</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            <ol>
+                              <li><strong>Accomplished Citizen's Charter Request Form</strong></li>
+                              <li><strong>Endorsement from DILG Provincial/HUC Director/C/MLGOO</strong></li>
+                              <li><strong>Letter Request of the Local Chief Executive stating the purpose, purpose and deployment, number of units to be purchased, and vehicle specifications</strong></li>
+                              <li><strong>Certificate of Availability of Funds</strong></li>
+                              <li><strong>Certified true copy of the Ordinance approving the purchase and related Sanggunian Resolution</strong></li>
+                            </ol>
+                          </td>
+                          <td>
+                            <ul>
+                              <li>Office of the Local Chief Executive</li>
+                              <li>DILG Provincial/HUC Office</li>
+                              <li>Local Treasurer/Accounting Office</li>
+                              <li>Office of the Sanggunian</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Where to Secure</h3>
+                    <table class="requirements-table" aria-label="Where to secure requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Service / Item</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Citizen's Charter Request Form</td>
+                          <td>DILG Regional Office / DILG Field Office</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Endorsement from DILG Director/MLGOO</td>
+                          <td>DILG Provincial/HUC Office</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Letter Request from Local Chief Executive</td>
+                          <td>Office of the Local Chief Executive</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Certificate of Availability of Funds</td>
+                          <td>Local Treasurer / Accountant / Budget Office</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Ordinance and Sanggunian Resolution</td>
+                          <td>Office of the Sanggunian / Local Legislative Office</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Service Processing Table</h3>
+                    <div class="table-scroll">
+                      <table class="process-table" aria-label="Service processing table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Client Steps</th>
+                            <th scope="col">Agency Action</th>
+                            <th scope="col">Fees to be Paid</th>
+                            <th scope="col">Processing Time</th>
+                            <th scope="col">Person Responsible</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1. Submit the request for Department Authority to purchase vehicle</td>
+                            <td>1.1 Receive and evaluate the request</td>
+                            <td>None</td>
+                            <td>1 day</td>
+                            <td>Receiving Officer</td>
+                          </tr>
+                          <tr>
+                            <td>2. Provide additional information if needed</td>
+                            <td>1.2 Route the request to the concerned office</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>Routing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>3. Wait for evaluation</td>
+                            <td>1.3 Review the completeness and appropriateness of the required documents</td>
+                            <td>None</td>
+                            <td>3 days</td>
+                            <td>Reviewing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>4. Coordinate on endorsements</td>
+                            <td>1.4 Prepare and transmit the endorsement to the concerned office</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>Endorsement Officer</td>
+                          </tr>
+                          <tr>
+                            <td>5. Await review and approval</td>
+                            <td>1.5 Review and approve the Authority to Purchase Motor Vehicle</td>
+                            <td>None</td>
+                            <td>5 days</td>
+                            <td>Approving Officer</td>
+                          </tr>
+                          <tr>
+                            <td>6. Receive the approval or reply letter</td>
+                            <td>1.6 Release the approved Authority or reply letter</td>
+                            <td>None</td>
+                            <td>1 day</td>
+                            <td>Releasing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>7. Accomplish customer satisfaction survey</td>
+                            <td>1.7 Conduct Customer Satisfaction Survey</td>
+                            <td>None</td>
+                            <td>1 hour</td>
+                            <td>Frontline Officer</td>
+                          </tr>
+                          <tr>
+                            <td>8. Receive notification of status</td>
+                            <td>1.8 Notify the applicant of the application status</td>
+                            <td>None</td>
+                            <td>1 hour</td>
+                            <td>Administrative Staff</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>Total Processing Time: 17 Working Days and 1 Hour (if Central Office approval)</strong></td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>Total Processing Time: 13 Working Days and 1 Hour (if Regional Office approval)</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="detail-section">
+                    <div class="note-box" role="note">
+                      <strong>📌 Note:</strong> For clients from NCR and HUCs and ICCs in other regions, please note that agency actions to be done at the <strong>"Provincial Office"</strong> shall be assumed by the concerned <strong>Regional Office</strong> (as applicable).
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="accordion-item" data-doc-url="https://drive.google.com/drive/folders/1Zjd3Uk7yzYxWESeHSI5Pgtm_6LDiv9R0">
+              <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-title">Issuance to Department Authorization to Utilize Confidential Funds of LGUs</span>
+                <span class="accordion-chevron" aria-hidden="true">›</span>
+              </button>
+              <div class="accordion-body">
+                <div class="accordion-details">
+                  <div class="detail-section">
+                    <table class="info-table" aria-label="Service information">
+                      <tbody>
+                        <tr>
+                          <th scope="row">Office or Division</th>
+                          <td>Bureau of Local Government Supervision (BLGS); DILG Regional Offices; DILG Field Offices</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Classification</th>
+                          <td>Highly Technical Transaction</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Type of Transaction</th>
+                          <td>G2G – Government to Government</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Who May Avail</th>
+                          <td>Local Government Units (Province, City, Municipality)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Checklist of Requirements</h3>
+                    <table class="requirements-table" aria-label="Checklist of requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Requirement</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            <ol>
+                              <li><strong>Accomplished Citizen's Charter Request Form</strong></li>
+                              <li><strong>Duly approved Three-Year Peace and Order and Public Safety Plan</strong></li>
+                              <li><strong>Local Peace and Order Council Resolution duly approved by two-thirds (2/3) of the total membership approving the POPS Plan and the release of the Confidential Fund</strong></li>
+                              <li><strong>Certification from the concerned PNP Chief of the locality regarding the peace and order situation, highlighting the circumstances requiring the urgent allocation of Confidential Funds</strong></li>
+                              <li><strong>Annual and Supplemental Appropriations Ordinance indicating the appropriations for Confidential Funds</strong></li>
+                              <li><strong>Certification from the Local Budget Officer on the availability of appropriations</strong></li>
+                              <li><strong>Statement of Itemized POP duly certified by the Local Budget Officer</strong></li>
+                              <li><strong>Certification of Full Disclosure Policy compliance by posting the required financial documents in at least three (3) conspicuous places</strong></li>
+                              <li><strong>Physical and Financial Plan for both the original allocation and the requested Confidential Funds</strong></li>
+                            </ol>
+                          </td>
+                          <td>
+                            <ul>
+                              <li>DILG Regional Office / Field Office</li>
+                              <li>Local Peace and Order Council</li>
+                              <li>PNP Provincial/City/Municipal Station</li>
+                              <li>Sanggunian / Legislative Office</li>
+                              <li>Local Budget Office</li>
+                              <li>Office of the Local Chief Executive</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Where to Secure</h3>
+                    <table class="requirements-table" aria-label="Where to secure requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Service / Item</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Citizen's Charter Request Form</td>
+                          <td>DILG Regional Office / DILG Field Office</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Three-Year Peace and Order and Public Safety Plan</td>
+                          <td>Local Peace and Order Council / Office of the Local Chief Executive</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Local Peace and Order Council Resolution</td>
+                          <td>Local Peace and Order Council / Office of the Sanggunian</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Certification from concerned PNP Chief</td>
+                          <td>PNP Provincial/City/Municipal Station</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Appropriations Ordinance for Confidential Funds</td>
+                          <td>Office of the Sanggunian / Legislative Office</td>
+                        </tr>
+                        <tr>
+                          <td>6</td>
+                          <td>Certification of availability of appropriations</td>
+                          <td>Local Budget Office / Treasurer's Office</td>
+                        </tr>
+                        <tr>
+                          <td>7</td>
+                          <td>Statement of Itemized POP</td>
+                          <td>Local Budget Office / Accounting Office</td>
+                        </tr>
+                        <tr>
+                          <td>8</td>
+                          <td>Certification of Full Disclosure Policy compliance</td>
+                          <td>Office of the Local Chief Executive / Local Budget Office</td>
+                        </tr>
+                        <tr>
+                          <td>9</td>
+                          <td>Physical and Financial Plan</td>
+                          <td>Planning Office / Budget Office / Office of the Local Chief Executive</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Service Processing Table</h3>
+                    <div class="table-scroll">
+                      <table class="process-table" aria-label="Service processing table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Client Steps</th>
+                            <th scope="col">Agency Action</th>
+                            <th scope="col">Fees to be Paid</th>
+                            <th scope="col">Processing Time</th>
+                            <th scope="col">Person Responsible</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1. Submit the request for Department Authorization to Utilize Confidential Funds</td>
+                            <td>1.1 Receive and verify the submitted documents</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>Receiving Officer</td>
+                          </tr>
+                          <tr>
+                            <td>2. Provide supporting documents if requested</td>
+                            <td>1.2 Conduct field verification and authenticity checking of documents</td>
+                            <td>None</td>
+                            <td>4 days</td>
+                            <td>Field Verification Officer</td>
+                          </tr>
+                          <tr>
+                            <td>3. Wait for review</td>
+                            <td>1.3 Review and recommend the request before the BLGS</td>
+                            <td>None</td>
+                            <td>3 days</td>
+                            <td>BLGS Reviewer</td>
+                          </tr>
+                          <tr>
+                            <td>4. Await endorsement</td>
+                            <td>1.4 Endorse the request to the Undersecretary</td>
+                            <td>None</td>
+                            <td>3 days</td>
+                            <td>Endorsing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>5. Await approval or denial</td>
+                            <td>1.5 Approve or deny the request</td>
+                            <td>None</td>
+                            <td>3 days</td>
+                            <td>Approving Officer</td>
+                          </tr>
+                          <tr>
+                            <td>6. Receive the Department Authorization or denial letter</td>
+                            <td>1.6 Prepare and release the Department Authorization or denial letter</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>Releasing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>7. Accomplish customer satisfaction survey</td>
+                            <td>1.7 Conduct Customer Satisfaction Survey</td>
+                            <td>None</td>
+                            <td>1 day</td>
+                            <td>Frontline Officer</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>Total Processing Time: 18 Working Days</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="detail-section">
+                    <div class="note-box" role="note">
+                      <strong>📌 Note:</strong> For clients from NCR and HUCs and ICCs in other regions, please note that agency actions to be done at the <strong>"Provincial Office"</strong> shall be assumed by the concerned <strong>Regional Office</strong> (as applicable).
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="accordion-item" data-doc-url="https://drive.google.com/drive/folders/1uLJbOIS4KHK_GnbDNnhZmWjXCkVx1gNF">
+              <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-title">Processing of Barangay Official's Death and Burial Assistance (BODBA)</span>
+                <span class="accordion-chevron" aria-hidden="true">›</span>
+              </button>
+              <div class="accordion-body">
+                <div class="accordion-details">
+                  <div class="detail-section">
+                    <table class="info-table" aria-label="Service information">
+                      <tbody>
+                        <tr>
+                          <th scope="row">Office or Division</th>
+                          <td>DILG Field Offices, Provincial Offices, Regional Offices, National Barangay Operations Office (NBOO), Financial Management Service (FMS), Office of the Assistant Secretary for Finance, Administration and Comptrollership (OASAFC), and Department of Budget and Management (DBM)</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Classification</th>
+                          <td>Highly Technical Transaction (Multi-Stage)</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Type of Transaction</th>
+                          <td>G2C – Government to Citizens; G2G – Government to Government</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Who May Avail</th>
+                          <td>Surviving Legitimate Claimants/Beneficiaries of Deceased Barangay Officials</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Checklist of Requirements</h3>
+                    <table class="requirements-table" aria-label="Checklist of requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Requirement</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            <ol>
+                              <li><strong>Accomplished Citizen's Charter Service Request Form</strong></li>
+                              <li><strong>Oath of Office</strong></li>
+                              <li><strong>Certification that the barangay official was incumbent at the time of death</strong></li>
+                              <li><strong>Certified true copy of the Death Certificate</strong></li>
+                              <li><strong>Photocopy of any valid government-issued ID</strong></li>
+                              <li><strong>Certified True Copy of Marriage Certificate (if applicable)</strong></li>
+                              <li><strong>Birth Certificate of the claimant (if applicable)</strong></li>
+                              <li><strong>Birth Certificate of the deceased barangay official</strong></li>
+                              <li><strong>Special Power of Attorney (if applicable)</strong></li>
+                              <li><strong>Affidavit of Guardianship (if applicable)</strong></li>
+                              <li><strong>Affidavit of Two Disinterested Parties (if applicable)</strong></li>
+                              <li><strong>Affidavit stating there are no primary or secondary beneficiaries (if applicable)</strong></li>
+                              <li><strong>Other documentary requirements exactly as specified in the official Citizen's Charter</strong></li>
+                            </ol>
+                          </td>
+                          <td>
+                            <ul>
+                              <li>DILG Field Office / Provincial Office / Regional Office</li>
+                              <li>Barangay Office / Local Government Unit</li>
+                              <li>Philippine Statistics Authority / Local Civil Registry</li>
+                              <li>National Police Commission / Barangay Records Office</li>
+                              <li>Office of the Barangay Captain / Municipal/City Hall</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Where to Secure</h3>
+                    <table class="requirements-table" aria-label="Where to secure requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Service / Item</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Citizen's Charter Service Request Form</td>
+                          <td>DILG Field Office / Provincial Office / Regional Office</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Oath of Office</td>
+                          <td>Barangay Office / LGU Records Office</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Certification of incumbency at time of death</td>
+                          <td>Barangay Office / Local Government Unit</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Death Certificate</td>
+                          <td>Philippine Statistics Authority / Local Civil Registry</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Valid government-issued ID</td>
+                          <td>Philippine National ID Office / Government Issuing Office</td>
+                        </tr>
+                        <tr>
+                          <td>6</td>
+                          <td>Marriage Certificate</td>
+                          <td>Philippine Statistics Authority / Local Civil Registry</td>
+                        </tr>
+                        <tr>
+                          <td>7</td>
+                          <td>Birth Certificates</td>
+                          <td>Philippine Statistics Authority / Local Civil Registry</td>
+                        </tr>
+                        <tr>
+                          <td>8</td>
+                          <td>Special Power of Attorney / Affidavit of Guardianship / Affidavit of Two Disinterested Parties</td>
+                          <td>Notary Public / Legal Office / Barangay Office</td>
+                        </tr>
+                        <tr>
+                          <td>9</td>
+                          <td>Affidavit stating no primary or secondary beneficiaries</td>
+                          <td>Notary Public / Legal Office</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Service Processing Table</h3>
+                    <div class="table-scroll">
+                      <table class="process-table" aria-label="Service processing table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Client Steps</th>
+                            <th scope="col">Agency Action</th>
+                            <th scope="col">Fees to be Paid</th>
+                            <th scope="col">Processing Time</th>
+                            <th scope="col">Person Responsible</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1. Submit the request for burial assistance</td>
+                            <td>1.1 Receive, record, and evaluate the request</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>Receiving Staff</td>
+                          </tr>
+                          <tr>
+                            <td>2. Provide supporting documents</td>
+                            <td>1.1.1 Process the request through the BIS-BODBA module</td>
+                            <td>None</td>
+                            <td>3 days</td>
+                            <td>BIS-BODBA Officer</td>
+                          </tr>
+                          <tr>
+                            <td>3. Await verification</td>
+                            <td>1.1.2 Verify the request at the Provincial Office</td>
+                            <td>None</td>
+                            <td>5 days</td>
+                            <td>Provincial Officer</td>
+                          </tr>
+                          <tr>
+                            <td>4. Await regional review</td>
+                            <td>1.1.3 Verify the request at the Regional Office</td>
+                            <td>None</td>
+                            <td>4 days</td>
+                            <td>Regional Officer</td>
+                          </tr>
+                          <tr>
+                            <td>5. Await central review</td>
+                            <td>1.1.4 Verify the request at the Central Office</td>
+                            <td>None</td>
+                            <td>4 days</td>
+                            <td>Central Office Officer</td>
+                          </tr>
+                          <tr>
+                            <td>6. Wait for transmittal preparation</td>
+                            <td>1.1.5 Consolidate and prepare the transmittal documents</td>
+                            <td>None</td>
+                            <td>3 days</td>
+                            <td>Transmittal Officer</td>
+                          </tr>
+                          <tr>
+                            <td>7. Await DBM submission</td>
+                            <td>1.1.6 Submit the documents to the Department of Budget and Management (DBM)</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>DBM Liaison Officer</td>
+                          </tr>
+                          <tr>
+                            <td>8. Wait for fund allocation</td>
+                            <td>1.1.7 Wait for the DBM to release fund allocation</td>
+                            <td>None</td>
+                            <td>20 working days</td>
+                            <td>DBM / Finance Office</td>
+                          </tr>
+                          <tr>
+                            <td>9. Receive SARO / NCA</td>
+                            <td>1.1.8 Receive the Special Allotment Release Order (SARO) and Notice of Cash Allocation (NCA)</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>Finance Officer</td>
+                          </tr>
+                          <tr>
+                            <td>10. Receive transfer of funds</td>
+                            <td>1.1.9 Transfer the funds to the Provincial/HUC Offices</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>Provincial/HUC Finance Officer</td>
+                          </tr>
+                          <tr>
+                            <td>11. Receive the check</td>
+                            <td>1.1.10 Prepare and release the check to the beneficiary</td>
+                            <td>None</td>
+                            <td>2 days</td>
+                            <td>Disbursing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>12. Accomplish the satisfaction survey</td>
+                            <td>1.1.11 Release the check and administer the Customer Satisfaction Survey</td>
+                            <td>None</td>
+                            <td>1 day</td>
+                            <td>Frontline Officer</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>Total Processing Time: 46 Working Days (including the 20-working-day waiting period for DBM fund allocation)</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="detail-section">
+                    <div class="note-box" role="note">
+                      <strong>📌 Note:</strong> For clients from NCR and HUCs and ICCs in other regions, please note that agency actions to be done at the <strong>"Provincial Office"</strong> shall be assumed by the concerned <strong>Regional Office</strong> (as applicable).
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="accordion-item" data-doc-url="https://drive.google.com/drive/folders/1OZIvCQaMWKNO57BpeoIXKHHyY5iXb4Zd">
+              <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-title">Request for Certification for Service Rendered by Local/Barangay Official for Application for CSC Eligibility</span>
+                <span class="accordion-chevron" aria-hidden="true">›</span>
+              </button>
+              <div class="accordion-body">
+                <div class="accordion-details">
+                  <div class="detail-section">
+                    <table class="info-table" aria-label="Service information">
+                      <tbody>
+                        <tr>
+                          <th scope="row">Office or Division</th>
+                          <td>DILG Regional Offices; DILG Field Offices</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Classification</th>
+                          <td>Simple Transaction</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Type of Transaction</th>
+                          <td>G2C – Government to Citizens</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Who May Avail</th>
+                          <td>
+                            <ul>
+                              <li>All Sanggunian Members (PCM) who served an aggregate of six (6) years, completed at least 72 academic units leading to a bachelor's degree (first-level eligibility), or an aggregate of nine (9) years with a completed baccalaureate degree (second-level eligibility), subject to applicable eligibility requirements.</li>
+                              <li>All Barangay Elected Officials who completed one full term of service.</li>
+                              <li>All Barangay Secretaries and Treasurers who served an aggregate of three (3) years in the same position.</li>
+                              <li>All Barangay Secretaries and Treasurers who rendered the required continuous years of satisfactory service corresponding to the term of the appointing Punong Barangay, including services rendered under previous appointments, as applicable.</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Checklist of Requirements</h3>
+                    <table class="requirements-table" aria-label="Checklist of requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Requirement</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            <ol>
+                              <li><strong>Accomplished Citizen's Charter Request Form</strong></li>
+                              <li><strong>Original/Certified True Copy of Oath of Office</strong></li>
+                              <li><strong>Certification of the inclusive dates of service with satisfactory performance, issued by the appropriate official using the revised CSC Form</strong>
+                                <ol type="a">
+                                  <li>Punong Barangay</li>
+                                  <li>DILG Municipal Office</li>
+                                  <li>DILG Provincial Office</li>
+                                  <li>DILG Regional Office</li>
+                                </ol>
+                              </li>
+                              <li><strong>Appointment as Barangay Treasurer/Secretary Resolution duly concurred by the majority of all Sanggunian Members</strong></li>
+                              <li><strong>Authenticated Copy of Birth Certificate and Marriage Contract (if applicable)</strong></li>
+                            </ol>
+                          </td>
+                          <td>
+                            <ul>
+                              <li>DILG Regional Office / DILG Field Office</li>
+                              <li>Barangay Office / Municipal Hall</li>
+                              <li>DILG Municipal / Provincial / Regional Office</li>
+                              <li>Office of the Sanggunian / Municipal Hall</li>
+                              <li>Philippine Statistics Authority / Local Civil Registry</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Where to Secure</h3>
+                    <table class="requirements-table" aria-label="Where to secure requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Service / Item</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Citizen's Charter Request Form</td>
+                          <td>DILG Regional Office / DILG Field Office</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Oath of Office</td>
+                          <td>Barangay Office / Municipal Hall</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Certification of inclusive dates of service</td>
+                          <td>DILG Municipal Office / DILG Provincial Office / DILG Regional Office / Punong Barangay</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Appointment / Resolution for Barangay Treasurer/Secretary</td>
+                          <td>Office of the Sanggunian / Municipal Hall</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Birth Certificate / Marriage Contract</td>
+                          <td>Philippine Statistics Authority / Local Civil Registry</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Service Processing Table</h3>
+                    <div class="table-scroll">
+                      <table class="process-table" aria-label="Service processing table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Client Steps</th>
+                            <th scope="col">Agency Action</th>
+                            <th scope="col">Fees to be Paid</th>
+                            <th scope="col">Processing Time</th>
+                            <th scope="col">Person Responsible</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1. Submit the request for certification</td>
+                            <td>1.1 Receive and check the documentary requirements</td>
+                            <td>None</td>
+                            <td>30 minutes</td>
+                            <td>Receiving Officer</td>
+                          </tr>
+                          <tr>
+                            <td>2. Provide supporting documents if needed</td>
+                            <td>1.1.1 Evaluate the documents using the Barangay Information System (BIS), Elective Local Officials Profiling Database System (ELOPDS), and Masterlist of Local Officials</td>
+                            <td>None</td>
+                            <td>1 hour</td>
+                            <td>Records Officer</td>
+                          </tr>
+                          <tr>
+                            <td>3. Wait for processing</td>
+                            <td>1.1.2 Prepare the CSC forms and endorse to the approving authority</td>
+                            <td>None</td>
+                            <td>1 hour</td>
+                            <td>Processing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>4. Await review and approval</td>
+                            <td>1.2 Review and approve the certification at the Provincial/HUC/C/MLGOO or Regional level</td>
+                            <td>None</td>
+                            <td>1 day</td>
+                            <td>Approving Officer</td>
+                          </tr>
+                          <tr>
+                            <td>5. Receive the certification</td>
+                            <td>1.3 Release the certification</td>
+                            <td>None</td>
+                            <td>1 hour</td>
+                            <td>Releasing Officer</td>
+                          </tr>
+                          <tr>
+                            <td>6. Accomplish the CSS form</td>
+                            <td>1.4 Administer the Customer Satisfaction Survey (CSS)</td>
+                            <td>None</td>
+                            <td>30 minutes</td>
+                            <td>Frontline Officer</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>Total Processing Time: 2 Working Days, 4 Hours, and 30 Minutes</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="detail-section">
+                    <div class="note-box" role="note">
+                      <strong>📌 Note:</strong> For clients from NCR and HUCs and ICCs in other regions, please note that agency actions to be done at the <strong>"Provincial Office"</strong> shall be assumed by the concerned <strong>Regional Office</strong> (as applicable).
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service 7 -->
+            <div class="accordion-item" data-doc-url="https://drive.google.com/drive/folders/1zKfyl0a8smKUEFAA_z2eRh3l2MFrb7k4">
+              <button class="accordion-header" aria-expanded="false">
+                <span class="accordion-title">Request for Technical Assistance (Resource Person)</span>
+                <span class="accordion-chevron" aria-hidden="true">›</span>
+              </button>
+              <div class="accordion-body">
+                <div class="accordion-details">
+                  <div class="detail-section">
+                    <table class="info-table" aria-label="Service information">
+                      <tbody>
+                        <tr>
+                          <th scope="row">Office or Division</th>
+                          <td>All Bureaus, Regional, Provincial and Field Offices</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Classification</th>
+                          <td>Simple Transaction</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Type of Transaction</th>
+                          <td>G2C – Government to Citizen; G2B – Government to Businesses; G2G – Government to Government</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Who May Avail</th>
+                          <td>DILG Management, DILG Field Offices (Regional and Provincial), National Government Agencies (NGAs), Local Government Units (LGUs), QAWWs, Non-Government Organizations (NGOs), Civil Society Organizations (CSOs), Private Sectors (PS), General Public</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Checklist of Requirements</h3>
+                    <table class="requirements-table" aria-label="Checklist of requirements">
+                      <thead>
+                        <tr>
+                          <th scope="col">No.</th>
+                          <th scope="col">Requirement</th>
+                          <th scope="col">Where to Secure</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td><strong>Letter request</strong></td>
+                          <td>Requesting Party/Agency</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Service Processing Table</h3>
+                    <div class="table-scroll">
+                      <table class="process-table" aria-label="Service processing table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Client Steps</th>
+                            <th scope="col">Agency Action</th>
+                            <th scope="col">Fees to be Paid</th>
+                            <th scope="col">Processing Time</th>
+                            <th scope="col">Person Responsible</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1. Submit Letter Request to any of the DILG Offices through email, walk-in, or courier.</td>
+                            <td>1.1. Receive letter request from the client, record and route the request to the concerned Action/Head of Office.</td>
+                            <td>None</td>
+                            <td>1 Hour</td>
+                            <td>Receiving Staff</td>
+                          </tr>
+                          <tr>
+                            <td rowspan="3"></td>
+                            <td>1.2. Evaluate and endorse the request to the concerned office and provide instruction. (For CIMLGOO, skip this step)</td>
+                            <td>None</td>
+                            <td>2 Hours</td>
+                            <td>Action/Head of Office</td>
+                          </tr>
+                          <tr>
+                            <td>1.3. Review and evaluate the request as to:<br/>a. availability of the module or presentation materials.<br/>b. the requested subject matter is within the area of technical expertise/mandate of the DILG<br/>c. availability on the date/time specified in the letter request</td>
+                            <td>None</td>
+                            <td>8 Hours</td>
+                            <td>Technical Evaluator</td>
+                          </tr>
+                          <tr>
+                            <td>1.3.1. Prepare the letter reply, review and forward the letter-reply to the approving authority.</td>
+                            <td>None</td>
+                            <td>4 Hours</td>
+                            <td>Administrative Staff</td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td>1.4. Reviews and signs the letter.</td>
+                            <td>None</td>
+                            <td>8 Hours</td>
+                            <td>Approving Authority</td>
+                          </tr>
+                          <tr>
+                            <td>2. Receive response from concerned Office</td>
+                            <td>2.1. Issue the letter reply and Administer the CSS to requesting client.</td>
+                            <td>None</td>
+                            <td>1 Hour</td>
+                            <td>Releasing Officer</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>Total Processing Time: 3 Working Days</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="detail-section">
+                    <div class="note-box" role="note">
+                      <strong>📌 Note:</strong> For clients from NCR and HUCs and ICCs in other regions, please note that agency actions to be done at the <strong>"Provincial Office"</strong> shall be assumed by the concerned <strong>Regional Office</strong> (as applicable).
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <script>
+    // Load managed charter details when available; the static HTML remains the fallback.
+    (function () {
+      fetch('backend/api/public-content.php')
+        .then(function (response) {
+          if (!response.ok) throw new Error('Unable to load managed charter content.');
+          return response.json();
+        })
+        .then(function (data) {
+          var records = Array.isArray(data.records) ? data.records : [];
+          document.querySelectorAll('.accordion-item').forEach(function (item, index) {
+            var record = records[index];
+            if (!record) return;
+            var title = item.querySelector('.accordion-title');
+            var body = item.querySelector('.accordion-body');
+            if (title && record.title) title.textContent = record.title;
+            if (record.link_url) item.setAttribute('data-doc-url', record.link_url);
+            if (body && record.content_html) body.innerHTML = record.content_html;
+          });
+          insertDownloadAreas();
+        })
+        .catch(function () { /* Keep the existing static charter content. */ });
+    })();
+
+    // Insert a Download area above every Note box in the Citizen's Charter accordions.
+    // For per-service Google Drive links, add data-doc-url attribute to the .accordion-item element, e.g.
+    // <div class="accordion-item" data-doc-url="https://drive.google.com/your-file-link"> ...
+    function insertDownloadAreas() {
+      const noteBoxes = document.querySelectorAll('.note-box');
+      noteBoxes.forEach(noteBox => {
+        // locate the surrounding detail-section that contains the note
+        const detailSection = noteBox.closest('.detail-section');
+        if (!detailSection) return;
+        if (detailSection.parentNode.querySelector('.download-area-wrap')) return;
+
+        // prepare wrapper to match existing spacing pattern (same parent-level as other detail-sections)
+        const wrapper = document.createElement('div');
+        wrapper.className = 'detail-section download-area-wrap';
+
+        const downloadArea = document.createElement('div');
+        downloadArea.className = 'download-area';
+
+        const label = document.createElement('span');
+        label.className = 'download-label';
+        label.textContent = "Download Citizen's Charter Document:";
+
+        const btn = document.createElement('a');
+        btn.className = 'download-btn';
+        btn.setAttribute('role', 'link');
+        btn.setAttribute('rel', 'noopener');
+        btn.setAttribute('target', '_blank');
+        btn.textContent = 'Download';
+
+        // find potential per-service link from ancestor accordion-item's data-doc-url attribute
+        const accordionItem = detailSection.closest('.accordion-item');
+        const serviceLink = accordionItem && accordionItem.dataset && accordionItem.dataset.docUrl ? accordionItem.dataset.docUrl : '#';
+        btn.href = serviceLink;
+
+        // assemble and insert before the note detail-section
+        downloadArea.appendChild(label);
+        downloadArea.appendChild(btn);
+        wrapper.appendChild(downloadArea);
+        detailSection.parentNode.insertBefore(wrapper, detailSection);
+      });
+    }
+    insertDownloadAreas();
+  </script>
+
+  <!-- Footer (copied from index.html) -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/" target="_blank" rel="noreferrer noopener"><img src="Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/" target="_blank" rel="noreferrer noopener"><img src="Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/" target="_blank" rel="noreferrer noopener"><img src="Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/" target="_blank" rel="noreferrer noopener"><img src="Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/" target="_blank" rel="noreferrer noopener"><img src="Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/" target="_blank" rel="noreferrer noopener"><img src="Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/" target="_blank" rel="noreferrer noopener"><img src="Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/" target="_blank" rel="noreferrer noopener"><img src="Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/" target="_blank" rel="noreferrer noopener"><img src="Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/" target="_blank" rel="noreferrer noopener"><img src="Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card" aria-label="Open DILG Surigao del Sur Facebook page (opens in new tab)">
+            <span class="connect-icon" aria-hidden="true">
+              <img src="Logos/2021_Facebook_icon.svg" alt="Facebook icon" />
+            </span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

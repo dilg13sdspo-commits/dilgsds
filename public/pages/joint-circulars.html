@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joint Circulars — DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body {
+      background: #f4f7fb;
+      color: #243447;
+      min-height: 100vh;
+    }
+    .page-shell {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 24px 18px 42px;
+    }
+    .joint-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 24px;
+      align-items: start;
+    }
+    .page-card {
+      padding: 28px;
+    }
+    .joint-hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .joint-hero-copy h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.45rem, 2.3vw, 2.25rem);
+      color: #0f2a6b;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .joint-hero-copy p {
+      margin: 0;
+      color: #5f6f88;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 720px;
+    }
+    .archive-search {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .archive-search label {
+      display: block;
+      margin-bottom: 7px;
+      color: #0f2a6b;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .archive-search input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 13px 16px 13px 44px;
+      border: 1px solid #d7e0ea;
+      border-radius: 10px;
+      background: #fff;
+      color: #243447;
+      font: inherit;
+      outline: none;
+    }
+    .archive-search input:focus {
+      border-color: #2e66e5;
+      box-shadow: 0 0 0 3px rgba(46, 102, 229, 0.12);
+    }
+    .archive-search::before {
+      position: absolute;
+      left: 16px;
+      bottom: 13px;
+      color: #6b7a92;
+      content: '\2315';
+      font-size: 1.2rem;
+      line-height: 1;
+      transform: rotate(-20deg);
+    }
+    .archive-empty {
+      margin: 22px 4px;
+      color: #5f6f88;
+      text-align: center;
+    }
+    .joint-summary {
+      min-width: 170px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid #dce7f5;
+      background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+      text-align: right;
+    }
+    .joint-summary-label {
+      display: block;
+      color: #6b7a92;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .joint-summary-value {
+      display: block;
+      margin-top: 4px;
+      color: #0f2a6b;
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .joint-summary-note {
+      display: block;
+      margin-top: 6px;
+      color: #5f6f88;
+      font-size: 0.86rem;
+    }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .breadcrumbs {
+      color: #6c7a8a;
+      font-size: 0.95rem;
+    }
+    .breadcrumbs strong {
+      color: #0f2a6b;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid #d7e0ea;
+      background: #fff;
+      color: #0f2a6b;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .circulars-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid #e8edf4;
+    }
+    .jmc-row {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr) 120px;
+      gap: 12px 16px;
+      align-items: start;
+      padding: 16px 4px;
+      border-bottom: 1px solid #e8edf4;
+      transition: background-color 0.18s ease;
+    }
+    .jmc-row:hover {
+      background: #fbfdff;
+    }
+    .jmc-num {
+      color: #57667f;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.5;
+      padding-top: 2px;
+    }
+    .jmc-body {
+      min-width: 0;
+    }
+    .jmc-title {
+      margin: 0 0 6px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .jmc-title a {
+      color: #2e66e5;
+      text-decoration: none;
+    }
+    .jmc-title a:hover {
+      text-decoration: underline;
+    }
+    .jmc-ref {
+      margin: 0;
+      color: #243447;
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .jmc-date {
+      color: #57667f;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      text-align: right;
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+    .joint-pagination {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 22px;
+    }
+    .joint-pagination button {
+      min-width: 40px;
+      padding: 10px 14px;
+      border: 1px solid #d7e0ea;
+      border-radius: 10px;
+      background: #fff;
+      color: #0f2a6b;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+    .joint-pagination button:hover:not(:disabled) {
+      border-color: #9eb7e8;
+      background: #f3f7ff;
+    }
+    .joint-pagination button.is-active {
+      border-color: #0f2a6b;
+      background: #0f2a6b;
+      color: #fff;
+    }
+    .joint-pagination button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .joint-sidebar {
+      width: 100%;
+    }
+    .joint-sidebar .cn-sidebar {
+      width: 100%;
+    }
+    @media (max-width: 1040px) {
+      .joint-layout {
+        grid-template-columns: 1fr;
+      }
+      .joint-sidebar {
+        order: 2;
+      }
+      .joint-hero {
+        align-items: start;
+      }
+      .joint-summary {
+        text-align: left;
+      }
+    }
+    @media (max-width: 860px) {
+      .page-shell { padding: 18px 14px 30px; }
+      .jmc-row {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: 8px 12px;
+        padding: 14px 2px;
+      }
+      .jmc-date {
+        grid-column: 2;
+        text-align: left;
+        white-space: normal;
+        padding-top: 0;
+        font-size: 0.86rem;
+      }
+      .jmc-title {
+        font-size: 0.94rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link active" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li><a href="joint-circulars.html" class="dropdown-item">Joint Circulars</a></li>
+            <li><a href="memo-circulars.html" class="dropdown-item">Memo Circulars</a></li>
+            <li><a href="presidential-directives.html" class="dropdown-item">Presidential Directives</a></li>
+            <li><a href="republic-acts.html" class="dropdown-item">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="../../Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" alt="DILG logo" class="header-logo" />
+        <img src="../../Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="../../SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="../../SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="joint-layout">
+      <article class="page-card">
+        <div class="toolbar">
+          <div class="breadcrumbs">Home <span aria-hidden="true">›</span> Issuances <span aria-hidden="true">›</span> <strong>Joint Circulars</strong></div>
+          <a class="back-link" href="index.html">← Back to Home</a>
+        </div>
+
+        <div class="joint-hero">
+          <div class="joint-hero-copy">
+            <h1>Joint Circulars</h1>
+            <p>Browse official joint circulars released by DILG and partner agencies. All entries are listed below with reference numbers and dates.</p>
+          </div>
+          <div class="joint-summary" aria-live="polite">
+            <span class="joint-summary-label">Archive Entries</span>
+            <span class="joint-summary-value" id="joint-total-count">0</span>
+            <span class="joint-summary-note" id="joint-page-summary">Page 1 of 1</span>
+          </div>
+        </div>
+
+        <div class="archive-search">
+          <label for="joint-search">Search joint circulars</label>
+          <input id="joint-search" type="search" placeholder="Search by title or reference number" autocomplete="off" />
+        </div>
+        <div class="circulars-list" id="joint-circulars-list" aria-label="Joint Circulars list"></div>
+        <nav class="joint-pagination" id="joint-pagination" aria-label="Joint circulars pagination"></nav>
+      </article>
+
+      <div class="joint-sidebar">
+        <aside class="cn-sidebar">
+          <a class="cn-portal-card" href="https://op-proper.gov.ph/" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.dilg.gov.ph/images/banner/banner-president-corner.png" alt="Visit the Office of the President" />
+          </a>
+          <a class="cn-portal-card" href="https://www.dilg.gov.ph/secretarys-corner/" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.dilg.gov.ph/images/banner/secretarys-corner.png" alt="Visit the Secretary's Corner" />
+          </a>
+          <a class="cn-portal-card" href="https://www.dilg.gov.ph/transparency/" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.dilg.gov.ph/images/banner/banner-transparency-seal.png" alt="Philippine Transparency Seal" />
+          </a>
+          <div class="cn-secondary-row">
+            <a class="cn-sec-card" href="https://www.dilg.gov.ph/GAA-Reportorial-Requirement-Archive/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/gaa2015.png" alt="GAA Reportorial Requirement" />
+            </a>
+            <a class="cn-sec-card" href="https://www.foi.gov.ph/agencies/dilg/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/foi-corner.jpg" alt="Freedom of Information" />
+            </a>
+            <a class="cn-sec-card" href="https://www.dilg.gov.ph/leo-70/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/banner/leo70-box.png" alt="Localization of EO 70" />
+            </a>
+            <a class="cn-sec-card" href="https://www.dilg.gov.ph/files/dilg_document_202706_8dc37fea59.pdf" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/logo/dilg-dpa-cor-3.jpg" alt="Data Privacy" />
+            </a>
+            <a class="cn-sec-card" href="https://www.dilg.gov.ph/other/GAD-Corner/49" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.dilg.gov.ph/images/gad-corner.jpg" alt="Gender and Development" />
+            </a>
+            <a class="cn-sec-card" href="https://www.facebook.com/stories/104505911714141/" target="_blank" rel="noopener noreferrer">
+              <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fdilg.philippines&amp;width=380&amp;height=500&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=true&amp;show_border=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false&amp;small_header=true" scrolling="yes" frameborder="0" style="background-color:#3A559F; border:3px solid #3A559F; border-right:4px solid #3A559F; overflow:hidden; width:100%; height:250px;" allowtransparency="true">
+              </iframe>
+            </a>
+          </div>
+          <div class="cn-fb-widget">
+            <iframe src="https://www.facebook.com/v2.5/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61556404163480&tabs=timeline%2Cevents&width=320&height=650&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false"
+              width="100%" height="650" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="../../Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/"><img src="../../Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="../../Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="../../Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="../../Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="../../Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="../../Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="../../Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/"><img src="../../Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="../../Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="../../Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card">
+            <span class="connect-icon" aria-hidden="true"><img src="../../Logos/2021_Facebook_icon.svg" alt="Facebook icon" /></span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const circulars = [
+        ['JMC2011-01', 'Oct 24, 2011', 'DILG-DTI: Formulation of Local Investment and Incentives Code (LIIC)', 'https://dilg.gov.ph/issuances/jc/DILG-DTI-Formulation-of-Local-Investment-and-Incentives-Code-LIIC/15'],
+        ['JMC2013-001', 'Apr 17, 2013', 'Allocation and Utilization of the Local Disaster Risk Reduction and Management Fund (LDRRMF)', 'https://dilg.gov.ph/issuances/jc/Allocation-and-Utilization-of-the-Local-Disaster-Risk-Reduction-and-Management-Fund-LDRRMF/29'],
+        ['JMC No 2016-01', 'Mar 3, 2016', 'Amendments to PCW-DILG-DBM-NEDA JMC No 2013-01: Guidelines on the Localization of the Magna Carta of Women', 'https://dilg.gov.ph/issuances/jc/Amendments-to-PCW-DILG-DBM-NEDA-JMC-No-2013-01-Guidelines-on-the-Localization-of-the-Magna-Carta-of-Women/57'],
+        ['JMC No 2016-02', 'Mar 3, 2016', 'Revised Guidelines for the Implementation of the Comprehensive Local Integration Program (CLIP)', 'https://dilg.gov.ph/issuances/jc/Revised-Guidelines-for-the-Implementation-of-the-Comprehensive-Local-Integration-Program-CLIP/58'],
+        ['JMC No. 01 s. of 2016', 'Sep 5, 2016', 'Revised Standards in Processing Business Permits and Licenses in All Cities and Municipalities', 'https://dilg.gov.ph/issuances/jc/Revised-Standards-in-Processing-Business-Permits-and-Licenses-in-All-Cities-and-Municipalities-/65'],
+        ['JMC No. 01 s. 2016', 'Sep 20, 2016', 'DILG-DepEd Joint Memorandum-Circular for Water, Sanitation, and Hygiene (wash) in early child care and development (ECCD)', 'https://dilg.gov.ph/issuances/jc/DILG-DepEd-Joint-Memorandum-Circular-for-Water-Sanitation-and-Hygiene-wash-in-early-child-care-and-development-ECCD/68'],
+        ['JMC No. 02 s. of 2016', 'Sep 26, 2016', 'Policies and Guidelines on Study Tours or "Lakbay Aral" Activities of Local Government Units', 'https://dilg.gov.ph/issuances/jc/Policies-and-Guidelines-on-Study-Tours-or-Lakbay-Aral-Activities-of-Local-Government-Units/70'],
+        ['DILG-COMELEC-NYC JMC 2017-01', 'Jun 23, 2017', 'Guidelines on the Conduct of Sangguniang Kabataan (SK) Pederasyon Election,and Rules Governing Terms of Office,Suspension and Removal of all SK Pederasyon Officers', 'https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Conduct-of-Sangguniang-Kabataan-SK-Pederasyon-Electionand-Rules-Governing-Terms-of-OfficeSuspension-and-Removal-of-all-SK-Pederasyon-Officers/84'],
+        ['DILG-DICT-DPWH JMC No. 2018-01', 'Jan 8, 2018', 'Guidelines in Streamlining the Processes for the Issuance of Building Permits and Certificates of Occupancy', 'https://dilg.gov.ph/issuances/jc/Guidelines-in-Streamlining-the-Processes-for-the-Issuance-of-Building-Permits-and-Certificates-of-Occupancy/87'],
+        ['DILG-DDB JMC No. 2018-01', 'May 21, 2018', 'Implementing Guidelines on the Functionality and Effectiveness of Local Anti-Drug Abuse Councils', 'https://dilg.gov.ph/issuances/jc/Implementing-Guidelines-on-the-Functionality-and-Effectiveness-of-Local-Anti-Drug-Abuse-Councils/95'],
+        ['DILG-DND JMC No. 2018-01', 'Jul 5, 2018', 'Implementing Guidelines for the Provision of DILG-Administered Package of Assistance for Former Rebels (FRs) and Militia ng Bayan (MB)', 'https://dilg.gov.ph/issuances/jc/Implementing-Guidelines-for-the-Provision-of-DILG-Administered-Package-of-Assistance-for-Former-Rebels-FRs-and-Militia-ng-Bayan-MB/96'],
+        ['DILG-PCOO JMC 2018-01', 'Oct 9, 2018', 'Reiteration of Executive Order No. 2, S. 2016 "Operationalizing the People\'s Right to Information and the State Policies of Full Public Disclosure and Transparency in the Public Service"', 'https://dilg.gov.ph/issuances/jc/Reiteration-of-Executive-Order-No-2-S-2016-Operationalizing-the-Peoples-Right-to-Information-and-the-State-Policies-of-Full-Public-Disclosure-and-Transparency-in-the-Public-Service/103'],
+        ['DILG-NCCA JMC 2018-01', 'Oct 10, 2018', 'Local Inventory of Cultural Property as required under RA No. 10066', 'https://dilg.gov.ph/issuances/jc/Local-Inventory-of-Cultural-Property-as-required-under-RA-No-10066/104'],
+        ['JMC No. 2019-01', 'Aug 28, 2019', 'Revised Child-Friendly Local Governance Audit (CFLGA) and Implementation Guideline', 'https://dilg.gov.ph/issuances/jc/Revised-Child-Friendly-Local-Governance-Audit-CFLGA-and-Implementation-Guideline/118'],
+        ['DTI,DILG and DPWH JMC No. 2019', 'Oct 24, 2019', 'Towards Ensuring Safe, Adaptive, and Disaster-Resilient Communities', 'https://dilg.gov.ph/issuances/jc/Towards-Ensuring-Safe-Adaptive-and-Disaster-Resilient-Communities/120'],
+        ['DILG-ARTA JMC No. 2019-01', 'Dec 11, 2019', 'Guidelines on the Regulatory Reform for LGUs pursuant to the Ease of Doing Business and Efficient Government Service Delivery (EODB-EGSD) Act of 2018', 'https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Regulatory-Reform-for-LGUs-pursuant-to-the-Ease-of-Doing-Business-and-Efficient-Government-Service-Delivery-EODB-EGSD-Act-of-2018/124'],
+        ['DILG,DA JMC No. 01 s. 2020', 'Oct 15, 2020', 'Guidelines on the Formulation of Provincial City and Municipal Agricultural and Fishery Mechanization Plans', 'https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Formulation-of-Provincial-City-and-Municipal-Agricultural-and-Fishery-Mechanization-Plans/141'],
+        ['DEPED DBM DILG JC No. 2, S. 20', 'Oct 23, 2020', 'Addendum No. 2 (Clarification to DepEd-DBM-DILG Joint Circular No. 1, series of 2017 dated January 19, 2017,Entitled, "Revised Guidelines on the use of the Special Education Fund (SEF)")', 'https://dilg.gov.ph/issuances/jc/Addendum-No-2-Clarification-to-DepEd-DBM-DILG-Joint-Circular-No-1-series-of-2017-dated-January-19-2017Entitled-Revised-Guidelines-on-the-use-of-the-Special-Education-Fund-SEF/143'],
+        ['DILG-PCW JMC 2020-001', 'Dec 9, 2020', 'Guidelines on the Localization of the Safe Spaces Act', 'https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Localization-of-the-Safe-Spaces-Act/150'],
+        ['DBM-DOF-DILG JMC No. 1', 'Dec 14, 2020', 'Revised Guidelines on the Appropriation and Utilization of the Twenty Percent (20%) of the Annual Internal Revenue Allotment for Development Projects', 'https://dilg.gov.ph/issuances/jc/Revised-Guidelines-on-the-Appropriation-and-Utilization-of-the-Twenty-Percent-20-of-the-Annual-Internal-Revenue-Allotment-for-Development-Projects/151'],
+        ['DILG-ARTA-DOF JMC No. 1 2021-01', 'May 4, 2021', 'Omnibus Guidelines on the Suspension of LGU Imposition and Collection of Illegal Fees and Taxes Relative to the Transport of Goods and Products', 'https://dilg.gov.ph/issuances/jc/Omnibus-Guidelines-on-the-Suspension-of-LGU-Imposition-and-Collection-of-Illegal-Fees-and-Taxes-Relative-to-the-Transport-of-Goods-and-Products/158'],
+        ['JMC-DILG-NCCA No. 2021-001', 'May 10, 2021', 'Amended Guidelines on the Standardized Submission of Local Cultural Inventory under the Philippine Registry of Cultural Property for the Issuance of Certificate of Compliance to Local Government Units', 'https://dilg.gov.ph/issuances/jc/Amended-Guidelines-on-the-Standardized-Submission-of-Local-Cultural-Inventory-under-the-Philippine-Registry-of-Cultural-Property-for-the-Issuance-of-Certificate-of-Compliance-to-Local-Government-Units/160'],
+        ['DBM-DILG JMC No. 2021-1', 'Aug 18, 2021', 'Guidelines on the Preparation of Devolution Transition Plans of Local Government Units in Support of Full Devolution under Executive Order No. 138 Dated 01 June 2021', 'https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Preparation-of-Devolution-Transition-Plans-of-Local-Government-Units-in-Support-of-Full-Devolution-under-Executive-Order-No-138-Dated-01-June-2021/169'],
+        ['DBM-DILG JMC No. 2021-02', 'Sep 9, 2021', 'Guidelines on the Preparation of the Devolution Transition Plans for the National Government Agencies concerned in Support of Full Devolution under Executive Order (EO) No. 138, S. 2021', 'https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Preparation-of-the-Devolution-Transition-Plans-for-the-National-Government-Agencies-concerned-in-Support-of-Full-Devolution-under-Executive-Order-EO-No-138-S-2021/170'],
+        ['DILG-DND JMC No. 01-2021', 'Sep 23, 2021', 'Implementing Guidelines on the Provision of DILG-Administered Package of Assistance for Former Rebels (FRs) and Former Violent Extremists (FVEs) under the Enhanced Comprehensive Local Integrated Program (ECLIP)', 'https://dilg.gov.ph/issuances/jc/Implementing-Guidelines-on-the-Provision-of-DILG-Administered-Package-of-Assistance-for-Former-Rebels-FRs-and-Former-Violent-Extremists-FVEs-under-the-Enhanced-Comprehensive-Local-Integrated-Program-ECLIP/171'],
+        ['DBM-DILG JMC No. 2021-3', 'Oct 20, 2021', 'Guidelines on the Implementation of Personnel Policies and Options Pursuant to Executive Order (EO) No. 138, S. 2021 Directing the Full Devolution of certain functions of the Executive Branch to the Local Governments', 'https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Implementation-of-Personnel-Policies-and-Options-Pursuant-to-Executive-Order-EO-No-138-S-2021-Directing-the-Full-Devolution-of-certain-functions-of-the-Executive-Branch-to-the-Local-Governments/173'],
+        ['DILG-TESDA-DOLE-DTI JMC2021-001', 'Nov 29, 2021', 'Guidelines on the Implementation of Strengthening Initiatives for Balanced Growth and Opportunities at the Localities (SIBOL)', 'https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Implementation-of-Strengthening-Initiatives-for-Balanced-Growth-and-Opportunities-at-the-Localities-SIBOL/177'],
+        ['DILG-DSWD-DOJ JMC No. 2021-01', 'Mar 29, 2022', 'Guidelines in Handling Violence Against Women and Children (VAWC) and other Gender-Based Violence Emergencies Reported Through Emergency 911 National Emergency Hotline', 'https://dilg.gov.ph/issuances/jc/Guidelines-in-Handling-Violence-Against-Women-and-Children-VAWC-and-other-Gender-Based-Violence-Emergencies-Reported-Through-Emergency-911-National-Emergency-Hotline/180'],
+        ['DSWD-DILG JMC No. 2022-001', 'May 5, 2022', 'Guidelines in Support of the Implementation of the Pantawid Pamilyang Pilipino Program (4Ps)', 'https://dilg.gov.ph/issuances/jc/Guidelines-in-Support-of-the-Implementation-of-the-Pantawid-Pamilyang-Pilipino-Program-4Ps/181'],
+        ['PSA-DILG JMC 2022-001', 'May 23, 2022', 'Implementation Guidelines of the Community-Based Monitoring System (CBMS) for the Targeted Nationwide Rollout in 2022', 'https://dilg.gov.ph/issuances/jc/Implementation-Guidelines-of-the-Community-Based-Monitoring-System-CBMS-for-the-Targeted-Nationwide-Rollout-in-2022/184'],
+        ['DILG-BSP JMC No. 01 s. 2022', 'Jun 23, 2022', 'Guidelines to LGUs Enjoining Participation in the PALENG-QR PH Program', 'https://dilg.gov.ph/issuances/jc/Guidelines-to-LGUs-Enjoining-Participation-in-the-PALENG-QR-PH-Program/186'],
+        ['DILG-DOTC JMC No. 01 s. 2008', 'Sep 29, 2022', 'Guidelines in the Review of Local Ordinances, Orders, Rules and Regulations Concerning Public Transportation', 'https://dilg.gov.ph/issuances/jc/Guidelines-in-the-Review-of-Local-Ordinances-Orders-Rules-and-Regulations-Concerning-Public-Transportation/189'],
+        ['DOH-DILG-POPCOM-PCW JMC No 1, SERIES OF 2022', 'Nov 8, 2022', 'STRENGTHENING THE LOCAL IMPLEMENTATION OF RPRH-RELATED PROGRAMS, PROJECTS AND ACTIVITIES (PPA) THROUGH VARIOUS FUND SOURCES', 'https://dilg.gov.ph/issuances/jc/STRENGTHENING-THE-LOCAL-IMPLEMENTATION-OF-RPRH-RELATED-PROGRAMS-PROJECTS-AND-ACTIVITIES-PPA-THROUGH-VARIOUS-FUND-SOURCES/191'],
+        ['DOH-DOH JMC No 2023-001', 'Aug 29, 2023', 'Retention and Continued Service of Barangay Health Workers', 'https://dilg.gov.ph/issuances/jc/Retention-and-Continued-Service-of-Barangay-Health-Workers/194'],
+        ['JMC-DILG-AMLC No. 01 S. 2023', 'Oct 4, 2023', 'Guidelines in Issuances of Business Permit / License of the designated Non-Financial Businesses and Professions (DNFBPs)Pursuant to RA 9160, also known as the Anti-Money Laundering Act of 2001, as amended', 'https://dilg.gov.ph/issuances/jc/Guidelines-in-Issuances-of-Business-Permit-License-of-the-designated-Non-Financial-Businesses-and-Professions-DNFBPsPursuant-to-RA-9160-also-known-as-the-Anti-Money-Laundering-Act-of-2001-as-amended/195'],
+        ['DBM-DILG JMC No. 1 s. 2024', 'Feb 28, 2024', 'Policy Guidelines and Procedures in the Implementation of the Local Government Support Fund - Support and Assistance Fund to Participatory Budgeting (LGSF-SAFPB) under the FY 2024 General Appropriations Act (GAA), Republic Act (RA) No. 11975', 'https://dilg.gov.ph/issuances/jc/Policy-Guidelines-and-Procedures-in-the-Implementation-of-the-Local-Government-Support-Fund-Support-and-Assistance-Fund-to-Participatory-Budgeting-LGSF-SAFPB-under-the-FY-2024-General-Appropriations-Act-GAA-Republic-Act-RA-No-11975/196'],
+        ['DOH-DILG JAO-2022-0001', 'Jul 3, 2024', 'Policy Framework on Leadership and Governance for Health (LeadGov4Health) Towards a Functional Local Health Board', 'https://dilg.gov.ph/issuances/jc/Policy-Framework-on-Leadership-and-Governance-for-Health-LeadGov4Health-Towards-a-Functional-Local-Health-Board/200'],
+        ['Joint Memo Order No 1 s. 2024', 'Jul 30, 2024', 'Omnibus Guidelines on the Exercise of Freedom of Association and Civil Liberties', 'https://dilg.gov.ph/issuances/jc/Omnibus-Guidelines-on-the-Exercise-of-Freedom-of-Association-and-Civil-Liberties/201'],
+        ['JMC No. 1 s. 2024 DILG-DHSUD-NEDA-DBM-DOF', 'Jul 30, 2024', 'Updated Guidelines on the Harmonization of Local Development Planning, Investment Programming, Resource Mobilization, Budgeting, Expenditure Management, and Performance Monitoring and Coordination in Fiscal Oversight for Enhanced Local Service Delivery in line with the Supreme Court Ruling on the Mandanas-Garcia Petitions', 'https://dilg.gov.ph/issuances/jc/Updated-Guidelines-on-the-Harmonization-of-Local-Development-Planning-Investment-Programming-Resource-Mobilization-Budgeting-Expenditure-Management-and-Performance-Monitoring-and-Coordination-in-Fiscal-Oversight-for-Enhanced-Local-Service-Delivery-in-line-with-the-Supreme-Court-Ruling-on-the-Mandanas-Garcia-Petitions/202'],
+        ['DILG-LBP Joint Memo Cir No. 1 S. 2024', 'Aug 16, 2024', 'Implementing Guidelines on the Digitalization of Government Disbursements through the Government Servicing Bank\'s (GSB) Digital Banking Facility of the Land Bank of the Philippines', 'https://dilg.gov.ph/issuances/jc/Implementing-Guidelines-on-the-Digitalization-of-Government-Disbursements-through-the-Government-Servicing-Banks-GSB-Digital-Banking-Facility-of-the-Land-Bank-of-the-Philippines/203'],
+        ['DOTr-DILG_LTFRB-JMC No. 02 S. 2024', 'Nov 28, 2024', 'Revised Guidelines for the Preparation and Issuance of Local Ordinances, Orders, Rules and Regulations for the Local Public Transport Route Plan (LPTRP)', 'https://dilg.gov.ph/issuances/jc/Revised-Guidelines-for-the-Preparation-and-Issuance-of-Local-Ordinances-Orders-Rules-and-Regulations-for-the-Local-Public-Transport-Route-Plan-LPTRP/205'],
+        ['DENR-DILG JMC No 01 S 2024', 'Nov 28, 2024', 'Guidance in the Implementation of the Transdisciplinary Approach for Resilience and Sustainability through Multistakeholder Engagement (Project TRANSFORM)', 'https://dilg.gov.ph/issuances/jc/Guidance-in-the-Implementation-of-the-Transdisciplinary-Approach-for-Resilience-and-Sustainability-through-Multistakeholder-Engagement-Project-TRANSFORM/204'],
+        ['DILG-NYC JMC NO. 01 S. 2024', 'Jan 10, 2025', 'Filling up of Vacancies in the Sangguniang Kabataan through succession, conduct of the Katipunan ng Kabataan (KK) Assembly or appointment by the Mayor', 'https://dilg.gov.ph/issuances/jc/Filling-up-of-Vacancies-in-the-Sangguniang-Kabataan-through-succession-conduct-of-the-Katipunan-ng-Kabataan-KK-Assembly-or-appointment-by-the-Mayor/207'],
+        ['DepEd-DILG JMC No. 1, s. 2024', 'Apr 11, 2025', 'Creation, Reconstitution, and Strengthening of Local Literacy Councils at the City and Municipality Levels', 'https://dilg.gov.ph/issuances/jc/Creation-Reconstitution-and-Strengthening-of-Local-Literacy-Councils-at-the-City-and-Municipality-Levels/209'],
+        ['DILG-DBM JMC No. 03 S. 2025', 'Jul 18, 2025', 'Guidelines on the Submission of Certified True Copies of Documents Signed by Local Chief Executives in Lieu of Originals', 'https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Submission-of-Certified-True-Copies-of-Documents-Signed-by-Local-Chief-Executives-in-Lieu-of-Originals/215'],
+        ['DILG-NAPC JMC No. 001 S. 2025', 'Jul 30, 2025', 'Policy Guidelines for the Formulation of Local Poverty Reduction Action Plans', 'https://dilg.gov.ph/issuances/jc/Policy-Guidelines-for-the-Formulation-of-Local-Poverty-Reduction-Action-Plans/217'],
+        ['CWC-DBM-DILG-BLGF JMC No. 2025-01', 'Nov 13, 2025', 'Implementation of the Child Budget and Expenditure Tagging and Tracking (CBETT)', 'https://dilg.gov.ph/issuances/jc/Implementation-of-the-Child-Budget-and-Expenditure-Tagging-and-Tracking-CBETT/220'],
+        ['DILG-DOE-ARTA-DPWH JMC No. 2025-001', 'Dec 22, 2025', 'Streamlined Guidelines for the Issuance of Permits and Clearances for the Implementation of Energy Infrastructure Projects (EIPs)', 'https://dilg.gov.ph/issuances/jc/Streamlined-Guidelines-for-the-Issuance-of-Permits-and-Clearances-for-the-Implementation-of-Energy-Infrastructure-Projects-EIPs/221'],
+        ['DOE-DILG-DPWH JMC No. 001 S. 2026', 'Jan 14, 2026', 'Streamlined requirements and processing of permits, licenses, and/or certifications for Net-Metering applications', 'https://dilg.gov.ph/issuances/jc/Streamlined-requirements-and-processing-of-permits-licenses-andor-certifications-for-Net-Metering-applications/223']
+      ];
+
+      const list = document.getElementById('joint-circulars-list');
+      const pagination = document.getElementById('joint-pagination');
+      const totalCount = document.getElementById('joint-total-count');
+      const pageSummary = document.getElementById('joint-page-summary');
+      const searchInput = document.getElementById('joint-search');
+      const sortedCirculars = circulars.slice().sort((left, right) => {
+        const leftDate = Date.parse(left[1]);
+        const rightDate = Date.parse(right[1]);
+        return (Number.isNaN(rightDate) ? 0 : rightDate) - (Number.isNaN(leftDate) ? 0 : leftDate);
+      });
+
+      const pageSize = 25;
+      let currentPage = 1;
+
+      const getFilteredCirculars = () => {
+        const query = searchInput.value.trim().toLowerCase();
+        if (!query) return sortedCirculars;
+        return sortedCirculars.filter(([code, , title]) =>
+          (code + ' ' + title).toLowerCase().includes(query)
+        );
+      };
+
+      const escapeHtml = (value) => value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
+      const renderList = () => {
+        const filteredCirculars = getFilteredCirculars();
+        const totalPages = Math.max(1, Math.ceil(filteredCirculars.length / pageSize));
+        if (currentPage > totalPages) currentPage = totalPages;
+        const start = (currentPage - 1) * pageSize;
+        const items = filteredCirculars.slice(start, start + pageSize);
+
+        list.innerHTML = items.length ? items.map(([code, date, title, url], index) => {
+          const safeCode = escapeHtml(code);
+          const safeDate = escapeHtml(date);
+          const safeTitle = escapeHtml(title);
+          const safeUrl = url || '';
+          const rowNumber = start + index + 1;
+          const titleMarkup = safeUrl
+            ? '<a href="' + safeUrl + '" target="_blank" rel="noopener noreferrer">' + safeTitle + '</a>'
+            : safeTitle;
+
+          return '<article class="jmc-row">'
+            + '<div class="jmc-num" aria-hidden="true">' + rowNumber + '</div>'
+            + '<div class="jmc-body">'
+            + '<h2 class="jmc-title">' + titleMarkup + '</h2>'
+            + '<p class="jmc-ref">Reference No: ' + safeCode + '</p>'
+            + '</div>'
+            + '<div class="jmc-date">' + safeDate + '</div>'
+            + '</article>';
+        }).join('') : '<p class="archive-empty">No joint circulars matched your search.</p>';
+
+        totalCount.textContent = String(filteredCirculars.length);
+        pageSummary.textContent = 'Page ' + currentPage + ' of ' + totalPages;
+      };
+
+      const renderPagination = () => {
+        const totalPages = Math.max(1, Math.ceil(getFilteredCirculars().length / pageSize));
+        if (totalPages <= 1) {
+          pagination.innerHTML = '';
+          pagination.hidden = true;
+          return;
+        }
+
+        pagination.hidden = false;
+        const buttons = [];
+        buttons.push('<button type="button" class="js-page-nav" data-page="' + (currentPage - 1) + '" ' + (currentPage === 1 ? 'disabled' : '') + '>Previous</button>');
+        for (let page = 1; page <= totalPages; page += 1) {
+          buttons.push('<button type="button" class="js-page-nav ' + (page === currentPage ? 'is-active' : '') + '" data-page="' + page + '">' + page + '</button>');
+        }
+        buttons.push('<button type="button" class="js-page-nav" data-page="' + (currentPage + 1) + '" ' + (currentPage === totalPages ? 'disabled' : '') + '>Next</button>');
+        pagination.innerHTML = buttons.join('');
+      };
+
+      const updateView = () => {
+        renderList();
+        renderPagination();
+      };
+
+      pagination.addEventListener('click', (event) => {
+        const target = event.target.closest('.js-page-nav');
+        if (!target) {
+          return;
+        }
+
+        const requestedPage = Number(target.getAttribute('data-page'));
+        const totalPages = Math.max(1, Math.ceil(getFilteredCirculars().length / pageSize));
+        if (!requestedPage || requestedPage < 1 || requestedPage > totalPages || requestedPage === currentPage) {
+          return;
+        }
+
+        currentPage = requestedPage;
+        updateView();
+        list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      searchInput.addEventListener('input', () => {
+        currentPage = 1;
+        updateView();
+      });
+
+      updateView();
+    });
+  </script>
+  <script src="../js/sidebar-cards.js"></script>
+</body>
+</html>
+

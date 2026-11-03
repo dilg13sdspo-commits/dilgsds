@@ -1,0 +1,236 @@
+{
+    "slides": [
+        {
+            "id": 2,
+            "title": "Homepage image 2",
+            "image_url": "https://i.imgur.com/jmNXZxc.jpeg",
+            "sort_order": 2,
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "title": "Homepage image 3",
+            "image_url": "https://i.imgur.com/Vh5sp4J.jpeg",
+            "sort_order": 3,
+            "is_active": true
+        },
+        {
+            "id": 4,
+            "title": "Homepage image 4",
+            "image_url": "https://i.imgur.com/uY8ZQ3z.jpeg",
+            "sort_order": 4,
+            "is_active": true
+        },
+        {
+            "id": 5,
+            "title": "Homepage image 5",
+            "image_url": "Logos/IMG_8945.jpeg",
+            "sort_order": 5,
+            "is_active": true
+        },
+        {
+            "id": 6,
+            "title": "Homepage image 6",
+            "image_url": "Logos/IMG_0513.jpeg",
+            "sort_order": 6,
+            "is_active": true
+        },
+        {
+            "id": 8,
+            "title": "Homepage image 8",
+            "image_url": "Logos/IMG_0578.jpeg",
+            "sort_order": 8,
+            "is_active": true
+        },
+        {
+            "id": 9,
+            "title": "Homepage image 9",
+            "image_url": "Logos/IMG_0315.jpeg",
+            "sort_order": 9,
+            "is_active": true
+        },
+        {
+            "id": 14,
+            "title": "Homepage image 14",
+            "image_url": "Logos/IMG_0697.jpeg",
+            "sort_order": 14,
+            "is_active": true
+        },
+        {
+            "id": 15,
+            "title": "Homepage image 15",
+            "image_url": "Logos/IMG_0686.jpeg",
+            "sort_order": 15,
+            "is_active": true
+        },
+        {
+            "title": "Homepage image 16",
+            "image_url": "uploads/home/5d6ded3d104682ed3b7614b4.jpg",
+            "sort_order": 16,
+            "is_active": true,
+            "id": 16,
+            "image_position_x": 51,
+            "image_position_y": 96
+        }
+    ],
+    "ticker": [
+        {
+            "id": 1,
+            "title": "UNDP Philippines - 2026 Circular Solutions: Innovation Challenge and CSO Grants",
+            "date": "June 17, 2026",
+            "link_url": "https://www.facebook.com/share/p/18yBEeKCHQ/",
+            "is_active": true
+        }
+    ],
+    "central": [
+        {
+            "id": 1,
+            "title": "DILG: LGUs' enforcement of Safe Spaces Act key to protecting victims of gender-based sexual harassment",
+            "date": "July 20, 2026",
+            "description": "The Department of the Interior and Local Government emphasized that strict enforcement of the Safe Spaces Act at the local level is essential to protect victims and strengthen accountability mechanisms in communities.",
+            "link_url": "https://www.dilg.gov.ph/news/DILG-LGUs-enforcement-of-Safe-Spaces-Act-key-to-protecting-victims-of-gender-based-sexual-harassment/NC-2026-1200",
+            "sort_order": 1,
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "title": "DILG, PCW: Safer Cities initiative reinforces Safe Spaces Act implementation in LGUs",
+            "date": "July 16, 2026",
+            "description": "DILG and the Philippine Commission on Women highlighted the gains of the Safer Cities initiative in helping local governments operationalize Safe Spaces Act mandates.",
+            "link_url": "https://www.dilg.gov.ph/news/DILG-PCW-Safer-Cities-initiative-reinforces-Safe-Spaces-Act-implementation-in-LGUs/NC-2026-1199",
+            "sort_order": 2,
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "title": "Focus Crimes Drop 20.6% under DILG's Safer Cities Initiative",
+            "date": "July 16, 2026",
+            "description": "Reported focus crimes declined under the Safer Cities initiative, reflecting stronger local public safety coordination and targeted interventions across participating areas.",
+            "link_url": "https://www.dilg.gov.ph/news/Focus-Crimes-Drop-206-under-DILGs-Safer-Cities-Initiative/NC-2026-1198",
+            "sort_order": 3,
+            "is_active": true
+        },
+        {
+            "id": 4,
+            "title": "DILG Statement on the BJMP's Custody of Senator Marcoleta",
+            "date": "July 15, 2026",
+            "description": "The Department reaffirmed that the Bureau of Jail Management and Penology follows established legal procedures and standards in carrying out custodial duties.",
+            "link_url": "https://www.dilg.gov.ph/news/DILG-Statement-on-the-BJMPs-Custody-of-Senator-Marcoleta/NC-2026-1197",
+            "sort_order": 4,
+            "is_active": true
+        },
+        {
+            "id": 5,
+            "title": "DILG to LGUs: Adopt Revised Child Protection Protocol, Strengthen Response to Abuse Cases",
+            "date": "July 14, 2026",
+            "description": "DILG directed local government units to adopt the revised child protection protocol to improve case handling and strengthen coordinated response mechanisms.",
+            "link_url": "https://www.dilg.gov.ph/news/DILG-to-LGUs-Adopt-Revised-Child-Protection-Protocol-Strengthen-Response-to-Abuse-Cases/NC-2026-1196",
+            "sort_order": 5,
+            "is_active": true
+        }
+    ],
+    "provincial": [
+        {
+            "id": 1,
+            "title": "Provincial Rural Improvement Club (PRIC) 2nd Quarter Meeting",
+            "date": "June 30, 2026",
+            "description": "The Office of the Provincial Agriculturist convened the Provincial Rural Improvement Club 2nd Quarter Meeting in Tandag City.",
+            "image_url": "uploads/home/14eb32bd13a2b3e142d8f870.png",
+            "link_url": "https://surigaodelsur.gov.ph/news-single/550",
+            "sort_order": 1,
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "title": "Carrying Capacity Development Seminar Workshop",
+            "date": "June 30, 2026",
+            "description": "The provincial government conducted a carrying-capacity development seminar workshop to support sustainable local planning and resource management across municipalities.",
+            "image_url": "Logos/1783319661_6a4b4c6d3aaa7.png",
+            "link_url": "https://surigaodelsur.gov.ph/news-single/625",
+            "sort_order": 2,
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "title": "Local farmers and fisherfolk complete technical capability sessions",
+            "date": "June 28, 2026",
+            "description": "Provincial line agencies facilitated a series of capability sessions focused on improved productivity, risk reduction, and inclusive rural development.",
+            "image_url": "Logos/IMG_0769.jpeg",
+            "link_url": "https://surigaodelsur.gov.ph/news-single/610",
+            "sort_order": 3,
+            "is_active": true
+        },
+        {
+            "id": 4,
+            "title": "Provincial governance teams strengthen convergence planning",
+            "date": "June 24, 2026",
+            "description": "The provincial governance teams gathered to strengthen convergence planning and align local development initiatives with priority programs and services.",
+            "image_url": "Logos/IMG_8945.jpeg",
+            "link_url": "https://surigaodelsur.gov.ph/news-single/580",
+            "sort_order": 4,
+            "is_active": true
+        },
+        {
+            "id": 5,
+            "title": "DILG Surigao del Sur joins provincial stakeholders in community safety briefing",
+            "date": "June 20, 2026",
+            "description": "The provincial stakeholders convened to brief local officials and community representatives on stronger communication, preparedness, and public safety coordination.",
+            "image_url": "Logos/IMG_0513.jpeg",
+            "link_url": "https://surigaodelsur.gov.ph/news-single/571",
+            "sort_order": 5,
+            "is_active": true
+        }
+    ],
+    "featured": [
+        {
+            "id": 1,
+            "title": "DILG Surigao del Sur Strengthens Community Safety and Public Order Plan",
+            "date": "July 21, 2026",
+            "description": "The Department of the Interior and Local Government (DILG) Surigao del Sur conducted a workshop on the formulation of the 2026-2028 Peace and Order and Public Safety Plan.",
+            "image_url": "https://picsum.photos/seed/featured-1/1200/700",
+            "link_url": "https://www.dilg.gov.ph/whatsnew-archive/",
+            "sort_order": 1,
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "title": "DILG emphasizes safer cities and stronger local protection systems",
+            "date": "July 20, 2026",
+            "description": "The Department highlighted the importance of strict enforcement of the Safe Spaces Act and the role of local government units in protecting residents from gender-based sexual harassment.",
+            "image_url": "https://picsum.photos/seed/featured-2/1200/700",
+            "link_url": "https://www.dilg.gov.ph/news/DILG-LGUs-enforcement-of-Safe-Spaces-Act-key-to-protecting-victims-of-gender-based-sexual-harassment/NC-2026-1200",
+            "sort_order": 2,
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "title": "Safer Cities initiative delivers stronger public safety gains",
+            "date": "July 16, 2026",
+            "description": "DILG and partner agencies reported continued progress in local public safety coordination and community protection under the Safer Cities initiative.",
+            "image_url": "https://picsum.photos/seed/featured-3/1200/700",
+            "link_url": "https://www.dilg.gov.ph/news/Focus-Crimes-Drop-206-under-DILGs-Safer-Cities-Initiative/NC-2026-1198",
+            "sort_order": 3,
+            "is_active": true
+        },
+        {
+            "id": 4,
+            "title": "DILG statement on BJMP custody procedures and legal compliance",
+            "date": "July 15, 2026",
+            "description": "The Department reaffirmed that the Bureau of Jail Management and Penology follows established legal procedures and standards in carrying out custodial duties.",
+            "image_url": "https://picsum.photos/seed/featured-4/1200/700",
+            "link_url": "https://www.dilg.gov.ph/news/DILG-Statement-on-the-BJMPs-Custody-of-Senator-Marcoleta/NC-2026-1197",
+            "sort_order": 4,
+            "is_active": true
+        },
+        {
+            "id": 5,
+            "title": "Local governments urged to adopt revised child protection protocols",
+            "date": "July 14, 2026",
+            "description": "DILG called on local government units to strengthen their response systems and improve child protection measures across communities.",
+            "image_url": "https://picsum.photos/seed/featured-5/1200/700",
+            "link_url": "https://www.dilg.gov.ph/news/DILG-to-LGUs-Adopt-Revised-Child-Protection-Protocol-Strengthen-Response-to-Abuse-Cases/NC-2026-1196",
+            "sort_order": 5,
+            "is_active": true
+        }
+    ]
+}

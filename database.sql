@@ -1,0 +1,52 @@
+-- Database schema for DILG SDS authentication and reports
+-- Create database then run these statements
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('ADMIN','FO USER','PO USER') NOT NULL DEFAULT 'FO USER',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS reports (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  details TEXT,
+  reference_number VARCHAR(40) NULL,
+  status ENUM('DRAFT','PENDING','IN_PROGRESS','SUBMITTED','FORWARDED','COMPLETED','RESOLVED','RETURNED','OVERDUE') NOT NULL DEFAULT 'DRAFT',
+  submitted_at DATETIME NULL,
+  started_at DATETIME NULL,
+  completed_at DATETIME NULL,
+  reviewed_at DATETIME NULL,
+  reviewed_by INT NULL,
+  returned_reason TEXT NULL,
+  fo_response TEXT NULL,
+  fo_response_at DATETIME NULL,
+  fo_responded_by INT NULL,
+  priority ENUM('LOW','MEDIUM','HIGH') NOT NULL DEFAULT 'MEDIUM',
+  due_date DATE NULL,
+  due_at DATETIME NULL,
+  assigned_to INT NULL,
+  recipient_office VARCHAR(150) NULL,
+  office_id INT NULL,
+  category VARCHAR(100) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (assigned_to) REFERENCES users(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS audit_logs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NULL,
+  action VARCHAR(255) NOT NULL,
+  ip VARCHAR(45) NULL,
+  user_agent VARCHAR(255) NULL,
+  meta JSON NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);

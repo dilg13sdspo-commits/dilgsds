@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DILG Surigao del Sur - News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background-color: #fff;
+    }
+
+    #page-news .page-panel.news-page-panel,
+    #page-news .news-container {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .katon-heading-banner {
+      position: relative;
+      left: 50%;
+      width: 100vw;
+      margin-left: -50vw;
+      background: #ffffff;
+      padding: 48px 24px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .katon-heading-banner.katon-two-column {
+      background: #ffffff;
+      padding: 60px 0;
+      display: block;
+    }
+
+    .news-feature-heading {
+      margin-bottom: 48px;
+    }
+
+    .katon-two-column-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      padding: 0 48px;
+      box-sizing: border-box;
+    }
+
+    .katon-image-col {
+      flex: 0 0 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .katon-image-col img {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      display: block;
+    }
+
+    .katon-text-col {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .katon-heading {
+      margin: 0 0 24px;
+      line-height: 1.15;
+    }
+
+    .katon-heading span {
+      font-family: "Poppins", "Outfit", Arial, sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+    }
+
+    .katon-heading .c-navy { color: #0f2a6b; }
+    .katon-heading .c-black { color: #000000; }
+
+    .katon-text-col p {
+      font-family: "Poppins", "Outfit", Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #213c63;
+      line-height: 1.7;
+      text-align: justify;
+      margin: 0 0 16px;
+    }
+
+    .katon-highlight {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #f4d55b;
+      border-radius: 6px;
+      box-shadow: inset 0 0 0 1px rgba(11, 42, 107, 0.08);
+    }
+
+    .katon-red {
+      color: #d92d2d;
+      font-weight: 800;
+    }
+
+    .katon-text-col p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .katon-heading-title {
+      margin: 0;
+      color: #0b2a6b;
+      font-family: "Poppins", "Outfit", Arial, sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.5rem, 2vw, 2.1rem);
+      line-height: 1.2;
+      text-align: center;
+      display: block;
+      letter-spacing: 0.01em;
+    }
+
+    .katon-heading-banner:not(.katon-two-column) {
+      padding: 28px 24px;
+    }
+
+    .news-reveal {
+      opacity: 0;
+      transform: translate3d(0, 28px, 0);
+      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .news-reveal-staggered {
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    .news-reveal.visible {
+      opacity: 1;
+      transform: translateZ(0);
+    }
+
+    @media (max-width: 860px) {
+      .katon-two-column-container {
+        flex-direction: column;
+        gap: 32px;
+        padding: 0 24px;
+      }
+
+      .katon-image-col {
+        flex: 0 0 auto;
+        max-width: 340px;
+      }
+
+      .katon-heading-banner.katon-two-column {
+        padding: 40px 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .katon-heading-banner {
+        padding: 22px 16px;
+      }
+      
+      .katon-heading-banner.katon-two-column {
+        padding: 32px 0;
+      }
+
+      .katon-two-column-container {
+        padding: 0 16px;
+        gap: 24px;
+      }
+
+      .katon-image-col {
+        max-width: 280px;
+      }
+
+      .katon-heading-title {
+        font-size: clamp(1.25rem, 3.4vw, 1.6rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .news-reveal,
+      .news-reveal.visible {
+        opacity: 1;
+        transition-timing-function: ease;
+      }
+    }
+
+    /* Ini sa Sur-Sur featured carousel */
+    .ini-videos { padding: 8px 0 24px; }
+    .ini-description { margin: -4px auto 22px; color: #526174; font-family: "Poppins", "Outfit", Arial, sans-serif; font-size: 0.98rem; line-height: 1.6; text-align: center; }
+    .ini-carousel { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; gap: 16px; align-items: center; width: 100%; }
+    .ini-carousel-viewport { min-width: 0; overflow: hidden; padding: 8px 0 14px; }
+    .ini-carousel-track { display: flex; gap: 22px; transition: transform 0.25s ease; will-change: transform; }
+    .ini-carousel-button { width: 60px; height: 60px; padding: 0 0 4px; border: 0; border-radius: 50%; background: #0f2a6b; color: #fff; font-family: Arial, sans-serif; font-size: 3.25rem; font-weight: 300; line-height: 1; cursor: pointer; box-shadow: 0 8px 18px rgba(11, 42, 107, 0.22); transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease; }
+    .ini-carousel-button:hover:not(:disabled), .ini-carousel-button:focus-visible { background: #0f2a6b; color: #fff; transform: scale(1.06); outline: none; }
+    .ini-carousel-button:disabled { cursor: default; opacity: 0.3; }
+    .ini-carousel-pagination { display: none; }
+    .ini-carousel-dot { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 50%; background: #c3ccd8; cursor: pointer; transition: transform 0.2s ease, background 0.2s ease; }
+    .ini-carousel-dot.active { background: #d8ad3d; transform: scale(1.25); }
+    .video-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
+    .video-col { display: contents; }
+    .ini-videos .video-card { position: relative; flex: 0 0 calc((100% - 44px) / 3); min-width: 0; height: 380px; overflow: hidden; display: block; background: #0b2a6b; border: 1px solid rgba(11, 42, 107, 0.12); border-radius: 16px; box-shadow: 0 10px 24px rgba(11, 42, 107, 0.18); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .ini-videos .video-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(11, 42, 107, 0.24); }
+    .ini-videos .video-media { position: absolute; inset: 0; width: 100%; height: 100%; background: #0b2a6b; overflow: hidden; }
+    .ini-videos .video-media iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .ini-videos .video-media::after { content: ""; position: absolute; inset: 25% 0 0; pointer-events: none; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.18) 28%, rgba(0, 0, 0, 0.88) 100%); }
+    .ini-videos .video-body { position: absolute; z-index: 1; right: 0; bottom: 0; left: 0; padding: 76px 20px 20px; display: flex; flex-direction: column; gap: 8px; color: #fff; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.72) 48%, rgba(0, 0, 0, 0.9) 100%); }
+    .ini-videos .video-date { margin: 0; color: #fff; font-family: "Poppins", "Outfit", Arial, sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.02em; }
+    .ini-videos .video-date::before { content: "▦"; margin-right: 7px; font-size: 1.05rem; }
+    .video-title { margin: 0; font-family: "Poppins", "Outfit", Arial, sans-serif; font-weight: 700; color: #fff; font-size: 1.08rem; line-height: 1.3; }
+    .ini-videos .video-desc { margin: 0; color: rgba(255, 255, 255, 0.92); font-size: 0.86rem; line-height: 1.45; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
+
+    #ganap-carousel-section {
+      margin-top: 18px;
+      margin-bottom: 18px;
+      padding-top: 0;
+    }
+
+    #ganap-carousel-section .video-columns {
+      gap: 24px;
+      align-items: start;
+    }
+
+    #ganap-carousel-section .katon-carousel-track {
+      width: calc(100% - 15px);
+    }
+
+    #ganap-carousel-section .video-card {
+      width: auto;
+      flex: 0 0 calc((100% - 44px) / 3);
+      height: 380px;
+      min-width: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0b2a6b;
+      box-shadow: 0 10px 24px rgba(11, 42, 107, 0.18);
+    }
+
+    @media (max-width: 860px) {
+      #ganap-carousel-section .video-card { flex-basis: calc((100% - 22px) / 2); }
+    }
+
+    @media (max-width: 640px) {
+      #ganap-carousel-section .video-card { flex-basis: 100%; }
+    }
+
+    #ganap-carousel-section .video-media,
+    #ganap-carousel-section .video-media iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    #ganap-carousel-section .video-body {
+      padding: 76px 20px 20px;
+      gap: 8px;
+    }
+
+    #ganap-carousel-section .video-title {
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+
+    #ganap-carousel-section .video-desc {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      overflow: hidden;
+    }
+
+    /* Reuse the Ini sa Sur-Sur card treatment for the other feature sections. */
+    .ini-style-section .katon-grid { gap: 24px; }
+    .ini-style-section .katon-card {
+      position: relative;
+      display: block;
+      height: 380px;
+      overflow: hidden;
+      background: #0b2a6b;
+      border: 1px solid rgba(11, 42, 107, 0.12);
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(11, 42, 107, 0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .ini-style-section .katon-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(11, 42, 107, 0.24);
+    }
+    .ini-style-section .katon-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 0;
+      background: #0b2a6b;
+    }
+    .ini-style-section .katon-media::after {
+      content: "";
+      position: absolute;
+      inset: 25% 0 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.18) 28%, rgba(0, 0, 0, 0.88) 100%);
+    }
+    .ini-style-section .katon-body {
+      position: absolute;
+      z-index: 1;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 76px 20px 20px;
+      gap: 8px;
+      color: #fff;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.72) 48%, rgba(0, 0, 0, 0.9) 100%);
+    }
+    .ini-style-section .katon-title,
+    .ini-style-section .katon-title a {
+      color: #fff;
+    }
+    .ini-style-section .katon-title a:hover {
+      color: #f6b93b;
+    }
+    .ini-style-section .katon-desc {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.86rem;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      overflow: hidden;
+    }
+
+    /* Kat-On carousel follows the Ini carousel viewport and track behavior. */
+    .katon-carousel {
+      display: grid;
+      grid-template-columns: 56px minmax(0, 1fr) 56px;
+      gap: 16px;
+      align-items: center;
+      width: 100%;
+    }
+    .katon-carousel-viewport {
+      min-width: 0;
+      overflow: hidden;
+      padding: 8px 0 14px;
+      outline: none;
+    }
+    .katon-carousel-viewport:focus-visible {
+      border-radius: 18px;
+      box-shadow: 0 0 0 3px rgba(246, 185, 59, 0.7);
+    }
+    .katon-carousel .katon-carousel-track {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 22px;
+      align-items: stretch;
+      transition: transform 0.25s ease;
+      will-change: transform;
+      touch-action: pan-y;
+    }
+    .katon-carousel-track .katon-card {
+      flex: 0 0 calc((100% - 44px) / 3);
+      min-width: 0;
+    }
+    .katon-carousel-track .video-card {
+      flex: 0 0 calc((100% - 44px) / 3);
+      min-width: 0;
+    }
+    .katon-carousel-button {
+      width: 60px;
+      height: 60px;
+      padding: 0 0 4px;
+      border: 0;
+      border-radius: 50%;
+      background: #0f2a6b;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 3.25rem;
+      font-weight: 300;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(11, 42, 107, 0.22);
+      transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+    }
+    .katon-carousel-button:hover:not(:disabled),
+    .katon-carousel-button:focus-visible {
+      background: #0f2a6b;
+      color: #fff;
+      transform: scale(1.06);
+      outline: none;
+    }
+    .katon-carousel-button:disabled {
+      cursor: default;
+      opacity: 0.3;
+    }
+
+    /* Kat-On news article grid (clean layout) */
+    .katon-section {
+      padding: 8px 0 28px;
+    }
+    .katon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      align-items: start;
+    }
+    .katon-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: transparent;
+      border: none;
+      color: inherit;
+      text-decoration: none;
+    }
+    .katon-media {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden;
+      background: #f6f6f6;
+    }
+    .katon-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+    .katon-slider {
+      position: relative;
+    }
+    .katon-slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.45);
+      color: #fff;
+      font-size: 1.2rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: background 0.2s ease;
+    }
+    .katon-slider-btn:hover,
+    .katon-slider-btn:focus {
+      background: rgba(0, 0, 0, 0.65);
+      outline: none;
+    }
+    .katon-slider-btn.prev {
+      left: 12px;
+    }
+    .katon-slider-btn.next {
+      right: 12px;
+    }
+    .katon-slider-dots {
+      display: none;
+    }
+    .katon-slider-dots button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: #cbd5e1;
+      cursor: pointer;
+      padding: 0;
+    }
+    .katon-slider-dots button.active {
+      background: #0b2f4f;
+    }
+    .katon-section .katon-slider-btn,
+    .katon-section .katon-slider-dots {
+      display: none;
+    }
+    .katon-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0;
+      background: transparent;
+    }
+    .katon-title {
+      margin: 0;
+      font-family: "Poppins", "Outfit", Arial, sans-serif;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+    .katon-title a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .katon-title a:hover {
+      color: var(--blue);
+      text-decoration: underline;
+    }
+    .katon-desc {
+      margin: 0;
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+    @media(max-width:1024px) {
+      .katon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media(max-width:640px) {
+      .katon-grid { grid-template-columns: 1fr; }
+    }
+
+    @media(max-width:1024px){
+      .video-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .katon-grid { grid-template-columns: repeat(2, 1fr); }
+      .ini-videos .video-card { flex-basis: calc((100% - 22px) / 2); height: 360px; }
+      .katon-carousel-track .katon-card { flex-basis: calc((100% - 22px) / 2); }
+      .katon-carousel-track .video-card { flex-basis: calc((100% - 22px) / 2); }
+    }
+    @media(max-width:640px){
+      .video-columns { grid-template-columns: 1fr; }
+      .katon-grid { grid-template-columns: 1fr; }
+      .ini-carousel { grid-template-columns: 42px minmax(0, 1fr) 42px; gap: 8px; }
+      .ini-carousel-button { width: 48px; height: 48px; font-size: 2.6rem; }
+      .katon-carousel { grid-template-columns: 42px minmax(0, 1fr) 42px; gap: 8px; }
+      .katon-carousel-button { width: 48px; height: 48px; font-size: 2.6rem; }
+      .ini-videos .video-card { flex-basis: 100%; height: 340px; }
+      .ini-videos .video-body { padding: 66px 16px 16px; }
+      .ini-style-section .katon-card { height: 340px; }
+      .ini-style-section .katon-body { padding: 66px 16px 16px; }
+      .katon-carousel-track .katon-card { flex-basis: 100%; }
+      .katon-carousel-track .video-card { flex-basis: 100%; }
+    }
+  </style>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="YOUR_NONCE"></script>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision &amp; Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+
+        <li><a href="news.html" class="nav-item active" data-page="news" aria-current="page"><span class="nav-label">News</span></a></li>
+
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li class="dropdown-item-with-submenu">
+              <a href="joint-circulars.html" class="dropdown-item">
+                <span>Joint Circulars</span>
+              </a>
+            </li>
+            <li class="dropdown-item-with-submenu">
+              <a href="index.html" class="dropdown-item">
+                <span>Memo Circulars</span>
+              </a>
+            </li>
+            <li><a href="index.html" class="dropdown-item">Presidential Directives</a></li>
+            <li><a href="index.html" class="dropdown-item">Republic Acts</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" class="header-logo" alt="DILG logo" />
+        <img src="Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="page-news" class="page active" style="display:block; opacity:1;">
+      <div class="page-panel news-page-panel">
+        <div class="news-container">
+          <!-- Redesigned Ini sa Sur-Sur Header Section (Two-Column Layout) -->
+          <div class="katon-heading-banner katon-two-column news-feature-heading ini-feature-heading" role="banner">
+            <div class="katon-two-column-container">
+              <div class="katon-image-col">
+                <img src="Logos/627027338_873605028639351_5854031166575086514_n.jpg" alt="Ini sa Sur-Sur Knowledge Sharing Program Logo" />
+              </div>
+              <div class="katon-text-col">
+                <div class="katon-heading">
+                  <span class="c-navy">Ini</span><span class="c-black"> sa </span>
+                  <span class="c-navy">Sur-Sur</span>
+                </div>
+                <p>The logo <strong>"Ini sa SurSur"</strong> represents the voice, identity, and shared stories that define Surigao del Sur. The phrase "Ini sa SurSur" translates to <strong>"This is Surigao del Sur"</strong> or <strong>"This is who we are in SurSur."</strong></p>
+                <p>The <strong>speech bubble</strong> symbolizes conversation, storytelling, and information-sharing. The <strong>quotation marks</strong> emphasizes real voices and lived experiences.The bold and large <strong>"SUR"</strong> visually anchors the logo to Surigao del Sur, asserting provincial identity and pride. The <strong>three dots</strong> suggest continuity and openess, that the stories, practices, and information about Surigao del sur are ongoing and ever-evolving.</p>
+                <p>The slogan "It's a SUR Thing" plays on the word <strong>"sure",</strong> expressing <strong>confidence, reliability, and trust.</strong> It reinforces the core identity of Ini sa SurSur by highlighting what is <strong> distinctive, natural, and proudly local </strong> about Surigao del Sur.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video grid: three columns (column-wise ordering) -->
+          <section class="ini-videos">
+           <div class="video-columns">
+
+              <div class="video-col">
+                <!-- Episode 1 -->
+                <article class="video-card">
+                  <div class="video-media">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1521676479838369%2F&show_text=false&width=267&t=0" title="Episode 1" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-date">February 13, 2026</h3>
+                    <p class="video-desc">𝗟𝗲𝗮𝗱𝗲𝗿𝘀𝗵𝗶𝗽 𝘄𝗶𝘁𝗵 𝗢𝘂𝘁𝘀𝘁𝗮𝗻𝗱𝗶𝗻𝗴 𝗩𝗮𝗹𝘂𝗲𝘀 𝗶𝗻 𝗘𝘅𝗰𝗲𝗹𝗹𝗲𝗻𝗰𝗲 (𝗟.𝗢.𝗩.𝗘.) Watch the pilot episode of Ini sa SurSur, the DILG Surigao del Sur Knowledge Sharing Program, featuring Provincial Director Rizza D. Sion, CESO V, as she shares the important values of LOVE that create lasting and meaningful impact in public service. </p>
+                  </div>
+                </article>
+
+                <!-- Episode 4 -->
+                <article class="video-card">
+                  <div class="video-media">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2090039575196057%2F&show_text=false&width=560&t=0" title="Episode 4" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-date">March 31, 2026</h3>
+                    <p class="video-desc">As we celebrate the National Heritage Month (NHM) this May with the theme, “Roots and Horizons: Our Shared Heritage, Our Collective Future,” we bring you a special episode that highlights the rich cultural heritage and enduring traditions of our Indigenous Peoples communities in Surigao del Sur.</p>
+                  </div>
+                </article>
+
+              </div>
+
+              <div class="video-col">
+                <!-- Episode 2 -->
+                <article class="video-card">
+                  <div class="video-media">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F812349421886403%2F&show_text=false&width=267&t=0" title="Episode 2" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-date">Februry 26, 2026</h3>
+                    <p class="video-desc">Catch Part II of Ini sa SurSur’s pilot episode as Municipal Local Government Operations Officer (MLGOO) Marichelle Gultiano of DILG Cortes reflects on her remarkable 20 years of dedicated service in the Department.</p>
+                  </div>
+                </article>
+
+                <!-- Episode 5 -->
+                <article class="video-card">
+                  <div class="video-media">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=420&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1387575943254780%2F&show_text=false&width=560&t=0" title="Episode 5" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-date">July 8, 2026</h3>
+                    <p class="video-desc">Good governance deserves to be recognized and celebrated. As the Province of Surigao del Sur launches the Journey Towards Transformative Progress Awards CY 2026, a new chapter begins in honoring Local Government Units that exemplify excellence, accountability, and transformative public service.</p>
+                  </div>
+                </article>
+
+              </div>
+
+              <div class="video-col">
+                <!-- Episode 3 -->
+                <article class="video-card">
+                  <div class="video-media">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F728429806926101%2F&show_text=false&width=267&t=0" title="Episode 3" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-date">March 31, 2026</h3>
+                    <p class="video-desc">As we wrap up March, we celebrate the strength of women and the importance of fire safety through the story of one remarkable leader.</p>
+                  </div>
+                </article>
+
+                <div class="video-col">
+                <!-- Episode 3 -->
+                <article class="video-card">
+                  <div class="video-media">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2018780145734234%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-date">April 30, 2026</h3>
+                    <p class="video-desc">As April comes to a close, we look back on how the DILG’s 3M Values have shaped a journey grounded in purpose, integrity, and unwavering commitment to public service.</p>
+                  </div>
+                </article>
+              </div>
+
+            </div>
+          </section>
+
+          <div class="katon-heading-banner katon-two-column news-feature-heading katon-feature-heading" role="banner">
+            <div class="katon-two-column-container">
+              <div class="katon-image-col">
+                <img src="Logos/686974305_943670848299435_3182181807654906203_n.jpg" alt="Kat-On sa Sur-Sur program logo and visual" />
+              </div>
+              <div class="katon-text-col">
+                <div class="katon-heading">
+                  <span class="c-navy">KAT-ON</span><span class="c-black"> sa </span>
+                  <span class="c-navy">SurSur</span>
+                </div>
+                <p><span class="katon-highlight"><strong>What does KAT-ON stand for?</strong></span></p>
+                <p>KAT-ON stands for <span class="katon-red">K</span><strong>nowledge</strong> <span class="katon-red">A</span><strong>dvancement and</strong> <span class="katon-red">T</span><strong>ransformation for</strong> <span class="katon-red">O</span><strong>perational</strong> <span class="katon-red">N</span><strong>eeds</strong></p>
+                <p><span class="katon-highlight"><strong>What is this about?</strong></span></p>
+                <p>A <strong>Knowledge Sharing Program</strong> of DILG Surigao del Sur designed to transform routine processes into opportunities for <span class="katon-highlight"><strong>Knowledge and skills enhancement,</strong></span> empowering personnel to work smarter and deliver results with confidence.</p>
+                <p><span class="katon-red">"Let's transform the way we serve!"</span><br><strong>#KATONsaSurSur</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <section id="katon-carousel-section" class="katon-section ini-style-section feature-carousel" data-carousel-label="Kat-On sa Sur-Sur" aria-label="Kat-On sa Sur-Sur">
+            <div class="katon-carousel">
+              <button class="katon-carousel-button katon-carousel-prev" type="button" aria-label="Previous Kat-On cards">&#8249;</button>
+              <div class="katon-carousel-viewport" tabindex="0" role="region" aria-label="Kat-On sa Sur-Sur cards">
+                <div class="katon-grid katon-carousel-track">
+              <article class="katon-card katon-slider" data-season="1">
+                <div class="katon-media">
+                  <img src="Logos/Kat-On%201%20Image/katon1.jpg" alt="Kat-On Season 1 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Season 1 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Season 1 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/DILGsds/posts/pfbid02xg4gYZvteTfBFhoSBjFs6JGw3QwAYFFhjocmXzQ5h9AkiPTabwHSkesoQBG4u9ykl" target="_blank" rel="noopener noreferrer">🧠 𝗞𝗔𝗧-𝗢𝗡 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 𝗢𝗽𝗲𝗻𝘀 𝘄𝗶𝘁𝗵 𝗚𝗲𝗻𝗱𝗲𝗿 𝗦𝗲𝗻𝘀𝗶𝘁𝗶𝘃𝗶𝘁𝘆 𝗧𝗿𝗮𝗶𝗻𝗶𝗻𝗴 𝗳𝗼𝗿 𝗗𝗜𝗟𝗚 𝗦𝗗𝗦 𝗣𝗲𝗿𝘀𝗼𝗻𝗻𝗲𝗹</a></h3>
+                  <p class="katon-desc">The DILG Surigao del Sur Provincial Office officially kicked off its “KAT-ON sa SurSur” learning initiative with its first session on April 28, 2026, held at the Provincial Office.</p>
+                  <div class="katon-slider-dots" aria-label="Season 1 image navigation"></div>
+                </div>
+              </article>
+
+              <article class="katon-card katon-slider" data-season="2">
+                <div class="katon-media">
+                  <img src="Logos/Kat-On%202%20image/katon2.jpg" alt="Kat-On Season 2 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Season 2 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Season 2 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/DILGsds/posts/pfbid0krmhUpEAifPjsTb3gRuPy25GXHBW9PZHUiaN1bK6VDewzkkMaouFMmts4K64Z6KSl" target="_blank" rel="noopener noreferrer">𝗞𝗔𝗧-𝗢𝗡 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 𝗖𝗼𝗻𝘁𝗶𝗻𝘂𝗲𝘀 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝗡𝗲𝘄 𝗚𝗼𝘃𝗲𝗿𝗻𝗺𝗲𝗻𝘁 𝗣𝗿𝗼𝗰𝘂𝗿𝗲𝗺𝗲𝗻𝘁 𝗔𝗰𝘁 (𝗥𝗔 𝗡𝗼. 𝟭𝟮𝟬𝟬𝟵) 𝗢𝗿𝗶𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻 𝗮𝗻𝗱 𝗣𝗣𝗔 𝗖𝗼𝗺𝗽𝗹𝗶𝗮𝗻𝗰𝗲 𝗧𝗿𝗮𝗰𝗸𝗲𝗿 𝗧𝗿𝗮𝗶𝗻𝗶𝗻𝗴</a></h3>
+                  <p class="katon-desc">The DILG Surigao del Sur held the second session of its “KAT-ON sa SurSur” learning initiative on April 29, 2026, via Zoom, gathering concerned provincial personnel alongside all C/MLGOOs across the province.</p>
+                  <div class="katon-slider-dots" aria-label="Season 2 image navigation"></div>
+                </div>
+              </article>
+
+              <article class="katon-card katon-slider" data-season="3">
+                <div class="katon-media">
+                  <img src="Logos/Kat-On%203%20image/katon3.jpg" alt="Kat-On Season 3 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Season 3 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Season 3 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/DILGsds/posts/pfbid0ZgcJXyskr9nBHvdWjvTKAcEYrQVDAZFXE5nQ65wgtu7ysRXjahq1vV8b5UHU89g3l" target="_blank" rel="noopener noreferrer">𝗞𝗔𝗧-𝗢𝗡 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 𝗼𝗻 𝗶𝘁𝘀 𝟯𝗿𝗱 𝘀𝗲𝘀𝘀𝗶𝗼𝗻 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝗕𝗮𝘀𝗶𝗰 𝗣𝗵𝗼𝘁𝗼 𝗗𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻</a></h3>
+                  <p class="katon-desc">Learning continues as DILG Surigao del Sur successfully conducted the 3rd session of 𝗞𝗔𝗧-𝗢𝗡 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 on May 7, 2026.</p>
+                  <div class="katon-slider-dots" aria-label="Season 3 image navigation"></div>
+                </div>
+              </article>
+
+              <article class="katon-card katon-slider" data-season="4">
+                <div class="katon-media">
+                  <img src="Logos/Kat-On%204%20image/katon4.jpg" alt="Kat-On Season 4 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Season 4 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Season 4 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/DILGsds/posts/pfbid0b4Dvbj5TdNC1ggpxxAC6iF1WCipJy4RUCUXccZLC4v8DSXZtqVFa59m7xtYzeRnHl" target="_blank" rel="noopener noreferrer">𝗞𝗔𝗧-𝗢𝗡 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲𝘀 𝘄𝗶𝘁𝗵 𝗦𝗲𝘀𝘀𝗶𝗼𝗻 𝟰 𝗼𝗻 𝗕𝗮𝘀𝗶𝗰𝘀 𝗼𝗳 𝗚𝗿𝗮𝗽𝗵𝗶𝗰 𝗗𝗲𝘀𝗶𝗴𝗻 𝗮𝗻𝗱 𝗖𝗮𝗻𝘃𝗮 𝗧𝗶𝗽𝘀</a></h3>
+                  <p class="katon-desc">Learning and innovation continue at DILG Surigao del Sur as the Office successfully conducted the fourth session of 𝗞𝗔𝗧-𝗢𝗡 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿.</p>
+                  <div class="katon-slider-dots" aria-label="Season 4 image navigation"></div>
+                </div>
+              </article>
+
+              <article class="katon-card katon-slider" data-season="5">
+                <div class="katon-media">
+                  <img src="Logos/Kat-On%205%20image/katon5.jpg" alt="Kat-On Season 5 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Season 5 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Season 5 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/DILGsds/posts/pfbid0M57wwkJQU8mBNJXwSfv8BZjDUaAdJMUdxwz2tDdUoEkcf616BjfaT3ixvdauMT5wl" target="_blank" rel="noopener noreferrer">𝗞𝗔𝗧-𝗢𝗡 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 𝗵𝗶𝗴𝗵𝗹𝗶𝗴𝗵𝘁𝘀 𝗦𝗲𝘀𝘀𝗶𝗼𝗻 𝟱 𝗼𝗻 𝗧𝗵𝗲 𝗔𝗿𝘁 𝗼𝗳 𝗣𝗵𝗼𝘁𝗼𝗴𝗿𝗮𝗽𝗵𝘆</a></h3>
+                  <p class="katon-desc">Great public service deserves meaningful documentation, and every compelling story begins with a well-captured photograph.</p>
+                  <div class="katon-slider-dots" aria-label="Season 5 image navigation"></div>
+                </div>
+              </article>
+
+              <article class="katon-card katon-slider" data-season="6">
+                <div class="katon-media">
+                  <img src="Logos/Kat-On%206%20image/katon6.jpg" alt="Kat-On Season 6 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Season 6 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Season 6 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/DILGsds/posts/pfbid02HjpNuoX9peQKimfErrcBEvLx8MyaPiUh5UpEe9WvEuUEXoi1Fo2Q1K7my9RbXSYtl" target="_blank" rel="noopener noreferrer">𝗞𝗔𝗧-𝗢𝗡 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 𝗵𝗶𝗴𝗵𝗹𝗶𝗴𝗵𝘁𝘀 𝗦𝗲𝘀𝘀𝗶𝗼𝗻 𝟲 𝗼𝗻 𝗡𝘂𝗺𝗲𝗿𝗶𝗰𝗮𝗹 𝗔𝗯𝗶𝗹𝗶𝘁𝘆</a></h3>
+                  <p class="katon-desc">Investing in our people means equipping them with the knowledge and confidence to achieve their professional goals.</p>
+                  <div class="katon-slider-dots" aria-label="Season 6 image navigation"></div>
+                </div>
+              </article>
+
+              <article class="katon-card katon-slider" data-season="7">
+                <div class="katon-media">
+                  <img src="Logos/Kat-On%207%20image/katon7.jpg" alt="Kat-On Season 7 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Season 7 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Season 7 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/DILGsds/posts/pfbid02VaRQbyYEUoWtTVdByYcnctv4TYN4BMcyyHCW4xGAP3y5Vhry9cA4pZsteogzs6eBl" target="_blank" rel="noopener noreferrer">𝗞𝗔𝗧-𝗢𝗡 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 𝗵𝗶𝗴𝗵𝗹𝗶𝗴𝗵𝘁𝘀 𝗦𝗲𝘀𝘀𝗶𝗼𝗻 𝟳 𝗼𝗻 𝗔𝗻𝗮𝗹𝘆𝘁𝗶𝗰𝗮𝗹 𝗮𝗻𝗱 𝗟𝗼𝗴𝗶𝗰𝗮𝗹 𝗥𝗲𝗮𝘀𝗼𝗻𝗶𝗻𝗴</a></h3>
+                  <p class="katon-desc">Strong analytical skills are essential not only for succeeding in examinations but also for making sound decisions in public service. </p>
+                  <div class="katon-slider-dots" aria-label="Season 7 image navigation"></div>
+                </div>
+              </article>
+
+              <article class="katon-card katon-slider" data-season="8">
+                <div class="katon-media">
+                  <img src="Logos/Kat-On%208%20image/764351086_1287918249925323_388009133603744677_n.jpg" alt="Kat-On Season 8 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Season 8 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Season 8 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/DILGsds/posts/pfbid02Up5oVQ335fnfUnLS7P116gMhe4mjv3N7vHRNK8sGDKiiSobyntER1m43swSYfj82l" target="_blank" rel="noopener noreferrer">💡 #KATONsaSurSur highlights Session 9 on Verbal Ability</a></h3>
+                  <p class="katon-desc">Effective communication starts with understanding words, organizing ideas, and using language correctly.</p>
+                  <div class="katon-slider-dots" aria-label="Season 8 image navigation"></div>
+                </div>
+              </article>
+
+              <article class="katon-card katon-slider" data-season="9">
+                <div class="katon-media">
+                  <img src="Logos/Kat-On%209%20image/Kat-On%209.jpg" alt="Kat-On Season 9 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Season 9 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Season 9 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/DILGsds/posts/pfbid02hBNiKHVgmmPQZQFxLBTxKSuo6S15mYDb24rU4QD9snkaY8YUkSsfqY1bvF53JmGcl" target="_blank" rel="noopener noreferrer">💡 #KATONsaSurSur highlights Session 9 on Verbal Ability</a></h3>
+                  <p class="katon-desc">Effective communication starts with understanding words, organizing ideas, and using language correctly.</p>
+                  <div class="katon-slider-dots" aria-label="Season 9 image navigation"></div>
+                </div>
+              </article>
+                </div>
+              </div>
+              <button class="katon-carousel-button katon-carousel-next" type="button" aria-label="Next Kat-On cards">&#8250;</button>
+            </div>
+          </section>
+
+          <div class="katon-heading-banner katon-two-column news-feature-heading beyond-feature-heading" role="banner">
+            <div class="katon-two-column-container">
+              <div class="katon-image-col">
+                <img src="Logos/Beyond%20the%20Desk1/beyond1.jpg" alt="Beyond the Desk program image" />
+              </div>
+              <div class="katon-text-col">
+                <div class="katon-heading">
+                  <span class="c-navy">Beyond</span><span class="c-black"> the </span>
+                  <span class="c-navy">Desk</span>
+                </div>
+                <p><strong>Beyond</strong> every report, meeting, and accomplishment is a story waiting to be told.</p>
+                <p><strong>#BeyondTheDesk </strong> offers a look into the heart of public service, spotlighting the dedicated individuals driving the work forward. This segment captures the everyday experiences, field activities, and behind-the-scenes moments of field officers. Constantly on the move and on the ground, these officers bring public service to life right where it matters most.</p>
+              </div>
+            </div>
+          </div>
+
+          <section id="beyond-carousel-section" class="katon-section ini-style-section feature-carousel" data-carousel-label="Beyond the Desk">
+            <div class="katon-carousel">
+              <button class="katon-carousel-button katon-carousel-prev" type="button" aria-label="Previous Beyond the Desk cards">&#8249;</button>
+              <div class="katon-carousel-viewport" tabindex="0" role="region" aria-label="Beyond the Desk cards">
+                <div class="katon-grid katon-carousel-track">
+              <article class="katon-card katon-slider" data-season="b1">
+                <div class="katon-media">
+                  <img src="Logos/Beyond%20the%20Desk1/beyond1.jpg" alt="Beyond the Desk 1 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Beyond the Desk 1 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Beyond the Desk 1 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/reel/1521676479838369/" target="_blank" rel="noopener noreferrer">As we look back on July, we celebrate another impactful month with #BeyondTheDesk 💼.</a></h3>
+                  <p class="katon-desc">Our C/MLGOOs continued to step out of the office to provide hands-on technical guidance, bridge local gaps, empower LGU leaders, and actively participate in key inter-agency and local initiatives.</p>
+                  <div class="katon-slider-dots" aria-label="Beyond the Desk 1 image navigation"></div>
+                </div>
+              </article>
+
+              <article class="katon-card katon-slider" data-season="b2">
+                <div class="katon-media">
+                  <img src="Logos/Beyond%20the%20Desk%202/beyond2.jpg" alt="Beyond the Desk 2 image 1" loading="lazy" />
+                  <button class="katon-slider-btn prev" type="button" aria-label="Previous Beyond the Desk 2 image">‹</button>
+                  <button class="katon-slider-btn next" type="button" aria-label="Next Beyond the Desk 2 image">›</button>
+                </div>
+                <div class="katon-body">
+                  <h3 class="katon-title"><a href="https://www.facebook.com/reel/2090039575196057/" target="_blank" rel="noopener noreferrer">𝘞𝘩𝘢𝘵 𝘥𝘰𝘦𝘴 𝘱𝘶𝘣𝘭𝘪𝘤 𝘴𝘦𝘳𝘷𝘪𝘤𝘦 𝘭𝘰𝘰𝘬 𝘭𝘪𝘬𝘦 𝘣𝘦𝘺𝘰𝘯𝘥 𝘵𝘩𝘦 𝘰𝘧𝘧𝘪𝘤𝘦? This is #BeyondTheDesk 💼</a></h3>
+                  <p class="katon-desc">Step into the field with our City and Municipal Local Government Operations Officers (C/MLGOOs) as they facilitate capacity development initiatives, craft action plans, engage with communities, and provide technical assistance to Local Government Units (LGUs).</p>
+                  <div class="katon-slider-dots" aria-label="Beyond the Desk 2 image navigation"></div>
+                </div>
+              </article>
+                </div>
+              </div>
+              <button class="katon-carousel-button katon-carousel-next" type="button" aria-label="Next Beyond the Desk cards">&#8250;</button>
+            </div>
+          </section>
+
+          <div class="katon-heading-banner katon-two-column news-feature-heading ganap-feature-heading" role="banner">
+            <div class="katon-two-column-container">
+              <div class="katon-image-col">
+                <img src="Logos/[Pub] Ganap sa SurSur.png" alt="Ganap sa Sur-Sur program logo" />
+              </div>
+              <div class="katon-text-col">
+                <div class="katon-heading">
+                  <span class="c-navy">Ganap</span><span class="c-black"> sa </span>
+                  <span class="c-navy">SurSur</span>
+                </div>
+                <p><strong>GANAP sa SurSur</strong> is a monthly recap series highlighting key initiatives, activities, and major achievements of DILG Surigao del Sur. This segment tracks progress on the ground, showcasing collaborative partnerships, capacity development efforts, and community-centered programs that drive responsive and transformative governance across the province.</p>
+            </div>
+          </div>
+
+          <!-- Duplicate Ini sa SurSur grid for Ganap sa SurSur -->
+          <section id="ganap-carousel-section" class="ini-videos ini-style-section feature-carousel" data-carousel-label="Ganap sa Sur-Sur">
+            <div class="katon-carousel">
+              <button class="katon-carousel-button katon-carousel-prev" type="button" aria-label="Previous Ganap sa Sur-Sur cards">&#8249;</button>
+              <div class="katon-carousel-viewport" tabindex="0" role="region" aria-label="Ganap sa Sur-Sur cards">
+                <div class="video-columns katon-carousel-track">
+
+              <div class="video-col">
+                <!-- Episode 1 -->
+                <article class="video-card">
+                  <div class="video-media">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1955420578714561%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-title">𝗚𝗮𝗻𝗮𝗽 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 | 𝘑𝘢𝘯𝘶𝘢𝘳𝘺 𝘙𝘦𝘤𝘢𝘱</h3>
+                    <p class="video-desc">From collaborations to on-the-ground actions, catch the January highlights on Ganap sa SurSur, the recap series of DILG Surigao del Sur</p>
+                  </div>
+                </article>
+
+                <!-- Episode 4 -->
+                <article class="video-card">
+                  <div class="video-media">
+                     <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1652016699560751%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-title">𝗚𝗔𝗡𝗔𝗣 𝗦𝗔 𝗦𝘂𝗿𝗦𝘂𝗿 | 𝘍𝘦𝘣𝘳𝘶𝘢𝘳𝘺 𝘙𝘦𝘤𝘢𝘱</h3>
+                    <p class="video-desc">Take a look at some of the key activities and initiatives of DILG Surigao del Sur during the month of February, reflecting our continued commitment to public service and good governance.</p>
+                  </div>
+                </article>
+
+              </div>
+
+              <div class="video-col">
+                <!-- Episode 2 -->
+                <article class="video-card">
+                  <div class="video-media">
+                   <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1885923718778364%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                  </div>
+                   <div class="video-body">
+                    <h3 class="video-title">𝗚𝗔𝗡𝗔𝗣 𝗦𝗔 𝗦𝘂𝗿𝗦𝘂𝗿 | March Recap</h3>
+                    <p class="video-desc">Here’s a look at the key activities and initiatives of DILG Surigao del Sur for the month of March, reflecting continued efforts in public service, collaboration, and good governance.</p>
+                  </div>
+                </article>
+
+                <!-- Episode 5 -->
+                <article class="video-card">
+                  <div class="video-media">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F26966277839727430%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-title">𝗚𝗔𝗡𝗔𝗣 𝗦𝗔 𝗦𝘂𝗿𝗦𝘂𝗿 | April Recap</h3>
+                    <p class="video-desc">The month of April carried forward DILG Surigao del Sur’s continuing efforts in strengthening local governance and advancing responsive public service across the province.</p>
+                  </div>
+                </article>
+
+              </div>
+
+              <div class="video-col">
+                <!-- Episode 3 -->
+                <article class="video-card">
+                  <div class="video-media">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F980816011243413%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-title">𝗚𝗮𝗻𝗮𝗽 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 | May 2026 Recap</h3>
+                    <p class="video-desc">From strengthening local governance and empowering communities to investing in our people and preserving cultural heritage, May has been a month of collective effort and shared purpose for DILG Surigao del Sur!</p>
+                  </div>
+                </article>
+
+                <!-- Episode 3 -->
+                <article class="video-card">
+                  <div class="video-media">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1039083719049746%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                  </div>
+                  <div class="video-body">
+                    <h3 class="video-title">𝗚𝗮𝗻𝗮𝗽 𝘀𝗮 𝗦𝘂𝗿𝗦𝘂𝗿 | June 2026 Recap </h3>
+                    <p class="video-desc">June brought historic milestones and strong community partnerships across Surigao del Sur!</p>
+                   </div>
+                </article>
+              </div>
+
+                </div>
+              </div>
+              <button class="katon-carousel-button katon-carousel-next" type="button" aria-label="Next Ganap sa Sur-Sur cards">&#8250;</button>
+            </div>
+          </section>
+
+          </aside>
+        </div>
+      </section>
+              
+
+            </div>
+            <!-- /END .news-left-stack -->
+          </div>
+          <!-- /END .news-columns -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo" /></a>
+        <a href="https://bfp.gov.ph/"><img src="Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/"><img src="Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card" aria-label="Open DILG Surigao del Sur Facebook page (opens in new tab)">
+            <span class="connect-icon" aria-hidden="true">
+              <img src="Logos/2021_Facebook_icon.svg" alt="Facebook icon" />
+            </span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const seasonImages = {
+        '1': [
+          'Logos/Kat-On%201%20Image/685703138_943746961625157_4501845270868570230_n.jpg',
+          'Logos/Kat-On%201%20Image/686199387_943746978291822_6442583982371974439_n.jpg',
+          'Logos/Kat-On%201%20Image/686524994_943746931625160_4627207769141161035_n.jpg',
+          'Logos/Kat-On%201%20Image/686856047_943746971625156_5620061861738910511_n.jpg',
+          'Logos/Kat-On%201%20Image/katon1.jpg'
+        ],
+        '2': [
+          'Logos/Kat-On%202%20image/686420832_943766328289887_1314108329876153788_n.jpg',
+          'Logos/Kat-On%202%20image/686525170_943766374956549_647535529621568169_n.jpg',
+          'Logos/Kat-On%202%20image/686633245_943766358289884_3571040996455568056_n.jpg',
+          'Logos/Kat-On%202%20image/686917724_943766158289904_2398439422363384132_n.jpg',
+          'Logos/Kat-On%202%20image/687481923_943766331623220_7044732617211376505_n.jpg',
+          'Logos/Kat-On%202%20image/687750628_943766301623223_6415704817460595349_n.jpg',
+          'Logos/Kat-On%202%20image/katon2.jpg'
+        ],
+        '3': [
+          'Logos/Kat-On%203%20image/690371271_947733347893185_2967085774149581129_n.jpg',
+          'Logos/Kat-On%203%20image/690509368_947733441226509_3826127308549002042_n.jpg',
+          'Logos/Kat-On%203%20image/690509753_947733324559854_7200637656762446114_n.jpg',
+          'Logos/Kat-On%203%20image/690632781_947733474559839_8007437609093941143_n.jpg',
+          'Logos/Kat-On%203%20image/690634686_947733214559865_4528091179507323678_n.jpg',
+          'Logos/Kat-On%203%20image/690687853_947733197893200_5264052998095089171_n.jpg',
+          'Logos/Kat-On%203%20image/690741873_947733541226499_7079119170275099557_n.jpg',
+          'Logos/Kat-On%203%20image/690743592_947733307893189_8301447408920361748_n.jpg',
+          'Logos/Kat-On%203%20image/690746612_947733177893202_4444641010413641517_n.jpg',
+          'Logos/Kat-On%203%20image/690781607_947733041226549_6372893757315337697_n.jpg',
+          'Logos/Kat-On%203%20image/690878003_947733057893214_4671775443279120426_n.jpg',
+          'Logos/Kat-On%203%20image/692252573_947733471226506_7230306198567539523_n.jpg',
+          'Logos/Kat-On%203%20image/692350734_947733031226550_1111926136955297816_n.jpg',
+          'Logos/Kat-On%203%20image/katon3.jpg'
+        ],
+        '4': [
+          'Logos/Kat-On%204%20image/749714036_1938973830121237_7668525086216966445_n.jpg',
+          'Logos/Kat-On%204%20image/751643174_2151577125401933_5214138503053558440_n.jpg',
+          'Logos/Kat-On%204%20image/752380808_873140138850361_5131966986035152856_n.jpg',
+          'Logos/Kat-On%204%20image/753628466_1574561817788782_7647106119168423429_n.jpg',
+          'Logos/Kat-On%204%20image/katon4.jpg'
+        ],
+        '5': [
+          'Logos/Kat-On%205%20image/753282399_1524149448722970_1691427303477972103_n.jpg',
+          'Logos/Kat-On%205%20image/754324572_776849648840289_4941405766615302484_n.jpg',
+          'Logos/Kat-On%205%20image/755128663_1309580880958355_1001440792020653246_n.jpg',
+          'Logos/Kat-On%205%20image/755246807_1461792065712439_3993269143841970095_n.jpg',
+          'Logos/Kat-On%205%20image/katon5.jpg'
+        ],
+        '6': [
+          'Logos/Kat-On%206%20image/754725074_1735639350917434_7572381060897736384_n.jpg',
+          'Logos/Kat-On%206%20image/755736115_1360097358902223_1996202910630034038_n.jpg',
+          'Logos/Kat-On%206%20image/756341859_2047277306181742_4775668391603948690_n.jpg',
+          'Logos/Kat-On%206%20image/758501501_4448774915390449_2459414009574976803_n.jpg',
+          'Logos/Kat-On%206%20image/katon6.jpg'
+        ],
+        '7': [
+          'Logos/Kat-On%207%20image/756757233_1531801888420719_6132232232640048105_n.jpg',
+          'Logos/Kat-On%207%20image/757236755_2693670467822446_300879336488370099_n.jpg',
+          'Logos/Kat-On%207%20image/758287778_1550808883168039_5551599329829713192_n.jpg',
+          'Logos/Kat-On%207%20image/759400175_2175473919664886_4870902484122235887_n.jpg',
+          'Logos/Kat-On%207%20image/katon7.jpg'
+        ],
+        '8': [
+          'Logos/Kat-On%208%20image/763701262_2887175491631687_1309853758070919143_n.jpg',
+          'Logos/Kat-On%208%20image/764056580_2164834201581628_5443984157709348144_n.jpg',
+          'Logos/Kat-On%208%20image/764351086_1287918249925323_388009133603744677_n.jpg',
+          'Logos/Kat-On%208%20image/764800448_1673200260437476_5502670291639100251_n.jpg',
+          'Logos/Kat-On%208%20image/764850001_4378816989101061_3017688422182965424_n.jpg',
+          'Logos/Kat-On%208%20image/767130696_1370260631839619_947361939780001534_n.jpg'
+        ],
+        '9': [
+          'Logos/Kat-On%209%20image/764947137_2868306523533770_3774949932690546542_n.jpg',
+          'Logos/Kat-On%209%20image/767803792_1754284825996829_4509191364496313348_n.jpg',
+          'Logos/Kat-On%209%20image/768979694_1735686320804210_3473062116526328384_n%20%281%29.jpg',
+          'Logos/Kat-On%209%20image/768979694_1735686320804210_3473062116526328384_n.jpg',
+          'Logos/Kat-On%209%20image/Kat-On%209.jpg'
+        ],
+        'b1': [
+          'Logos/Beyond%20the%20Desk1/763374544_1334113838708527_6527486026532953883_n.jpg',
+          'Logos/Beyond%20the%20Desk1/763880982_869015959400682_2618947580075052136_n.jpg',
+          'Logos/Beyond%20the%20Desk1/763980871_1675539650411986_4624147084407401503_n.jpg',
+          'Logos/Beyond%20the%20Desk1/764006328_1382271374004131_8877667678342102727_n.jpg',
+          'Logos/Beyond%20the%20Desk1/764655157_1567721851662580_168028481982271962_n.jpg',
+          'Logos/Beyond%20the%20Desk1/764661200_984159284677630_2938862140525706181_n.jpg',
+          'Logos/Beyond%20the%20Desk1/764800669_1365175328349810_8208063513751580765_n.jpg',
+          'Logos/Beyond%20the%20Desk1/764817662_2987638288249714_9005192955838461600_n.jpg',
+          'Logos/Beyond%20the%20Desk1/764863194_989895867418686_3856563005415374598_n.jpg',
+          'Logos/Beyond%20the%20Desk1/765855286_1719755292572526_3223376293337327076_n.jpg',
+          'Logos/Beyond%20the%20Desk1/765958275_1521494642506700_6495815538118595553_n.jpg',
+          'Logos/Beyond%20the%20Desk1/766797887_1508667917611233_2919342822211321558_n.jpg',
+          'Logos/Beyond%20the%20Desk1/768095780_1001717809566625_6180082854098746659_n.jpg',
+          'Logos/Beyond%20the%20Desk1/beyond1.jpg'
+        ],
+        'b2': [
+          'Logos/Beyond%20the%20Desk%202/733499571_925850770526158_1461091194746752983_n.jpg',
+          'Logos/Beyond%20the%20Desk%202/733642169_2020832311858924_2954599412095599036_n.jpg',
+          'Logos/Beyond%20the%20Desk%202/734101378_891851933324291_5648238363608579003_n.jpg',
+          'Logos/Beyond%20the%20Desk%202/734355489_1005160685681913_5580950009512528403_n.jpg',
+          'Logos/Beyond%20the%20Desk%202/735058738_1784576866246098_104867825615166675_n.jpg',
+          'Logos/Beyond%20the%20Desk%202/735067780_1653457925950407_7134821061703517141_n.jpg',
+          'Logos/Beyond%20the%20Desk%202/735658541_1349179223984340_6571442145863017235_n.jpg',
+          'Logos/Beyond%20the%20Desk%202/736235249_1026447856416412_352669525235554701_n.jpg',
+          'Logos/Beyond%20the%20Desk%202/736248543_1486114279930804_2910745166646221299_n.jpg',
+          'Logos/Beyond%20the%20Desk%202/737467796_998477259481822_7934505647275770365_n.jpg',
+          'Logos/Beyond%20the%20Desk%202/beyond2.jpg'
+        ]
+      };
+
+      document.querySelectorAll('.katon-slider[data-season="disabled"]').forEach((slider) => {
+        const season = slider.dataset.season;
+        const images = seasonImages[season] || [];
+        if (!images.length) return;
+        const labelBase = season === 'b1' ? 'Beyond the Desk 1' : season === 'b2' ? 'Beyond the Desk 2' : `Kat-On Season ${season}`;
+
+        const imageElement = slider.querySelector('.katon-media img');
+        const dotContainer = slider.querySelector('.katon-slider-dots');
+        const prevButton = slider.querySelector('.katon-slider-btn.prev');
+        const nextButton = slider.querySelector('.katon-slider-btn.next');
+        let currentIndex = 0;
+
+        const updateSlider = () => {
+          imageElement.src = images[currentIndex];
+          imageElement.alt = `${labelBase} image ${currentIndex + 1}`;
+          dotContainer.querySelectorAll('button').forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentIndex);
+          });
+        };
+
+        const showNext = () => {
+          currentIndex = (currentIndex + 1) % images.length;
+          updateSlider();
+        };
+
+        const showPrev = () => {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          updateSlider();
+        };
+
+        images.forEach((src, index) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.setAttribute('aria-label', `Show ${labelBase} image ${index + 1}`);
+          if (index === 0) {
+            dot.classList.add('active');
+          }
+          dot.addEventListener('click', () => {
+            currentIndex = index;
+            updateSlider();
+          });
+          dotContainer.appendChild(dot);
+        });
+
+        prevButton?.addEventListener('click', showPrev);
+        nextButton?.addEventListener('click', showNext);
+
+        updateSlider();
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const iniSection = document.querySelector('.ini-videos');
+      const columns = iniSection?.querySelector('.video-columns');
+      if (!iniSection || !columns) return;
+      const cards = Array.from(columns.querySelectorAll('.video-card'));
+      const carousel = document.createElement('div');
+      carousel.className = 'ini-carousel';
+      carousel.setAttribute('aria-label', 'Ini sa Sur-Sur news carousel');
+      carousel.innerHTML = '<button class="ini-carousel-button ini-carousel-prev" type="button" aria-label="Previous news">&#8249;</button><div class="ini-carousel-viewport"><div class="ini-carousel-track"></div></div><button class="ini-carousel-button ini-carousel-next" type="button" aria-label="Next news">&#8250;</button>';
+      const track = carousel.querySelector('.ini-carousel-track');
+      const viewport = carousel.querySelector('.ini-carousel-viewport');
+      const previous = carousel.querySelector('.ini-carousel-prev');
+      const next = carousel.querySelector('.ini-carousel-next');
+      const pagination = document.createElement('div');
+      pagination.className = 'ini-carousel-pagination';
+      pagination.setAttribute('aria-label', 'News carousel pagination');
+      let page = 0;
+      let starts = [0];
+      let autoplayTimer = null;
+      const visible = () => matchMedia('(max-width: 640px)').matches ? 1 : matchMedia('(max-width: 1024px)').matches ? 2 : 3;
+      const update = () => {
+        const count = visible();
+        const maxStart = Math.max(0, cards.length - count);
+        starts = Array.from({ length: maxStart + 1 }, (_, index) => index);
+        page = Math.min(page, starts.length - 1);
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const cardWidth = (viewport.clientWidth - gap * (count - 1)) / count;
+        track.style.transform = `translate3d(-${starts[page] * (cardWidth + gap)}px, 0, 0)`;
+        previous.disabled = page === 0;
+        next.disabled = page === starts.length - 1;
+        pagination.replaceChildren();
+        for (let index = 0; index < starts.length; index += 1) {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = `ini-carousel-dot${index === page ? ' active' : ''}`;
+          dot.setAttribute('aria-label', `Show news page ${index + 1}`);
+          dot.setAttribute('aria-current', index === page ? 'true' : 'false');
+          dot.addEventListener('click', () => {
+            page = index;
+            update();
+            restartAutoplay();
+          });
+          pagination.appendChild(dot);
+        }
+      };
+      const restartAutoplay = () => {
+       window.clearInterval(autoplayTimer);
+       autoplayTimer = window.setInterval(() => {
+         page = page >= starts.length - 1 ? 0 : page + 1;
+         update();
+       }, 4000);
+      };
+      const pauseAutoplay = () => window.clearInterval(autoplayTimer);
+      cards.forEach((card) => track.appendChild(card));
+      columns.replaceWith(carousel);
+      iniSection.appendChild(pagination);
+      carousel.addEventListener('mouseenter', pauseAutoplay);
+      carousel.addEventListener('mouseleave', restartAutoplay);
+      carousel.addEventListener('focusin', pauseAutoplay);
+      carousel.addEventListener('focusout', (event) => {
+       if (!carousel.contains(event.relatedTarget)) restartAutoplay();
+      });
+      previous.addEventListener('click', () => {
+       page = Math.max(0, page - 1);
+       update();
+       restartAutoplay();
+      });
+      next.addEventListener('click', () => {
+       page = Math.min(starts.length - 1, page + 1);
+       update();
+       restartAutoplay();
+      });
+      document.addEventListener('visibilitychange', () => {
+       if (document.hidden) pauseAutoplay();
+       else restartAutoplay();
+      });
+      window.addEventListener('resize', () => {
+       update();
+       restartAutoplay();
+      });
+      update();
+      restartAutoplay();
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.feature-carousel').forEach((section) => {
+        const viewport = section.querySelector('.katon-carousel-viewport');
+        const track = section.querySelector('.katon-carousel-track');
+        const previous = section.querySelector('.katon-carousel-prev');
+        const next = section.querySelector('.katon-carousel-next');
+        if (!viewport || !track || !previous || !next) return;
+
+        const cards = Array.from(track.querySelectorAll('.katon-card, .video-card'));
+        let page = 0;
+        let visibleCount = 3;
+        let pointerStart = 0;
+        let pointerActive = false;
+        let suppressClick = false;
+        let autoplayTimer = null;
+        const label = section.dataset.carouselLabel || 'Feature';
+
+        track.querySelectorAll('.video-col').forEach((column) => {
+          Array.from(column.children).forEach((card) => track.appendChild(card));
+          column.remove();
+        });
+        cards.forEach((card) => track.appendChild(card));
+
+        const getVisibleCount = () => {
+          if (window.matchMedia('(max-width: 640px)').matches) return 1;
+          if (window.matchMedia('(max-width: 1024px)').matches) return 2;
+          return 3;
+        };
+
+        const update = () => {
+          visibleCount = getVisibleCount();
+          const maxPage = Math.max(0, cards.length - visibleCount);
+          page = Math.min(page, maxPage);
+          const gap = parseFloat(getComputedStyle(track).gap) || 0;
+          const cardWidth = (viewport.clientWidth - gap * (visibleCount - 1)) / visibleCount;
+          track.style.transform = `translate3d(-${page * (cardWidth + gap)}px, 0, 0)`;
+          previous.disabled = page === 0;
+          next.disabled = page === maxPage;
+          viewport.setAttribute('aria-label', `${label} cards ${page + 1} to ${Math.min(page + visibleCount, cards.length)} of ${cards.length}`);
+        };
+
+        const move = (direction) => {
+          const maxPage = Math.max(0, cards.length - visibleCount);
+          page = Math.max(0, Math.min(maxPage, page + direction));
+          update();
+        };
+
+        const pauseAutoplay = () => {
+          window.clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        };
+        const restartAutoplay = () => {
+          pauseAutoplay();
+          const maxPage = Math.max(0, cards.length - visibleCount);
+          if (maxPage === 0) return;
+          autoplayTimer = window.setInterval(() => {
+            page = page >= maxPage ? 0 : page + 1;
+            update();
+          }, 4000);
+        };
+
+        previous.addEventListener('click', () => {
+          move(-1);
+          restartAutoplay();
+        });
+        next.addEventListener('click', () => {
+          move(1);
+          restartAutoplay();
+        });
+        viewport.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+            move(-1);
+            restartAutoplay();
+          } else if (event.key === 'ArrowRight') {
+            event.preventDefault();
+            move(1);
+            restartAutoplay();
+          } else if (event.key === 'Home') {
+            event.preventDefault();
+            page = 0;
+            update();
+            restartAutoplay();
+          } else if (event.key === 'End') {
+            event.preventDefault();
+            page = Math.max(0, cards.length - visibleCount);
+            update();
+            restartAutoplay();
+          }
+        });
+
+        viewport.addEventListener('pointerdown', (event) => {
+          pointerStart = event.clientX;
+          pointerActive = true;
+          viewport.setPointerCapture?.(event.pointerId);
+        });
+        viewport.addEventListener('pointerup', (event) => {
+          if (!pointerActive) return;
+          const distance = event.clientX - pointerStart;
+          pointerActive = false;
+          if (Math.abs(distance) >= 48) {
+            suppressClick = true;
+            move(distance < 0 ? 1 : -1);
+            restartAutoplay();
+            window.setTimeout(() => {
+              suppressClick = false;
+            }, 0);
+          }
+        });
+        viewport.addEventListener('pointercancel', () => {
+          pointerActive = false;
+        });
+        viewport.addEventListener('click', (event) => {
+          if (!suppressClick) return;
+          event.preventDefault();
+          event.stopPropagation();
+        }, true);
+
+        const resizeObserver = new ResizeObserver(update);
+        resizeObserver.observe(viewport);
+        section.addEventListener('mouseenter', pauseAutoplay);
+        section.addEventListener('mouseleave', restartAutoplay);
+        section.addEventListener('focusin', pauseAutoplay);
+        section.addEventListener('focusout', (event) => {
+          if (!section.contains(event.relatedTarget)) restartAutoplay();
+        });
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) pauseAutoplay();
+          else restartAutoplay();
+        });
+        window.addEventListener('resize', restartAutoplay);
+        update();
+        restartAutoplay();
+      });
+    });
+  </script>
+  <script>
+    (function () {
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.video-card, .katon-card'));
+      if (!cards.length) return;
+      fetch('auth/news_api.php').then(function (response) { if (!response.ok) throw new Error('Request failed'); return response.json(); }).then(function (data) {
+        (data.news || []).forEach(function (item, index) {
+          var card = cards[index];
+          if (!card && item.is_active) {
+            var container = document.querySelector('#page-news .video-columns');
+            if (!container) return;
+            card = document.createElement('article');
+            card.className = item.type === 'katon' ? 'katon-card' : 'video-card';
+            var media = document.createElement('div');
+            media.className = item.type === 'katon' ? 'katon-media' : 'video-media';
+            var mediaElement = document.createElement(item.type === 'katon' ? 'img' : 'iframe');
+            mediaElement.src = item.media_url || '';
+            mediaElement.alt = item.title || 'News image';
+            media.appendChild(mediaElement);
+            var body = document.createElement('div');
+            body.className = item.type === 'katon' ? 'katon-body' : 'video-body';
+            var heading = document.createElement('h3');
+            heading.className = item.type === 'katon' ? 'katon-title' : 'video-title';
+            heading.textContent = item.title || '';
+            if (item.link_url) { var headingLink = document.createElement('a'); headingLink.href = item.link_url; headingLink.target = '_blank'; headingLink.rel = 'noopener noreferrer'; headingLink.textContent = heading.textContent; heading.textContent = ''; heading.appendChild(headingLink); }
+            var description = document.createElement('p');
+            description.className = item.type === 'katon' ? 'katon-desc' : 'video-desc';
+            description.textContent = item.description || '';
+            body.appendChild(heading); body.appendChild(description); card.appendChild(media); card.appendChild(body); container.appendChild(card); cards.push(card);
+          }
+          if (!card) return;
+          card.hidden = !item.is_active;
+          var title = card.querySelector('.katon-title a, .video-date, .video-title');
+          if (title) title.textContent = item.title || '';
+          if (title && title.tagName === 'A') title.href = item.link_url || '#';
+          var description = card.querySelector('.katon-desc, .video-desc');
+          if (description) description.textContent = item.description || '';
+          var media = card.querySelector('.katon-media img, .video-media iframe');
+          if (media && item.media_url) media.src = item.media_url;
+        });
+        cards.slice((data.news || []).length).forEach(function (card) { card.hidden = true; });
+      }).catch(function () { /* Keep the existing static news page as a fallback. */ });
+    }());
+  </script>
+  </body>
+</html>

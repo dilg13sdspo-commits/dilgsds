@@ -1,0 +1,11 @@
+RewriteEngine On
+
+RewriteRule ^dashboard\.php$ fo-dashboard.php [L]
+RewriteRule ^calendar\.php$ fo-calendar.php [L]
+RewriteRule ^faq-guidelines\.php$ fo-faq-guidelines.php [L]
+RewriteRule ^help\.php$ fo-help.php [L]
+RewriteRule ^inquiries\.php$ fo-inquiries.php [L]
+RewriteRule ^messages\.php$ fo-messages.php [L]
+RewriteRule ^notifications\.php$ fo-notifications.php [L]
+RewriteRule ^reports\.php$ fo-reports.php [L]
+RewriteRule ^settings\.php$ fo-settings.php [L]

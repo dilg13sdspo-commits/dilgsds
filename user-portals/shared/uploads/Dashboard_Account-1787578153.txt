@@ -1,0 +1,8 @@
+Flower shop Dashboard account
+username: admin
+password: admin123
+
+
+Online Enrollment
+user: admin
+password: nemsu2025

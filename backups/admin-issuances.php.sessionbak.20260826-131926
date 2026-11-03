@@ -1,0 +1,372 @@
+<?php
+require_once __DIR__ . '/auth/middleware.php';
+require_role('ADMIN');
+?>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Issuances Management - DILG SDS</title>
+  <link rel="stylesheet" href="styles.css?v=20260814-admin-ref-01">
+  <style>
+    .admin-sidebar__nav { display: flex; flex-direction: column; gap: 4px; padding: 8px 10px 18px; }
+    .sidebar-section-label { margin: 14px 8px 6px; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 800; color: rgba(188, 211, 255, 0.7); }
+    .admin-sidebar__nav a, .sidebar-settings-link, .sidebar-logout { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 42px; padding: 9px 12px; color: rgba(232, 240, 255, 0.92); text-decoration: none; border-radius: 10px; font-size: 0.92rem; font-weight: 700; transition: background-color 0.18s ease, transform 0.18s ease, color 0.18s ease; box-sizing: border-box; background: transparent; border: 0; text-align: left; cursor: pointer; }
+    .admin-sidebar__nav a:hover, .sidebar-settings-link:hover, .sidebar-logout:hover, .admin-sidebar__nav a:focus-visible, .sidebar-settings-link:focus-visible, .sidebar-logout:focus-visible { background: rgba(255,255,255,0.08); transform: translateX(2px); outline: none; }
+    .admin-sidebar__nav a.is-active { background: #1f5fcf; color: #ffffff; box-shadow: inset 3px 0 0 #ffffff; }
+    .issuances-admin { max-width: 1280px; margin: 0 auto; width: 100%; }
+    .issuances-admin h1 { color: #0f2a6b; margin: 0 0 6px; }
+    .issuances-admin > p { color: #64748b; margin: 0 0 22px; }
+    .issuances-grid { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 22px; }
+    .issuance-form, .issuance-list { background: #fff; border: 1px solid #dfe7f0; border-radius: 12px; padding: 22px; box-shadow: 0 8px 24px rgba(15, 42, 107, .06); }
+    .issuance-form h2, .issuance-list h2 { color: #0f2a6b; margin: 0 0 16px; font-size: 1.15rem; }
+    .issuance-form label { display: block; color: #334155; font-weight: 700; font-size: .78rem; margin: 11px 0 5px; }
+    .issuance-form input, .issuance-form textarea, .issuance-form select { width: 100%; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 7px; padding: 10px; font: inherit; }
+    .issuance-form textarea { min-height: 110px; resize: vertical; }
+    .form-actions { display: flex; gap: 9px; margin-top: 16px; }
+    .form-actions button, .issuance-row button { border: 0; border-radius: 7px; padding: 9px 13px; cursor: pointer; font-weight: 700; }
+    #save-issuance { background: #1f5fcf; color: #fff; }
+    #clear-issuance { background: #e2e8f0; color: #334155; }
+    .issuance-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 13px; align-items: center; padding: 12px 0; border-bottom: 1px solid #e2e8f0; }
+    .issuance-row:last-child { border-bottom: 0; }
+    .issuance-row strong { display: block; color: #1e293b; }
+    .issuance-row small { color: #64748b; }
+    .issuance-row button { background: #e8eef8; color: #0f2a6b; margin-left: 5px; }
+    .issuance-row .delete { background: #fff0ef; color: #b42318; }
+    .status { color: #64748b; padding: 14px 0; font-weight: 700; }
+        .admin-sidebar {
+          background: linear-gradient(180deg, rgba(15, 42, 107, 0.98) 0%, rgba(8, 22, 50, 0.96) 100%);
+          border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .admin-sidebar__title {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 16px 18px 12px 14px;
+          color: rgba(255,255,255,0.96);
+          font-weight: 800;
+          min-height: 76px;
+          box-sizing: border-box;
+          position: relative;
+          padding-right: 28px;
+        }
+        .admin-sidebar__brand-logo {
+          width: 42px;
+          height: 42px;
+          object-fit: contain;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.08);
+          padding: 4px;
+          box-sizing: border-box;
+          flex-shrink: 0;
+          align-self: center;
+        }
+        .admin-sidebar__brand-text {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 2px;
+          min-width: 0;
+          line-height: 1.18;
+          white-space: normal;
+          flex: 1;
+        }
+        .admin-sidebar__brand-name {
+          font-size: 0.7rem;
+          letter-spacing: 0.01em;
+          text-transform: none;
+          color: #ffffff;
+          font-weight: 700;
+          line-height: 1.3;
+          white-space: normal;
+          overflow: visible;
+        }
+    .admin-sidebar__brand-line { display: block; }
+    .admin-sidebar__brand-subtitle {
+          font-size: 0.58rem;
+          letter-spacing: 0.09em;
+          text-transform: uppercase;
+          color: rgba(220, 232, 255, 0.8);
+          font-weight: 700;
+          white-space: nowrap;
+          line-height: 1.3;
+        }
+        .sidebar-collapse-toggle {
+          position: absolute;
+          top: 18px;
+          right: 8px;
+          left: auto;
+          transform: none;
+          width: 18px;
+          height: 18px;
+          border: 0;
+          background: transparent;
+          color: #ffffff;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 40;
+          transition: left 0.22s ease, transform 0.22s ease;
+          padding: 0;
+        }
+    .sidebar-collapse-toggle span {
+      display: inline-block;
+      font-size: 2rem;
+      line-height: 1;
+      transform: translateX(-1px);
+      transition: transform 0.22s ease;
+      color: #ffffff;
+    }
+    .admin-portal-shell {
+      position: relative;
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      min-height: 100vh;
+      transition: grid-template-columns 0.22s ease;
+    }
+    .admin-sidebar {
+      position: relative;
+      width: 320px;
+      min-width: 320px;
+      transition: width 0.22s ease, min-width 0.22s ease;
+    }
+    body.sidebar-collapsed .admin-portal-shell {
+      grid-template-columns: 90px minmax(0, 1fr);
+    }
+    body.sidebar-collapsed .admin-sidebar {
+      width: 90px;
+      min-width: 90px;
+    }
+    body.sidebar-collapsed .admin-sidebar__title,
+    body.sidebar-collapsed .sidebar-section-label,
+    body.sidebar-collapsed .admin-sidebar__nav a span:last-child,
+    body.sidebar-collapsed .sidebar-settings-link span:last-child,
+    body.sidebar-collapsed .sidebar-logout span:last-child {
+      display: none;
+    }
+    body.sidebar-collapsed .admin-sidebar__nav a,
+    body.sidebar-collapsed .sidebar-settings-link,
+    body.sidebar-collapsed .sidebar-logout {
+      justify-content: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    body.sidebar-collapsed .sidebar-collapse-toggle {
+      right: 8px;
+      left: auto;
+    }
+    body.sidebar-collapsed .sidebar-collapse-toggle span {
+      transform: rotate(180deg) translateX(-1px);
+    }
+    @media (max-width: 850px) { .issuances-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="admin-dashboard-ref-body">
+  <div class="admin-portal-shell">
+    <button type="button" class="sidebar-collapse-toggle" id="sidebar-toggle" aria-label="Collapse sidebar"><span>‹</span></button>
+    <aside class="admin-sidebar" aria-label="Sidebar navigation">
+      <div class="admin-sidebar__title" aria-label="Department of the Interior and Local Government">
+        <img class="admin-sidebar__brand-logo" src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" alt="DILG logo" />
+        <div class="admin-sidebar__brand-text">
+          <span class="admin-sidebar__brand-name">
+            <span class="admin-sidebar__brand-line">Department of the Interior and Local Government</span>
+          </span>
+          <span class="admin-sidebar__brand-subtitle">SURIGAO DEL SUR</span>
+        </div>
+      </div>
+      <nav class="admin-sidebar__nav">
+        <div class="sidebar-section-label">ADMINISTRATION</div>
+        <a href="admin-dashboard.php"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 11.5L12 4l8 7.5V20a1 1 0 0 1-1 1h-4v-7H9v7H5a1 1 0 0 1-1-1v-8.5z"/></svg></span><span>Dashboard</span></a>
+        <a href="admin-users.php"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-3.33 0-8 1.79-8 4v1h16v-1c0-2.21-4.67-4-8-4z"/></svg></span><span>User Management</span></a>
+
+        <div class="sidebar-section-label">CONTENT MANAGEMENT</div>
+        <a href="admin-home.php"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 11.5L12 4l8 7.5V20H4z"/></svg></span><span>Home Management</span></a>
+        <a href="admin-officials.php"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span><span>Elected Officials</span></a>
+        <a href="admin-news.php"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H7l-3 3V5z"/></svg></span><span>News Management</span></a>
+        <a href="admin-issuances.php" class="is-active"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z"/></svg></span><span>Issuances Management</span></a>
+        <a href="admin-programs.php"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h16"/></svg></span><span>Programs &amp; Services</span></a>
+        <a href="admin-dashboard.php#media-files"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zM6 16l3-4 3 3 3-4 3 5"/></svg></span><span>Media Files</span></a>
+
+        <div class="sidebar-section-label">REPORTS &amp; ANALYTICS</div>
+        <a href="admin-dashboard.php#reports-analytics"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 18V9M12 18V5M19 18v-7M4 18h16"/></svg></span><span>Reports &amp; Analytics</span></a>
+
+        <div class="sidebar-section-label">SYSTEM</div>
+        <button type="button" class="sidebar-settings-link" data-open-settings><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4 12h2m12 0h2M12 4v2m0 12v2"/></svg></span><span>System Settings</span></button>
+        <a href="index.html" id="logout-btn" class="sidebar-logout"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v3H3v4h7v3zm9-13h-7v2h7v12h-7v2h7a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/></svg></span><span>Log Out</span></a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <section class="issuances-admin">
+        <h1>Issuances Management</h1>
+        <p>Manage circulars, memoranda, and public issuances that should appear on the website.</p>
+        <div class="issuances-grid">
+          <form class="issuance-form" id="issuance-form">
+            <h2 id="form-title">Add Issuance</h2>
+            <input type="hidden" id="issuance-id" name="id">
+            <label for="issuance-title">Title</label>
+            <input id="issuance-title" name="title" required>
+            <label for="issuance-number">Reference Number</label>
+            <input id="issuance-number" name="reference_number" placeholder="DILG-2026-001">
+            <label for="issuance-date">Date</label>
+            <input id="issuance-date" name="issued_date" type="date">
+            <label for="issuance-link">Link</label>
+            <input id="issuance-link" name="link_url" type="url" placeholder="https://...">
+            <label for="issuance-summary">Summary</label>
+            <textarea id="issuance-summary" name="summary"></textarea>
+            <label for="issuance-order">Display order</label>
+            <input id="issuance-order" name="sort_order" type="number" min="1" value="1">
+            <label><input id="issuance-active" name="is_active" type="checkbox" checked> Show on public page</label>
+            <div class="form-actions">
+              <button id="save-issuance" type="submit">Save Issuance</button>
+              <button id="clear-issuance" type="button">Clear</button>
+            </div>
+            <div class="status" id="form-status" role="status"></div>
+          </form>
+
+          <section class="issuance-list">
+            <h2>Issuance Records</h2>
+            <div id="issuance-records">
+              <div class="status">Loading...</div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var api = 'auth/issuances_api.php';
+      var form = document.getElementById('issuance-form');
+      var records = document.getElementById('issuance-records');
+      var status = document.getElementById('form-status');
+
+      function esc(value) {
+        return String(value || '').replace(/[&<>"']/g, function (char) {
+          return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[char];
+        });
+      }
+
+      function load() {
+        fetch(api)
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            render(data.issuances || []);
+          })
+          .catch(function () {
+            records.innerHTML = '<div class="status">Unable to load issuances.</div>';
+          });
+      }
+
+      function render(rows) {
+        if (!rows.length) {
+          records.innerHTML = '<div class="status">No issuances.</div>';
+          return;
+        }
+
+        records.innerHTML = rows.map(function (item) {
+          return '<div class="issuance-row"><div><strong>' + esc(item.title) + '</strong><small>' + esc(item.reference_number || item.issued_date || 'Issuance') + '</small></div><div><button type="button" data-edit="' + item.id + '">Edit</button><button type="button" class="delete" data-delete="' + item.id + '">Delete</button></div></div>';
+        }).join('');
+      }
+
+      function clearForm() {
+        form.reset();
+        document.getElementById('issuance-id').value = '';
+        document.getElementById('form-title').textContent = 'Add Issuance';
+        document.getElementById('issuance-active').checked = true;
+        status.textContent = '';
+      }
+
+      records.addEventListener('click', function (event) {
+        var id = event.target.getAttribute('data-edit') || event.target.getAttribute('data-delete');
+        if (!id) return;
+
+        if (event.target.hasAttribute('data-delete')) {
+          if (!confirm('Delete this issuance?')) return;
+          fetch(api, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ action: 'delete', id: id })
+          }).then(function () {
+            load();
+          });
+          return;
+        }
+
+        fetch(api)
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            var item = (data.issuances || []).find(function (entry) {
+              return String(entry.id) === String(id);
+            });
+            if (!item) return;
+
+            document.getElementById('issuance-id').value = item.id;
+            document.getElementById('issuance-title').value = item.title || '';
+            document.getElementById('issuance-number').value = item.reference_number || '';
+            document.getElementById('issuance-date').value = item.issued_date || '';
+            document.getElementById('issuance-link').value = item.link_url || '';
+            document.getElementById('issuance-summary').value = item.summary || '';
+            document.getElementById('issuance-order').value = item.sort_order || 1;
+            document.getElementById('issuance-active').checked = !!item.is_active;
+            document.getElementById('form-title').textContent = 'Edit Issuance';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var data = new FormData(form);
+        data.append('action', document.getElementById('issuance-id').value ? 'update' : 'create');
+
+        fetch(api, {
+          method: 'POST',
+          body: data
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (result) {
+            if (result.error) throw new Error(result.error);
+            status.textContent = 'Saved.';
+            clearForm();
+            load();
+          })
+          .catch(function (error) {
+            status.textContent = error.message || 'Unable to save issuance.';
+          });
+      });
+
+      document.getElementById('clear-issuance').addEventListener('click', clearForm);
+      load();
+    }());
+
+    (function () {
+      var toggle = document.getElementById('sidebar-toggle');
+      if (!toggle) return;
+      var body = document.body;
+      function apply(collapsed) {
+        body.classList.toggle('sidebar-collapsed', collapsed);
+        toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+        toggle.setAttribute('title', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+        toggle.innerHTML = collapsed ? '<span>›</span>' : '<span>‹</span>';
+      }
+      try {
+        apply(localStorage.getItem('dilg-admin-sidebar-collapsed') === '1');
+      } catch (error) {
+        apply(false);
+      }
+      toggle.addEventListener('click', function () {
+        var collapsed = body.classList.toggle('sidebar-collapsed');
+        try {
+          localStorage.setItem('dilg-admin-sidebar-collapsed', collapsed ? '1' : '0');
+        } catch (error) {}
+        toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+        toggle.setAttribute('title', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+        toggle.innerHTML = collapsed ? '<span>›</span>' : '<span>‹</span>';
+      });
+    }());
+  </script>
+</body>
+</html>

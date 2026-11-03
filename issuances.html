@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joint Memorandum — DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background: #f4f7fb;
+      color: #243447;
+      min-height: 100vh;
+    }
+    .page-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 18px 42px;
+    }
+    .page-card {
+      background: #fff;
+      border: 1px solid #e3eaf2;
+      box-shadow: 0 18px 42px rgba(8, 24, 55, 0.08);
+      padding: 28px;
+    }
+    .page-header {
+      margin-bottom: 20px;
+    }
+    .page-header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.45rem, 2.3vw, 2.25rem);
+      color: #0f2a6b;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .page-header p {
+      margin: 0;
+      color: #5f6f88;
+      font-size: 1rem;
+    }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .breadcrumbs {
+      color: #6c7a8a;
+      font-size: 0.95rem;
+    }
+    .breadcrumbs strong {
+      color: #0f2a6b;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid #d7e0ea;
+      background: #fff;
+      color: #0f2a6b;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .jmc-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+    }
+    .jmc-table th,
+    .jmc-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #e8edf4;
+      vertical-align: top;
+    }
+    .jmc-table thead {
+      background: #f7faff;
+    }
+    .jmc-table th {
+      text-align: left;
+      color: #30486b;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+    }
+    .jmc-table tbody tr:hover {
+      background: #fbfdff;
+    }
+    .action-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 8px 12px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+      background: #0f2a6b;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .action-link:hover {
+      transform: translateY(-1px);
+    }
+    .title-cell {
+      color: #1f3653;
+      font-size: 0.97rem;
+      font-weight: 600;
+    }
+    .meta-cell {
+      color: #57667f;
+      font-size: 0.94rem;
+      line-height: 1.5;
+      max-width: 660px;
+    }
+    @media (max-width: 860px) {
+      .page-shell { padding: 18px 14px 30px; }
+      .jmc-table { min-width: auto; }
+      .jmc-table th,
+      .jmc-table td { padding: 12px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link active" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li><a href="joint-circulars.html" class="dropdown-item">Joint Circulars</a></li>
+            <li><a href="memo-circulars.html" class="dropdown-item">Memo Circulars</a></li>
+            <li><a href="presidential-directives.html" class="dropdown-item">Presidential Directives</a></li>
+            <li><a href="republic-acts.html" class="dropdown-item">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" alt="DILG logo" class="header-logo" />
+        <img src="Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-card">
+      <div class="toolbar">
+        <div class="breadcrumbs">Home <span aria-hidden="true">›</span> Issuances <span aria-hidden="true">›</span> <strong>Joint Memorandum</strong></div>
+        <a class="back-link" href="index.html">← Back to Home</a>
+      </div>
+
+      <div class="page-header">
+        <h1>Joint Memorandum</h1>
+        <p>Official joint memorandum issuances with direct reference links by category.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="jmc-table" aria-label="Joint Memorandum links table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Title</th>
+              <th scope="col">Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td class="meta-cell">DILG-DTI: Formulation of Local Investment and Incentives Code (LIIC)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/DILG-DTI-Formulation-of-Local-Investment-and-Incentives-Code-LIIC/15" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td class="meta-cell">Allocation and Utilization of the Local Disaster Risk Reduction and Management Fund (LDRRMF)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Allocation-and-Utilization-of-the-Local-Disaster-Risk-Reduction-and-Management-Fund-LDRRMF/29" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td class="meta-cell">Amendments to PCW-DILG-DBM-NEDA JMC No. 2013-01: Guidelines on the Localization of the Magna Carta of Women</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Amendments-to-PCW-DILG-DBM-NEDA-JMC-No-2013-01-Guidelines-on-the-Localization-of-the-Magna-Carta-of-Women/57" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td class="meta-cell">Revised Guidelines for the Implementation of the Comprehensive Local Integration Program (CLIP)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Revised-Guidelines-for-the-Implementation-of-the-Comprehensive-Local-Integration-Program-CLIP/58" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td class="meta-cell">Revised Standards in Processing Business Permits and Licenses in All Cities and Municipalities</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Revised-Standards-in-Processing-Business-Permits-and-Licenses-in-All-Cities-and-Municipalities-/65" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td class="meta-cell">DILG-DepEd Joint Memorandum Circular for Water, Sanitation, and Hygiene (WASH) in Early Childhood Care and Development (ECCD)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/DILG-DepEd-Joint-Memorandum-Circular-for-Water-Sanitation-and-Hygiene-wash-in-early-child-care-and-development-ECCD/68" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td class="meta-cell">Policies and Guidelines on Study Tours or "Lakbay Aral" Activities of Local Government Units</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Policies-and-Guidelines-on-Study-Tours-or-Lakbay-Aral-Activities-of-Local-Government-Units/70" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td class="meta-cell">Guidelines on the Conduct of Sangguniang Kabataan (SK) Pederasyon Election and Rules Governing Terms of OfficeSuspensionand Removal of all SK Pederasyon Officers</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Conduct-of-Sangguniang-Kabataan-SK-Pederasyon-Electionand-Rules-Governing-Terms-of-OfficeSuspension-and-Removal-of-all-SK-Pederasyon-Officers/84" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td class="meta-cell">Guidelines in Streamlining the Processes for the Issuance of Building Permits and Certificates of Occupancy</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-in-Streamlining-the-Processes-for-the-Issuance-of-Building-Permits-and-Certificates-of-Occupancy/87" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td class="meta-cell">Implementing Guidelines on the Functionality and Effectiveness of Local Anti-Drug Abuse Councils</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Implementing-Guidelines-on-the-Functionality-and-Effectiveness-of-Local-Anti-Drug-Abuse-Councils/95" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td class="meta-cell">Implementing Guidelines for the Provision of DILG-Administered Package of Assistance for Former Rebels (FRs) and Militia ng Bayan (MB)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Implementing-Guidelines-for-the-Provision-of-DILG-Administered-Package-of-Assistance-for-Former-Rebels-FRs-and-Militia-ng-Bayan-MB/96" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td class="meta-cell">Reiteration of Executive Order No. 2, s. 2016 "Operationalizing the People's Right to Information and the State Policies of Full Public Disclosure and Transparency in the Public Service"</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Reiteration-of-Executive-Order-No-2-S-2016-Operationalizing-the-Peoples-Right-to-Information-and-the-State-Policies-of-Full-Public-Disclosure-and-Transparency-in-the-Public-Service/103" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td class="meta-cell">Local Inventory of Cultural Property as required under RA No. 10066</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Local-Inventory-of-Cultural-Property-as-required-under-RA-No-10066/104" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td class="meta-cell">Revised Child-Friendly Local Governance Audit (CFLGA) and Implementation Guideline</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Revised-Child-Friendly-Local-Governance-Audit-CFLGA-and-Implementation-Guideline/118" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td class="meta-cell">Towards Ensuring Safe, Adaptive, and Disaster-Resilient Communities</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Towards-Ensuring-Safe-Adaptive-and-Disaster-Resilient-Communities/120" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td class="meta-cell">Guidelines on the Regulatory Reform for LGUs pursuant to the Ease of Doing Business and Efficient Government Service Delivery (EODB-EGSD) Act of 2018</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Regulatory-Reform-for-LGUs-pursuant-to-the-Ease-of-Doing-Business-and-Efficient-Government-Service-Delivery-EODB-EGSD-Act-of-2018/124" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td class="meta-cell">Guidelines on the Formulation of Provincial, City and Municipal Agricultural and Fishery Mechanization Plans</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Formulation-of-Provincial-City-and-Municipal-Agricultural-and-Fishery-Mechanization-Plans/141" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td class="meta-cell">Addendum No. 2: Clarification to DepEd-DBM-DILG Joint Circular No. 1, series of 2017 dated January 19, 2017 entitled Revised Guidelines on the use of the Special Education Fund (SEF)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Addendum-No-2-Clarification-to-DepEd-DBM-DILG-Joint-Circular-No-1-series-of-2017-dated-January-19-2017Entitled-Revised-Guidelines-on-the-use-of-the-Special-Education-Fund-SEF/143" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td class="meta-cell">Guidelines on the Localization of the Safe Spaces Act</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Localization-of-the-Safe-Spaces-Act/150" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td class="meta-cell">Amended Guidelines on the Standardized Submission of Local Cultural Inventory under the Philippine Registry of Cultural Property for the Issuance of Certificate of Compliance to Local Government Units</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Amended-Guidelines-on-the-Standardized-Submission-of-Local-Cultural-Inventory-under-the-Philippine-Registry-of-Cultural-Property-for-the-Issuance-of-Certificate-of-Compliance-to-Local-Government-Units/160" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td class="meta-cell">Guidelines on the Preparation of Devolution Transition Plans of Local Government Units in Support of Full Devolution under Executive Order No. 138 dated 01 June 2021</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Preparation-of-Devolution-Transition-Plans-of-Local-Government-Units-in-Support-of-Full-Devolution-under-Executive-Order-No-138-Dated-01-June-2021/169" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td class="meta-cell">Implementing Guidelines on the Provision of DILG-Administered Package of Assistance for Former Rebels (FRs) and Former Violent Extremists (FVEs) under the Enhanced Comprehensive Local Integrated Program (ECLIP)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Implementing-Guidelines-on-the-Provision-of-DILG-Administered-Package-of-Assistance-for-Former-Rebels-FRs-and-Former-Violent-Extremists-FVEs-under-the-Enhanced-Comprehensive-Local-Integrated-Program-ECLIP/171" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>23</td>
+              <td class="meta-cell">Guidelines on the Implementation of Personnel Policies and Options Pursuant to Executive Order (EO) No. 138, s. 2021 Directing the Full Devolution of certain functions of the Executive Branch to the Local Governments</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Implementation-of-Personnel-Policies-and-Options-Pursuant-to-Executive-Order-EO-No-138-S-2021-Directing-the-Full-Devolution-of-certain-functions-of-the-Executive-Branch-to-the-Local-Governments/173" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td class="meta-cell">Guidelines on the Implementation of Strengthening Initiatives for Balanced Growth and Opportunities at the Localities (SIBOL)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Implementation-of-Strengthening-Initiatives-for-Balanced-Growth-and-Opportunities-at-the-Localities-SIBOL/177" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>25</td>
+              <td class="meta-cell">Guidelines in Handling Violence Against Women and Children (VAWC) and other Gender-Based Violence Emergencies Reported Through Emergency 911 National Emergency Hotline</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-in-Handling-Violence-Against-Women-and-Children-VAWC-and-other-Gender-Based-Violence-Emergencies-Reported-Through-Emergency-911-National-Emergency-Hotline/180" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>26</td>
+              <td class="meta-cell">Guidelines in Support of the Implementation of the Pantawid Pamilyang Pilipino Program (4Ps)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-in-Support-of-the-Implementation-of-the-Pantawid-Pamilyang-Pilipino-Program-4Ps/181" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>27</td>
+              <td class="meta-cell">Implementation Guidelines of the Community-Based Monitoring System (CBMS) for the Targeted Nationwide Rollout in 2022</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Implementation-Guidelines-of-the-Community-Based-Monitoring-System-CBMS-for-the-Targeted-Nationwide-Rollout-in-2022/184" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>28</td>
+              <td class="meta-cell">Guidelines to LGUs Enjoining Participation in the PALENG-QR PH Program</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-to-LGUs-Enjoining-Participation-in-the-PALENG-QR-PH-Program/186" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td class="meta-cell">Guidelines in the Review of Local Ordinances, Orders, Rules and Regulations Concerning Public Transportation</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-in-the-Review-of-Local-Ordinances-Orders-Rules-and-Regulations-Concerning-Public-Transportation/189" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>30</td>
+              <td class="meta-cell">STRENGTHENING THE LOCAL IMPLEMENTATION OF RPRH-RELATED PROGRAMS, PROJECTS AND ACTIVITIES (PPA) THROUGH VARIOUS FUND SOURCES</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/STRENGTHENING-THE-LOCAL-IMPLEMENTATION-OF-RPRH-RELATED-PROGRAMS-PROJECTS-AND-ACTIVITIES-PPA-THROUGH-VARIOUS-FUND-SOURCES/191" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>31</td>
+              <td class="meta-cell">Retention and Continued Service of Barangay Health Workers</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Retention-and-Continued-Service-of-Barangay-Health-Workers/194" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>32</td>
+              <td class="meta-cell">Guidelines in Issuances of Business Permit/License of the designated Non-Financial Businesses and Professions (DNFBPs) Pursuant to RA 9160</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-in-Issuances-of-Business-Permit-License-of-the-designated-Non-Financial-Businesses-and-Professions-DNFBPsPursuant-to-RA-9160-also-known-as-the-Anti-Money-Laundering-Act-of-2001-as-amended/195" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>33</td>
+              <td class="meta-cell">Policy Guidelines and Procedures in the Implementation of the Local Government Support Fund (Support and Assistance Fund) to Participatory Budgeting (LGSF-SAFPB)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Policy-Guidelines-and-Procedures-in-the-Implementation-of-the-Local-Government-Support-Fund-Support-and-Assistance-Fund-to-Participatory-Budgeting-LGSF-SAFPB-under-the-FY-2024-General-Appropriations-Act-GAA-Republic-Act-RA-No-11975/196" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>34</td>
+              <td class="meta-cell">Policy Framework on Leadership and Governance for Health (LeadGov4Health) Towards a Functional Local Health Board</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Policy-Framework-on-Leadership-and-Governance-for-Health-LeadGov4Health-Towards-a-Functional-Local-Health-Board/200" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>35</td>
+              <td class="meta-cell">Omnibus Guidelines on the Exercise of Freedom of Association and Civil Liberties</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Omnibus-Guidelines-on-the-Exercise-of-Freedom-of-Association-and-Civil-Liberties/201" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>36</td>
+              <td class="meta-cell">Updated Guidelines on the Harmonization of Local Development Planning, Investment Programming, Resource Mobilization, Budgeting, Expenditure Management, and Performance Monitoring</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Updated-Guidelines-on-the-Harmonization-of-Local-Development-Planning-Investment-Programming-Resource-Mobilization-Budgeting-Expenditure-Management-and-Performance-Monitoring-and-Coordination-in-Fiscal-Oversight-for-Enhanced-Local-Service-Delivery-in-line-with-the-Supreme-Court-Ruling-on-the-Mandanas-Garcia-Petitions/202" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>37</td>
+              <td class="meta-cell">Implementing Guidelines on the Digitalization of Government Disbursements through the Government Servicing Banks (GSB) Digital Banking Facility of the Land Bank of the Philippines</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Implementing-Guidelines-on-the-Digitalization-of-Government-Disbursements-through-the-Government-Servicing-Banks-GSB-Digital-Banking-Facility-of-the-Land-Bank-of-the-Philippines/203" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>38</td>
+              <td class="meta-cell">Revised Guidelines for the Preparation and Issuance of Local Ordinances, Orders, Rules and Regulations for the Local Public Transport Route Plan (LPTRP)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Revised-Guidelines-for-the-Preparation-and-Issuance-of-Local-Ordinances-Orders-Rules-and-Regulations-for-the-Local-Public-Transport-Route-Plan-LPTRP/205" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>39</td>
+              <td class="meta-cell">Guidance in the Implementation of the Transdisciplinary Approach for Resilience and Sustainability through Multistakeholder Engagement (Project TRANSFORM)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidance-in-the-Implementation-of-the-Transdisciplinary-Approach-for-Resilience-and-Sustainability-through-Multistakeholder-Engagement-Project-TRANSFORM/204" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>40</td>
+              <td class="meta-cell">Filling up of Vacancies in the Sangguniang Kabataan through succession, conduct of the Katipunan ng Kabataan (KK) Assembly or appointment by the Mayor</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Filling-up-of-Vacancies-in-the-Sangguniang-Kabataan-through-succession-conduct-of-the-Katipunan-ng-Kabataan-KK-Assembly-or-appointment-by-the-Mayor/207" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>41</td>
+              <td class="meta-cell">Creation, Reconstitution, and Strengthening of Local Literacy Councils at the City and Municipality Levels</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Creation-Reconstitution-and-Strengthening-of-Local-Literacy-Councils-at-the-City-and-Municipality-Levels/209" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>42</td>
+              <td class="meta-cell">Guidelines on the Submission of Certified True Copies of Documents Signed by Local Chief Executives in Lieu of Originals</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Guidelines-on-the-Submission-of-Certified-True-Copies-of-Documents-Signed-by-Local-Chief-Executives-in-Lieu-of-Originals/215" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>43</td>
+              <td class="meta-cell">Policy Guidelines for the Formulation of Local Poverty Reduction Action Plans</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Policy-Guidelines-for-the-Formulation-of-Local-Poverty-Reduction-Action-Plans/217" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>44</td>
+              <td class="meta-cell">Implementation of the Child Budget and Expenditure Tagging and Tracking (CBETT)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Implementation-of-the-Child-Budget-and-Expenditure-Tagging-and-Tracking-CBETT/220" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>45</td>
+              <td class="meta-cell">Streamlined Guidelines for the Issuance of Permits and Clearances for the Implementation of Energy Infrastructure Projects (EIPs)</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Streamlined-Guidelines-for-the-Issuance-of-Permits-and-Clearances-for-the-Implementation-of-Energy-Infrastructure-Projects-EIPs/221" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+            <tr>
+              <td>46</td>
+              <td class="meta-cell">Streamlined requirements and processing of permits, licenses, and/or certifications for Net-Metering applications</td>
+              <td><a class="action-link" href="https://dilg.gov.ph/issuances/jc/Streamlined-requirements-and-processing-of-permits-licenses-andor-certifications-for-Net-Metering-applications/223" target="_blank" rel="noopener">Open</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+

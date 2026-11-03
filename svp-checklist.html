@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SVP Checklist | DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --gov-navy: #0f2a6b;
+      --gov-blue: #14489f;
+      --gov-gold: #f4b731;
+      --gov-text: #1f2937;
+      --gov-border: #d6dde8;
+    }
+
+    body {
+      background: #f4f7fb;
+      color: var(--gov-text);
+      font-family: "Poppins", "Segoe UI", sans-serif;
+    }
+
+    .checklist-page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 24px 48px;
+    }
+
+    .page-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin: 20px 0 16px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: var(--gov-blue);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(20, 72, 159, 0.18);
+    }
+
+    .button-secondary {
+      background: #fff;
+      color: var(--gov-navy);
+      border: 1px solid var(--gov-border);
+    }
+
+    .checklist-card {
+      background: #fff;
+      border: 1px solid var(--gov-border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 16px 36px rgba(11, 30, 67, 0.08);
+    }
+
+    .checklist-header {
+      border-bottom: 2px solid var(--gov-gold);
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+    }
+
+    .checklist-header h1 {
+      margin: 4px 0 0;
+      font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+      color: var(--gov-navy);
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .checklist-subtitle {
+      margin: 8px 0 0;
+      font-size: 0.98rem;
+      color: #4b5563;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 18px 0 24px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field label {
+      font-weight: 700;
+      color: var(--gov-navy);
+      font-size: 0.95rem;
+    }
+
+    .field input {
+      padding: 10px 12px;
+      border: 1px solid var(--gov-border);
+      border-radius: 8px;
+      font-size: 0.96rem;
+      font-family: inherit;
+      background: #fcfdff;
+    }
+
+    .field input:focus {
+      outline: 2px solid rgba(20, 72, 159, 0.16);
+      border-color: var(--gov-blue);
+    }
+
+    .section-title {
+      margin: 12px 0 10px;
+      font-size: 1.05rem;
+      color: var(--gov-navy);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .checklist-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid #e7eaef;
+      border-radius: 10px;
+      background: #fcfdff;
+    }
+
+    .check-item input {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .check-item label {
+      line-height: 1.55;
+      font-size: 0.99rem;
+      color: var(--gov-text);
+    }
+
+    .note-box {
+      margin-top: 24px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--gov-gold);
+      background: #fffaf0;
+      border-radius: 10px;
+      color: #6b4a00;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 760px) {
+      .checklist-page {
+        padding: 18px 14px 36px;
+      }
+
+      .page-actions {
+        justify-content: stretch;
+        flex-wrap: wrap;
+      }
+
+      .page-actions .button {
+        flex: 1 1 100%;
+      }
+
+      .checklist-card {
+        padding: 20px;
+      }
+
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .topbar {
+        box-shadow: none;
+        border-bottom: 1px solid #d7dce2;
+      }
+
+      .page-actions,
+      .topbar-right {
+        display: none !important;
+      }
+
+      .checklist-page {
+        max-width: none;
+        padding: 0;
+      }
+
+      .checklist-card {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+
+      .check-item {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="DILG Seal.png" alt="DILG logo" class="header-logo" />
+        <img src="Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <span class="topbar-clock-date">Procurement Checklist</span>
+        <span class="topbar-clock-time">Small Value Procurement</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="checklist-page">
+    <div class="page-actions">
+      <a class="button button-secondary" href="index.html#resources-root">Back</a>
+    </div>
+
+    <section class="checklist-card" aria-labelledby="svp-checklist-title">
+      <div class="checklist-header">
+        <h1 id="svp-checklist-title">PROCUREMENT CHECKLIST OF DOCUMENTARY REQUIREMENTS</h1>
+        <p class="checklist-subtitle">(SMALL VALUE PROCUREMENT)</p>
+      </div>
+
+      <div class="meta-grid">
+        <div class="field">
+          <label for="pr-number">Purchase Request No.</label>
+          <input id="pr-number" name="pr-number" type="text" placeholder="Enter PR number" />
+        </div>
+        <div class="field">
+          <label for="checklist-date">Date</label>
+          <input id="checklist-date" name="checklist-date" type="date" />
+        </div>
+      </div>
+
+      <h2 class="section-title">Required Documentary Requirements</h2>
+      <div class="checklist-list">
+        <div class="check-item"><input type="checkbox" id="item-1" /><label for="item-1">BAC Minutes of Meeting (Treatment of Approved PR)</label></div>
+        <div class="check-item"><input type="checkbox" id="item-2" /><label for="item-2">BAC Resolution Recommending Mode of Procurement</label></div>
+        <div class="check-item"><input type="checkbox" id="item-3" /><label for="item-3">Request for Quotation</label></div>
+        <div class="check-item"><input type="checkbox" id="item-4" /><label for="item-4">Abstract of PhilGEPS Posting or Certification of PhilGEPS Posting</label></div>
+        <div class="check-item"><input type="checkbox" id="item-5" /><label for="item-5">BAC Minutes of Meeting (Opening of Bids)</label></div>
+        <div class="check-item"><input type="checkbox" id="item-6" /><label for="item-6">Abstract of Bids</label></div>
+        <div class="check-item"><input type="checkbox" id="item-7" /><label for="item-7">BAC Resolution Recommending Award of Contract</label></div>
+        <div class="check-item"><input type="checkbox" id="item-8" /><label for="item-8">Notice of Award of Contract</label></div>
+        <div class="check-item"><input type="checkbox" id="item-9" /><label for="item-9">Mayor's Permit</label></div>
+        <div class="check-item"><input type="checkbox" id="item-10" /><label for="item-10">PhilGEPS Registration</label></div>
+        <div class="check-item"><input type="checkbox" id="item-11" /><label for="item-11">Tax Clearance</label></div>
+        <div class="check-item"><input type="checkbox" id="item-12" /><label for="item-12">Latest Income Tax Return (Electronic Payment)</label></div>
+        <div class="check-item"><input type="checkbox" id="item-13" /><label for="item-13">Letter to Non-Winning Bidder (or Letter to Bidders if Bid Opening is Declared Failed)</label></div>
+        <div class="check-item"><input type="checkbox" id="item-14" /><label for="item-14">Purchase Order (Date should be after the date of NOA)</label></div>
+        <div class="check-item"><input type="checkbox" id="item-15" /><label for="item-15">Notice to Proceed (Date should be after the date of PO)</label></div>
+      </div>
+
+      <div class="note-box">
+        This checklist is provided for reference and may be printed or completed electronically for procurement documentation.
+      </div>
+    </section>
+  </main>
+</body>
+</html>

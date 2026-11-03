@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About LGRC - DILG Surigao del Sur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
+    .lgrc-page-panel { padding: 60px 0; background: #ffffff; width: 100vw; position: relative; left: 50%; margin-left: -50vw; box-sizing: border-box; }
+    .lgrc-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 48px; padding: 0 48px; box-sizing: border-box; }
+    .lgrc-image-col { flex: 0 0 480px; display: flex; align-items: center; justify-content: center; }
+    .lgrc-image-col img { width: 100%; max-width: 480px; height: auto; display: block; }
+    .lgrc-text-col { flex: 1; min-width: 0; }
+    .lgrc-heading { margin: 0 0 24px; line-height: 1.15; }
+    .lgrc-heading span { font-family: 'Montserrat', Arial, sans-serif; font-weight: 800; font-size: clamp(1.6rem, 2.8vw, 2.4rem); }
+    .lgrc-heading .c-blue { color: #3c78d8; }
+    .lgrc-heading .c-black { color: #000000; }
+    .lgrc-heading .c-green { color: #38761d; }
+    .lgrc-heading .c-red { color: #cc0000; }
+    .lgrc-heading .c-orange { color: #ff9900; }
+    .lgrc-text-col p { font-family: 'Montserrat', Arial, sans-serif; font-size: 12pt; font-weight: 400; color: #000000; line-height: 1.7; text-align: justify; margin: 0 0 16px; }
+    .lgrc-text-col p:last-child { margin-bottom: 0; }
+    @media (max-width: 860px) {
+      .lgrc-container { flex-direction: column; gap: 32px; padding: 0 24px; }
+      .lgrc-image-col { flex: 0 0 auto; max-width: 380px; }
+      .lgrc-page-panel { padding: 40px 0; }
+    }
+    /* ── LGRC Sub Navigation ───────── */
+    .lgrc-subnav {
+      background: #0f2a6b;
+      padding: 36px 0;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      box-sizing: border-box;
+    }
+    .lgrc-subnav-inner {
+      max-width: 1060px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 0 32px;
+      box-sizing: border-box;
+    }
+    .lgrc-subnav-btn {
+      background: #ffffff;
+      color: #0f2a6b;
+      border: 2px solid #ffffff;
+      border-radius: 10px;
+      padding: 14px 20px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      text-align: center;
+      white-space: nowrap;
+      flex: 1;
+      min-width: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 56px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .lgrc-subnav-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
+    /* ── KEY PRINCIPLES Heading Band ─── */
+    .lgrc-kp-heading-band {
+      background: #ffffff;
+      padding: 44px 32px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      box-sizing: border-box;
+    }
+    .lgrc-section-heading {
+      max-width: 1060px;
+      margin: 0 auto;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+      color: #111111;
+      text-align: left;
+    }
+    /* ── Key Principles Section ────── */
+    .lgrc-principles-section {
+      background: #0f2a6b;
+      padding: 64px 0;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      box-sizing: border-box;
+    }
+    .lgrc-principles-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 44px;
+    }
+    .lgrc-principle-item { color: #ffffff; font-family: 'Poppins', sans-serif; line-height: 1.85; }
+    .lgrc-principle-item strong { font-size: 1rem; font-weight: 700; }
+    .lgrc-principle-item p { margin: 0; font-size: 0.97rem; }
+    /* ── Program Facilities Section ── */
+    .lgrc-facilities-section { padding: 64px 32px 36px; }
+    .lgrc-facilities-inner { max-width: 1240px; margin: 0 auto; }
+    .lgrc-facilities-panel {padding: 0; }
+    .lgrc-facilities-section .lgrc-section-heading { color: #111111; margin-bottom: 32px; max-width: none; }
+    .lgrc-facilities-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+    .lgrc-facility-card {
+      background: #ffffff;
+      border: 1px solid rgba(15, 42, 107, 0.1);
+      border-radius: 22px;
+      box-shadow: 0 8px 24px rgba(15, 42, 107, 0.08);
+      padding: 30px 28px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 350px;
+    }
+    .lgrc-facility-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(15, 42, 107, 0.12); }
+    .lgrc-facility-icon {
+      width: 100%;
+      margin: 0 0 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .lgrc-facility-icon img { width: 100%; height: 200px; object-fit: cover; display: block; border-radius: 12px; }
+    .lgrc-facility-copy { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .lgrc-facility-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.15rem; color: #0f2a6b; margin: 0 0 6px; line-height: 1.3; text-align: left; }
+    .lgrc-facility-desc { font-family: 'Montserrat', Arial, sans-serif; font-size: 0.95rem; color: #3f4f6b; line-height: 1.6; margin: 0; text-align: left; }
+    .lgrc-km-embed-section { padding: 0 32px 80px; }
+    .lgrc-km-embed-inner { max-width: 1240px; margin: 0 auto; padding: 18px 0 0; }
+    .lgrc-km-embed-frame { position: relative; width: 100%; border-radius: 10px; overflow: hidden; background: #0a1330; }
+    .lgrc-km-embed-frame::before { content: ""; display: block; padding-top: 56.25%; }
+    .lgrc-km-embed-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    @media (max-width: 900px) {
+      .lgrc-subnav { padding: 24px 0; }
+      .lgrc-subnav-inner { flex-wrap: wrap; gap: 16px; }
+      .lgrc-subnav-btn { flex: 0 0 calc((100% - 16px) / 2); padding: 12px 14px; font-size: 0.85rem; height: 48px; }
+      .lgrc-facilities-grid { grid-template-columns: 1fr; gap: 20px; }
+      .lgrc-facility-card { min-height: 0; padding: 26px 20px; }
+      .lgrc-facilities-panel { padding: 0; }
+      .lgrc-km-embed-inner { padding: 12px 0 0; }
+      .lgrc-facility-title { font-size: 1.5rem; }
+      .lgrc-facility-desc { font-size: 1rem; }
+      .lgrc-principles-inner { padding: 0 28px; gap: 32px; }
+    }
+    @media (max-width: 560px) {
+      .lgrc-subnav { padding: 16px 0; }
+      .lgrc-subnav-inner { flex-direction: column; gap: 12px; padding: 0 16px; }
+      .lgrc-subnav-btn { flex: 1 1 100%; width: 100%; padding: 12px 16px; font-size: 0.88rem; white-space: normal; height: auto; }
+      .lgrc-facilities-grid { grid-template-columns: 1fr; gap: 16px; }
+      .lgrc-facility-card { padding: 22px 16px; border-radius: 18px; }
+      .lgrc-facilities-panel { padding: 0; border-radius: 0; }
+      .lgrc-km-embed-section { padding: 0 20px 56px; }
+      .lgrc-km-embed-inner { padding: 10px 0 0; border-radius: 0; }
+      .lgrc-facility-icon img { height: 160px; }
+      .lgrc-facility-title { font-size: 1rem; }
+      .lgrc-facility-desc { font-size: 0.95rem; }
+      .lgrc-principles-inner { padding: 0 20px; gap: 24px; }
+      .lgrc-kp-heading-band { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-center">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-item" data-page="home"><span class="nav-label">Home</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="about" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">About Us</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="About Us submenu">
+            <li><a href="organizational-structure.html" class="dropdown-item">Organizational Structure</a></li>
+            <li><a href="elected-officials.html" class="dropdown-item">Elected Officials</a></li>
+            <li><a href="mission-vision-values.html" class="dropdown-item">Mission, Vision & Shared Values</a></li>
+            <li><a href="quality-policy.html" class="dropdown-item">Quality Policy</a></li>
+          </ul>
+        </li>
+        <li><a href="citizen-charter.html" class="nav-item" data-page="citizens-charter"><span class="nav-label">Citizen's Charter</span></a></li>
+        <li><a href="news.html" class="nav-item" data-page="news"><span class="nav-label">News</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="issuances" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Issuances</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Issuances submenu">
+            <li class="dropdown-item-with-submenu"><a href="joint-circulars.html" class="dropdown-item"><span>Joint Circulars</span></a></li>
+            <li class="dropdown-item-with-submenu"><a href="memo-circulars.html" class="dropdown-item"><span>Memo Circulars</span></a></li>
+            <li><a href="presidential-directives.html" class="dropdown-item">Presidential Directives</a></li>
+            <li><a href="republic-acts.html" class="dropdown-item">Republic Acts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" data-page="legal-opinion" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">Legal Opinion</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="Legal Opinion submenu">
+            <li><a href="legal-opinions.html?region=DILG%20Philippines" class="dropdown-item">DILG Philippines</a></li>
+            <li><a href="legal-opinions.html?region=Caraga%20Region" class="dropdown-item">Caraga Region</a></li>
+          </ul>
+        </li>
+        <li><a href="programs-and-services.html#programs-services" class="nav-item" data-page="programs"><span class="nav-label">Programs and Services</span></a></li>
+        <li><a href="contact-us.html" class="nav-item" data-page="contact"><span class="nav-label">Contact Us</span></a></li>
+        <li class="nav-item has-dropdown">
+          <a href="LGRC-and-GAD.html" class="nav-link active" data-page="lgrc-gad" aria-haspopup="true" aria-expanded="false">
+            <span class="nav-label">LGRC and GAD</span>
+            <span class="nav-arrow" aria-hidden="true">▾</span>
+          </a>
+          <ul class="nav-dropdown" aria-label="LGRC and GAD submenu">
+            <li><a href="about-lgrc.html" class="dropdown-item active" aria-current="page">About LGRC</a></li>
+            <li><a href="about-gad.html" class="dropdown-item">About GAD</a></li>
+            <li><a href="gad-corner.html" class="dropdown-item">GAD Corner</a></li>
+            <li><a href="msac.html" class="dropdown-item">MSAC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topnav-right"></div>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-row">
+        <img src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" class="header-logo" alt="DILG Seal" />
+        <img src="Logos/Bagong_Pilipinas_logo.png" alt="Bagong Pilipinas logo" class="header-logo" />
+        <img src="SUB-LGRC logo.png" alt="SUB-LGRC logo" class="header-logo" />
+        <img src="SURSUR LOGO.png" alt="Surigao del Sur logo" class="header-logo" />
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="topbar-caption">REPUBLIC OF THE PHILIPPINES</div>
+      <div class="title-divider" aria-hidden="true"></div>
+      <div class="topbar-title">DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT</div>
+      <div class="topbar-subtitle">Province of Surigao del Sur</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-clock clock">
+        <div class="topbar-clock-date" id="topbar-date">Loading date...</div>
+        <div class="topbar-clock-time" id="topbar-time">Loading time...</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="lgrc-page-panel">
+      <div class="lgrc-container">
+        <div class="lgrc-image-col">
+          <img src="lgrc-aurora-logo.jpg" alt="LGRC Aurora Logo" />
+        </div>
+        <div class="lgrc-text-col">
+          <div class="lgrc-heading">
+            <span class="c-blue">L</span><span class="c-black">OCAL </span>
+            <span class="c-green">G</span><span class="c-black">OVERNANCE</span><span class="c-black"> </span>
+            <span class="c-red">R</span><span class="c-black">ESOURCE</span><span class="c-black"> </span>
+            <span class="c-orange">C</span><span class="c-black">ENTER</span>
+          </div>
+          <p>Anchored on the Department's role as the primary catalyst for excellence in local governance, the Local Governance Resource Center (LGRC) supports this mandate and facilitates the integration of knowledge management in DILG processes and systems towards building the Department as a Knowledge Centric Organization (KCO). It also capitalizes on the premise that LGRC is DILG and vice-versa and that every DILG activity is attributed to the LGRC.</p>
+          <p>The primary goal of the LGRC is to promote a culture of learning and knowledge sharing in local governance. It is guided by three (3) major principles which are <strong>Knowledge Management (KM)</strong>, <strong>Multi-stakeholdership</strong> and <strong>Convergence</strong>.</p>
+        </div>
+      </div>
+</div>
+
+    <!-- ── LGRC Sub Navigation Bar ── -->
+    <div class="lgrc-subnav">
+      <div class="lgrc-subnav-inner">
+        <button class="lgrc-subnav-btn">Brand &amp; Symbol</button>
+        <button class="lgrc-subnav-btn">Org Structure</button>
+        <button class="lgrc-subnav-btn">Initiatives &amp; Innovations</button>
+        <button class="lgrc-subnav-btn">Partners &amp; Collaboration</button>
+      </div>
+    </div>
+
+    <!-- ── KEY PRINCIPLES Heading Band ── -->
+    <div class="lgrc-kp-heading-band">
+      <h2 class="lgrc-section-heading">KEY PRINCIPLES</h2>
+    </div>
+
+    <!-- ── Key Principles Section ── -->
+    <div class="lgrc-principles-section">
+      <div class="lgrc-principles-inner">
+          <div class="lgrc-principle-item">
+            <strong>Knowledge Management (KM)</strong>
+            <p>Knowledge Management is the systematic process of capturing, organizing, sharing, and leveraging knowledge assets to enhance organizational performance and innovation. It ensures that critical information and expertise are accessible to the right people at the right time, fostering a culture of continuous learning and informed decision-making across all levels of local governance.</p>
+          </div>
+          <div class="lgrc-principle-item">
+            <strong>Multi-stakeholdership</strong>
+            <p>Multi-stakeholdership refers to the active engagement and collaboration of various sectors including government agencies, civil society organizations, the private sector, academic institutions, and community groups in the planning, implementation, and evaluation of local governance programs. This principle ensures that diverse perspectives are considered, promoting inclusive and participatory governance.</p>
+          </div>
+          <div class="lgrc-principle-item">
+            <strong>Convergence</strong>
+            <p>Convergence is the strategic alignment and integration of resources, efforts, and programs across different stakeholders and sectors to achieve common development goals. By avoiding duplication and maximizing the impact of limited resources, convergence ensures that local governance initiatives are coherent, complementary, and effectively address the multidimensional challenges faced by communities.</p>
+          </div>
+      </div>
+    </div>
+
+    <!-- ── Program Facilities Section ── -->
+    <div class="lgrc-facilities-section">
+      <div class="lgrc-facilities-inner">
+        <div class="lgrc-facilities-panel">
+          <h2 class="lgrc-section-heading" style="color: #111; margin-bottom:32px;">PROGRAM FACILITIES</h2>
+          <div class="lgrc-facilities-grid">
+            <div class="lgrc-facility-card">
+              <div class="lgrc-facility-icon">
+                <img src="images/lgrc-capacity-development.svg" alt="Capacity development illustration" />
+              </div>
+              <div class="lgrc-facility-copy">
+                <h3 class="lgrc-facility-title">Capacity Development Facility</h3>
+                <p class="lgrc-facility-desc">Venue to deliver or facilitate the delivery of quality, strategic and responsive capacity development for promoting and undertaking replication of exemplary practices through Go-FAR.</p>
+                <p class="lgrc-facility-desc">Provide Support to local development planning.</p>
+                <p class="lgrc-facility-desc">Activities include: content development and technical assistance</p>
+              </div>
+            </div>
+
+            <div class="lgrc-facility-card">
+              <div class="lgrc-facility-icon">
+                <img src="images/lgrc-linkage-program.svg" alt="Linkage program illustration" />
+              </div>
+              <div class="lgrc-facility-copy">
+                <h3 class="lgrc-facility-title">Linkage Program Facility</h3>
+                <p class="lgrc-facility-desc">Brokers link between LGUs and other local governance stakeholders and programs</p>
+                <p class="lgrc-facility-desc">Provides access to network of coaches, experts and local resource institutions</p>
+                <p class="lgrc-facility-desc">Activities include: brokering, expert directory locator</p>
+                <p class="lgrc-facility-desc">Help desk and Information Referral Service</p>
+              </div>
+            </div>
+
+            <div class="lgrc-facility-card">
+              <div class="lgrc-facility-icon">
+                <img src="images/lgrc-public-education.svg" alt="Public education and citizenship illustration" />
+              </div>
+              <div class="lgrc-facility-copy">
+                <h3 class="lgrc-facility-title">Public Education and Citizenship Program Facility</h3>
+                <p class="lgrc-facility-desc">Promotes good local governance practices and innovations</p>
+                <p class="lgrc-facility-desc">Knowledge sharing, knowledge exchange programs through conferences, round table discussions and forums on exemplary practices, tools and processes, cases, policy issues and governance trends</p>
+                <p class="lgrc-facility-desc">Information Dissemination</p>
+                <p class="lgrc-facility-desc">Partnerships with media for public education</p>
+              </div>
+            </div>
+
+            <div class="lgrc-facility-card">
+              <div class="lgrc-facility-icon">
+                <img src="images/lgrc-multimedia-knowledge.svg" alt="Multimedia and knowledge illustration" />
+              </div>
+              <div class="lgrc-facility-copy">
+                <h3 class="lgrc-facility-title">Multi-media and Knowledge Program Facility</h3>
+                <p class="lgrc-facility-desc">Repository and channel of communication and information sharing of books, publications, exemplary and replicable practices, audio-video materials and other knowledge products</p>
+                <p class="lgrc-facility-desc">Provides access to: LGRC Website and Integrated Library Management System</p>
+                <p class="lgrc-facility-desc">Provides access to and use of Local Governance Performance Management System</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lgrc-km-embed-section">
+      <div class="lgrc-km-embed-inner">
+        <div class="lgrc-km-embed-frame">
+          <iframe
+            src="https://drive.google.com/file/d/16C4z8Sy6TWbLEZLuoYCczgwU3yyc8ZxE/preview"
+            title="LGRC Knowledge Management PDF"
+            allow="autoplay"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p class="footer-label">ATTACHED AGENCIES</p>
+      <div class="footer-agencies">
+        <a href="https://napolcom.gov.ph/"><img src="Logos/National_Police_Commission_(NAPOLCOM).png" alt="NAPOLCOM logo"/></a>
+        <a href="https://bfp.gov.ph/"><img src="Logos/Bureau_of_Fire_Protection.png" alt="BFP logo" /></a>
+        <a href="https://pnp.gov.ph/"><img src="Logos/1920px-Philippine_National_Police_seal.svg.webp" alt="PNP logo" /></a>
+        <a href="https://lga.gov.ph/"><img src="Logos/3840px-Local_Government_Academy_(LGA).svg.webp" alt="LGA logo" /></a>
+        <a href="https://ppsc.gov.ph/"><img src="Logos/Philippine_Public_Safety_College.png" alt="PPSC logo" /></a>
+        <a href="https://bjmp.gov.ph/"><img src="Logos/Bureau_of_Jail_Management_and_Penology.png" alt="BJMP logo" /></a>
+        <a href="https://ncmf.gov.ph/"><img src="Logos/National_Commission_on_Muslim_Filipinos.png" alt="NCMF logo" /></a>
+        <a href="https://hpg.gov.ph/"><img src="Logos/Highway_Patrol_Group.png" alt="HPG logo" /></a>
+        <a href="https://nyc.gov.ph/" ><img src="Logos/3840px-National_Youth_Commission_Philippines.svg.webp" alt="NYC logo" /></a>
+        <a href="https://pcw.gov.ph/"><img src="Logos/3840px-Philippine_Commission_on_Women_(PCW).svg.webp" alt="PCW logo" /></a>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="Logos/toppng.com-republic-of-the-philippines-logo-1200x1331.png" alt="Republic of the Philippines logo" class="footer-main-logo" />
+        <div>
+          <p class="footer-brand-title">REPUBLIC OF THE PHILIPPINES</p>
+          <p class="footer-brand-subtitle">DILG Surigao del Sur Province</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>GOVERNMENT LINKS</h3>
+        <ul>
+          <li><a href="#">Office of the President</a></li>
+          <li><a href="#">Office of the Vice President</a></li>
+          <li><a href="#">Senate of the Philippines</a></li>
+          <li><a href="#">House of Representatives</a></li>
+          <li><a href="#">Supreme Court</a></li>
+          <li><a href="#">Court of Appeals</a></li>
+          <li><a href="#">Sandiganbayan</a></li>
+        </ul>
+      </div>
+      <div class="footer-connect">
+        <h3>Connect with us</h3>
+        <div class="footer-connect-widget">
+          <a href="https://www.facebook.com/DILGsds" target="_blank" rel="noreferrer noopener" class="connect-card" aria-label="Open DILG Surigao del Sur Facebook page (opens in new tab)">
+            <span class="connect-icon" aria-hidden="true">
+              <img src="Logos/2021_Facebook_icon.svg" alt="Facebook icon" />
+            </span>
+            <span class="connect-content">
+              <span class="connect-title">Like us on Facebook</span>
+              <span class="connect-sub">Be updated about DILG</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function() {
+      const timeEl = document.getElementById('topbar-time');
+      const dateEl = document.getElementById('topbar-date');
+      function updateClock() {
+        try {
+          const now = new Date();
+          const phTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+          const weekday = phTime.toLocaleDateString('en-PH', { weekday: 'long', timeZone: 'Asia/Manila' });
+          const month = phTime.toLocaleDateString('en-PH', { month: 'long', timeZone: 'Asia/Manila' });
+          const day = phTime.toLocaleDateString('en-PH', { day: 'numeric', timeZone: 'Asia/Manila' });
+          const year = phTime.toLocaleDateString('en-PH', { year: 'numeric', timeZone: 'Asia/Manila' });
+          const timeString = phTime.toLocaleTimeString('en-PH', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Manila' });
+          if (dateEl) dateEl.textContent = weekday + ', ' + month + ' ' + day + ', ' + year;
+          if (timeEl) timeEl.textContent = timeString + ' Tandag City';
+        } catch(e) { 
+          if (dateEl) dateEl.textContent = 'Date unavailable';
+          if (timeEl) timeEl.textContent = 'Time unavailable';
+        }
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+  </script>
+</body>
+</html>

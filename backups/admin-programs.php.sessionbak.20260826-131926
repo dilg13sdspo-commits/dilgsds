@@ -1,0 +1,628 @@
+﻿<?php
+require_once __DIR__ . '/auth/middleware.php';
+require_role('ADMIN');
+?>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programs Management - DILG SDS</title>
+  <link rel="stylesheet" href="styles.css?v=20260814-admin-ref-01">
+  <style>
+    .admin-sidebar__nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 8px 10px 18px;
+    }
+    .sidebar-section-label {
+      margin: 14px 8px 6px;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: rgba(188, 211, 255, 0.7);
+    }
+    .admin-sidebar__nav a,
+    .sidebar-settings-link,
+    .sidebar-logout {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 42px;
+      padding: 9px 12px;
+      color: rgba(232, 240, 255, 0.92);
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: background-color 0.18s ease, transform 0.18s ease, color 0.18s ease;
+      box-sizing: border-box;
+      background: transparent;
+      border: 0;
+      text-align: left;
+      cursor: pointer;
+    }
+    .admin-sidebar__nav a:hover,
+    .sidebar-settings-link:hover,
+    .sidebar-logout:hover,
+    .admin-sidebar__nav a:focus-visible,
+    .sidebar-settings-link:focus-visible,
+    .sidebar-logout:focus-visible {
+      background: rgba(255,255,255,0.08);
+      transform: translateX(2px);
+      outline: none;
+    }
+    .admin-sidebar__nav a.is-active {
+      background: linear-gradient(135deg,#1d5dd7 0%,#174da9 100%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+      color: #fff;
+    }
+    .programs-admin {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .programs-admin h1 {
+      color: #0f2a6b;
+      margin: 0 0 6px;
+    }
+    .programs-admin > p {
+      color: #64748b;
+      margin: 0 0 22px;
+    }
+    .programs-grid {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .program-form,
+    .program-list {
+      background: #fff;
+      border: 1px solid #dfe7f0;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(15,42,107,.06);
+    }
+    .program-form h2,
+    .program-list h2 {
+      color: #0f2a6b;
+      margin: 0 0 16px;
+      font-size: 1.15rem;
+    }
+    .program-form label {
+      display: block;
+      color: #334155;
+      font-weight: 700;
+      font-size: .78rem;
+      margin: 11px 0 5px;
+    }
+    .program-form input,
+    .program-form textarea,
+    .program-form select {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      padding: 10px;
+      font: inherit;
+    }
+    .program-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+    .form-actions {
+      display: flex;
+      gap: 9px;
+      margin-top: 16px;
+    }
+    .form-actions button,
+    .program-row button {
+      border: 0;
+      border-radius: 7px;
+      padding: 9px 13px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    #save-program {
+      background: #1f5fcf;
+      color: #fff;
+    }
+    #clear-program {
+      background: #e2e8f0;
+      color: #334155;
+    }
+    .program-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 13px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .program-row:last-child {
+      border-bottom: 0;
+    }
+    .program-row strong {
+      display: block;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .program-row small {
+      color: #64748b;
+      display: block;
+      line-height: 1.5;
+    }
+    .program-row .program-row__actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .program-row button {
+      background: #e8eef8;
+      color: #0f2a6b;
+      margin-left: 0;
+    }
+    .program-row .delete {
+      color: #b42318;
+      background: #fff0ef;
+    }
+    .status {
+      color: #64748b;
+      padding: 14px 0;
+      font-weight: 700;
+    }
+    .admin-sidebar__title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 18px 12px 14px;
+      color: rgba(255,255,255,.96);
+      font-weight: 800;
+      min-height: 76px;
+      box-sizing: border-box;
+      position: relative;
+      padding-right: 28px;
+    }
+    .admin-sidebar__brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      padding: 4px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .admin-sidebar__brand-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      min-width: 0;
+      line-height: 1.18;
+      white-space: normal;
+      flex: 1;
+    }
+    .admin-sidebar__brand-name {
+      font-size: .7rem;
+      letter-spacing: .01em;
+      text-transform: none;
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.3;
+      white-space: normal;
+      overflow: visible;
+    }
+    .admin-sidebar__brand-line { display: block; }
+    .admin-sidebar__brand-subtitle {
+      font-size: .58rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: rgba(220,232,255,.8);
+      font-weight: 700;
+      white-space: nowrap;
+      line-height: 1.3;
+    }
+    .sidebar-collapse-toggle {
+      position: absolute;
+      top: 18px;
+      right: 8px;
+      left: auto;
+      transform: none;
+      width: 18px;
+      height: 18px;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 40;
+      transition: left .22s ease,transform .22s ease;
+      padding: 0;
+    }
+    .sidebar-collapse-toggle span {
+      display: inline-block;
+      font-size: 2rem;
+      line-height: 1;
+      transform: translateX(-1px);
+      transition: transform .22s ease;
+      color: #fff;
+    }
+    .admin-portal-shell {
+      position: relative;
+      display: grid;
+      grid-template-columns: 320px minmax(0,1fr);
+      min-height: 100vh;
+      transition: grid-template-columns .22s ease;
+    }
+    .admin-sidebar__nav a.is-active {
+      background: #1f5fcf;
+      color: #ffffff;
+      box-shadow: inset 3px 0 0 #ffffff;
+    }
+    .admin-sidebar {
+      position: relative;
+      width: 320px;
+      min-width: 320px;
+      background: linear-gradient(180deg,rgba(15,42,107,.98) 0%,rgba(8,22,50,.96) 100%);
+      border-right: 1px solid rgba(255,255,255,.08);
+      transition: width .22s ease,min-width .22s ease;
+    }
+    body.sidebar-collapsed .admin-portal-shell {
+      grid-template-columns: 90px minmax(0,1fr);
+    }
+    body.sidebar-collapsed .admin-sidebar {
+      width: 90px;
+      min-width: 90px;
+    }
+    body.sidebar-collapsed .admin-sidebar__title,
+    body.sidebar-collapsed .sidebar-section-label,
+    body.sidebar-collapsed .admin-sidebar__nav a span:last-child,
+    body.sidebar-collapsed .sidebar-settings-link span:last-child,
+    body.sidebar-collapsed .sidebar-logout span:last-child {
+      display: none;
+    }
+    body.sidebar-collapsed .admin-sidebar__nav a,
+    body.sidebar-collapsed .sidebar-settings-link,
+    body.sidebar-collapsed .sidebar-logout {
+      justify-content: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    body.sidebar-collapsed .sidebar-collapse-toggle {
+      right: 8px;
+      left: auto;
+    }
+    body.sidebar-collapsed .sidebar-collapse-toggle span {
+      transform: rotate(180deg) translateX(-1px);
+    }
+    @media (max-width: 850px) {
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="admin-dashboard-ref-body">
+  <div class="admin-portal-shell">
+    <button type="button" class="sidebar-collapse-toggle" id="sidebar-toggle" aria-label="Collapse sidebar"><span>‹</span></button>
+    <aside class="admin-sidebar" aria-label="Sidebar navigation">
+      <div class="admin-sidebar__title" aria-label="Department of the Interior and Local Government">
+        <img class="admin-sidebar__brand-logo" src="Logos/Department_of_the_Interior_and_Local_Government_(DILG)_Seal_-_Logo.svg" alt="DILG logo" />
+        <div class="admin-sidebar__brand-text">
+          <span class="admin-sidebar__brand-name">
+            <span class="admin-sidebar__brand-line">Department of the Interior and Local</span>
+            <span class="admin-sidebar__brand-line">Government</span>
+          </span>
+          <span class="admin-sidebar__brand-subtitle">SURIGAO DEL SUR</span>
+        </div>
+      </div>
+      <nav class="admin-sidebar__nav">
+        <div class="sidebar-section-label">ADMINISTRATION</div>
+        <a href="admin-dashboard.php" aria-label="Dashboard" title="Dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 11.5L12 4l8 7.5V20a1 1 0 0 1-1 1h-4v-7H9v7H5a1 1 0 0 1-1-1v-8.5z"/></svg></span><span>Dashboard</span></a>
+        <a href="admin-users.php" aria-label="User Management" title="User Management"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-3.33 0-8 1.79-8 4v1h16v-1c0-2.21-4.67-4-8-4z"/></svg></span><span>User Management</span></a>
+
+        <div class="sidebar-section-label">CONTENT MANAGEMENT</div>
+        <a href="admin-home.php" aria-label="Home Management" title="Home Management"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 11.5L12 4l8 7.5V20H4z"/></svg></span><span>Home Management</span></a>
+        <a href="admin-officials.php" aria-label="Elected Officials" title="Elected Officials"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span><span>Elected Officials</span></a>
+        <a href="admin-news.php" aria-label="News Management" title="News Management"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H7l-3 3V5z"/></svg></span><span>News Management</span></a>
+        <a href="admin-issuances.php" aria-label="Issuances Management" title="Issuances Management"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z"/></svg></span><span>Issuances Management</span></a>
+        <a href="admin-programs.php" class="is-active" aria-label="Programs &amp; Services" title="Programs &amp; Services"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h16"/></svg></span><span>Programs &amp; Services</span></a>
+        <a href="admin-dashboard.php#media-files" aria-label="Media Files" title="Media Files"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zM6 16l3-4 3 3 3-4 3 5"/></svg></span><span>Media Files</span></a>
+
+        <div class="sidebar-section-label">REPORTS &amp; ANALYTICS</div>
+        <a href="admin-dashboard.php#reports-analytics" aria-label="Reports &amp; Analytics" title="Reports &amp; Analytics"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 18V9M12 18V5M19 18v-7M4 18h16"/></svg></span><span>Reports &amp; Analytics</span></a>
+
+        <div class="sidebar-section-label">SYSTEM</div>
+        <button type="button" class="sidebar-settings-link" data-open-settings>
+          <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94a7.48 7.48 0 0 0 .05-.94 7.48 7.48 0 0 0-.05-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.18l-2.39.96a6.8 6.8 0 0 0-1.63-.94L14.6 2.5a.5.5 0 0 0-.5-.34h-3.84a.5.5 0 0 0-.5.34l-.43 2.5a6.8 6.8 0 0 0-1.63.94l-2.39-.96a.5.5 0 0 0-.61.18L2.71 8.84a.5.5 0 0 0 .12.64l2.03 1.58a7.48 7.48 0 0 0-.05.94 7.48 7.48 0 0 0 .05.94L2.83 14.52a.5.5 0 0 0-.12.64l1.92 3.32a.5.5 0 0 0 .61.18l2.39-.96a6.8 6.8 0 0 0 1.63.94l.43 2.5a.5.5 0 0 0 .5.34h3.84a.5.5 0 0 0 .5-.34l.43-2.5a6.8 6.8 0 0 0 1.63-.94l2.39.96a.5.5 0 0 0 .61-.18l1.92-3.32a.5.5 0 0 0-.12-.64zM12 15.25A3.25 3.25 0 1 1 12 8.75a3.25 3.25 0 0 1 0 6.5z"/></svg></span><span>Settings</span></button>
+        <button type="button" class="sidebar-logout" id="logout-btn"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v3H3v4h7v3zm10-9v12h-8v-2h6V6h-6V4h8z"/></svg></span><span>Log out</span></button>
+      </nav>
+    </aside>
+
+    <main class="programs-admin">
+      <h1>Programs &amp; Services</h1>
+      <p>Manage the programs and services entries displayed on the public Programs and Services page.</p>
+
+      <div class="programs-grid">
+        <section class="program-form">
+          <h2 id="form-title">Add Program</h2>
+          <form id="program-form">
+            <input type="hidden" id="id" name="id" />
+
+            <label for="category">Category</label>
+            <input id="category" name="category" type="text" placeholder="01Outcome Area 1: Excellence in Local Governance upheld" required />
+
+            <label for="title">Program Title</label>
+            <input id="title" name="title" type="text" placeholder="Child-friendly Local Governance Audit (CFLGA)" required />
+
+            <label for="link_url">Link URL</label>
+            <input id="link_url" name="link_url" type="url" placeholder="https://..." required />
+
+            <label for="sort_order">Display Order</label>
+            <input id="sort_order" name="sort_order" type="number" min="1" value="1" />
+
+            <label style="display:inline-flex;align-items:center;gap:8px;cursor:pointer; margin-top:16px;">
+              <input id="is_active" name="is_active" type="checkbox" checked />
+              <span>Visible on page</span>
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" id="save-program">Save</button>
+              <button type="button" id="clear-program">Clear</button>
+            </div>
+            <div id="program-status" class="status" aria-live="polite"></div>
+          </form>
+        </section>
+
+        <section class="program-list">
+          <h2>Current Programs</h2>
+          <div id="programs-list"><div class="status">Loading...</div></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="settings-modal" id="settings-modal" aria-hidden="true">
+    <div class="settings-modal__backdrop" data-close-settings></div>
+    <div class="settings-modal__panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="settings-modal__header">
+        <h2 id="settings-title">System Settings</h2>
+        <button type="button" class="settings-modal__close" aria-label="Close settings" data-close-settings>×</button>
+      </div>
+      <form class="settings-form" id="system-settings-form">
+        <label>
+          Website Title
+          <input type="text" name="websiteTitle" value="DILG SDS" />
+        </label>
+        <div class="settings-form__row">
+          <label>
+            Contact Email
+            <input type="email" name="contactEmail" value="info@dilg.gov.ph" />
+          </label>
+          <label>
+            Default Timezone
+            <select name="timezone">
+              <option value="Asia/Manila" selected>Asia/Manila</option>
+              <option value="UTC">UTC</option>
+              <option value="America/New_York">America/New_York</option>
+            </select>
+          </label>
+        </div>
+        <div class="settings-form__row">
+          <label>
+            Maintenance Mode
+            <select name="maintenanceMode">
+              <option value="off" selected>Off</option>
+              <option value="on">On</option>
+            </select>
+          </label>
+          <label>
+            Default Publishing
+            <select name="publishState">
+              <option value="published" selected>Published</option>
+              <option value="draft">Draft</option>
+            </select>
+          </label>
+        </div>
+        <div class="settings-modal__actions">
+          <button type="button" class="settings-btn settings-btn--secondary" data-close-settings>Cancel</button>
+          <button type="submit" class="settings-btn settings-btn--primary">Save Settings</button>
+        </div>
+      </form>
+      <p class="settings-status" id="settings-status" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var api = 'auth/programs_api.php';
+      var form = document.getElementById('program-form');
+      var root = document.getElementById('programs-list');
+      var status = document.getElementById('program-status');
+
+      function esc(value) {
+        return String(value || '').replace(/[&<>"']/g, function (char) {
+          return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[char];
+        });
+      }
+
+      function clearForm() {
+        form.reset();
+        document.getElementById('id').value = '';
+        document.getElementById('sort_order').value = '1';
+        document.getElementById('is_active').checked = true;
+        document.getElementById('form-title').textContent = 'Add Program';
+        if (status) status.textContent = '';
+      }
+
+      function load() {
+        fetch(api)
+          .then(function (response) { return response.json(); })
+          .then(function (payload) {
+            var programs = Array.isArray(payload && payload.programs) ? payload.programs : [];
+            programs = programs.slice().sort(function (a, b) {
+              return Number(a.sort_order || 0) - Number(b.sort_order || 0);
+            });
+
+            if (!programs.length) {
+              root.innerHTML = '<div class="status">No programs found.</div>';
+              return;
+            }
+
+            root.innerHTML = programs.map(function (program) {
+              return '<div class="program-row">' +
+                '<div><strong>' + esc(program.title || '') + '</strong><small>' + esc(program.category || '') + '<br>' + esc(program.link_url || '') + '</small></div>' +
+                '<div class="program-row__actions"><button type="button" data-edit="' + program.id + '">Edit</button><button type="button" class="delete" data-delete="' + program.id + '">Delete</button></div>' +
+                '</div>';
+            }).join('');
+          })
+          .catch(function () {
+            root.innerHTML = '<div class="status">Unable to load programs.</div>';
+          });
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var formData = new FormData(form);
+        formData.append('action', document.getElementById('id').value ? 'update' : 'create');
+
+        fetch(api, {
+          method: 'POST',
+          body: formData
+        })
+          .then(function (response) { return response.json(); })
+          .then(function (result) {
+            if (result && result.error) throw new Error(result.error);
+            status.textContent = 'Program saved successfully.';
+            clearForm();
+            load();
+          })
+          .catch(function (error) {
+            status.textContent = error.message || 'Unable to save program.';
+          });
+      });
+
+      root.addEventListener('click', function (event) {
+        var button = event.target;
+        var id = button.getAttribute('data-edit') || button.getAttribute('data-delete');
+        if (!id) return;
+
+        if (button.hasAttribute('data-delete')) {
+          if (!confirm('Delete this program?')) return;
+          fetch(api, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ action: 'delete', id: id })
+          })
+            .then(function () { load(); })
+            .catch(function () {
+              status.textContent = 'Unable to delete program.';
+            });
+          return;
+        }
+
+        fetch(api)
+          .then(function (response) { return response.json(); })
+          .then(function (payload) {
+            var programs = Array.isArray(payload && payload.programs) ? payload.programs : [];
+            var program = programs.find(function (item) { return String(item.id) === id; });
+            if (!program) return;
+            document.getElementById('id').value = program.id;
+            document.getElementById('category').value = program.category || '';
+            document.getElementById('title').value = program.title || '';
+            document.getElementById('link_url').value = program.link_url || '';
+            document.getElementById('sort_order').value = program.sort_order || 1;
+            document.getElementById('is_active').checked = !!program.is_active;
+            document.getElementById('form-title').textContent = 'Edit Program';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('category').focus();
+          });
+      });
+
+      document.getElementById('clear-program').addEventListener('click', clearForm);
+
+      document.getElementById('logout-btn').addEventListener('click', function (event) {
+        event.preventDefault();
+        fetch('auth/logout.php', { method: 'POST' }).finally(function () {
+          location.href = 'index.html';
+        });
+      });
+
+      var settingsModal = document.getElementById('settings-modal');
+      function openSettingsModal() {
+        settingsModal.classList.add('is-open');
+        settingsModal.setAttribute('aria-hidden', 'false');
+      }
+      function closeSettingsModal() {
+        settingsModal.classList.remove('is-open');
+        settingsModal.setAttribute('aria-hidden', 'true');
+      }
+      document.querySelectorAll('[data-open-settings]').forEach(function (button) {
+        button.addEventListener('click', openSettingsModal);
+      });
+      document.querySelectorAll('[data-close-settings]').forEach(function (button) {
+        button.addEventListener('click', closeSettingsModal);
+      });
+      settingsModal.addEventListener('click', function (event) {
+        if (event.target === settingsModal || event.target.classList.contains('settings-modal__backdrop')) {
+          closeSettingsModal();
+        }
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && settingsModal.classList.contains('is-open')) {
+          closeSettingsModal();
+        }
+      });
+      var savedSettings = JSON.parse(localStorage.getItem('dilgSystemSettings') || '{}');
+      var settingsForm = document.getElementById('system-settings-form');
+      if (savedSettings.websiteTitle) settingsForm.websiteTitle.value = savedSettings.websiteTitle;
+      if (savedSettings.contactEmail) settingsForm.contactEmail.value = savedSettings.contactEmail;
+      if (savedSettings.timezone) settingsForm.timezone.value = savedSettings.timezone;
+      if (savedSettings.maintenanceMode) settingsForm.maintenanceMode.value = savedSettings.maintenanceMode;
+      if (savedSettings.publishState) settingsForm.publishState.value = savedSettings.publishState;
+      settingsForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var values = Object.fromEntries(new FormData(settingsForm).entries());
+        localStorage.setItem('dilgSystemSettings', JSON.stringify(values));
+        document.getElementById('settings-status').textContent = 'Settings saved successfully.';
+        closeSettingsModal();
+      });
+
+      var toggle = document.getElementById('sidebar-toggle');
+      if (toggle) {
+        var body = document.body;
+        function apply(collapsed) {
+          body.classList.toggle('sidebar-collapsed', collapsed);
+          toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+          toggle.setAttribute('title', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+          toggle.innerHTML = collapsed ? '<span>›</span>' : '<span>‹</span>';
+        }
+        try {
+          apply(localStorage.getItem('dilg-admin-sidebar-collapsed') === '1');
+        } catch (error) {
+          apply(false);
+        }
+        toggle.addEventListener('click', function () {
+          var collapsed = body.classList.toggle('sidebar-collapsed');
+          try {
+            localStorage.setItem('dilg-admin-sidebar-collapsed', collapsed ? '1' : '0');
+          } catch (error) {}
+          toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+          toggle.setAttribute('title', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+          toggle.innerHTML = collapsed ? '<span>›</span>' : '<span>‹</span>';
+        });
+      }
+
+      load();
+    }());
+  </script>
+</body>
+</html>
